@@ -32,6 +32,7 @@ Produce a concise, structured summary of the current conversation focused on:
    - Put the rest of the fields under that heading.
    - Append at the end of the file.
 9. If any field is missing or unclear, ask a brief clarification question before writing.
+10. After writing, ask whether to create a git commit; if confirmed, stage the affected `/daily-data/YYYY/MM/dd.md` file and commit with the message `feat: <Topic>`. `daily-data/` is another repo, so ensure to run git commands in that repo.
 
 ## Output format
 Use this exact structure:
