@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 
 # Private data
 daily-data/
+memory/
