@@ -46,7 +46,7 @@ Use this exact structure:
 ### Solution
 <1–3 sentences>
 
-### Notes
+### Notes(Output this if notes is not null)
 <optional; extract user's notes if present>
 
 ## Language
