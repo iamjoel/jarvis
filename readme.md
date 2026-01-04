@@ -24,6 +24,8 @@ When feeling down, talking to friends is a good way to cope. However, friends ma
 ## How to resolve
 LLM is intelligence enough to do some tasks for people.
 
+**Problem driven** is important.It can help to focus on what really matters.
+
 ### 1 Keep focus
 Identify "bread and circuses" information: content driven solely by emotion without substantive support.
 
