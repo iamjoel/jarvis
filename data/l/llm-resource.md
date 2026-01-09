@@ -1,4 +1,6 @@
 # LLM resource
+
+[Simon Willison: 2025: The year in LLMs](https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-the-lethal-trifecta)
 ## People
 * [Andrej Karpathy](https://x.com/karpathy) 
 * [Boris Cherny](https://x.com/bcherny) Creator of Claude Code.

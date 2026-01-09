@@ -8,3 +8,4 @@ Mask(观察遮蔽) tool 来屏蔽一些工具。；推理结束后，把对话�
 * [Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/main?tab=readme-ov-file)
   * [Context Optimization Techniques](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/context-optimization/SKILL.md)
 * [Context Engineering for AI Agents: Lessons from Building Manus](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)
+* [We removed 80% of our agent’s tools](https://vercel.com/blog/we-removed-80-percent-of-our-agents-tools)
