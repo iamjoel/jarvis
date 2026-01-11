@@ -32,5 +32,5 @@ Use Jarvis to help:
 1. **Problem driven** is important.It can help to focus on what really matters.
 
 ## References
-- [^1]: Moran, M. J., & Shapiro, H. N. (2006). *Fundamentals of Engineering Thermodynamics*. John Wiley & Sons.
-- [^2]: Brickman, Philip, and Donald T. Campbell. "Hedonic Relativism and Planning the Good Society." Adaptation-Level Theory, edited by M. H. Appley, Academic Press, 1971, pp. 287-302.
+[^1]: Moran, M. J., & Shapiro, H. N. (2006). *Fundamentals of Engineering Thermodynamics*. John Wiley & Sons.  
+[^2]: Brickman, Philip, and Donald T. Campbell. "Hedonic Relativism and Planning the Good Society." Adaptation-Level Theory, edited by M. H. Appley, Academic Press, 1971, pp. 287-302.
