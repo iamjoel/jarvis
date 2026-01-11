@@ -3,6 +3,8 @@ To have a easy life with the help of Jarvis. Jarvis is an agent based on LLM.
 
 ## What makes life such a massive massive
 ### 1 The Entropy of Existence
+![](./resource/order-to-disorder.png)
+
 Life naturally move from order to disorder. Life requires constant energy to keep things "order."[^1]
 
 
@@ -11,6 +13,9 @@ $$
 Happiness = Reality(Ability) / Expectations(Desire)
 $$
 
+When **Reality** (your current situation) is less than **Expectations** (what you want), you feel unhappy.
+
+![](./resource/desire-and-ability.png)  
 **Desire** grows faster than **Ability**. When your ability increases (you get a promotion, you learn a new skill), your brain quickly treats this new level as the "baseline."[^2]
 
 Also, **social media and advertising** constantly raise our expectations, making us feel inadequate.
@@ -19,8 +24,10 @@ Also, **social media and advertising** constantly raise our expectations, making
 ### 3 Stress of rapidly advancing technology
 A society becomes more technologically advanced and efficient, the individuals within it often feel more pressured, anxious, and exhausted.
 
+![](./resource/attention-fatigue.png)  
 **Attention Fatigue**: Our brains are processing more information in a single day than our ancestors did in a lifetime. This leads to what clinicians now call "digital noise" stress.
 
+![](./resource/ai-replacement.png)  
 **AI replacement**: As AI become more capable, many people worry about job security and the future of work. 
 
 
