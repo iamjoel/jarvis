@@ -39,8 +39,12 @@ Use Jarvis to help:
 4. Automate the SOP.
 
 
-## Strategies
+## Methods
 1. **Problem driven** is important. It can help to focus on what really matters.
+2. **Feynman Technique**: Explain complex ideas in simple terms to ensure deep understanding.  
+![](./resource/method/feynman-technique.png)
+3. **Deliberate Practice**:  means a structured and intentional way of practicing to improve specific skills, not just repeating the same activity.
+![](./resource/method/deliberate-practice.png)
 
 [^1]: Moran, M. J., & Shapiro, H. N. (2006). *Fundamentals of Engineering Thermodynamics*. John Wiley & Sons.  
 [^2]: Brickman, Philip, and Donald T. Campbell. "Hedonic Relativism and Planning the Good Society." Adaptation-Level Theory, edited by M. H. Appley, Academic Press, 1971, pp. 287-302.

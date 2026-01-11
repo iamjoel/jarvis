@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 # Private data
 daily-data/
 memory/
+
+# MacOS temp files
+.DS_Store
