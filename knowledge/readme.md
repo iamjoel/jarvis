@@ -1,4 +1,8 @@
 # Knowledge
-The information has been processed and reflected upon personally.
+Knowledge is well organized data. Knowledge includes which problem it solves, why it matters, how to use it, and any relevant context. Good knowledge is actionable and reliable.
 
-With the knowledge here, Jarvis can better assist users in their daily lives.
+Knowledge helps you solve problems effectively. 
+
+## Navigation
+### Base
+- Why questions driven is important?

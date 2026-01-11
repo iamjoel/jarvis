@@ -1,52 +1,36 @@
 # Jarvis
-To have a easy life with the help Jarvis. Jarvis is an agent based on LLM.
+To have a easy life with the help of Jarvis. Jarvis is an agent based on LLM.
 
-## What makes life massive
-### 1 Distraction
-**Overstimulated desires**. Consumerism and increasingly sophisticated algorithms fuel this stimulation. "Bread and circuses" (entertainment designed to pacify) keep people addicted.
+## What makes life such a massive massive
+### 1 The Entropy of Existence
+Life naturally move from order to disorder.Life requires constant energy to keep things "order."[^1]
 
-**Anxiety**. Intense competition and inflated desires.
+### 2 Unhappiness
+$$
+Happiness = Reality(Ability) / Expectations(Desire)
+$$
 
-### 2 Information overload
-The ability to process information far exceeds the desire to acquire it.
+**Desire** grows faster than Ability.When your ability increases (you get a promotion, you learn a new skill), your brain quickly treats this new level as the "baseline."[^2]
 
-The world changes too quickly. Too much information need to known to catch the speed of change.
+Also, social media and advertising constantly raise our expectations, making us feel inadequate.
 
+### 3 Stress of rapidly advancing technology
+A society becomes more technologically advanced and efficient, the individuals within it often feel more pressured, anxious, and exhausted.
 
-### 3 Hard to manage information
-As the information become larger and larger, it becomes harder to recall the information.
+**Attention Fatigue**: Our brains are processing more information in a single day than our ancestors did in a lifetime. This leads to what clinicians now call "digital noise" stress.
 
-### 4 Massive tasks to do
-
-### 5 Emotional lows
-When feeling down, talking to friends is a good way to cope. However, friends may not always be available. Moreover, if one remains in a prolonged low period, constantly venting negative emotions to friends is not a good ideal.
+**AI replacement**: As AI become more capable, many people worry about job security and the future of work. 
 
 ## How to resolve
-LLM is intelligence enough to do some tasks for people.
+Use Jarvis to help:
+1. Accept the "mess".
+2. Tame your desires.
+3. Deep thinking the life.
+4. Automate the SOP.
 
-**Problem driven** is important.It can help to focus on what really matters.
+## Strategies
+1. **Problem driven** is important.It can help to focus on what really matters.
 
-### 1 Keep focus
-Identify "bread and circuses" information: content driven solely by emotion without substantive support.
-
-If find
-
-### 2 Efficient information acquisition process
-Summarize the content o with LLM.
-
-Crawl → Filter → Consolidate
-
-### 3 Information management ability
-
-### 4 Automation
-A collection of Skills, Tools (Code, MCP Tools, etc.), and specialized Agents.
-
-### 5 Emotional Support
-LLM is more patient then human. She(LLM) can offer quiet companionship rather than solutions. She listens without judgment, speaks in simple, warm sentences, and creates a sense of safety through her presence. Her goal is to help people feel seen, understood, and unhurried.
-
-
-
-
-
-
-
+## References
+- [^1]: Moran, M. J., & Shapiro, H. N. (2006). *Fundamentals of Engineering Thermodynamics*. John Wiley & Sons.
+- [^2]: Brickman, Philip, and Donald T. Campbell. "Hedonic Relativism and Planning the Good Society." Adaptation-Level Theory, edited by M. H. Appley, Academic Press, 1971, pp. 287-302.
