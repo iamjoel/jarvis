@@ -1,6 +1,10 @@
 # Image Generation
 ## Style
 ### To explain a concept
+> Doodle style
+
+![](../../resource/method/feynman-technique-doodle-style.png)
+
 > Simple line drawing, doodle style.
 
 Example prompt:
@@ -10,3 +14,4 @@ Simple line drawing, doodle style.
 ```
 
 ![](../../resource/method/feynman-technique.png)
+
