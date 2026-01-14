@@ -3,12 +3,11 @@
 [Simon Willison: 2025: The year in LLMs](https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-the-lethal-trifecta)
 ## People
 * [Andrej Karpathy](https://x.com/karpathy) Previously at OpenAI and Tesla.
-* [Boris Cherny](https://x.com/bcherny) Creator of Claude Code.
 * [Simon Willison](https://x.com/simonw)
 * Claude
   * [Blog](https://claude.com/blog)
   * [Thariq Shihipar](https://x.com/trq212) 
-  * [Boris Cherny](https://x.com/bcherny)
+  * [Boris Cherny](https://x.com/bcherny) Creator of Claude Code.
   * [Sid](https://x.com/sidbidasaria)
 * Gemini
   * [Jeff Dean](https://x.com/JeffDean) Chief Scientist, Google DeepMind & Google Research. Gemini Lead.
