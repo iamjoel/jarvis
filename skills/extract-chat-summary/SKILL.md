@@ -47,7 +47,7 @@ Use this exact structure:
 
 ## <Topic>
 - Id: YYYYMMDD-Index
-- RelateId: <find related topic from ./daily-data/YYYY/readme.md All Topics. If not found, don't output this line>
+- RelateId: <find related topic from ./daily-data/YYYY/readme.md All Topics except current topic. If not found, don't output this line>
 - Category: <one of the categories above>
 - Keywords: <k1>, <k2>, <k3>
 
