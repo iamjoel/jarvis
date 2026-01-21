@@ -5,4 +5,5 @@ Knowledge helps you solve problems effectively.
 
 ## Navigation
 ### Base
+- [Why Openness and Exploration Enable Survival](./o/open-exploration-enable-survival.md)
 - Why questions driven is important?
