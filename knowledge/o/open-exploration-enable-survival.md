@@ -1,6 +1,6 @@
 # Why Openness and Exploration Enable Survival
 ## Conclusion  
-In rapidly changing environments, **survival favors systems that preserve exploration rather than those that fully commit to a single “current best solution.”**  
+[In rapidly changing environments](../e/external-environmental-change-is-accelerating.md), **survival favors systems that preserve exploration rather than those that fully commit to a single “current best solution.”**  
 Across biology, history, and modern society, openness is not a moral preference—it is a risk-management strategy.
 
 ---
