@@ -139,8 +139,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Private data
-daily-data/
-memory/
+storage/
 long-time-task/
 
 # MacOS temp files

@@ -58,7 +58,7 @@ def extract_senses(entry_lines: List[str]) -> List[Dict[str, str]]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", default="daily-data/2026/vocabulary-notebook.md")
+    parser.add_argument("--path", default="storage/daily-data/2026/vocabulary-notebook.md")
     args = parser.parse_args()
 
     with open(args.path, "r", encoding="utf-8") as f:

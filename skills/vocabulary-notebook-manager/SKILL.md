@@ -5,11 +5,11 @@ description: Manage the English vocabulary notebook. Use when the user says "add
 
 # Vocabulary Notebook Manager
 
-Follow these workflows to add and test English vocabulary in `daily-data/2026/vocabulary-notebook.md`.
+Follow these workflows to add and test English vocabulary in `storage/daily-data/2026/vocabulary-notebook.md`.
 
 ## Add a word ("add vocabulary <word>")
 
-1) Open `daily-data/2026/vocabulary-notebook.md` and ensure the top-level title remains `# Vocabulary Notebook`.
+1) Open `storage/daily-data/2026/vocabulary-notebook.md` and ensure the top-level title remains `# Vocabulary Notebook`.
 2) Append a new entry at the end using this exact format (replace placeholders):
 
 ```
@@ -34,7 +34,7 @@ Follow these workflows to add and test English vocabulary in `daily-data/2026/vo
 
 ## Test a word ("test vocabulary")
 
-1) Pick a random word entry from `daily-data/2026/vocabulary-notebook.md`.
+1) Pick a random word entry from `storage/daily-data/2026/vocabulary-notebook.md`.
    - Prefer using `scripts/pick_vocab.py` to select a random entry and extract meanings.
 2) Randomly choose a test direction:
    - **英译中**: show the English word and ask for the Chinese meaning.
@@ -59,7 +59,7 @@ Use this script to select a random word and extract meanings.
 Example:
 
 ```
-python scripts/pick_vocab.py --path daily-data/2026/vocabulary-notebook.md
+python scripts/pick_vocab.py --path storage/daily-data/2026/vocabulary-notebook.md
 ```
 
 The script outputs JSON:
