@@ -1,5 +1,7 @@
 # Jarvis
-To have a easy life with the help of Jarvis. Jarvis is an agent based on LLM.
+To have a easy life with the help of Jarvis. I can spend more time on what really matters to me instead of mundane tasks.
+
+Jarvis is an agent based on LLM.
 
 ## What makes life such a massive massive
 ### 1 The Entropy of Existence
