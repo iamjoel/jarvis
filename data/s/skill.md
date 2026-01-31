@@ -1,4 +1,4 @@
-# Skill
+# [Skill](https://agentskills.io/home)
 ## Development
 * React
   * [Next.js Agent Skills](https://github.com/vercel-labs/next-skills)
@@ -8,5 +8,9 @@
 
 
 ## Venders
-* [Vercel Skills](https://skills.sh/) Support add skill by `npx`. `npx skills --help` for details. Also see `Find Skills`.
 * [Antfu Skills](https://github.com/antfu/skills)
+
+## Manage Skills
+* [Vercel Skills](https://skills.sh/) Support add skill by `npx`. `npx skills --help` for details. Also see `Find Skills`.
+* [skills-npm](https://github.com/antfu/skills-npm) A CLI that discovers agent skills shipped inside npm packages and creates symlinks for coding agents to consume.
+

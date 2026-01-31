@@ -4,6 +4,9 @@
 
 
 ## Coding Agent can complete most programming tasks
+> (2026) May I was amazed that some prompts produced code that worked out of the box, this is now my expectation. 
+> [Peter Steinberger](https://steipete.me/posts/2025/shipping-at-inference-speed)
+
 > Given the latest lift in LLM coding capability, like many others I rapidly went from about 80% manual+autocomplete coding and 20% agents in (2025) November to 80% agent coding and 20% edits+touchups in (2025) December. i.e. I really am mostly programming in English now, a bit sheepishly telling the LLM what code to write.
 > [Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876?s=20)
 
