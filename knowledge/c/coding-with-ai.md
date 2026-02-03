@@ -28,6 +28,11 @@ The doc of the new package: Context 7 MCP.
 
 Chrome dev mcp.
 
+## How to speed up coding with AI
+### Parallel Coding
+It costs minutes of time for agents to generate code. By use worktree(feature support by git), we can parallel some not conflicted tasks to speed up the coding process. Codex, Claude Code, Cursor both support worktree(easy to create and remove worktree).
+
+The worktree is like clone, the same part is they both have separate folders. Worktree save storage space, because it share the same `.git/object` folder. The `.git/object` folder is big, it includes all files(blob), commits and tag.
 
 
 
