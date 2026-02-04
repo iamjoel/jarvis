@@ -10,6 +10,7 @@
 > Given the latest lift in LLM coding capability, like many others I rapidly went from about 80% manual+autocomplete coding and 20% agents in (2025) November to 80% agent coding and 20% edits+touchups in (2025) December. i.e. I really am mostly programming in English now, a bit sheepishly telling the LLM what code to write.
 > [Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876?s=20)
 
+See in the yield [terminal-bench](https://www.tbench.ai/): a benchmark for ai agents in terminal environments.
 
 ## How to improve coding quality with AI
 ### Provide more context
@@ -35,8 +36,14 @@ Agents can take minutes to generate code. Use Git worktrees to parallelize tasks
 
 A worktree is like a lightweight clone with its own folder. It saves disk space by sharing the same `.git/objects` directory, which contains blobs, commits, and tags.
 
+View all worktree: `git worktree list`.
+
 ### Privilege config
 Use "YOLO" mode only when you truly don't need confirmations.
+
+### Config high frequency workflow to skills
+
+### Config high frequency prompt to [custom prompts](https://developers.openai.com/codex/custom-prompts/)
 
 ## Framework
 * [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) production-ready agents, skills, hooks, commands, rules, and MCP configs built over 10+ months.
