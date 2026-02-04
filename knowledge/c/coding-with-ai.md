@@ -18,15 +18,38 @@ See in the real: [terminal-bench](https://www.tbench.ai/): a benchmark for ai ag
 The more context you give the agent, the better the results.
 
 #### 1) Before each conversation
-Put project background and rules in `AGENTS.md`.
+Put project background and rules in [`AGENTS.md`](https://agents.md/). It's a readme for AI agents. For example:  
+```md
+# AGENTS.md
+
+## Setup commands
+- Install deps: `pnpm install`
+- Start dev server: `pnpm dev`
+- Run tests: `pnpm test`
+
+## Code style
+- TypeScript strict mode
+- Single quotes, no semicolons
+- Use functional patterns where possible
+```
+
+More examples: [Codex Agents.md](https://github.com/openai/codex/blob/main/AGENTS.md)
+
+Suggest reading:
+- [AGENTS.md outperforms skills in our agent evals](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals): Embed a docs index directly in `AGENTS.md` passed all coding generate tasks(Compare to using skills and Skill with explicit instructions).
 
 #### 2) Clarify requirements
 Point to the exact files or entry points. Include relevant tools and runtime context.
 
 For frontend work, specify the exact element or component to modify, for example in [agentation](https://github.com/benjitaylor/agentation).
 
-#### 3) wrap SOP to skills
-Wrap your standard operating procedures (SOP) into reusable skills. This ensures consistency and saves time.
+#### 3) Wrap SOP to [skills](../../data/s/skill.md)
+Wrap your standard operating procedures (SOP) into reusable skills. This ensures consistency and saves time. Examples of skills:
+- [Next.js Agent Skills](https://github.com/vercel-labs/next-skills)
+- [React Best Practices](https://github.com/vercel-labs/agent-skills/blob/react-best-practices/skills/react-best-practices/SKILL.md)
+- [vue](https://github.com/antfu/skills/tree/main/skills/vue) 
+
+Use `$` to proactively invoke a skill, Or skills would be triggered automatically.
 
 #### 4) Extra tools
 - Provide package docs when introducing new dependencies (e.g. Context7 MCP).  
@@ -48,7 +71,11 @@ View all worktree: `git worktree list`.
 ### 3) Config high frequency prompt to [custom prompts](https://developers.openai.com/codex/custom-prompts/)
 Deprecated. Use skills for reusable prompts.
 
-### 4) Privilege config
+### 4) Run in cloud
+[Codex Web](https://developers.openai.com/codex/cloud/)
+
+
+### 5) Privilege config
 Use "YOLO" mode only when you truly don't need confirmations.
 
 ## Resources
