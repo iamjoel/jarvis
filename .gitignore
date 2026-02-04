@@ -144,3 +144,6 @@ long-time-task/
 
 # MacOS temp files
 .DS_Store
+
+# skills
+.agent/skills/

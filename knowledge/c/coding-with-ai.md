@@ -3,7 +3,6 @@
 
 > [I don't write code anymore - I sculpt it.](https://www.jerpint.io/blog/2026-01-24-i-dont-write-code-anymore-i-sculpt-it/)
 
-
 ## Coding agents can complete most programming tasks
 > (2026) May I was amazed that some prompts produced code that worked out of the box, this is now my expectation.
 > [Peter Steinberger](https://steipete.me/posts/2025/shipping-at-inference-speed)
