@@ -29,11 +29,17 @@ The doc of the new package: Context 7 MCP.
 Chrome dev mcp.
 
 ## How to speed up coding with AI
+[Vibe kanban](https://github.com/BloopAI/vibe-kanban) Orchestrate multiple coding agents.
+
 ### Parallel Coding
 It costs minutes of time for agents to generate code. By use worktree(feature support by git), we can parallel some not conflicted tasks to speed up the coding process. Codex, Claude Code, Cursor both support worktree(easy to create and remove worktree).
 
 The worktree is like clone, the same part is they both have separate folders. Worktree save storage space, because it share the same `.git/object` folder. The `.git/object` folder is big, it includes all files(blob), commits and tag.
 
+### Priviage config
+Yolo if you think it's no need to confirm 
 
-
-
+## Framework
+* [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) Production-ready agents, skills, hooks, commands, rules, and MCP configurations evolved over 10+ months of intensive daily use building real products.
+* [Superpowers](https://github.com/obra/superpowers): a complete software development [workflow](https://github.com/obra/superpowers/tree/main/skills). Include: brainstorming, writing-plans, subagent-driven-development or executing-plans, test-driven-development, code-review
+* [Codex CLI 1UP](https://github.com/regenrek/codex-1up) equips your Codex CLI coding agent with powerful tools.
