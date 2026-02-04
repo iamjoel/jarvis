@@ -1,5 +1,6 @@
 # Coding with AI
 > You won’t be replaced by AI, but you will be replaced by someone who uses AI better than you.  
+
 > [I don't write code anymore - I sculpt it.](https://www.jerpint.io/blog/2026-01-24-i-dont-write-code-anymore-i-sculpt-it/)
 
 
@@ -24,28 +25,31 @@ Point to the exact files or entry points. Include relevant tools and runtime con
 
 For frontend work, specify the exact element or component to modify, for example in [agentation](https://github.com/benjitaylor/agentation).
 
-#### 3) Extra tools
+#### 3) wrap SOP to skills
+Wrap your standard operating procedures (SOP) into reusable skills. This ensures consistency and saves time.
+
+#### 4) Extra tools
 - Provide package docs when introducing new dependencies (e.g. Context7 MCP).  
 - Use Chrome DevTools MCP when UI inspection is needed.
 
 ## How to speed up coding with AI
 [Vibe Kanban](https://github.com/BloopAI/vibe-kanban) orchestrates multiple coding agents.
 
-### Parallel Coding
+### 1) Parallel Coding
 Agents can take minutes to generate code. Use Git worktrees to parallelize tasks that won't conflict. Codex, Claude Code, and Cursor support worktrees and make them easy to create and remove.
 
 A worktree is like a lightweight clone with its own folder. It saves disk space by sharing the same `.git/objects` directory, which contains blobs, commits, and tags.
 
 View all worktree: `git worktree list`.
 
-### Privilege config
-Use "YOLO" mode only when you truly don't need confirmations.
-
-### Config high frequency workflow to skills
+### 2) Config high frequency workflow to skills
 
 
-### Config high frequency prompt to [custom prompts](https://developers.openai.com/codex/custom-prompts/)
+### 3) Config high frequency prompt to [custom prompts](https://developers.openai.com/codex/custom-prompts/)
 Deprecated. Use skills for reusable prompts.
+
+### 4) Privilege config
+Use "YOLO" mode only when you truly don't need confirmations.
 
 ## Resources
 * [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) production-ready agents, skills, hooks, commands, rules, and MCP configs built over 10+ months.
