@@ -10,6 +10,7 @@
 > Given the latest lift in LLM coding capability, like many others I rapidly went from about 80% manual+autocomplete coding and 20% agents in (2025) November to 80% agent coding and 20% edits+touchups in (2025) December. i.e. I really am mostly programming in English now, a bit sheepishly telling the LLM what code to write.
 > [Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876?s=20)
 
+See in the yield [terminal-bench](https://www.tbench.ai/): a benchmark for ai agents in terminal environments.
 
 ## How to improve coding quality with AI
 ### More Context
@@ -35,6 +36,12 @@ Chrome dev mcp.
 It costs minutes of time for agents to generate code. By use worktree(feature support by git), we can parallel some not conflicted tasks to speed up the coding process. Codex, Claude Code, Cursor both support worktree(easy to create and remove worktree).
 
 The worktree is like clone, the same part is they both have separate folders. Worktree save storage space, because it share the same `.git/object` folder. The `.git/object` folder is big, it includes all files(blob), commits and tag.
+
+View all worktree: `git worktree list`.
+
+### Config high frequency workflow to skills
+
+### Config high frequency prompt to [custom prompts](https://developers.openai.com/codex/custom-prompts/)
 
 ### Priviage config
 Yolo if you think it's no need to confirm 
