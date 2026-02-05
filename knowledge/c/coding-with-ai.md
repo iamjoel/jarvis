@@ -33,6 +33,7 @@ Put project background and rules in [`AGENTS.md`](https://agents.md/). It's a re
 ```
 
 More examples: [Codex Agents.md](https://github.com/openai/codex/blob/main/AGENTS.md)
+Continuously refine `AGENTS.md` so the agent expands its reasoning and makes fewer mistakes.
 
 Suggest reading:
 - [AGENTS.md outperforms skills in our agent evals](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals): Embed a docs index directly in `AGENTS.md` passed all coding generate tasks(Compare to using skills and Skill with explicit instructions).
@@ -40,6 +41,7 @@ Suggest reading:
 
 #### 2) Clarify requirements
 Point to the exact files or entry points. Include relevant tools and runtime context.
+When the context gets too long, open a new window.
 
 For frontend work, specify the exact element or component to modify, for example in [agentation](https://github.com/benjitaylor/agentation).
 
@@ -83,8 +85,8 @@ Deprecated. Use skills for reusable prompts.
 Use "YOLO" mode only when you truly don't need confirmations.
 
 ## Resources
-* [I'm Boris and I created Claude Code](https://x.com/bcherny/status/2007179832300581177)
 * [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) production-ready agents, skills, hooks, commands, rules, and MCP configs built over 10+ months.
 * [Superpowers](https://github.com/obra/superpowers) a complete software development [workflow](https://github.com/obra/superpowers/tree/main/skills): brainstorming, planning, subagent development, TDD, code review.
 * [Codex CLI 1UP](https://github.com/regenrek/codex-1up) equips your Codex CLI agent with powerful tools.
 * [Skills for iOS and Swift development workflows](https://github.com/Dimillian/Skills)
+* [How Boris(Author of Claude Code) use Claude Code](https://x.com/bcherny/status/2007179832300581177)
