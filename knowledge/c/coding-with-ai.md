@@ -51,6 +51,10 @@ Wrap your standard operating procedures (SOP) into reusable skills. This ensures
 Use `$` to proactively invoke a skill, Or skills would be triggered automatically.
 
 #### 4) Extra tools
+##### CLI Tools
+Recommend providing CLI tools to the agent, because agents are good at using tools. It can use `--help` to learn how to use them and easy to combine them.
+
+##### MCP
 - Provide package docs when introducing new dependencies (e.g. Context7 MCP).  
 - Use Chrome DevTools MCP when UI inspection is needed.
 
