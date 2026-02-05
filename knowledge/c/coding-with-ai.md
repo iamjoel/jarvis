@@ -33,7 +33,6 @@ Put project background and rules in [`AGENTS.md`](https://agents.md/). It's a re
 ```
 
 More examples: [Codex Agents.md](https://github.com/openai/codex/blob/main/AGENTS.md)
-Continuously refine `AGENTS.md` so the agent expands its reasoning and makes fewer mistakes.
 
 Suggest reading:
 - [AGENTS.md outperforms skills in our agent evals](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals): Embed a docs index directly in `AGENTS.md` passed all coding generate tasks(Compare to using skills and Skill with explicit instructions).
