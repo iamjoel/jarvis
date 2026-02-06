@@ -6,6 +6,12 @@
 * Vue
   * [vue](https://github.com/antfu/skills/tree/main/skills/vue) Antfu.
 
+## Design
+* [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) Provides design intelligence for building professional UI/UX across multiple platforms and frameworks. 100 Industry-Specific Reasoning Rules.
+* [Theme Factory Skill](https://github.com/ComposioHQ/awesome-claude-skills/blob/master/theme-factory/SKILL.md) This skill provides a curated collection of professional font and color themes themes, each with carefully selected color palettes and font pairings. Once a theme is chosen, it can be applied to any artifact.
+
+## Presentation
+* [AntV generateInfographic Skills](https://infographic.antv.vision/ai)
 
 ## Venders
 * [Antfu Skills](https://github.com/antfu/skills)
