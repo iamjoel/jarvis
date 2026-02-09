@@ -73,8 +73,8 @@ View all worktree: `git worktree list`.
 ### 2) Config high frequency workflow to skills
 
 
-### 3) Config high frequency prompt to [custom prompts](https://developers.openai.com/codex/custom-prompts/)
-Deprecated. Use skills for reusable prompts.
+### 3) Use sub-agents
+Sub agents speed up the speed and not mixing the prompts.
 
 ### 4) Run in cloud
 [Codex Web](https://developers.openai.com/codex/cloud/)
