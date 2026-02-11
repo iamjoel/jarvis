@@ -48,5 +48,8 @@ Use Jarvis to help:
 3. **Deliberate Practice**:  means a structured and intentional way of practicing to improve specific skills, not just repeating the same activity.
 ![](./resource/method/deliberate-practice.png)
 
+## TO READ
+* [PAI: Personal AI Infrastructure](https://github.com/danielmiessler/Personal_AI_Infrastructure)
+
 [^1]: Moran, M. J., & Shapiro, H. N. (2006). *Fundamentals of Engineering Thermodynamics*. John Wiley & Sons.  
 [^2]: Brickman, Philip, and Donald T. Campbell. "Hedonic Relativism and Planning the Good Society." Adaptation-Level Theory, edited by M. H. Appley, Academic Press, 1971, pp. 287-302.
