@@ -147,3 +147,6 @@ long-time-task/
 
 # skills
 .agent/skills/
+
+# Explicitly ignore any credential files if storage/ is ever un-ignored.
+storage/memory/*/credentials.json

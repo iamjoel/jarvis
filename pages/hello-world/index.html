@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Hello, World</title>
+    <meta
+      name="description"
+      content="A tiny, surprising hello-world page built with pure HTML, CSS, and JavaScript."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Background effects (canvas is intentionally decorative) -->
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <main class="shell">
+      <header class="hero">
+        <div class="badge" role="status">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Pure HTML / CSS / JS</span>
+          <span class="sep" aria-hidden="true">/</span>
+          <span id="clock" class="mono" title="Local time">--:--</span>
+        </div>
+
+        <h1 class="title">
+          Hello, <span class="accent">world</span><span class="punct">.</span>
+        </h1>
+
+        <p class="subtitle" id="subtitle">
+          I make pixels behave. <span class="mono" id="type"></span>
+        </p>
+
+        <div class="actions">
+          <button class="btn primary" id="shuffle" type="button">
+            Shuffle the universe
+          </button>
+          <button
+            class="btn ghost"
+            id="pause"
+            type="button"
+            aria-pressed="false"
+          >
+            Pause motion
+          </button>
+        </div>
+
+        <div class="hint mono">
+          Move your cursor. Click anywhere for a ripple.
+        </div>
+      </header>
+
+      <section class="grid" aria-label="Highlights">
+        <article class="card">
+          <h2>Atmosphere</h2>
+          <p>
+            Conic light, soft glass, and a living sky that leans into your
+            pointer.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Motion with intent</h2>
+          <p>
+            Staggered reveal, responsive ripples, and particles that drift, not
+            jitter.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Small, fast, offline</h2>
+          <p>No frameworks. No dependencies. Just the browser doing its job.</p>
+        </article>
+      </section>
+
+      <footer class="footer mono">
+        <span id="seed" title="Theme seed"></span>
+        <span class="sep" aria-hidden="true">/</span>
+        <a href="#" id="copy" class="link">Copy a greeting</a>
+        <span class="sep" aria-hidden="true">/</span>
+        <span>
+          Hosted by
+          <a
+            class="link"
+            href="https://surge.sh"
+            target="_blank"
+            rel="noreferrer noopener"
+            >surge.sh</a
+          >
+        </span>
+        <span id="toast" class="toast" role="status" aria-live="polite"></span>
+      </footer>
+    </main>
+
+    <div id="ripple" class="ripple" aria-hidden="true"></div>
+    <script src="./main.js" defer></script>
+  </body>
+</html>
