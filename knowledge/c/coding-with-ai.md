@@ -32,7 +32,7 @@ Put project background and rules in [`AGENTS.md`](https://agents.md/). It's a re
 - Use functional patterns where possible
 ```
 
-More examples: [Codex Agents.md](https://github.com/openai/codex/blob/main/AGENTS.md)
+More examples: [Codex Agents.md](https://github.com/openai/codex/blob/main/AGENTS.md). My template: [AGENTS.md Template](../t/template-agents.md).
 
 Suggest reading:
 - [AGENTS.md outperforms skills in our agent evals](https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals): Embed a docs index directly in `AGENTS.md` passed all coding generate tasks(Compare to using skills and Skill with explicit instructions).
