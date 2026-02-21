@@ -7,3 +7,6 @@ Knowledge helps you solve problems effectively.
 ### Base
 - [Why Openness and Exploration Enable Survival](./o/open-exploration-enable-survival.md)
 - Why questions driven is important?
+
+### AI Tools & Products
+- [OpenClaw 及同类产品对比](./o/openclaw-alternatives-comparison.md)
