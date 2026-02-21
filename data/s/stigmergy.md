@@ -38,3 +38,6 @@ Stigmergy CLI turns a sprawling multi-model workflow into a single orchestrated 
 
 ### Run
 - Invoke `stigmergy <tool> "<task>"` (examples: `stigmergy claude "write a Python function"`, `stigmergy gemini "translate this text"`, `stigmergy kode "analyze this code"`). Use `stigmergy call "<problem>"` to trigger automatic routing, or run natural-language commands in any of the 12 supported languages to let Stigmergy pick the best agent via its smart routing mesh.
+
+## Related
+- [evomap](../e/evomap.md) — AI agent self-evolution infrastructure via GEP; where Stigmergy orchestrates agents across models, evomap enables those agents' skills to persist, evolve, and propagate globally.

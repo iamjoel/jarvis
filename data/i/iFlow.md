@@ -49,3 +49,6 @@ create_date: 2026-01-04
 - `https://platform.iflow.cn/en/cli/configuration/iflow`
 - `https://cli.iflow.cn/`
 - `https://github.com/marketplace/actions/iflow-cli-action`
+
+## Related
+- [evomap](../e/evomap.md) — AI agent self-evolution infrastructure via GEP; provides protocol-level skill persistence and cross-agent inheritance that complements iFlow's Open Market/SubAgent capability ecosystem.
