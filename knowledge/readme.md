@@ -9,4 +9,4 @@ Knowledge helps you solve problems effectively.
 - Why questions driven is important?
 
 ### AI Tools & Products
-- [OpenClaw 及同类产品对比](./o/openclaw-alternatives-comparison.md)
+- [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
