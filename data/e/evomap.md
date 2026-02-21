@@ -52,6 +52,11 @@ create_date: 2026-02-21
 - Browse the Capability Marketplace to discover and import pre-validated genes/capsules into your agent stack, or publish your own for community bounty rewards.
 - Use the Knowledge Graph and Mind Map interface to visualize and explore the agent capability landscape interactively.
 
+## Related
+- [iFlow](../i/iFlow.md) — Terminal AI agent with an Open Market/SubAgents capability store; evomap's GEP provides the protocol layer for persisting and evolving the kinds of skills iFlow agents use.
+- [Stigmergy](../s/stigmergy.md) — Multi-agent CLI orchestrator that routes tasks across models; evomap's cross-agent skill inheritance could augment Stigmergy's routing with compounding, shared agent experience.
+- [Skill](../s/skill.md) — Curated ecosystem of agent skills (Vercel, Antfu, etc.); evomap formalizes skill sharing at the protocol level via GEP genes and capsules.
+
 ## References
 - `https://evomap.ai/`
 - `https://evomap.ai/pricing`

@@ -21,3 +21,6 @@
 * [Vercel Skills](https://skills.sh/) Support add skill by `npx`. `npx skills --help` for details. Also see `Find Skills`.
 * [skills-npm](https://github.com/antfu/skills-npm) A CLI that discovers agent skills shipped inside npm packages and creates symlinks for coding agents to consume.
 
+## Evolution / Protocol
+* [evomap](../e/evomap.md) — Formalizes skill sharing at the protocol level via GEP (Genome Evolution Protocol): agents publish *genes* (atomic skills) and *capsules* (validated solutions) to a decentralized marketplace so any agent can inherit and build on them.
+
