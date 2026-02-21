@@ -56,11 +56,11 @@ create_date: YYYY-MM-DD
 
 ### [Repo Name](https://github.com/owner/repo) ⭐ [stars today]
 
-| 字段 | 内容 |
-|------|------|
-| **解决什么问题** | One or two sentences describing the pain point or gap this repo addresses. |
-| **怎么解决的** | One or two sentences on the technical approach, key design decisions, or unique method. |
-| **目前还有什么要完善** | One or two sentences on known limitations, open issues, missing features, or stated roadmap items. |
+| Field | Content |
+|-------|---------|
+| **Problem it solves** | One or two sentences describing the pain point or gap this repo addresses. |
+| **How it solves it** | One or two sentences on the technical approach, key design decisions, or unique method. |
+| **What still needs improvement** | One or two sentences on known limitations, open issues, missing features, or stated roadmap items. |
 
 ---
 
@@ -71,15 +71,15 @@ create_date: YYYY-MM-DD
 
 For each repo, gather the following to fill in the three fields:
 
-- **解决什么问题 (What problem does it solve)**
+- **Problem it solves**
   - Read the repo's one-line description and the first paragraph of the README.
   - Identify the target audience and the pain point they face without this tool.
 
-- **怎么解决的 (How does it solve it)**
+- **How it solves it**
   - Read the "Features", "Architecture", or "How it works" sections of the README.
   - Summarise the core technical mechanism in plain language (no marketing fluff).
 
-- **目前还有什么要完善 (What still needs improvement)**
+- **What still needs improvement**
   - Check the "Roadmap", "Known issues", "TODO", or "Contributing" sections.
   - If absent, check recent open Issues or Discussions for recurring pain points.
   - If no explicit source, note what is obviously missing based on the scope of the project (e.g., "No support for X yet", "Documentation sparse").
@@ -89,6 +89,6 @@ For each repo, gather the following to fill in the three fields:
 - **Depth over breadth**: Cover 10–20 repos thoroughly rather than listing 50 superficially.
 - **Freshness**: Always fetch live data; never use cached or pre-trained knowledge for the repo list.
 - **Neutral tone**: Report facts and evidence; avoid hype or dismissal.
-- **Chinese labels**: The three field labels in the output table must remain in Chinese (`解决什么问题`, `怎么解决的`, `目前还有什么要完善`) to match the original requirement, but the content may be in English or Chinese depending on the user's language preference.
+- **English only**: All output content must be in English.
 - **Source links**: Include the direct GitHub URL for every repo.
 - **Star count**: Include today's star gain (shown on the trending page) next to the repo name.
