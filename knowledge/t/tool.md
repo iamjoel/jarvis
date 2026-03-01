@@ -5,3 +5,9 @@
   - Deploy: `surge ./dist your-domain.surge.sh`
   - Teardown: `surge teardown`
   - List all projects: `surge list`
+
+## Design
+* [Color Hunt](https://www.colorhunt.co/) Color palette inspiration.
+
+## Resource
+* [Simon Willison's Tools](https://tools.simonwillison.net/) A collection of useful tools and utilities.
