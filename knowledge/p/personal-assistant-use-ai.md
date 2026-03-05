@@ -1,10 +1,12 @@
-## 构建 Claw Like agent 的探索
-好的服务: 用户的了解 + 能力。
+## Personal Assistant
+Personal assistant is the center. It 指派任务，协调资源，提供服务。
+
+好的服务: 信息 + 能力。
 
 用好 claw: 有场景。
 
-我的场景：
-杂事，
+分发任务。有的 claw 自己做，有的给其他做。
+
 
 ## 对用户的了解
 - 用户的身份信息（USER.md），如他们的喜好，工作背景等。
@@ -16,7 +18,7 @@
 - Skills。从市场安装或者自己开发。
 - 自动化
   - 定时任务。Corn 和 Heartbeat。 [对比](https://docs.openclaw.ai/zh-CN/automation/cron-vs-heartbeat)。
-  - Webhook。 通知 Agent 发生了什么事情。
+  - 主动通知 Agent。 Hook。例如，某个耗时比较长的任务完成了。
 
 ## 流程
 启动 -> 初始化( 遵循 Bootstrap.md 来读取身份，记忆)  -> 通过 Gateway 提供服务 -> 通过 Channel 接入服务的用户交互 -> 根据用户输入和环境信息，判断是否需要使用工具 -> 使用工具解决问题 -> 记录记忆 -> 继续提供服务
