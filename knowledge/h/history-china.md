@@ -1,2 +1,2 @@
 # History of China
-- [三国](./history-sanguo.md)
+- [三国](./history-china-sanguo.md)
