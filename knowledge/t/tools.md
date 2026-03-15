@@ -22,6 +22,10 @@
 ## Design
 * [Color Hunt](https://www.colorhunt.co/) Color palette inspiration.
 
+## Coding
+* [Better T Stack](https://www.better-t-stack.dev/new) generate the scaffold of a project with selected tech stacks.  It's also a great way to know the latest popular tech stacks in different categories.
+* [shadcn Admin Template](https://github.com/satnaing/shadcn-admin)
+
 
 ## Presentation
 * PPT
@@ -29,6 +33,9 @@
   * [Slidev](https://sli.dev/) Presentation Slides for Developers. Need to build. Markdown to PPT.
 * Drawboard
   * [drauu](https://github.com/antfu/drauu) SVG-based drawing tool in browser. Built for Slidev.
+
+## Automation
+* [Espanso](https://espanso.org/) detects when you type a keyword and replaces it while you're typing. It support call shell command. It is  lightweight. It that can replace [ScriptKit](https://www.scriptkit.com/) in many scenario. [My Config](../../private/tool-config/espanso/README.md). 
 
 ## Resource
 * [Simon Willison's Tools](https://tools.simonwillison.net/) A collection of useful tools and utilities.
