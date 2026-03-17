@@ -8,5 +8,8 @@ Knowledge helps you solve problems effectively.
 - [Why Openness and Exploration Enable Survival](./o/open-exploration-enable-survival.md)
 - Why questions driven is important?
 
+### History
+- [实验室用不同动物的历史](./h/history-laboratory-animals.md)
+
 ### AI Tools & Products
 - [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
