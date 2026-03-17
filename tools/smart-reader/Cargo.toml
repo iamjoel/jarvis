@@ -5,4 +5,4 @@ edition = "2021"
 description = "Read SMART information from a disk via SG_IO ioctl (no third-party CLI tools)"
 
 [dependencies]
-libc = "0.2.170"
+libc = "0.2"

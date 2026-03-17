@@ -167,10 +167,9 @@ fn read_smart_data(device_path: &str) -> io::Result<[u8; SMART_DATA_LEN]> {
 // SMART attribute parsing
 // ---------------------------------------------------------------------------
 
-#[allow(dead_code)]
 struct SmartAttribute {
     id: u8,
-    flags: u16,
+    _flags: u16,
     current: u8,
     worst: u8,
     raw: u64,
@@ -192,7 +191,7 @@ fn parse_smart_attributes(data: &[u8; SMART_DATA_LEN]) -> Vec<SmartAttribute> {
         }
         attrs.push(SmartAttribute {
             id,
-            flags: u16::from_le_bytes([data[off + 1], data[off + 2]]),
+            _flags: u16::from_le_bytes([data[off + 1], data[off + 2]]),
             current: data[off + 3],
             worst: data[off + 4],
             raw: u64::from_le_bytes([
