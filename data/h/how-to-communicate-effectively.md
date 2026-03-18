@@ -29,9 +29,9 @@ create_date: 2026-03-18
 
 | 书名 | 核心视角 | 文件链接 |
 |------|---------|---------|
-| 《关于说话的一切》 | 说话的本质与艺术，全面的说话学框架 | [拆书笔记](./book-everything-about-speaking.md) |
-| 《好好说话：新鲜有趣的话术精进技巧》 | 实用话术技巧，五种权力结构下的说话策略 | [拆书笔记](./book-good-talk.md) |
-| 《非暴力沟通》 | 以观察、感受、需要、请求为核心的连接式沟通 | [拆书笔记](./book-nonviolent-communication.md) |
+| 《关于说话的一切》 | 说话的本质与艺术，全面的说话学框架 | [拆书笔记](../b/book-everything-about-speaking.md) |
+| 《好好说话：新鲜有趣的话术精进技巧》 | 实用话术技巧，五种权力结构下的说话策略 | [拆书笔记](../b/book-good-talk.md) |
+| 《非暴力沟通》 | 以观察、感受、需要、请求为核心的连接式沟通 | [拆书笔记](../b/book-nonviolent-communication.md) |
 
 ---
 
@@ -49,6 +49,6 @@ create_date: 2026-03-18
 
 ## 延伸阅读
 
-- [《关于说话的一切》拆书笔记](./book-everything-about-speaking.md)
-- [《好好说话》拆书笔记](./book-good-talk.md)
-- [《非暴力沟通》拆书笔记](./book-nonviolent-communication.md)
+- [《关于说话的一切》拆书笔记](../b/book-everything-about-speaking.md)
+- [《好好说话》拆书笔记](../b/book-good-talk.md)
+- [《非暴力沟通》拆书笔记](../b/book-nonviolent-communication.md)

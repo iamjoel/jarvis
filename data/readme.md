@@ -112,9 +112,9 @@
 
 | 文档 | 简介 |
 |------|------|
-| [《关于说话的一切》](./h/book-everything-about-speaking.md) | 说话艺术的系统框架：内容、方式、时机与关系 |
-| [《好好说话》](./h/book-good-talk.md) | 五种权力场景下的实用话术技巧 |
-| [《非暴力沟通》](./h/book-nonviolent-communication.md) | 以观察、感受、需要、请求为核心的连接式沟通 |
+| [《关于说话的一切》](./b/book-everything-about-speaking.md) | 说话艺术的系统框架：内容、方式、时机与关系 |
+| [《好好说话》](./b/book-good-talk.md) | 五种权力场景下的实用话术技巧 |
+| [《非暴力沟通》](./b/book-nonviolent-communication.md) | 以观察、感受、需要、请求为核心的连接式沟通 |
 
 ---
 

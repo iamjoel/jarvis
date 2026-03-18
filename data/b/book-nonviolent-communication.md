@@ -155,6 +155,6 @@ create_date: 2026-03-18
 
 ## 延伸阅读
 
-- [如何高效沟通？](./how-to-communicate-effectively.md)
+- [如何高效沟通？](../h/how-to-communicate-effectively.md)
 - [《关于说话的一切》拆书笔记](./book-everything-about-speaking.md)
 - [《好好说话》拆书笔记](./book-good-talk.md)

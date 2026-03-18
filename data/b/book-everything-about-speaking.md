@@ -7,7 +7,7 @@ create_date: 2026-03-18
 
 # 拆书：《关于说话的一切》
 
-> **作者**：约翰·C·麦克斯韦（John C. Maxwell）  
+> **作者**：汤质  
 > **核心主题**：说话是一门可以系统学习的艺术，涵盖内容、方式、时机与关系四个维度。
 
 ---
@@ -85,10 +85,7 @@ create_date: 2026-03-18
 
 ## 五、金句摘录
 
-> "People don't care how much you know until they know how much you care."  
-> ——人们在知道你有多在乎他们之前，不会在乎你知道多少。
-
-> "The greatest communication skill is paying value to others."
+> "说话是你给自己划定的圈。说什么，怎么说，决定了你是谁。"
 
 ---
 
@@ -101,6 +98,6 @@ create_date: 2026-03-18
 
 ## 延伸阅读
 
-- [如何高效沟通？](./how-to-communicate-effectively.md)
+- [如何高效沟通？](../h/how-to-communicate-effectively.md)
 - [《好好说话》拆书笔记](./book-good-talk.md)
 - [《非暴力沟通》拆书笔记](./book-nonviolent-communication.md)
