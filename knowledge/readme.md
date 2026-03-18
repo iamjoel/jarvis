@@ -1,7 +1,5 @@
 # Knowledge
-Knowledge is well organized data. Knowledge includes which problem it solves, why it matters, how to use it, and any relevant context. Good knowledge is actionable and reliable.
-
-Knowledge helps you solve problems effectively. 
+个人感悟。消化，加工 [data](../data/readme.md) 的产品。
 
 ## Navigation
 ### Base

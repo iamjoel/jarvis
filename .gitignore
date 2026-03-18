@@ -3,6 +3,8 @@
 # for agents config and output
 agents/
 
+temp/
+
 # my personal data
 private
 
