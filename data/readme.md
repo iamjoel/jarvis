@@ -28,14 +28,17 @@
 
 ---
 
-### 🤖 智力（AI / LLM）
+### 🔄 自动化
+
+让机器代替人完成重复性与复杂性工作的技术体系。
+
+#### 🤖 智力（AI / LLM）
 
 人工智能、大语言模型及 Agent 系统。
 
 | 文档 | 简介 |
 |------|------|
 | [LLM 资源](./l/llm-resource.md) | LLM 相关人物、工具与学习资源汇总 |
-| [LLM 引发的问题](./l/llm-caused-problems.md) | 使用 LLM 过程中出现的典型问题与讨论 |
 | [AIEOS](./a/aieos.md) | AI Agent 可移植身份标准（开源规范） |
 | [Codex](./c/codex.md) | OpenAI Codex —— 无处不在的编程 Agent |
 | [上下文管理](./c/context-manage.md) | 如何在长对话中高效压缩与管理上下文 |
@@ -78,6 +81,16 @@
 | [西安](./x/xian.md) | 西安城墙、大唐不夜城等文化地标 |
 | [云南可食用菌](./y/yunnan-edible-mushrooms.md) | 云南 800+ 种野生食用菌按美味程度排序 |
 | [精选文章](./a/awesome-articles.md) | 值得深读的优质长文推荐 |
+
+---
+
+### ❓ 问题
+
+使用过程中遇到的典型问题与讨论。
+
+| 文档 | 简介 |
+|------|------|
+| [LLM 引发的问题](./l/llm-caused-problems.md) | 使用 LLM 过程中出现的典型问题与讨论 |
 
 ---
 
