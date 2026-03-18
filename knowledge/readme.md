@@ -10,6 +10,7 @@ Knowledge helps you solve problems effectively.
 
 ### History
 - [实验室用不同动物的历史](./h/history-laboratory-animals.md)
+- [一战后中东：伊斯兰世界为何落后于西方？——解释、方案与结局](./h/history-middle-east-after-ww1.md)
 
 ### AI Tools & Products
 - [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
