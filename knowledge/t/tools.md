@@ -21,6 +21,10 @@
 
 ## Design
 * [Color Hunt](https://www.colorhunt.co/) Color palette inspiration.
+* [Stitch](https://stitch.withgoogle.com/) Google 出的 Vibe 设计图的工具。无限画布风格。
+  * 支持编辑，导出。
+  * 会生成设计系统( UI + Design.md)。 也能从取某个网站抓取那个网站的设计，生成设计系统。(extract the design system from xxx)。
+  * 多种导出方式。 Copy as code 就是对应的 html 代码。
 
 ## Coding
 * [Better T Stack](https://www.better-t-stack.dev/new) generate the scaffold of a project with selected tech stacks.  It's also a great way to know the latest popular tech stacks in different categories.
