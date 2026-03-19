@@ -1,4 +1,6 @@
 # Knowledge
+> 更高质量的生活、更少的负担、更多的自主性。
+
 个人感悟。消化，加工 [data](../data/readme.md) 的产品。
 
 ## Navigation

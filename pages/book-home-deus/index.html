@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>《未来简史》拆书 | Homo Deus</title>
+  <style>
+    :root {
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #efe0d1;
+      --bg-deep: #d7b799;
+      --paper: #fff8f0;
+      --paper-strong: #f4e3d1;
+      --ink: #1d1614;
+      --muted: #5d4d46;
+      --accent: #9a3217;
+      --accent-strong: #5a1709;
+      --accent-soft: rgba(154, 50, 23, 0.1);
+      --accent-mid: rgba(154, 50, 23, 0.24);
+      --shadow: 0 28px 60px rgba(29, 22, 20, 0.11);
+      --shadow-strong: 0 26px 70px rgba(90, 23, 9, 0.22);
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+      --content: 76rem;
+      --reading: 68ch;
+      --font-display: "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255, 244, 231, 0.86), transparent 28rem),
+        radial-gradient(circle at 88% 8%, rgba(215, 183, 153, 0.62), transparent 24rem),
+        linear-gradient(180deg, var(--bg) 0%, #ead8c7 100%);
+      line-height: 1.75;
+      font-kerning: normal;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .progress-rail {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 40;
+      height: 0.28rem;
+      background: rgba(255, 248, 240, 0.36);
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, #d56c3f 100%);
+      transform-origin: left center;
+      transition: width 140ms linear, filter 220ms var(--ease-out-quart);
+    }
+
+    .ink-thread {
+      position: fixed;
+      inset: 0;
+      z-index: 9;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .ink-thread-glow,
+    .ink-thread-path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      opacity: 0;
+      transition: opacity 220ms var(--ease-out-quart);
+    }
+
+    .ink-thread-glow {
+      stroke: rgba(213, 108, 63, 0.09);
+      stroke-width: 18;
+      filter: blur(10px);
+    }
+
+    .ink-thread-path {
+      stroke: rgba(154, 50, 23, 0.26);
+      stroke-width: 2.1;
+      stroke-dasharray: 10 16;
+      animation: thread-flow 18s linear infinite;
+    }
+
+    .ink-thread.is-active .ink-thread-glow,
+    .ink-thread.is-active .ink-thread-path {
+      opacity: 1;
+    }
+
+    .site-head,
+    main,
+    footer {
+      width: min(calc(100% - 2rem), var(--content));
+      margin: 0 auto;
+    }
+
+    .site-head {
+      padding: 2.6rem 0 2rem;
+    }
+
+    .site-kicker,
+    .section-kicker,
+    .detail-label {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .masthead {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(18rem, 0.82fr);
+      gap: clamp(1.5rem, 3vw, 3rem);
+      align-items: end;
+      padding: clamp(2.2rem, 4vw, 4.6rem);
+      background:
+        linear-gradient(120deg, rgba(255, 248, 240, 0.98) 0%, rgba(255, 248, 240, 0.98) 63%, rgba(244, 227, 209, 0.92) 63%, rgba(244, 227, 209, 0.92) 100%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+      animation: reveal-up 800ms var(--ease-out-expo) both;
+    }
+
+    .masthead-copy {
+      max-width: 46rem;
+      position: relative;
+      z-index: 2;
+      animation: reveal-up 900ms var(--ease-out-expo) both;
+    }
+
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.92;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .author {
+      margin: 0 0 0.9rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .masthead-mark {
+      position: absolute;
+      right: clamp(1rem, 4vw, 3rem);
+      top: clamp(1rem, 3vw, 2rem);
+      z-index: 0;
+      color: rgba(154, 50, 23, 0.12);
+      font-family: var(--font-display);
+      font-size: clamp(4.6rem, 13vw, 11rem);
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      text-align: right;
+      pointer-events: none;
+      transform: translate3d(var(--hero-mark-x, 0px), var(--hero-mark-y, 0px), 0);
+      transition: transform 180ms linear;
+      will-change: transform;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    dt,
+    .hero-note strong,
+    .memory-line strong {
+      font-family: var(--font-display);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-size: clamp(4rem, 9vw, 7.6rem);
+      line-height: 0.84;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 0.95rem;
+      color: var(--accent-strong);
+      font-size: clamp(1rem, 1.9vw, 1.35rem);
+      line-height: 1.35;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      max-width: 42rem;
+      margin: 1.5rem 0 0;
+      font-size: 1.12rem;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.6rem;
+    }
+
+    .primary-link,
+    .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.95rem 1.15rem;
+      border-radius: 0.95rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart), color 180ms var(--ease-out-quart), box-shadow 180ms var(--ease-out-quart);
+    }
+
+    .primary-link {
+      background: var(--accent);
+      color: var(--paper);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .secondary-link {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--accent-strong);
+    }
+
+    .primary-link::after,
+    .secondary-link::after,
+    .map-link::after {
+      content: "↗";
+      margin-left: 0.45rem;
+      font-size: 0.95em;
+      transition: transform 180ms ease;
+    }
+
+    .primary-link:hover,
+    .secondary-link:hover,
+    .jump-links a:hover,
+    .map-link:hover,
+    .backtop:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary-link:active,
+    .secondary-link:active,
+    .map-link:active,
+    .backtop:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    .primary-link:hover::after,
+    .secondary-link:hover::after,
+    .map-link:hover::after {
+      transform: translate(2px, -1px);
+    }
+
+    .reading-whisper {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin: 1.15rem 0 0;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.64);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-style: italic;
+      box-shadow: 0 10px 24px rgba(29, 22, 20, 0.06);
+    }
+
+    .reading-whisper::before {
+      content: "§";
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .hero-note {
+      position: relative;
+      z-index: 2;
+      padding: 1.6rem;
+      border-radius: 1.1rem;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 0 26px 60px rgba(29, 22, 20, 0.28);
+      transform: translateY(2.2rem) rotate(-2.5deg);
+      animation: fade-in 980ms var(--ease-out-expo) both;
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: rgba(255, 248, 240, 0.82);
+    }
+
+    .hero-note ul {
+      margin: 1rem 0 0;
+      padding-left: 1.15rem;
+      color: rgba(255, 248, 240, 0.94);
+    }
+
+    .hero-note li + li {
+      margin-top: 0.55rem;
+    }
+
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.55rem;
+      padding-left: clamp(1rem, 2vw, 2rem);
+    }
+
+    .jump-links a {
+      position: relative;
+      padding: 0.3rem 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: color 180ms var(--ease-out-quart), border-color 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart);
+      animation: reveal-up 760ms var(--ease-out-expo) both;
+    }
+
+    .jump-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.35rem;
+      height: 0.2rem;
+      background: rgba(154, 50, 23, 0.12);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 220ms ease;
+    }
+
+    .jump-links a:hover::after,
+    .jump-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .jump-links a:nth-child(2) { animation-delay: 60ms; }
+    .jump-links a:nth-child(3) { animation-delay: 120ms; }
+    .jump-links a:nth-child(4) { animation-delay: 180ms; }
+    .jump-links a:nth-child(5) { animation-delay: 240ms; }
+    .jump-links a:nth-child(6) { animation-delay: 300ms; }
+    .jump-links a:nth-child(7) { animation-delay: 360ms; }
+
+    .jump-links a.active {
+      color: var(--ink);
+      border-color: var(--accent);
+    }
+
+    main {
+      padding: 1.4rem 0 5rem;
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(2.8rem, 5vw, 5.6rem);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      animation: reveal-up 920ms var(--ease-out-expo) both;
+    }
+
+    .section + .section {
+      margin-top: 1.8rem;
+    }
+
+    .section-paper {
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .section-wash {
+      background: linear-gradient(180deg, rgba(250, 235, 222, 0.92) 0%, rgba(215, 183, 153, 0.42) 100%);
+    }
+
+    main > .section:nth-of-type(2) { animation-delay: 70ms; }
+    main > .section:nth-of-type(3) { animation-delay: 140ms; }
+    main > .section:nth-of-type(4) { animation-delay: 210ms; }
+    main > .section:nth-of-type(5) { animation-delay: 280ms; }
+    main > .section:nth-of-type(6) { animation-delay: 350ms; }
+    main > .section:nth-of-type(7) { animation-delay: 420ms; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+      gap: 1.25rem 2rem;
+      align-items: end;
+      margin-bottom: 2.4rem;
+    }
+
+    .section-head.is-focused h2 {
+      transform: translateX(0.18rem);
+      color: var(--accent-strong);
+    }
+
+    .section-head h2 {
+      margin: 0.25rem 0 0;
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      transition: transform 260ms var(--ease-out-quart), color 260ms var(--ease-out-quart);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .conclusion-list,
+    .map-list,
+    .misread-list,
+    .help-list,
+    .onepage-list,
+    .layer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .conclusion-list {
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .conclusion-list li {
+      display: grid;
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.05rem 0;
+      align-items: start;
+    }
+
+    .conclusion-list li:nth-child(even) {
+      padding-left: clamp(0.8rem, 3vw, 2.8rem);
+    }
+
+    .conclusion-num {
+      color: var(--accent-mid);
+      font-family: var(--font-display);
+      font-size: clamp(2.9rem, 5vw, 4.9rem);
+      line-height: 0.82;
+      font-weight: 700;
+    }
+
+    .conclusion-list strong,
+    .map-title,
+    .misread-list h3,
+    .help-list strong,
+    .onepage-list strong,
+    .layer-list strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .conclusion-list p,
+    .map-summary,
+    .misread-list p,
+    .help-list p,
+    .onepage-list p,
+    .layer-list p {
+      margin: 0;
+      color: var(--muted);
+      max-width: var(--reading);
+    }
+
+    .map-list {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .map-list li {
+      display: grid;
+      grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem 0;
+    }
+
+    .map-list li:nth-child(odd) {
+      padding-right: clamp(0rem, 2vw, 1.5rem);
+    }
+
+    .map-list li:nth-child(even) {
+      padding-left: clamp(0.6rem, 3vw, 2.5rem);
+    }
+
+    .map-num {
+      color: var(--accent-mid);
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 4vw, 3.3rem);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .map-link {
+      align-self: center;
+      padding: 0.6rem 0.9rem;
+      border-radius: 0.85rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart);
+    }
+
+    .detail-stack {
+      display: grid;
+      gap: 1.8rem;
+    }
+
+    .detail-entry {
+      --entry-shift: 0rem;
+      position: relative;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border-radius: 1.8rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(244, 227, 209, 0.82) 100%);
+      box-shadow: 0 20px 42px rgba(29, 22, 20, 0.09);
+      transform: translate3d(var(--entry-shift), 0, 0);
+      transition: transform 320ms var(--ease-out-quart), box-shadow 320ms var(--ease-out-quart), opacity 520ms var(--ease-out-expo);
+    }
+
+    .detail-entry::before {
+      content: "“";
+      position: absolute;
+      top: 0.7rem;
+      right: 1rem;
+      color: rgba(154, 50, 23, 0.11);
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 7vw, 6rem);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .detail-entry:nth-child(odd) {
+      --entry-shift: -1rem;
+    }
+
+    .detail-entry:nth-child(even) {
+      --entry-shift: 1.4rem;
+    }
+
+    .detail-entry.is-visible:hover {
+      transform: translate3d(var(--entry-shift), -0.35rem, 0);
+      box-shadow: 0 26px 56px rgba(29, 22, 20, 0.12);
+    }
+
+    .detail-frame {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+
+    .detail-intro h3 {
+      margin: 0.35rem 0 0.7rem;
+      font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .answer {
+      max-width: 30rem;
+      margin: 0;
+      color: var(--accent-strong);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .detail-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 0;
+    }
+
+    .detail-facts div {
+      padding: 1rem 1.05rem;
+      border-radius: 1.1rem;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .detail-facts div:nth-child(3n + 1) {
+      background: rgba(154, 50, 23, 0.08);
+    }
+
+    .detail-facts dt {
+      margin: 0 0 0.45rem;
+      color: var(--accent);
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .detail-facts dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .memory-line {
+      position: relative;
+      margin: 1rem 0 0;
+      padding-top: 1rem;
+      padding-left: 0.5rem;
+      max-width: 52rem;
+      color: var(--ink);
+      font-size: 1.03rem;
+      background:
+        linear-gradient(90deg, rgba(213, 108, 63, 0.18), rgba(213, 108, 63, 0.02)) 0 100% / 0% 58% no-repeat;
+      transition: background-size 520ms var(--ease-out-expo), transform 320ms var(--ease-out-quart);
+    }
+
+    .memory-line::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      bottom: 0.1rem;
+      width: 0.16rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), rgba(154, 50, 23, 0.18));
+      opacity: 0.45;
+    }
+
+    .memory-line.is-lit {
+      background-size: 100% 58%;
+      transform: translateX(0.18rem);
+    }
+
+    .memory-line strong {
+      color: var(--accent);
+      margin-right: 0.3rem;
+    }
+
+    .concept-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem 2.2rem;
+      margin: 0;
+    }
+
+    .concept-list div {
+      --concept-tilt: 0deg;
+      --concept-shift: 0rem;
+      position: relative;
+      padding: 0.95rem 0 1.1rem;
+      transform: translate3d(var(--concept-shift), 0, 0) rotate(var(--concept-tilt));
+      transform-origin: left top;
+    }
+
+    .concept-list div::before {
+      content: "";
+      position: absolute;
+      left: -1rem;
+      top: 1.2rem;
+      width: 0.38rem;
+      height: 2.1rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(154, 50, 23, 0.2), rgba(154, 50, 23, 0));
+      transform: rotate(8deg);
+      opacity: 0.8;
+    }
+
+    .concept-list div:nth-child(odd) {
+      --concept-tilt: -1.2deg;
+      --concept-shift: -1.2rem;
+    }
+
+    .concept-list div:nth-child(even) {
+      --concept-tilt: 1.1deg;
+      --concept-shift: 1rem;
+    }
+
+    .concept-list div:nth-child(3n) {
+      --concept-tilt: -0.4deg;
+      --concept-shift: 1.8rem;
+    }
+
+    .concept-list dt {
+      margin: 0 0 0.4rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .concept-list dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .misread-list,
+    .help-list,
+    .onepage-list,
+    .layer-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .misread-list li,
+    .help-list li,
+    .onepage-list li,
+    .layer-list li {
+      padding: 1rem 0;
+    }
+
+    .onepage-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+
+    .closing-frame {
+      padding: 1.5rem 1.3rem;
+      border-radius: 1.5rem;
+      background: linear-gradient(180deg, rgba(90, 23, 9, 0.98) 0%, rgba(154, 50, 23, 0.96) 100%);
+      color: var(--paper);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .closing-frame h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.7rem;
+      font-weight: 700;
+    }
+
+    .closing-frame p {
+      margin: 0;
+      color: rgba(255, 248, 240, 0.76);
+    }
+
+    .closing-frame .layer-list strong {
+      color: var(--paper);
+    }
+
+    .closing-frame .layer-list p {
+      color: rgba(255, 248, 240, 0.78);
+    }
+
+    footer {
+      padding: 0 0 4rem;
+      color: var(--muted);
+    }
+
+    footer p {
+      margin: 0.35rem 0;
+    }
+
+    .backtop {
+      position: fixed;
+      right: 1.1rem;
+      bottom: 1.1rem;
+      z-index: 10;
+      padding: 0.85rem 0.95rem;
+      border: 0;
+      border-radius: 0.95rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-strong);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart), visibility 180ms var(--ease-out-quart);
+    }
+
+    body.js-ready .section,
+    body.js-ready .detail-entry,
+    body.js-ready .concept-list > div,
+    body.js-ready .misread-list li,
+    body.js-ready .help-list li,
+    body.js-ready .onepage-list li,
+    body.js-ready .layer-list li {
+      opacity: 0;
+      transition: opacity 520ms var(--ease-out-expo), transform 520ms var(--ease-out-expo);
+    }
+
+    body.js-ready .section {
+      transform: translate3d(0, 1.2rem, 0);
+    }
+
+    body.js-ready .section.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    body.js-ready .detail-entry {
+      transform: translate3d(var(--entry-shift), 1.25rem, 0);
+    }
+
+    body.js-ready .detail-entry.is-visible {
+      opacity: 1;
+      transform: translate3d(var(--entry-shift), 0, 0);
+    }
+
+    body.js-ready .concept-list > div,
+    body.js-ready .misread-list li,
+    body.js-ready .help-list li,
+    body.js-ready .onepage-list li,
+    body.js-ready .layer-list li {
+      transform: translate3d(0, 0.9rem, 0);
+    }
+
+    body.js-ready .concept-list > div.is-visible,
+    body.js-ready .misread-list li.is-visible,
+    body.js-ready .help-list li.is-visible,
+    body.js-ready .onepage-list li.is-visible,
+    body.js-ready .layer-list li.is-visible {
+      opacity: 1;
+      transform: translate3d(var(--concept-shift, 0rem), 0, 0) rotate(var(--concept-tilt, 0deg));
+    }
+
+    .backtop.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes thread-flow {
+      from {
+        stroke-dashoffset: 0;
+      }
+
+      to {
+        stroke-dashoffset: -180;
+      }
+    }
+
+    @media (min-width: 981px) {
+      #details .section-head,
+      #concepts .section-head,
+      #misreads .section-head,
+      #help .section-head,
+      #onepage .section-head {
+        position: sticky;
+        top: 0.9rem;
+        z-index: 5;
+        padding-bottom: 1rem;
+        background: linear-gradient(180deg, rgba(255, 248, 240, 0.96) 0%, rgba(255, 248, 240, 0.88) 74%, rgba(255, 248, 240, 0) 100%);
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    @media (max-width: 980px) {
+
+      .masthead,
+      .section-head,
+      .detail-frame,
+      .onepage-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .masthead-mark {
+        right: 1rem;
+        top: auto;
+        bottom: 0.4rem;
+        font-size: clamp(4rem, 18vw, 7rem);
+      }
+
+      .detail-facts,
+      .concept-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-note,
+      .detail-entry:nth-child(odd),
+      .detail-entry:nth-child(even) {
+        transform: none;
+      }
+
+      .detail-entry {
+        --entry-shift: 0rem;
+      }
+
+      .concept-list div {
+        --concept-tilt: 0deg;
+        --concept-shift: 0rem;
+      }
+
+      .map-list li {
+        grid-template-columns: 3rem minmax(0, 1fr);
+      }
+
+      .map-link {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .site-head,
+      main,
+      footer {
+        width: min(calc(100% - 1.25rem), var(--content));
+      }
+
+      .masthead,
+      .section {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+
+      .jump-links {
+        padding-left: 0;
+      }
+
+      .reading-whisper {
+        display: flex;
+      }
+
+      .conclusion-list li,
+      .map-list li {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+      }
+
+      .conclusion-list li:nth-child(even),
+      .map-list li:nth-child(even) {
+        padding-left: 0;
+      }
+
+      .map-list li:nth-child(odd) {
+        padding-right: 0;
+      }
+
+      h1 {
+        font-size: 3.3rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .masthead-mark {
+        transform: none !important;
+      }
+
+      .memory-line {
+        background-size: 100% 58%;
+        transform: none !important;
+      }
+
+      .ink-thread {
+        display: none;
+      }
+
+      body.js-ready .section,
+      body.js-ready .detail-entry,
+      body.js-ready .concept-list > div,
+      body.js-ready .misread-list li,
+      body.js-ready .help-list li,
+      body.js-ready .onepage-list li,
+      body.js-ready .layer-list li {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="progress-rail" aria-hidden="true"><span class="progress-fill" id="progressFill"></span></div>
+  <svg class="ink-thread" id="inkThread" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="ink-thread-glow" id="inkThreadGlow"></path>
+    <path class="ink-thread-path" id="inkThreadPath"></path>
+  </svg>
+  <header class="site-head">
+    <p class="site-kicker">Book Breakdown</p>
+    <section class="masthead" aria-labelledby="hero-title">
+      <div class="masthead-copy">
+        <p class="author">Yuval Noah Harari</p>
+        <h1 id="hero-title">未来简史<span>Homo Deus: A Brief History of Tomorrow</span></h1>
+        <p class="lede">这本书最值得读的地方，不是它猜中了多少未来，而是它逼你提前回答一个问题：当算法、生物技术和数据系统越来越强，现代社会还会不会继续把“人”放在中心。</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#map">先看 6 个核心问题</a>
+          <a class="secondary-link" href="#conclusions">2 分钟读完结论</a>
+        </div>
+        <p class="reading-whisper" id="readingWhisper">这页更适合慢一点读。</p>
+      </div>
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <span class="masthead-mark" aria-hidden="true">HOMO<br>DEUS</span>
+      <aside class="hero-note" aria-label="阅读抓手">
+        <strong>先抓住这三件事</strong>
+        <p>这不是章节摘要页，而是一张帮助你判断未来议题的阅读地图。</p>
+        <ul>
+          <li>它关心的核心不是技术会不会更强，而是“人”会不会失去中心位置。</li>
+          <li>全书主轴是：生存问题缓和 → 人文主义居中 → 算法开始挑战人。</li>
+          <li>最重要的现实问题不是“AI 强不强”，而是“谁被代表，谁被替代，谁来设规则”。</li>
+        </ul>
+      </aside>
+    </section>
+    <nav class="jump-links" aria-label="页面导航">
+      <a href="#conclusions">核心结论</a>
+      <a href="#map">问题地图</a>
+      <a href="#details">详细拆解</a>
+      <a href="#concepts">关键概念</a>
+      <a href="#misreads">常见误解</a>
+      <a href="#help">现实帮助</a>
+      <a href="#onepage">一页总结</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="conclusions" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Core Conclusions</p>
+          <h2>全书核心结论</h2>
+        </div>
+        <p>如果只读这一部分，你应该记住的是：作者真正担心的不是科技变强，而是技术升级可能让“人的感受和尊严”不再是制度的最高依据。</p>
+      </div>
+      <ol class="conclusion-list">
+        <li>
+          <span class="conclusion-num">01</span>
+          <div>
+            <strong>人类目标正在上移</strong>
+            <p>作者认为，许多现代社会正在把注意力从“避免灾难”转向“延寿、增能、提升幸福感”。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">02</span>
+          <div>
+            <strong>现代秩序靠人文主义支撑</strong>
+            <p>民主、消费、教育和文化都默认：个人体验和选择具有最高正当性。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">03</span>
+          <div>
+            <strong>外部算法会持续争夺判断权</strong>
+            <p>当行为、身体和偏好被量化后，系统在某些决策上可能比个人更稳定、更准确。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">04</span>
+          <div>
+            <strong>最大冲击是智能与意识分离</strong>
+            <p>很多高价值任务未必要靠有主观体验的人来完成，职业和身份因此会被重排。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">05</span>
+          <div>
+            <strong>未来风险是新型不平等</strong>
+            <p>增强技术和数据权力可能先服务少数人，从而放大能力、资源和地位差距。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">06</span>
+          <div>
+            <strong>数据主义是最后的警告</strong>
+            <p>如果“更高效的信息流”被抬到比“人的尊严”更高的位置，现代价值体系就会改写。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="map" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Question Map</p>
+          <h2>全书问题地图</h2>
+        </div>
+        <p>这本书适合按问题读，不适合按章节背。下面这 6 个问题，基本覆盖了全书的论证路线。</p>
+      </div>
+      <ol class="map-list">
+        <li>
+          <span class="map-num">01</span>
+          <div>
+            <strong class="map-title">问题一：人类下一步想要什么？</strong>
+            <p class="map-summary">从活下来，转向活得更久、更强、更可控，是作者给出的现代主线。</p>
+          </div>
+          <a class="map-link" href="#q1">展开</a>
+        </li>
+        <li>
+          <span class="map-num">02</span>
+          <div>
+            <strong class="map-title">问题二：为什么现代世界以“人的感受”为中心？</strong>
+            <p class="map-summary">人文主义接替了传统权威，把个人体验变成现代制度的合法性来源。</p>
+          </div>
+          <a class="map-link" href="#q2">展开</a>
+        </li>
+        <li>
+          <span class="map-num">03</span>
+          <div>
+            <strong class="map-title">问题三：为什么技术会继续走向“升级人类”？</strong>
+            <p class="map-summary">增长、竞争和优化构成了制度激励，使增强路线很难自动停止。</p>
+          </div>
+          <a class="map-link" href="#q3">展开</a>
+        </li>
+        <li>
+          <span class="map-num">04</span>
+          <div>
+            <strong class="map-title">问题四：算法真的可能比人更懂人吗？</strong>
+            <p class="map-summary">在可量化场景里，系统已经在争夺“解释你”和“替你决策”的权力。</p>
+          </div>
+          <a class="map-link" href="#q4">展开</a>
+        </li>
+        <li>
+          <span class="map-num">05</span>
+          <div>
+            <strong class="map-title">问题五：智能与意识分离后会怎样？</strong>
+            <p class="map-summary">一旦有用的任务由无意识系统完成，人类的经济位置和社会尊严都要重估。</p>
+          </div>
+          <a class="map-link" href="#q5">展开</a>
+        </li>
+        <li>
+          <span class="map-num">06</span>
+          <div>
+            <strong class="map-title">问题六：如果人文主义退场，谁来定义未来？</strong>
+            <p class="map-summary">作者担心，数据主义或技术精英逻辑会让系统优化压过人的尊严。</p>
+          </div>
+          <a class="map-link" href="#q6">展开</a>
+        </li>
+      </ol>
+    </section>
+
+    <section id="details" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Deep Dive</p>
+          <h2>核心问题详细拆解</h2>
+        </div>
+        <p>每个问题都按同一套结构拆开：一句话答案、核心逻辑、常见误解、现实启发。这样更适合长期回看。</p>
+      </div>
+
+      <div class="detail-stack">
+        <article id="q1" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 1</p>
+              <h3>人类在“活下来”之外，下一步想要什么？</h3>
+              <p class="answer">一句话答案：现代社会越来越把“长寿、幸福、能力增强”当成新目标。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>作者先对比古代社会的生存焦虑，再说明现代制度和科技如何把部分传统灾难变成可以干预的问题，于是人类把目光转向升级自己。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>当基本生存威胁相对下降，政治、资本和技术会自然流向更高层次的追求，最终推动“像神一样地改造生命”。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>现代医学、公共卫生、农业工业化、抗衰老研究、生物工程，都是作者用来说明目标上移的典型材料。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>长寿、幸福工程、升级人类、Homo Deus。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>这不是说旧问题已经消失，而是说很多社会不再把它们看成纯粹不可控制的天命。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>今天很多竞争，底层都在从“满足基本需求”转向“谁拥有更好的增强工具和资源入口”。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>现代人的野心，正在从“避免死亡”转向“重写生命参数”。</p>
+        </article>
+
+        <article id="q2" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 2</p>
+              <h3>为什么现代世界把“人的感受”放在中心？</h3>
+              <p class="answer">一句话答案：人文主义在传统权威减弱后，把个人体验和选择变成了现代合法性的来源。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>它解释了为什么民主、消费、爱情、审美和教育都在强调“听从内心”与“尊重个体”。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>当外在神意不再牢固，社会必须寻找新的意义中心；人文主义于是把判断权移交给了个人感受。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>选举制度、消费选择、爱情婚姻和自由主义教育，被作者并置为同一价值框架的不同表现。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>人文主义、自由主义、个人体验、内在声音。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>作者不是在贬低人文主义，而是在提醒：它成立的前提条件正被新技术重新检验。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>我们今天很多制度都默认“你最懂自己”，而这恰恰是未来最可能被算法挑战的信念。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>现代社会之所以尊重个人，是因为它先相信个人感受本身就是权威。</p>
+        </article>
+
+        <article id="q3" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 3</p>
+              <h3>科学、技术和资本为什么会不断推动“升级人类”？</h3>
+              <p class="answer">一句话答案：现代秩序把增长、效率、控制和优化视为正当目标，所以技术很难停在“治病”这一步。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>它讨论了科研、市场和国家为什么天然偏向持续创新，以及为何增强总比满足现状更有制度动力。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>只要增长是现代社会的基本承诺，提升能力、延长寿命、优化决策就会持续成为资本和政策的重点方向。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>生物工程、情绪调控、寿命延长、基因编辑、精英增强等例子，被用来展示“治疗”如何滑向“增强”。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>增长逻辑、优化、增强、技术精英。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>这不意味着所有技术都会走向少数人垄断，但制度激励常常会优先奖励更强、更快、更可控的路线。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>讨论新技术时，不能只问“能不能做”，还必须问“谁先受益、谁承担代价、谁负责编码规则”。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>技术升级背后真正持续发力的，常常是增长制度而不是单纯的科学好奇心。</p>
+        </article>
+
+        <article id="q4" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 4</p>
+              <h3>算法真的可能比人更懂人吗？</h3>
+              <p class="answer">一句话答案：在越来越多可量化场景里，外部系统确实可能比人的自我叙述更擅长预测行为和偏好。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>它集中讨论“人是不是一套可计算的生物过程”，以及当数据足够多时，个人直觉还能保住多少权威。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>如果情绪、偏好和决策依赖生化与信息处理过程，那么拥有更多数据和更强模型的一方，就有机会替代个人解释自己。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>生物识别、行为数据、情绪分析、医疗诊断、消费推荐、路径选择，是这条论证最常见的场景。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>生物即算法、数据化、行为预测、外部决策系统。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>这不等于人彻底透明或主观体验没价值，而是说人类在某些具体判断上的天然优势正在缩小。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>当你把越来越多决定交给平台和模型时，真正需要追问的是数据归属、目标设定与责任承担。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>当你被持续记录，你的“内心最懂你”就不再是自动成立的前提。</p>
+        </article>
+
+        <article id="q5" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 5</p>
+              <h3>当智能与意识分离，社会会发生什么变化？</h3>
+              <p class="answer">一句话答案：一旦高价值任务可以交给无意识系统，人类的职业结构、议价能力和社会尊严都会被重新排序。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>它讨论“有用”与“有感受”是否必须绑定，以及如果不再绑定，人类在经济系统中的位置会如何变化。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>市场会优先采用更便宜、更稳定、更可扩展的能力提供者；如果机器不需要意识也能完成任务，人就不会因为“会思考”而自动占优。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>自动驾驶、金融交易、模式识别、医疗辅助判断、军事系统，都是“高智能不必有意识”的代表性场景。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>智能、意识、无意识智能、无用阶层。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>“无用阶层”说的是制度位置，不是人的道德价值；问题在于社会是否还能提供体面的参与方式。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>AI 时代要关注的不只是岗位替代，还包括身份认同、再分配机制和社会参与感如何被重建。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>未来的危险未必是机器像人，而可能是机器不必像人也能赢下大部分任务。</p>
+        </article>
+
+        <article id="q6" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 6</p>
+              <h3>如果人文主义被削弱，未来会由什么逻辑主导？</h3>
+              <p class="answer">一句话答案：作者担心，技术人文主义和数据主义会让“系统优化”压过“人的尊严和自由”。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>它讨论如果个体不再被视为不可替代的意义中心，那么未来制度会按什么原则运转。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>当算法看起来比个人更可靠，社会就会倾向于把更多权力交给数据系统；久而久之，价值中心可能从“人”转向“更顺畅的信息流”。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>可穿戴设备、持续监测、平台治理、量化自我、网络连接和机器协同，是这套推演的主要现实入口。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>技术人文主义、数据主义、自由意志危机、系统优化。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>作者不是在断言数据主义一定胜利，而是在警告：如果没有新的伦理和制度边界，它就会借“效率”扩张。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>平台监管、隐私保护、公共治理、教育评价、医疗分配，本质上都在回答同一个问题：系统到底服务谁。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>如果“流动的数据”比“具体的人”更重要，现代价值体系就会被从根上改写。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="concepts" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Concepts</p>
+          <h2>关键概念速查</h2>
+        </div>
+        <p>这部分适合回查。你不必记住全部章节，但最好记住这些概念各自在回答什么问题。</p>
+      </div>
+      <dl class="concept-list">
+        <div>
+          <dt>Homo Deus</dt>
+          <dd>指试图获得更强控制力与增强能力的人类未来形态，重点不是神话，而是“人开始主动重写自己”。</dd>
+        </div>
+        <div>
+          <dt>人文主义</dt>
+          <dd>把人的体验、感受、选择和尊严放在价值中心的现代信念。</dd>
+        </div>
+        <div>
+          <dt>技术人文主义</dt>
+          <dd>仍重视人类，但更强调通过技术把一部分人升级到更高能力层级。</dd>
+        </div>
+        <div>
+          <dt>数据主义</dt>
+          <dd>倾向于把世界理解成数据流和信息处理，并把更高效的流动视为更高价值。</dd>
+        </div>
+        <div>
+          <dt>生物即算法</dt>
+          <dd>把生物体视为可被分析、预测、干预的信息处理机制，是“算法可能更懂你”的理论前提。</dd>
+        </div>
+        <div>
+          <dt>智能与意识分离</dt>
+          <dd>系统可以很会识别和计算，却不一定拥有主观体验；这会改变人类在经济系统中的位置。</dd>
+        </div>
+        <div>
+          <dt>无用阶层</dt>
+          <dd>指在主流经济结构中可能越来越缺乏需求的人群，不是道德判断。</dd>
+        </div>
+        <div>
+          <dt>自由意志危机</dt>
+          <dd>如果个人选择能被大量预测甚至引导，自由主义赖以成立的心理前提就会动摇。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="misreads" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Misreadings</p>
+          <h2>常见误解 / 易混淆点</h2>
+        </div>
+        <p>这本书最容易被读偏的地方，在于把它当作“技术宣传册”或“精准预言”。更稳妥的读法，是把它当作对现代价值体系的压力测试。</p>
+      </div>
+      <ol class="misread-list">
+        <li>
+          <h3>误解：这是一本精准预测未来的书</h3>
+          <p>更准确地说，它是在做宏观推演，用极端问题逼读者提前思考制度和伦理。</p>
+        </li>
+        <li>
+          <h3>误解：作者说旧问题已经解决</h3>
+          <p>他强调的是“在很多现代社会里，旧问题越来越像治理问题”，不是“它们已经彻底消失”。</p>
+        </li>
+        <li>
+          <h3>误解：作者在歌颂算法统治</h3>
+          <p>恰恰相反，书里的主要语气是警告：算法权力会压迫人文主义制度。</p>
+        </li>
+        <li>
+          <h3>误解：数据主义已经是现实共识</h3>
+          <p>更稳妥的理解是：它是一种正在增长的倾向和诱惑，不是已经完成的世界秩序。</p>
+        </li>
+        <li>
+          <h3>误解：无用阶层等于没有价值的人</h3>
+          <p>这里说的是经济功能与制度位置的边缘化，不是否定人的尊严。</p>
+        </li>
+        <li>
+          <h3>误解：技术进步天然带来公平</h3>
+          <p>作者最担心的，正是技术升级先服务少数人，最终放大新的等级差距。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="help" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Why It Helps</p>
+          <h2>这本书对现实有什么帮助</h2>
+        </div>
+        <p>它最大的价值，不是给你答案，而是帮你把今天很多看似分散的争论放进同一张问题图里。</p>
+      </div>
+      <ul class="help-list">
+        <li>
+          <strong>看懂 AI 争论的底层结构</strong>
+          <p>很多争论并不只是“模型强不强”，而是“谁来定义目标、谁拥有数据、谁控制决策接口”。</p>
+        </li>
+        <li>
+          <strong>重新理解自由与选择</strong>
+          <p>它会逼你重新问：当系统越来越会预测和引导行为，个人选择还剩下多少真实空间。</p>
+        </li>
+        <li>
+          <strong>提高对技术不平等的敏感度</strong>
+          <p>讨论新工具时，你会更自然地追问分配问题，而不是只关注效率和新鲜感。</p>
+        </li>
+        <li>
+          <strong>帮助职业判断更现实</strong>
+          <p>未来的核心能力不只是技能本身，还包括适应力、判断力，以及和制度变化打交道的能力。</p>
+        </li>
+        <li>
+          <strong>给公共讨论补上伦理维度</strong>
+          <p>教育评价、医疗分配、平台治理、隐私保护，都能用这本书提供的框架重新理解。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="onepage" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">One Page</p>
+          <h2>一页看懂这本书</h2>
+        </div>
+        <p>如果你以后只回看一个部分，就看这里。这一页把全书压成了最值得记住的 8 句话和 5 个层次。</p>
+      </div>
+      <div class="onepage-wrap">
+        <ol class="onepage-list">
+          <li>
+            <strong>1. 它真正问的是</strong>
+            <p>未来还会不会继续以“人”为中心，而不是未来会不会更先进。</p>
+          </li>
+          <li>
+            <strong>2. 它给出的起点</strong>
+            <p>现代社会把目标从“活下来”转向“升级自己”。</p>
+          </li>
+          <li>
+            <strong>3. 它指出的支点</strong>
+            <p>现代秩序靠人文主义支撑，也就是“人的感受和选择有最高正当性”。</p>
+          </li>
+          <li>
+            <strong>4. 它判断的转折</strong>
+            <p>算法越能预测和引导人，个人“最懂自己”的前提就越不稳。</p>
+          </li>
+          <li>
+            <strong>5. 它最重的冲击</strong>
+            <p>AI 和生物技术最深的影响，不是替代体力，而是替代判断与地位。</p>
+          </li>
+          <li>
+            <strong>6. 它最怕的风险</strong>
+            <p>增强技术和数据权力先服务少数人，社会因此出现新的能力等级。</p>
+          </li>
+          <li>
+            <strong>7. 它最后的警告</strong>
+            <p>如果系统效率高于人的尊严，人文主义就会被悄悄改写。</p>
+          </li>
+          <li>
+            <strong>8. 读完最该留下的问题</strong>
+            <p>在算法越来越强的时代，我们到底想保护什么样的人、什么样的自由、什么样的社会参与权。</p>
+          </li>
+        </ol>
+        <aside class="closing-frame">
+          <h3>用一个框架记住全书</h3>
+          <ul class="layer-list">
+            <li>
+              <strong>起点</strong>
+              <p>人类越来越能管理传统灾难，于是开始追求升级自己。</p>
+            </li>
+            <li>
+              <strong>中层</strong>
+              <p>现代社会之所以这样追求，是因为人文主义把“人”放在中心。</p>
+            </li>
+            <li>
+              <strong>转折</strong>
+              <p>算法、AI、生物技术开始挑战“人最懂自己、最该做主”。</p>
+            </li>
+            <li>
+              <strong>风险</strong>
+              <p>权力转向数据和系统，社会可能分化出新的能力阶层。</p>
+            </li>
+            <li>
+              <strong>最后问题</strong>
+              <p>未来的制度，是继续保护人的尊严，还是优先服务高效的信息流。</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>书名：《未来简史》 | 英文名：<em>Homo Deus: A Brief History of Tomorrow</em> | 作者：尤瓦尔·赫拉利</p>
+    <p>阅读提示：这是一份问题驱动拆书，重点是帮助你建立判断框架，而不是替代原书阅读。</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="返回顶部">返回顶部</button>
+
+  <script>
+    document.body.classList.add('js-ready');
+
+    const navLinks = Array.from(document.querySelectorAll('.jump-links a'));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter((section, index, arr) => section && arr.indexOf(section) === index);
+    const backtop = document.getElementById('backtop');
+    const progressFill = document.getElementById('progressFill');
+    const readingWhisper = document.getElementById('readingWhisper');
+    const memoryLines = Array.from(document.querySelectorAll('.memory-line'));
+    const heroMark = document.querySelector('.masthead-mark');
+    const inkThread = document.getElementById('inkThread');
+    const inkThreadPath = document.getElementById('inkThreadPath');
+    const inkThreadGlow = document.getElementById('inkThreadGlow');
+    const heroCanvas = document.getElementById('heroCanvas');
+    const revealTargets = Array.from(document.querySelectorAll('.section, .detail-entry, .concept-list > div, .misread-list li, .help-list li, .onepage-list li, .layer-list li'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const currentHour = new Date().getHours();
+
+    const whisperText = (() => {
+      if (currentHour < 11) return '早一点读，会更像是在和未来对话。';
+      if (currentHour < 18) return '适合留给自己一段不着急的阅读时间。';
+      return '夜里读这本书，问题会显得更锋利一些。';
+    })();
+
+    if (readingWhisper) {
+      readingWhisper.textContent = whisperText;
+    }
+
+    const setupHeroCanvas = () => {
+      if (!heroCanvas) return;
+
+      const ctx = heroCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const state = {
+        width: 0,
+        height: 0,
+        dpr: Math.min(window.devicePixelRatio || 1, 2),
+        pointerX: 0.72,
+        pointerY: 0.32,
+        time: 0
+      };
+
+      const resize = () => {
+        const bounds = heroCanvas.getBoundingClientRect();
+        state.width = bounds.width;
+        state.height = bounds.height;
+        heroCanvas.width = Math.max(1, Math.floor(bounds.width * state.dpr));
+        heroCanvas.height = Math.max(1, Math.floor(bounds.height * state.dpr));
+        ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+        draw(state.time);
+      };
+
+      const drawBloom = (x, y, radius, colorA, colorB) => {
+        const gradient = ctx.createRadialGradient(x, y, radius * 0.08, x, y, radius);
+        gradient.addColorStop(0, colorA);
+        gradient.addColorStop(1, colorB);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      };
+
+      const drawThreads = (time) => {
+        for (let i = 0; i < 8; i += 1) {
+          const baseX = state.width * (0.56 + i * 0.05);
+          const drift = Math.sin(time * 0.0012 + i * 1.4) * 22;
+          const topY = state.height * (0.12 + (i % 3) * 0.08);
+          const bottomY = state.height * (0.76 - (i % 2) * 0.12);
+
+          ctx.beginPath();
+          ctx.moveTo(baseX - 22, topY);
+          ctx.bezierCurveTo(
+            baseX + drift,
+            state.height * 0.24,
+            baseX - drift * 0.8,
+            state.height * 0.56,
+            baseX + 14,
+            bottomY
+          );
+          ctx.lineWidth = 1 + (i % 3) * 0.45;
+          ctx.strokeStyle = `rgba(154, 50, 23, ${0.055 + i * 0.008})`;
+          ctx.stroke();
+        }
+      };
+
+      const drawGlyphHalo = (time) => {
+        const haloX = state.width * (0.72 + (state.pointerX - 0.5) * 0.08);
+        const haloY = state.height * (0.34 + (state.pointerY - 0.5) * 0.05);
+        const pulse = 1 + Math.sin(time * 0.0016) * 0.08;
+
+        ctx.save();
+        ctx.translate(haloX, haloY);
+        ctx.rotate(Math.sin(time * 0.0007) * 0.1);
+
+        for (let i = 0; i < 3; i += 1) {
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 108 * pulse + i * 22, 44 * pulse + i * 14, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(90, 23, 9, ${0.08 - i * 0.02})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+        ctx.restore();
+      };
+
+      const draw = (time = 0) => {
+        state.time = time;
+        ctx.clearRect(0, 0, state.width, state.height);
+
+        drawBloom(
+          state.width * 0.74 + Math.sin(time * 0.0009) * 18,
+          state.height * 0.24 + Math.cos(time * 0.001) * 12,
+          Math.min(state.width, state.height) * 0.28,
+          'rgba(154, 50, 23, 0.12)',
+          'rgba(154, 50, 23, 0)'
+        );
+
+        drawBloom(
+          state.width * 0.86 + (state.pointerX - 0.5) * 34,
+          state.height * 0.66 + (state.pointerY - 0.5) * 18,
+          Math.min(state.width, state.height) * 0.22,
+          'rgba(90, 23, 9, 0.11)',
+          'rgba(90, 23, 9, 0)'
+        );
+
+        drawBloom(
+          state.width * 0.64,
+          state.height * 0.58,
+          Math.min(state.width, state.height) * 0.18,
+          'rgba(213, 108, 63, 0.09)',
+          'rgba(213, 108, 63, 0)'
+        );
+
+        drawThreads(time);
+        drawGlyphHalo(time);
+      };
+
+      resize();
+
+      const onPointerMove = (event) => {
+        const bounds = heroCanvas.getBoundingClientRect();
+        state.pointerX = (event.clientX - bounds.left) / Math.max(bounds.width, 1);
+        state.pointerY = (event.clientY - bounds.top) / Math.max(bounds.height, 1);
+      };
+
+      const host = heroCanvas.closest('.masthead');
+      host?.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('resize', resize);
+
+      if (prefersReducedMotion) {
+        draw(0);
+        return;
+      }
+
+      let frameId = 0;
+      const loop = (time) => {
+        draw(time);
+        frameId = window.requestAnimationFrame(loop);
+      };
+      frameId = window.requestAnimationFrame(loop);
+    };
+
+    setupHeroCanvas();
+
+    const setActive = (id) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+
+      document.querySelectorAll('.section-head').forEach((head) => {
+        const section = head.closest('.section');
+        head.classList.toggle('is-focused', section?.id === id);
+      });
+    };
+
+    const buildInkPath = (points) => {
+      if (!points.length) return '';
+      if (points.length === 1) {
+        const [{ x, y }] = points;
+        return `M ${x - 72} ${y - 28} C ${x - 38} ${y - 18}, ${x - 24} ${y + 12}, ${x} ${y}`;
+      }
+
+      let path = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i += 1) {
+        const previous = points[i - 1];
+        const current = points[i];
+        const midpointX = (previous.x + current.x) / 2;
+        path += ` C ${midpointX} ${previous.y}, ${midpointX} ${current.y}, ${current.x} ${current.y}`;
+      }
+      return path;
+    };
+
+    const updateInkThread = () => {
+      if (!inkThread || !inkThreadPath || !inkThreadGlow || prefersReducedMotion) return;
+
+      const visiblePoints = memoryLines
+        .map((line) => {
+          const rect = line.getBoundingClientRect();
+          const visible = rect.bottom > window.innerHeight * 0.08 && rect.top < window.innerHeight * 0.92;
+          if (!visible) return null;
+
+          return {
+            x: Math.max(36, rect.left - 26),
+            y: rect.top + rect.height * 0.52
+          };
+        })
+        .filter(Boolean);
+
+      if (!visiblePoints.length) {
+        inkThread.classList.remove('is-active');
+        inkThreadPath.setAttribute('d', '');
+        inkThreadGlow.setAttribute('d', '');
+        return;
+      }
+
+      const d = buildInkPath(visiblePoints);
+      inkThread.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
+      inkThreadPath.setAttribute('d', d);
+      inkThreadGlow.setAttribute('d', d);
+      inkThread.classList.add('is-active');
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visible) {
+        setActive(visible.target.id);
+      }
+    }, {
+      rootMargin: '-20% 0px -55% 0px',
+      threshold: [0.2, 0.45, 0.7]
+    });
+
+    sections.forEach((section) => observer.observe(section));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.12
+    });
+
+    revealTargets.forEach((target, index) => {
+      target.style.transitionDelay = `${Math.min(index % 5, 4) * 55}ms`;
+      if (prefersReducedMotion) {
+        target.classList.add('is-visible');
+      } else {
+        revealObserver.observe(target);
+      }
+    });
+
+    const memoryObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-lit');
+          memoryObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -18% 0px',
+      threshold: 0.35
+    });
+
+    memoryLines.forEach((line) => memoryObserver.observe(line));
+
+    const updateScrollUI = () => {
+      const scrollTop = window.scrollY;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(scrollTop / scrollable, 1) : 0;
+
+      if (progressFill) {
+        progressFill.style.width = `${progress * 100}%`;
+        progressFill.style.filter = progress > 0.96 ? 'saturate(1.15) brightness(1.03)' : 'none';
+      }
+
+      if (heroMark && !prefersReducedMotion) {
+        heroMark.style.setProperty('--hero-mark-y', `${Math.min(scrollTop * 0.08, 28)}px`);
+        heroMark.style.setProperty('--hero-mark-x', `${Math.min(scrollTop * -0.02, 0)}px`);
+      }
+
+      updateInkThread();
+      backtop.classList.toggle('show', scrollTop > 720);
+    };
+
+    window.addEventListener('scroll', () => {
+      updateScrollUI();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      updateScrollUI();
+    }, { passive: true });
+
+    updateScrollUI();
+
+    backtop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>

@@ -18,7 +18,6 @@
   * jina reader. Convert HTML content to Markdown. It can scrape content from twitter?
   * FireCrawal
 
-
 ## Design
 * [Color Hunt](https://www.colorhunt.co/) Color palette inspiration.
 * [Stitch](https://stitch.withgoogle.com/) Google 出的 Vibe 设计图的工具。无限画布风格。
@@ -40,6 +39,9 @@
 
 ## Automation
 * [Espanso](https://espanso.org/) detects when you type a keyword and replaces it while you're typing. It support call shell command. It is  lightweight. It that can replace [ScriptKit](https://www.scriptkit.com/) in many scenario. [My Config](../../private/tool-config/espanso/README.md). 
+
+## Networking
+* [IP、域名、AS](https://ping0.cc/ip/) 可以查到是否是家庭 IP 。如果用了梯子，就会变成 IDC 的 IP 了。
 
 ## Resource
 * [Simon Willison's Tools](https://tools.simonwillison.net/) A collection of useful tools and utilities.
