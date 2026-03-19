@@ -172,8 +172,8 @@ create_date: 2026-03-18
 
 ## 九、延伸阅读
 
-- [《枪炮、病菌与钢铁》](../g/guns-germs-steel.md)——同一作者，解释文明的崛起
-- [《昨日之前的世界》](../w/world-until-yesterday.md)——同一作者，传统社会的智慧与启示
+- [《枪炮、病菌与钢铁》](./book-guns-germs-steel.md)——同一作者，解释文明的崛起
+- [《昨日之前的世界》](./book-world-until-yesterday.md)——同一作者，传统社会的智慧与启示
 - [为什么近代世界里，不同大陆的人类社会发展出了巨大差距？](../w/why-societies-diverged.md)——戴蒙德三部曲所共同回应的核心问题
 
 ---
