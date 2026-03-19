@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>《贪婪的多巴胺》拆书 | The Molecule of More</title>
+  <style>
+    :root {
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #e8ddf0;
+      --bg-deep: #c4a8d8;
+      --paper: #f8f4fc;
+      --paper-strong: #eeddf5;
+      --ink: #1a1020;
+      --muted: #5a4a6a;
+      --accent: #7c3aed;
+      --accent-strong: #4c1d95;
+      --accent-soft: rgba(124, 58, 237, 0.1);
+      --accent-mid: rgba(124, 58, 237, 0.24);
+      --shadow: 0 28px 60px rgba(26, 16, 32, 0.11);
+      --shadow-strong: 0 26px 70px rgba(76, 29, 149, 0.22);
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+      --content: 76rem;
+      --reading: 68ch;
+      --font-display: "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(248, 240, 255, 0.86), transparent 28rem),
+        radial-gradient(circle at 88% 8%, rgba(196, 168, 216, 0.62), transparent 24rem),
+        linear-gradient(180deg, var(--bg) 0%, #d8c8ec 100%);
+      line-height: 1.75;
+      font-kerning: normal;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .progress-rail {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 40;
+      height: 0.28rem;
+      background: rgba(248, 244, 252, 0.36);
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, #a855f7 100%);
+      transform-origin: left center;
+      transition: width 140ms linear, filter 220ms var(--ease-out-quart);
+    }
+
+    .ink-thread {
+      position: fixed;
+      inset: 0;
+      z-index: 9;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .ink-thread-glow, .ink-thread-path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      opacity: 0;
+      transition: opacity 220ms var(--ease-out-quart);
+    }
+
+    .ink-thread-glow {
+      stroke: rgba(168, 85, 247, 0.09);
+      stroke-width: 18;
+      filter: blur(10px);
+    }
+
+    .ink-thread-path {
+      stroke: rgba(124, 58, 237, 0.26);
+      stroke-width: 2.1;
+      stroke-dasharray: 10 16;
+      animation: thread-flow 18s linear infinite;
+    }
+
+    .ink-thread.is-active .ink-thread-glow,
+    .ink-thread.is-active .ink-thread-path { opacity: 1; }
+
+    .site-head, main, footer {
+      width: min(calc(100% - 2rem), var(--content));
+      margin: 0 auto;
+    }
+
+    .site-head { padding: 2.6rem 0 2rem; }
+
+    .site-kicker, .section-kicker, .detail-label {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .masthead {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(18rem, 0.82fr);
+      gap: clamp(1.5rem, 3vw, 3rem);
+      align-items: end;
+      padding: clamp(2.2rem, 4vw, 4.6rem);
+      background:
+        linear-gradient(120deg, rgba(248, 244, 252, 0.98) 0%, rgba(248, 244, 252, 0.98) 63%, rgba(238, 221, 245, 0.92) 63%, rgba(238, 221, 245, 0.92) 100%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+      animation: reveal-up 800ms var(--ease-out-expo) both;
+    }
+
+    .masthead-copy {
+      max-width: 46rem;
+      position: relative;
+      z-index: 2;
+      animation: reveal-up 900ms var(--ease-out-expo) both;
+    }
+
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.92;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .author {
+      margin: 0 0 0.9rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .masthead-mark {
+      position: absolute;
+      right: clamp(1rem, 4vw, 3rem);
+      top: clamp(1rem, 3vw, 2rem);
+      z-index: 0;
+      color: rgba(124, 58, 237, 0.1);
+      font-family: var(--font-display);
+      font-size: clamp(4.6rem, 13vw, 11rem);
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      text-align: right;
+      pointer-events: none;
+      transform: translate3d(var(--hero-mark-x, 0px), var(--hero-mark-y, 0px), 0);
+      transition: transform 180ms linear;
+      will-change: transform;
+    }
+
+    h1, h2, h3, h4, dt,
+    .hero-note strong,
+    .memory-line strong {
+      font-family: var(--font-display);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-size: clamp(4rem, 9vw, 7.6rem);
+      line-height: 0.84;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 0.95rem;
+      color: var(--accent-strong);
+      font-size: clamp(1rem, 1.9vw, 1.35rem);
+      line-height: 1.35;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      max-width: 42rem;
+      margin: 1.5rem 0 0;
+      font-size: 1.12rem;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.6rem;
+    }
+
+    .primary-link, .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.95rem 1.15rem;
+      border-radius: 0.95rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart), color 180ms var(--ease-out-quart), box-shadow 180ms var(--ease-out-quart);
+    }
+
+    .primary-link {
+      background: var(--accent);
+      color: var(--paper);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .secondary-link {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--accent-strong);
+    }
+
+    .primary-link::after, .secondary-link::after, .map-link::after {
+      content: "↗";
+      margin-left: 0.45rem;
+      font-size: 0.95em;
+      transition: transform 180ms ease;
+    }
+
+    .primary-link:hover, .secondary-link:hover,
+    .jump-links a:hover, .map-link:hover, .backtop:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary-link:active, .secondary-link:active,
+    .map-link:active, .backtop:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    .primary-link:hover::after, .secondary-link:hover::after,
+    .map-link:hover::after { transform: translate(2px, -1px); }
+
+    .reading-whisper {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin: 1.15rem 0 0;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.64);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-style: italic;
+      box-shadow: 0 10px 24px rgba(26, 16, 32, 0.06);
+    }
+
+    .reading-whisper::before {
+      content: "§";
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .hero-note {
+      position: relative;
+      z-index: 2;
+      padding: 1.6rem;
+      border-radius: 1.1rem;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 0 26px 60px rgba(26, 16, 32, 0.28);
+      transform: translateY(2.2rem) rotate(-2.5deg);
+      animation: fade-in 980ms var(--ease-out-expo) both;
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .hero-note p { margin: 0; color: rgba(248, 244, 252, 0.82); }
+
+    .hero-note ul {
+      margin: 1rem 0 0;
+      padding-left: 1.15rem;
+      color: rgba(248, 244, 252, 0.94);
+    }
+
+    .hero-note li + li { margin-top: 0.55rem; }
+
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.55rem;
+      padding-left: clamp(1rem, 2vw, 2rem);
+    }
+
+    .jump-links a {
+      position: relative;
+      padding: 0.3rem 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: color 180ms var(--ease-out-quart), border-color 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart);
+      animation: reveal-up 760ms var(--ease-out-expo) both;
+    }
+
+    .jump-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -0.35rem;
+      height: 0.2rem;
+      background: rgba(124, 58, 237, 0.12);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 220ms ease;
+    }
+
+    .jump-links a:hover::after, .jump-links a.active::after { transform: scaleX(1); }
+
+    .jump-links a:nth-child(2) { animation-delay: 60ms; }
+    .jump-links a:nth-child(3) { animation-delay: 120ms; }
+    .jump-links a:nth-child(4) { animation-delay: 180ms; }
+    .jump-links a:nth-child(5) { animation-delay: 240ms; }
+    .jump-links a:nth-child(6) { animation-delay: 300ms; }
+    .jump-links a:nth-child(7) { animation-delay: 360ms; }
+
+    .jump-links a.active { color: var(--ink); border-color: var(--accent); }
+
+    main { padding: 1.4rem 0 5rem; }
+
+    .section {
+      position: relative;
+      padding: clamp(2.8rem, 5vw, 5.6rem);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      animation: reveal-up 920ms var(--ease-out-expo) both;
+    }
+
+    .section + .section { margin-top: 1.8rem; }
+
+    .section-paper { background: var(--paper); box-shadow: var(--shadow); }
+
+    .section-wash {
+      background: linear-gradient(180deg, rgba(238, 221, 245, 0.92) 0%, rgba(196, 168, 216, 0.42) 100%);
+    }
+
+    main > .section:nth-of-type(2) { animation-delay: 70ms; }
+    main > .section:nth-of-type(3) { animation-delay: 140ms; }
+    main > .section:nth-of-type(4) { animation-delay: 210ms; }
+    main > .section:nth-of-type(5) { animation-delay: 280ms; }
+    main > .section:nth-of-type(6) { animation-delay: 350ms; }
+    main > .section:nth-of-type(7) { animation-delay: 420ms; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+      gap: 1.25rem 2rem;
+      align-items: end;
+      margin-bottom: 2.4rem;
+    }
+
+    .section-head.is-focused h2 {
+      transform: translateX(0.18rem);
+      color: var(--accent-strong);
+    }
+
+    .section-head h2 {
+      margin: 0.25rem 0 0;
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      transition: transform 260ms var(--ease-out-quart), color 260ms var(--ease-out-quart);
+    }
+
+    .section-head p { margin: 0; color: var(--muted); font-size: 1rem; }
+
+    .conclusion-list, .map-list, .misread-list,
+    .help-list, .onepage-list, .layer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .conclusion-list { display: grid; gap: 1.15rem; }
+
+    .conclusion-list li {
+      display: grid;
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.05rem 0;
+      align-items: start;
+    }
+
+    .conclusion-list li:nth-child(even) {
+      padding-left: clamp(0.8rem, 3vw, 2.8rem);
+    }
+
+    .conclusion-num {
+      color: var(--accent-mid);
+      font-family: var(--font-display);
+      font-size: clamp(2.9rem, 5vw, 4.9rem);
+      line-height: 0.82;
+      font-weight: 700;
+    }
+
+    .conclusion-list strong, .map-title, .misread-list h3,
+    .help-list strong, .onepage-list strong, .layer-list strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .conclusion-list p, .map-summary, .misread-list p,
+    .help-list p, .onepage-list p, .layer-list p {
+      margin: 0;
+      color: var(--muted);
+      max-width: var(--reading);
+    }
+
+    .map-list { display: grid; gap: 1.1rem; }
+
+    .map-list li {
+      display: grid;
+      grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem 0;
+    }
+
+    .map-list li:nth-child(odd) { padding-right: clamp(0rem, 2vw, 1.5rem); }
+    .map-list li:nth-child(even) { padding-left: clamp(0.6rem, 3vw, 2.5rem); }
+
+    .map-num {
+      color: var(--accent-mid);
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 4vw, 3.3rem);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .map-link {
+      align-self: center;
+      padding: 0.6rem 0.9rem;
+      border-radius: 0.85rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart);
+    }
+
+    .detail-stack { display: grid; gap: 1.8rem; }
+
+    .detail-entry {
+      --entry-shift: 0rem;
+      position: relative;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border-radius: 1.8rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(238, 221, 245, 0.82) 100%);
+      box-shadow: 0 20px 42px rgba(26, 16, 32, 0.09);
+      transform: translate3d(var(--entry-shift), 0, 0);
+      transition: transform 320ms var(--ease-out-quart), box-shadow 320ms var(--ease-out-quart), opacity 520ms var(--ease-out-expo);
+    }
+
+    .detail-entry::before {
+      content: """;
+      position: absolute;
+      top: 0.7rem; right: 1rem;
+      color: rgba(124, 58, 237, 0.11);
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 7vw, 6rem);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .detail-entry:nth-child(odd) { --entry-shift: -1rem; }
+    .detail-entry:nth-child(even) { --entry-shift: 1.4rem; }
+
+    .detail-entry.is-visible:hover {
+      transform: translate3d(var(--entry-shift), -0.35rem, 0);
+      box-shadow: 0 26px 56px rgba(26, 16, 32, 0.12);
+    }
+
+    .detail-frame {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+
+    .detail-intro h3 {
+      margin: 0.35rem 0 0.7rem;
+      font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .answer {
+      max-width: 30rem;
+      margin: 0;
+      color: var(--accent-strong);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .detail-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 0;
+    }
+
+    .detail-facts div {
+      padding: 1rem 1.05rem;
+      border-radius: 1.1rem;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .detail-facts div:nth-child(3n + 1) { background: rgba(124, 58, 237, 0.08); }
+
+    .detail-facts dt {
+      margin: 0 0 0.45rem;
+      color: var(--accent);
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .detail-facts dd { margin: 0; color: var(--muted); }
+
+    .memory-line {
+      position: relative;
+      margin: 1rem 0 0;
+      padding-top: 1rem;
+      padding-left: 0.5rem;
+      max-width: 52rem;
+      color: var(--ink);
+      font-size: 1.03rem;
+      background:
+        linear-gradient(90deg, rgba(168, 85, 247, 0.18), rgba(168, 85, 247, 0.02)) 0 100% / 0% 58% no-repeat;
+      transition: background-size 520ms var(--ease-out-expo), transform 320ms var(--ease-out-quart);
+    }
+
+    .memory-line::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 1rem; bottom: 0.1rem;
+      width: 0.16rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), rgba(124, 58, 237, 0.18));
+      opacity: 0.45;
+    }
+
+    .memory-line.is-lit {
+      background-size: 100% 58%;
+      transform: translateX(0.18rem);
+    }
+
+    .memory-line strong { color: var(--accent); margin-right: 0.3rem; }
+
+    .concept-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem 2.2rem;
+      margin: 0;
+    }
+
+    .concept-list div {
+      --concept-tilt: 0deg;
+      --concept-shift: 0rem;
+      position: relative;
+      padding: 0.95rem 0 1.1rem;
+      transform: translate3d(var(--concept-shift), 0, 0) rotate(var(--concept-tilt));
+      transform-origin: left top;
+    }
+
+    .concept-list div::before {
+      content: "";
+      position: absolute;
+      left: -1rem; top: 1.2rem;
+      width: 0.38rem; height: 2.1rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.2), rgba(124, 58, 237, 0));
+      transform: rotate(8deg);
+      opacity: 0.8;
+    }
+
+    .concept-list div:nth-child(odd) { --concept-tilt: -1.2deg; --concept-shift: -1.2rem; }
+    .concept-list div:nth-child(even) { --concept-tilt: 1.1deg; --concept-shift: 1rem; }
+    .concept-list div:nth-child(3n) { --concept-tilt: -0.4deg; --concept-shift: 1.8rem; }
+
+    .concept-list dt { margin: 0 0 0.4rem; font-size: 1.35rem; font-weight: 700; }
+    .concept-list dd { margin: 0; color: var(--muted); }
+
+    .misread-list, .help-list, .onepage-list, .layer-list { display: grid; gap: 1rem; }
+
+    .misread-list li, .help-list li, .onepage-list li, .layer-list li { padding: 1rem 0; }
+
+    .onepage-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+
+    .closing-frame {
+      padding: 1.5rem 1.3rem;
+      border-radius: 1.5rem;
+      background: linear-gradient(180deg, rgba(76, 29, 149, 0.98) 0%, rgba(124, 58, 237, 0.96) 100%);
+      color: var(--paper);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .closing-frame h3 { margin: 0 0 0.6rem; font-size: 1.7rem; font-weight: 700; }
+    .closing-frame p { margin: 0; color: rgba(248, 244, 252, 0.76); }
+    .closing-frame .layer-list strong { color: var(--paper); }
+    .closing-frame .layer-list p { color: rgba(248, 244, 252, 0.78); }
+
+    footer { padding: 0 0 4rem; color: var(--muted); }
+    footer p { margin: 0.35rem 0; }
+
+    .backtop {
+      position: fixed;
+      right: 1.1rem; bottom: 1.1rem;
+      z-index: 10;
+      padding: 0.85rem 0.95rem;
+      border: 0;
+      border-radius: 0.95rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-strong);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart), visibility 180ms var(--ease-out-quart);
+    }
+
+    body.js-ready .section,
+    body.js-ready .detail-entry,
+    body.js-ready .concept-list > div,
+    body.js-ready .misread-list li,
+    body.js-ready .help-list li,
+    body.js-ready .onepage-list li,
+    body.js-ready .layer-list li {
+      opacity: 0;
+      transition: opacity 520ms var(--ease-out-expo), transform 520ms var(--ease-out-expo);
+    }
+
+    body.js-ready .section { transform: translate3d(0, 1.2rem, 0); }
+    body.js-ready .section.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+
+    body.js-ready .detail-entry { transform: translate3d(var(--entry-shift), 1.25rem, 0); }
+    body.js-ready .detail-entry.is-visible { opacity: 1; transform: translate3d(var(--entry-shift), 0, 0); }
+
+    body.js-ready .concept-list > div,
+    body.js-ready .misread-list li,
+    body.js-ready .help-list li,
+    body.js-ready .onepage-list li,
+    body.js-ready .layer-list li { transform: translate3d(0, 0.9rem, 0); }
+
+    body.js-ready .concept-list > div.is-visible,
+    body.js-ready .misread-list li.is-visible,
+    body.js-ready .help-list li.is-visible,
+    body.js-ready .onepage-list li.is-visible,
+    body.js-ready .layer-list li.is-visible {
+      opacity: 1;
+      transform: translate3d(var(--concept-shift, 0rem), 0, 0) rotate(var(--concept-tilt, 0deg));
+    }
+
+    .backtop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    @keyframes reveal-up {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes thread-flow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -180; }
+    }
+
+    @media (min-width: 981px) {
+      #details .section-head,
+      #concepts .section-head,
+      #misreads .section-head,
+      #help .section-head,
+      #onepage .section-head {
+        position: sticky;
+        top: 0.9rem;
+        z-index: 5;
+        padding-bottom: 1rem;
+        background: linear-gradient(180deg, rgba(248, 244, 252, 0.96) 0%, rgba(248, 244, 252, 0.88) 74%, rgba(248, 244, 252, 0) 100%);
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .masthead, .section-head, .detail-frame, .onepage-wrap { grid-template-columns: 1fr; }
+
+      .masthead-mark {
+        right: 1rem;
+        top: auto; bottom: 0.4rem;
+        font-size: clamp(4rem, 18vw, 7rem);
+      }
+
+      .detail-facts, .concept-list { grid-template-columns: 1fr; }
+
+      .hero-note,
+      .detail-entry:nth-child(odd),
+      .detail-entry:nth-child(even) { transform: none; }
+
+      .detail-entry { --entry-shift: 0rem; }
+      .concept-list div { --concept-tilt: 0deg; --concept-shift: 0rem; }
+
+      .map-list li { grid-template-columns: 3rem minmax(0, 1fr); }
+      .map-link { justify-self: start; }
+    }
+
+    @media (max-width: 720px) {
+      .site-head, main, footer { width: min(calc(100% - 1.25rem), var(--content)); }
+      .masthead, .section { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .jump-links { padding-left: 0; }
+      .reading-whisper { display: flex; }
+
+      .conclusion-list li, .map-list li {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+      }
+
+      .conclusion-list li:nth-child(even), .map-list li:nth-child(even) { padding-left: 0; }
+      .map-list li:nth-child(odd) { padding-right: 0; }
+      h1 { font-size: 3.3rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .masthead-mark { transform: none !important; }
+      .memory-line { background-size: 100% 58%; transform: none !important; }
+      .ink-thread { display: none; }
+
+      body.js-ready .section,
+      body.js-ready .detail-entry,
+      body.js-ready .concept-list > div,
+      body.js-ready .misread-list li,
+      body.js-ready .help-list li,
+      body.js-ready .onepage-list li,
+      body.js-ready .layer-list li { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="progress-rail" aria-hidden="true"><span class="progress-fill" id="progressFill"></span></div>
+  <svg class="ink-thread" id="inkThread" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="ink-thread-glow" id="inkThreadGlow"></path>
+    <path class="ink-thread-path" id="inkThreadPath"></path>
+  </svg>
+
+  <header class="site-head">
+    <p class="site-kicker">Book Breakdown</p>
+    <section class="masthead" aria-labelledby="hero-title">
+      <div class="masthead-copy">
+        <p class="author">Daniel Z. Lieberman &amp; Michael E. Long</p>
+        <h1 id="hero-title">贪婪的多巴胺<span>The Molecule of More</span></h1>
+        <p class="lede">多巴胺不是快乐分子，而是"更多分子"——它驱动的不是当下的满足，而是对未来可能性永无止境的渴望。这本书解释了为什么你得到了想要的，却依然感到空虚。</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#map">先看 6 个核心问题</a>
+          <a class="secondary-link" href="#conclusions">2 分钟读完结论</a>
+        </div>
+        <p class="reading-whisper" id="readingWhisper">这页适合慢一点读。</p>
+      </div>
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <span class="masthead-mark" aria-hidden="true">DOPA<br>MINE</span>
+      <aside class="hero-note" aria-label="阅读抓手">
+        <strong>先抓住这三件事</strong>
+        <p>这不是化学教材，而是一张解读人类行为的神经地图。</p>
+        <ul>
+          <li>多巴胺 = 渴望 + 期待，不是快乐；快乐来自另一套系统。</li>
+          <li>全书主轴：多巴胺系统（未来/想要）vs 当下化学物质（现在/享受）。</li>
+          <li>成瘾、爱情褪色、政治分裂——都是这对矛盾失衡的不同表现。</li>
+        </ul>
+      </aside>
+    </section>
+    <nav class="jump-links" aria-label="页面导航">
+      <a href="#conclusions">核心结论</a>
+      <a href="#map">问题地图</a>
+      <a href="#details">详细拆解</a>
+      <a href="#concepts">关键概念</a>
+      <a href="#misreads">常见误解</a>
+      <a href="#help">现实帮助</a>
+      <a href="#onepage">一页总结</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="conclusions" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Core Conclusions</p>
+          <h2>全书核心结论</h2>
+        </div>
+        <p>如果只读这一部分，你应该记住的是：多巴胺不是快乐，而是渴望；人类很多说不清楚的行为，都源于这个根本的神经机制。</p>
+      </div>
+      <ol class="conclusion-list">
+        <li>
+          <span class="conclusion-num">01</span>
+          <div>
+            <strong>多巴胺驱动期待，不驱动满足</strong>
+            <p>多巴胺在奖励实现之前激活，在实现之后退场——"得到"不是它的目的地，"追求"才是。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">02</span>
+          <div>
+            <strong>大脑有两套平行系统</strong>
+            <p>多巴胺系统（面向未来、处理可能性）和当下化学物质系统（血清素、催产素、内啡肽，处理当下满足感）共同构成人类行为的底层驱动。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">03</span>
+          <div>
+            <strong>意外性是多巴胺激活的关键</strong>
+            <p>奖励超出预期时多巴胺强烈激活；一旦奖励变得可预期，它的驱动力就会减弱——这解释了为什么新鲜感总会消失。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">04</span>
+          <div>
+            <strong>成瘾是多巴胺系统被劫持</strong>
+            <p>成瘾物质绕过正常努力-奖励回路直接触发多巴胺，但导致受体脱敏，需要越来越多才能维持正常感受。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">05</span>
+          <div>
+            <strong>浪漫爱情必须完成转型</strong>
+            <p>激情爱情是多巴胺驱动的，依赖不确定性；当关系稳定后，爱情要转型为由催产素支撑的伴侣型爱情，否则会凋零。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">06</span>
+          <div>
+            <strong>政治分极有神经科学基础</strong>
+            <p>多巴胺主导型人格倾向进步主义（追求更好的未来），当下化学物质主导型倾向保守主义（珍视已有的稳定）。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="map" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Question Map</p>
+          <h2>全书问题地图</h2>
+        </div>
+        <p>这本书适合按问题读，不适合按章节背。下面这 6 个问题，基本覆盖了全书的论证路线。</p>
+      </div>
+      <ol class="map-list">
+        <li>
+          <span class="map-num">01</span>
+          <div>
+            <strong class="map-title">问题一：为什么"渴望"比"拥有"更令人兴奋？</strong>
+            <p class="map-summary">多巴胺在预期阶段激活，在实现阶段退场——"得到"不是它的目的地。</p>
+          </div>
+          <a class="map-link" href="#q1">展开</a>
+        </li>
+        <li>
+          <span class="map-num">02</span>
+          <div>
+            <strong class="map-title">问题二：为什么成瘾会不断升级、难以戒断？</strong>
+            <p class="map-summary">多巴胺回路被劫持，受体脱敏，正常快乐消失，只有成瘾物质才能维持"正常"。</p>
+          </div>
+          <a class="map-link" href="#q2">展开</a>
+        </li>
+        <li>
+          <span class="map-num">03</span>
+          <div>
+            <strong class="map-title">问题三：为什么浪漫爱情会随时间褪色？</strong>
+            <p class="map-summary">激情期由多巴胺驱动，依赖不确定性；关系确定后，爱情需要转型到催产素语言。</p>
+          </div>
+          <a class="map-link" href="#q3">展开</a>
+        </li>
+        <li>
+          <span class="map-num">04</span>
+          <div>
+            <strong class="map-title">问题四：为什么创造力需要特殊的神经状态？</strong>
+            <p class="map-summary">创造力依赖多巴胺在遥远概念之间建立意外连接，这种跳跃需要开放而非专注的状态。</p>
+          </div>
+          <a class="map-link" href="#q4">展开</a>
+        </li>
+        <li>
+          <span class="map-num">05</span>
+          <div>
+            <strong class="map-title">问题五：为什么人们在政治上如此难以沟通？</strong>
+            <p class="map-summary">保守与进步的分歧部分根植于神经倾向：一种大脑看向未来，另一种大脑珍视当下。</p>
+          </div>
+          <a class="map-link" href="#q5">展开</a>
+        </li>
+        <li>
+          <span class="map-num">06</span>
+          <div>
+            <strong class="map-title">问题六：如何在欲望与满足之间找到平衡？</strong>
+            <p class="map-summary">有意识地在两套系统之间轮换，让多巴胺驱动成长，当下化学物质滋养享受。</p>
+          </div>
+          <a class="map-link" href="#q6">展开</a>
+        </li>
+      </ol>
+    </section>
+
+    <section id="details" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Deep Dive</p>
+          <h2>核心问题详细拆解</h2>
+        </div>
+        <p>每个问题都按同一套结构拆开：一句话答案、核心逻辑、常见误解、现实启发。这样更适合长期回看。</p>
+      </div>
+
+      <div class="detail-stack">
+        <article id="q1" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 1</p>
+              <h3>为什么"渴望"比"拥有"更令人兴奋？</h3>
+              <p class="answer">一句话答案：多巴胺在预期阶段激活，在实现阶段退场——"追求"才是它真正的主场。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>大脑中多巴胺神经元的激活规律，以及为什么设定目标时往往比实现目标时感觉更充实。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>多巴胺是"预测误差信号"——当奖励超出预期时激活，当奖励与预测相符时不激活，天然面向"未知的更好"。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>猴子实验：预期奖励时多巴胺激活；奖励如期而至时激活减少；购物激动感在"将要买"时达到峰值。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>预测误差、多巴胺激活窗口、欲望 vs 享受、期待效应。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>多巴胺不是让你感到快乐的分子，它让你感到渴望和驱动力；真正的快乐感来自当下化学物质系统。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>旅行计划期往往比旅行本身更令人期待；买前兴奋、买后空虚——这不是你的问题，而是多巴胺的工作方式。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>多巴胺的语言不是"这很好"，而是"那边可能更好"——它永远指向远方。</p>
+        </article>
+
+        <article id="q2" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 2</p>
+              <h3>为什么成瘾会不断升级、难以戒断？</h3>
+              <p class="answer">一句话答案：成瘾物质劫持多巴胺回路，导致受体脱敏，让人需要越来越多才能感受到"正常"。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>成瘾的神经机制，以及为什么理性上"知道有害"却无法停止，不是意志力问题，而是神经回路的问题。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>成瘾物质绕过努力-奖励机制，将多巴胺推至正常范围数倍；大脑下调受体敏感性以补偿，导致正常快乐失效。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>可卡因使突触多巴胺浓度上升至正常水平的三至五倍；老鼠放弃饮食睡眠以维持电刺激奖励。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>多巴胺劫持、受体脱敏、耐受性、戒断反应、享乐基准线。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>成瘾不是性格缺陷，而是神经系统对极端刺激的适应性反应；但理解机制本身就是恢复控制的第一步。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>智能手机的间歇性推送和老虎机用的是同一个多巴胺劫持原理——理解这点才能设计有效的数字卫生习惯。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>成瘾的本质是：你的大脑把"正常"的基准升高了，却没有告诉你这件事。</p>
+        </article>
+
+        <article id="q3" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 3</p>
+              <h3>为什么浪漫爱情会随时间褪色？</h3>
+              <p class="answer">一句话答案：激情爱情依赖不确定性；关系确定后多巴胺退场，爱情需要转型为催产素语言。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>爱情的神经化学全过程，以及为什么"激情期"有时限，以及伴侣关系为什么需要主动维护。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>早期爱情充满不确定性，完美激活多巴胺；关系确定后，多巴胺退场，要么转型为催产素爱情，要么凋零。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>新恋人脑扫描：多巴胺区域高度激活；长期伴侣脑扫描：催产素相关区域更活跃；长期异地恋保持更高激情。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>激情型爱情、伴侣型爱情、催产素、血清素、爱情转型。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>激情褪去不代表爱情结束，它代表爱情在邀请你转型；问题不是"如何保持激情"，而是"如何建立当下连接"。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>有意识地培养当下化学物质：眼神接触、触摸、共同仪式和深层相互理解，这才是长期关系的真正基础。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>爱情的"褪色"不是爱情消失了，而是它换了一种化学语言在说话。</p>
+        </article>
+
+        <article id="q4" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 4</p>
+              <h3>为什么创造力需要特殊的神经状态？</h3>
+              <p class="answer">一句话答案：创造力需要多巴胺在遥远概念之间建立跳跃性连接，这种状态既不是高度专注，也不是纯粹放松。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>创意人和科学家大脑的工作方式，以及为什么多巴胺系统在创造力中扮演独特角色。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>创造力是在遥远概念间发现意外连接；多巴胺驱动大脑超越"当前已知"探索"遥远可能"，这正是创意的神经基础。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>创意人和精神分裂症患者都显示更高的多巴胺活动；创意顿悟常发生在淋浴、散步等半放松状态。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>远距离联想、认知过滤、发散思维、多巴胺与创造力的连接。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>创造力不只是灵感乍现；它需要多巴胺系统（探索新连接）和当下化学物质系统（深入打磨细节）交替工作。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>给自己安排无结构的探索时间（散步、涂鸦、随意阅读）激活多巴胺的远距离联想；过度管理会抑制创意。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>创造力的核心是多巴胺驱动的"概念跳远"——你需要先离开地面，才能落到新地方。</p>
+        </article>
+
+        <article id="q5" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 5</p>
+              <h3>为什么人们在政治上如此难以沟通？</h3>
+              <p class="answer">一句话答案：政治分歧部分根植于神经倾向差异——一种大脑感知"更好的可能"，另一种感知"当下已有之物"的价值。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>从神经科学角度解释政治分极化，提供一个超越"谁对谁错"的分析框架。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>多巴胺活跃的人更关注"未来可能更好"（进步主义底层）；当下化学物质主导的人更重视"已有的价值"（保守主义底层）。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>研究显示进步主义者对不寻常图像反应更强；保守主义者对威胁信号反应更强；政治倾向在双胞胎研究中有显著遗传相关性。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>多巴胺主导型人格、当下化学物质主导型人格、政治极化的神经基础。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>这不是说政治立场由基因决定，也不是说哪种倾向更正确——它是说两种感知方式存在神经层面的真实差异。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>与政治观点不同的人沟通时，先理解对方大脑正在优先感知什么，而不是试图用"事实"来说服。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>政治分歧深处，往往是两种大脑在问不同的问题：一个问"我们还能更好吗"，另一个问"我们现在还好吗"。</p>
+        </article>
+
+        <article id="q6" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 6</p>
+              <h3>如何在欲望与满足之间找到平衡？</h3>
+              <p class="answer">一句话答案：有意识地在两个系统之间轮换——多巴胺驱动探索，当下化学物质滋养享受和连接。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>全书最具行动指导意义的部分，提供了基于神经科学的生活设计框架。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>人类的痛苦很多来自两系统失衡：要么多巴胺过载（永不满足），要么当下化学物质不足（没有真实满足感）。理想是两者并存。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>冥想激活当下化学物质、降低多巴胺焦虑；感恩练习平衡"还要更多"倾向；有意义的人际关系是当下化学物质的最强来源。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>多巴胺与当下化学物质的平衡、正念、感恩、目标设定、当下满足感。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>平衡不是压制欲望或停止追求——多巴胺是人类进步的驱动力；问题是没有当下化学物质的纯粹欲望会让人迷失在"下一个"。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>在追求目标的过程中主动安排"享受阶段"；培养日常的当下化学物质习惯（友谊、烹饪、自然接触）；识别自己是"多巴胺过载"还是"当下化学物质不足"。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>幸福不在终点，也不在永不停歇的追赶中——它在你能同时说"我在追求"和"我很满足"的那个交叉点。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="concepts" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Key Concepts</p>
+          <h2>关键概念速查</h2>
+        </div>
+        <p>这些概念是读懂全书的基础词汇，也是你在其他地方遇到相关讨论时的参照系。</p>
+      </div>
+      <dl class="concept-list">
+        <div>
+          <dt>多巴胺</dt>
+          <dd>一种神经递质，驱动欲望、期待和追求行为，而不是产生快乐感本身。它让你"想要"，而不是让你"享受"。</dd>
+        </div>
+        <div>
+          <dt>当下化学物质</dt>
+          <dd>血清素、催产素、内啡肽等，产生当下的满足、快乐、连接感和平静感——真正的享受来源。</dd>
+        </div>
+        <div>
+          <dt>预测误差</dt>
+          <dd>多巴胺激活的核心机制：当实际奖励超出预期时激活，当与预期相符时不激活，当低于预期时抑制。</dd>
+        </div>
+        <div>
+          <dt>享乐基准线</dt>
+          <dd>大脑对正常奖励水平的设定点；成瘾会上调这个基准线，使正常刺激不再足够，只有更高刺激才能维持感受。</dd>
+        </div>
+        <div>
+          <dt>激情型爱情</dt>
+          <dd>早期爱情，多巴胺驱动，依赖不确定性和新奇感，有自然的时限，无法通过意志力维持。</dd>
+        </div>
+        <div>
+          <dt>伴侣型爱情</dt>
+          <dd>成熟爱情，催产素和血清素驱动，依赖安全感、信任和深度了解，能提供激情型爱情无法给予的深度满足。</dd>
+        </div>
+        <div>
+          <dt>多巴胺劫持</dt>
+          <dd>成瘾物质或行为绕过正常努力-奖励机制，直接大量激活多巴胺系统，同时导致受体脱敏。</dd>
+        </div>
+        <div>
+          <dt>远距离联想</dt>
+          <dd>创造力的神经基础，多巴胺驱动大脑在表面无关的概念之间发现意外的连接——创意的来源。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="misreads" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Common Misreads</p>
+          <h2>常见误解</h2>
+        </div>
+        <p>这本书容易被误读的地方不少——这些纠正比原文本身更有价值。</p>
+      </div>
+      <ol class="misread-list">
+        <li>
+          <h3>误解：多巴胺 = 快乐分子</h3>
+          <p>更准确的说法：多巴胺 = 欲望 / 期待 / 驱动力。快乐感本身来自血清素、内啡肽等当下化学物质。把它们混淆，就无法理解为什么"得到了还是不满足"。</p>
+        </li>
+        <li>
+          <h3>误解：高多巴胺 = 幸福快乐</h3>
+          <p>恰恰相反：多巴胺持续高激活往往伴随焦虑、不满足和永远"还要更多"的状态。幸福需要两套系统都在线，而不是某一套单独爆表。</p>
+        </li>
+        <li>
+          <h3>误解：成瘾是意志力问题</h3>
+          <p>成瘾是神经回路的适应性改变，不是品格缺陷。但这不意味着人对成瘾毫无影响力——理解机制确实有助于恢复控制力。</p>
+        </li>
+        <li>
+          <h3>误解：爱情褪色意味着爱情结束</h3>
+          <p>爱情的神经化学会演化：激情期的多巴胺状态不可能永久维持，但伴侣型爱情能提供激情型爱情无法给予的深度满足感。</p>
+        </li>
+        <li>
+          <h3>误解：这本书说欲望是坏东西</h3>
+          <p>多巴胺驱动的欲望是人类进步的发动机，问题不是欲望本身，而是在缺乏当下化学物质平衡时的失控欲望。</p>
+        </li>
+        <li>
+          <h3>误解：政治分歧可以用神经科学完全解释</h3>
+          <p>神经科学提供了一个理解倾向差异的视角，但政治观点受文化、历史、经济利益等大量因素影响，不能简化为纯神经化学决定论。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="help" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Why It Helps</p>
+          <h2>这本书对现实有什么帮助</h2>
+        </div>
+        <p>它最大的价值，不是给你神经科学知识，而是帮你用一个统一的框架解释生活中很多说不清楚的感受。</p>
+      </div>
+      <ul class="help-list">
+        <li>
+          <strong>解释消费主义的多巴胺陷阱</strong>
+          <p>理解"买前兴奋、买后空虚"的神经机制，从而对广告和消费冲动保持更清醒的距离。</p>
+        </li>
+        <li>
+          <strong>帮助维护长期关系</strong>
+          <p>在关系中识别"激情褪色"的自然规律，知道如何主动从多巴胺爱情转型到催产素爱情，而不是误以为爱情结束。</p>
+        </li>
+        <li>
+          <strong>提供更有效的成瘾干预框架</strong>
+          <p>看懂成瘾（包括手机成瘾、社交媒体成瘾）的神经机制，制定比单靠意志力更有效的干预策略。</p>
+        </li>
+        <li>
+          <strong>设计更好的工作和生活节奏</strong>
+          <p>既有多巴胺驱动的目标追求，也有当下化学物质支撑的享受与休息，两者不是矛盾而是相互支撑。</p>
+        </li>
+        <li>
+          <strong>提供非道德化的政治对话框架</strong>
+          <p>理解政治分歧的神经基础，让对话的起点从"谁更理性"转向"我们在感知什么不同的世界"。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="onepage" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">One Page</p>
+          <h2>一页看懂这本书</h2>
+        </div>
+        <p>如果你以后只回看一个部分，就看这里。这一页把全书压成了最值得记住的 8 句话和 5 个层次。</p>
+      </div>
+      <div class="onepage-wrap">
+        <ol class="onepage-list">
+          <li>
+            <strong>1. 它颠覆的常识</strong>
+            <p>多巴胺不是快乐分子，而是渴望分子——它在你"还没得到"时激活，得到后退场。</p>
+          </li>
+          <li>
+            <strong>2. 它的核心发现</strong>
+            <p>大脑有两套系统：多巴胺（未来/渴望/想象）和当下化学物质（此刻/享受/连接），人类行为是这两者的张力。</p>
+          </li>
+          <li>
+            <strong>3. 它对成瘾的解释</strong>
+            <p>成瘾的本质是大脑把"正常"的基准升高了，让人离不开高刺激，而这是神经适应，不是品格缺陷。</p>
+          </li>
+          <li>
+            <strong>4. 它对爱情的洞见</strong>
+            <p>浪漫爱情的褪色不是失败，而是从多巴胺爱情到催产素爱情的邀请——需要主动转型，不会自动发生。</p>
+          </li>
+          <li>
+            <strong>5. 它对创造力的解释</strong>
+            <p>创造力是多巴胺的跳远能力——在遥远的概念之间建立意外的桥梁，需要开放的探索状态。</p>
+          </li>
+          <li>
+            <strong>6. 它对政治的分析</strong>
+            <p>政治分极有部分神经基础：一种大脑看向未来的可能，另一种大脑珍视当下的稳定。</p>
+          </li>
+          <li>
+            <strong>7. 它对永不满足的解释</strong>
+            <p>你永不满足的感觉，可能不是你的问题，而是多巴胺系统在正常工作——问题是当下化学物质太少。</p>
+          </li>
+          <li>
+            <strong>8. 它的行动指导</strong>
+            <p>幸福需要两个系统都在线：欲望驱动你成长，享受让你不迷失在永恒的"下一个"。</p>
+          </li>
+        </ol>
+        <aside class="closing-frame">
+          <h3>用一个框架记住全书</h3>
+          <ul class="layer-list">
+            <li>
+              <strong>核心发现</strong>
+              <p>多巴胺 = 渴望分子，不是快乐分子；它驱动期待，不驱动满足。</p>
+            </li>
+            <li>
+              <strong>两套系统</strong>
+              <p>多巴胺（未来/想象）vs 当下化学物质（现在/感受），构成人类行为底层张力。</p>
+            </li>
+            <li>
+              <strong>失衡后果</strong>
+              <p>成瘾、爱情褪色、创意枯竭、政治极化，都是两套系统失衡的不同表现。</p>
+            </li>
+            <li>
+              <strong>平衡之道</strong>
+              <p>用多巴胺追求有意义的目标，用当下化学物质享受旅途本身。</p>
+            </li>
+            <li>
+              <strong>最终洞见</strong>
+              <p>理解你的神经系统，是夺回人生主动权的第一步。</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>书名：《贪婪的多巴胺》 | 英文名：<em>The Molecule of More</em> | 作者：Daniel Z. Lieberman &amp; Michael E. Long</p>
+    <p>阅读提示：这是一份问题驱动拆书，重点是帮助你建立判断框架，而不是替代原书阅读。</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="返回顶部">返回顶部</button>
+
+  <script>
+    document.body.classList.add('js-ready');
+
+    const navLinks = Array.from(document.querySelectorAll('.jump-links a'));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter((section, index, arr) => section && arr.indexOf(section) === index);
+    const backtop = document.getElementById('backtop');
+    const progressFill = document.getElementById('progressFill');
+    const readingWhisper = document.getElementById('readingWhisper');
+    const memoryLines = Array.from(document.querySelectorAll('.memory-line'));
+    const heroMark = document.querySelector('.masthead-mark');
+    const inkThread = document.getElementById('inkThread');
+    const inkThreadPath = document.getElementById('inkThreadPath');
+    const inkThreadGlow = document.getElementById('inkThreadGlow');
+    const heroCanvas = document.getElementById('heroCanvas');
+    const revealTargets = Array.from(document.querySelectorAll('.section, .detail-entry, .concept-list > div, .misread-list li, .help-list li, .onepage-list li, .layer-list li'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const currentHour = new Date().getHours();
+
+    const whisperText = (() => {
+      if (currentHour < 11) return '早上读这本书，你会用全新的眼光看早上的欲望。';
+      if (currentHour < 18) return '适合留给自己一段不着急的阅读时间。';
+      return '夜里读这本书，你会想起今天有多少次多巴胺骗了你。';
+    })();
+
+    if (readingWhisper) readingWhisper.textContent = whisperText;
+
+    const setupHeroCanvas = () => {
+      if (!heroCanvas) return;
+      const ctx = heroCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const state = {
+        width: 0, height: 0,
+        dpr: Math.min(window.devicePixelRatio || 1, 2),
+        pointerX: 0.72, pointerY: 0.32, time: 0
+      };
+
+      const resize = () => {
+        const bounds = heroCanvas.getBoundingClientRect();
+        state.width = bounds.width;
+        state.height = bounds.height;
+        heroCanvas.width = Math.max(1, Math.floor(bounds.width * state.dpr));
+        heroCanvas.height = Math.max(1, Math.floor(bounds.height * state.dpr));
+        ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+        draw(state.time);
+      };
+
+      const drawBloom = (x, y, radius, colorA, colorB) => {
+        const gradient = ctx.createRadialGradient(x, y, radius * 0.08, x, y, radius);
+        gradient.addColorStop(0, colorA);
+        gradient.addColorStop(1, colorB);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      };
+
+      const drawThreads = (time) => {
+        for (let i = 0; i < 8; i += 1) {
+          const baseX = state.width * (0.56 + i * 0.05);
+          const drift = Math.sin(time * 0.0012 + i * 1.4) * 22;
+          const topY = state.height * (0.12 + (i % 3) * 0.08);
+          const bottomY = state.height * (0.76 - (i % 2) * 0.12);
+
+          ctx.beginPath();
+          ctx.moveTo(baseX - 22, topY);
+          ctx.bezierCurveTo(
+            baseX + drift, state.height * 0.24,
+            baseX - drift * 0.8, state.height * 0.56,
+            baseX + 14, bottomY
+          );
+          ctx.lineWidth = 1 + (i % 3) * 0.45;
+          ctx.strokeStyle = `rgba(124, 58, 237, ${0.055 + i * 0.008})`;
+          ctx.stroke();
+        }
+      };
+
+      const drawGlyphHalo = (time) => {
+        const haloX = state.width * (0.72 + (state.pointerX - 0.5) * 0.08);
+        const haloY = state.height * (0.34 + (state.pointerY - 0.5) * 0.05);
+        const pulse = 1 + Math.sin(time * 0.0016) * 0.08;
+
+        ctx.save();
+        ctx.translate(haloX, haloY);
+        ctx.rotate(Math.sin(time * 0.0007) * 0.1);
+        for (let i = 0; i < 3; i += 1) {
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 108 * pulse + i * 22, 44 * pulse + i * 14, 0, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(76, 29, 149, ${0.08 - i * 0.02})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+        ctx.restore();
+      };
+
+      const draw = (time = 0) => {
+        state.time = time;
+        ctx.clearRect(0, 0, state.width, state.height);
+
+        drawBloom(
+          state.width * 0.74 + Math.sin(time * 0.0009) * 18,
+          state.height * 0.24 + Math.cos(time * 0.001) * 12,
+          Math.min(state.width, state.height) * 0.28,
+          'rgba(124, 58, 237, 0.12)', 'rgba(124, 58, 237, 0)'
+        );
+        drawBloom(
+          state.width * 0.86 + (state.pointerX - 0.5) * 34,
+          state.height * 0.66 + (state.pointerY - 0.5) * 18,
+          Math.min(state.width, state.height) * 0.22,
+          'rgba(76, 29, 149, 0.11)', 'rgba(76, 29, 149, 0)'
+        );
+        drawBloom(
+          state.width * 0.64, state.height * 0.58,
+          Math.min(state.width, state.height) * 0.18,
+          'rgba(168, 85, 247, 0.09)', 'rgba(168, 85, 247, 0)'
+        );
+        drawThreads(time);
+        drawGlyphHalo(time);
+      };
+
+      resize();
+
+      const onPointerMove = (event) => {
+        const bounds = heroCanvas.getBoundingClientRect();
+        state.pointerX = (event.clientX - bounds.left) / Math.max(bounds.width, 1);
+        state.pointerY = (event.clientY - bounds.top) / Math.max(bounds.height, 1);
+      };
+
+      const host = heroCanvas.closest('.masthead');
+      host?.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('resize', resize);
+
+      if (prefersReducedMotion) { draw(0); return; }
+
+      let frameId = 0;
+      const loop = (time) => { draw(time); frameId = window.requestAnimationFrame(loop); };
+      frameId = window.requestAnimationFrame(loop);
+    };
+
+    setupHeroCanvas();
+
+    const setActive = (id) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+      document.querySelectorAll('.section-head').forEach((head) => {
+        const section = head.closest('.section');
+        head.classList.toggle('is-focused', section?.id === id);
+      });
+    };
+
+    const buildInkPath = (points) => {
+      if (!points.length) return '';
+      if (points.length === 1) {
+        const [{ x, y }] = points;
+        return `M ${x - 72} ${y - 28} C ${x - 38} ${y - 18}, ${x - 24} ${y + 12}, ${x} ${y}`;
+      }
+      let path = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i += 1) {
+        const previous = points[i - 1];
+        const current = points[i];
+        const midpointX = (previous.x + current.x) / 2;
+        path += ` C ${midpointX} ${previous.y}, ${midpointX} ${current.y}, ${current.x} ${current.y}`;
+      }
+      return path;
+    };
+
+    const updateInkThread = () => {
+      if (!inkThread || !inkThreadPath || !inkThreadGlow || prefersReducedMotion) return;
+
+      const visiblePoints = memoryLines.map((line) => {
+        const rect = line.getBoundingClientRect();
+        const visible = rect.bottom > window.innerHeight * 0.08 && rect.top < window.innerHeight * 0.92;
+        if (!visible) return null;
+        return { x: Math.max(36, rect.left - 26), y: rect.top + rect.height * 0.52 };
+      }).filter(Boolean);
+
+      if (!visiblePoints.length) {
+        inkThread.classList.remove('is-active');
+        inkThreadPath.setAttribute('d', '');
+        inkThreadGlow.setAttribute('d', '');
+        return;
+      }
+
+      const d = buildInkPath(visiblePoints);
+      inkThread.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
+      inkThreadPath.setAttribute('d', d);
+      inkThreadGlow.setAttribute('d', d);
+      inkThread.classList.add('is-active');
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-20% 0px -55% 0px', threshold: [0.2, 0.45, 0.7] });
+
+    sections.forEach((section) => observer.observe(section));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+    revealTargets.forEach((target, index) => {
+      target.style.transitionDelay = `${Math.min(index % 5, 4) * 55}ms`;
+      if (prefersReducedMotion) {
+        target.classList.add('is-visible');
+      } else {
+        revealObserver.observe(target);
+      }
+    });
+
+    const memoryObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-lit');
+          memoryObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -18% 0px', threshold: 0.35 });
+
+    memoryLines.forEach((line) => memoryObserver.observe(line));
+
+    const updateScrollUI = () => {
+      const scrollTop = window.scrollY;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(scrollTop / scrollable, 1) : 0;
+
+      if (progressFill) {
+        progressFill.style.width = `${progress * 100}%`;
+        progressFill.style.filter = progress > 0.96 ? 'saturate(1.15) brightness(1.03)' : 'none';
+      }
+
+      if (heroMark && !prefersReducedMotion) {
+        heroMark.style.setProperty('--hero-mark-y', `${Math.min(scrollTop * 0.08, 28)}px`);
+        heroMark.style.setProperty('--hero-mark-x', `${Math.min(scrollTop * -0.02, 0)}px`);
+      }
+
+      updateInkThread();
+      backtop.classList.toggle('show', scrollTop > 720);
+    };
+
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+    window.addEventListener('resize', updateScrollUI, { passive: true });
+    updateScrollUI();
+
+    backtop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  </script>
+</body>
+</html>

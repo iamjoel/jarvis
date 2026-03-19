@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>《六顶思考帽》拆书 | Six Thinking Hats</title>
+  <style>
+    :root {
+      --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #d8eef0;
+      --bg-deep: #9ecdd3;
+      --paper: #f0fafc;
+      --paper-strong: #d5eef2;
+      --ink: #101e20;
+      --muted: #3a5a60;
+      --accent: #0e7490;
+      --accent-strong: #0c4a6e;
+      --accent-soft: rgba(14, 116, 144, 0.1);
+      --accent-mid: rgba(14, 116, 144, 0.24);
+      --shadow: 0 28px 60px rgba(16, 30, 32, 0.11);
+      --shadow-strong: 0 26px 70px rgba(12, 74, 110, 0.22);
+      --radius-lg: 1.5rem;
+      --radius-xl: 2rem;
+      --content: 76rem;
+      --reading: 68ch;
+      --font-display: "Iowan Old Style", "Palatino Linotype", "Songti SC", "Noto Serif SC", serif;
+      --font-body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(224, 248, 252, 0.86), transparent 28rem),
+        radial-gradient(circle at 88% 8%, rgba(158, 205, 211, 0.62), transparent 24rem),
+        linear-gradient(180deg, var(--bg) 0%, #c2e0e6 100%);
+      line-height: 1.75;
+      font-kerning: normal;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .progress-rail {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 40;
+      height: 0.28rem;
+      background: rgba(240, 250, 252, 0.36);
+      pointer-events: none;
+    }
+
+    .progress-fill {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, #06b6d4 100%);
+      transform-origin: left center;
+      transition: width 140ms linear, filter 220ms var(--ease-out-quart);
+    }
+
+    .ink-thread {
+      position: fixed;
+      inset: 0;
+      z-index: 9;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .ink-thread-glow, .ink-thread-path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      opacity: 0;
+      transition: opacity 220ms var(--ease-out-quart);
+    }
+
+    .ink-thread-glow {
+      stroke: rgba(6, 182, 212, 0.09);
+      stroke-width: 18;
+      filter: blur(10px);
+    }
+
+    .ink-thread-path {
+      stroke: rgba(14, 116, 144, 0.26);
+      stroke-width: 2.1;
+      stroke-dasharray: 10 16;
+      animation: thread-flow 18s linear infinite;
+    }
+
+    .ink-thread.is-active .ink-thread-glow,
+    .ink-thread.is-active .ink-thread-path { opacity: 1; }
+
+    .site-head, main, footer {
+      width: min(calc(100% - 2rem), var(--content));
+      margin: 0 auto;
+    }
+
+    .site-head { padding: 2.6rem 0 2rem; }
+
+    .site-kicker, .section-kicker, .detail-label {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .masthead {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) minmax(18rem, 0.82fr);
+      gap: clamp(1.5rem, 3vw, 3rem);
+      align-items: end;
+      padding: clamp(2.2rem, 4vw, 4.6rem);
+      background:
+        linear-gradient(120deg, rgba(240, 250, 252, 0.98) 0%, rgba(240, 250, 252, 0.98) 63%, rgba(213, 238, 242, 0.92) 63%, rgba(213, 238, 242, 0.92) 100%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+      animation: reveal-up 800ms var(--ease-out-expo) both;
+    }
+
+    .masthead-copy {
+      max-width: 46rem;
+      position: relative;
+      z-index: 2;
+      animation: reveal-up 900ms var(--ease-out-expo) both;
+    }
+
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      opacity: 0.92;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .author {
+      margin: 0 0 0.9rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .masthead-mark {
+      position: absolute;
+      right: clamp(1rem, 4vw, 3rem);
+      top: clamp(1rem, 3vw, 2rem);
+      z-index: 0;
+      color: rgba(14, 116, 144, 0.1);
+      font-family: var(--font-display);
+      font-size: clamp(4.6rem, 13vw, 11rem);
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      text-align: right;
+      pointer-events: none;
+      transform: translate3d(var(--hero-mark-x, 0px), var(--hero-mark-y, 0px), 0);
+      transition: transform 180ms linear;
+      will-change: transform;
+    }
+
+    h1, h2, h3, h4, dt,
+    .hero-note strong,
+    .memory-line strong {
+      font-family: var(--font-display);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-size: clamp(4rem, 9vw, 7.6rem);
+      line-height: 0.84;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 0.95rem;
+      color: var(--accent-strong);
+      font-size: clamp(1rem, 1.9vw, 1.35rem);
+      line-height: 1.35;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      max-width: 42rem;
+      margin: 1.5rem 0 0;
+      font-size: 1.12rem;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.6rem;
+    }
+
+    .primary-link, .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.95rem 1.15rem;
+      border-radius: 0.95rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart), color 180ms var(--ease-out-quart), box-shadow 180ms var(--ease-out-quart);
+    }
+
+    .primary-link {
+      background: var(--accent);
+      color: var(--paper);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .secondary-link {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--accent-strong);
+    }
+
+    .primary-link::after, .secondary-link::after, .map-link::after {
+      content: "↗";
+      margin-left: 0.45rem;
+      font-size: 0.95em;
+      transition: transform 180ms ease;
+    }
+
+    .primary-link:hover, .secondary-link:hover,
+    .jump-links a:hover, .map-link:hover, .backtop:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary-link:active, .secondary-link:active,
+    .map-link:active, .backtop:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    .primary-link:hover::after, .secondary-link:hover::after,
+    .map-link:hover::after { transform: translate(2px, -1px); }
+
+    .reading-whisper {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin: 1.15rem 0 0;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.64);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-style: italic;
+      box-shadow: 0 10px 24px rgba(16, 30, 32, 0.06);
+    }
+
+    .reading-whisper::before {
+      content: "§";
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .hero-note {
+      position: relative;
+      z-index: 2;
+      padding: 1.6rem;
+      border-radius: 1.1rem;
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 0 26px 60px rgba(16, 30, 32, 0.28);
+      transform: translateY(2.2rem) rotate(-2.5deg);
+      animation: fade-in 980ms var(--ease-out-expo) both;
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 0.7rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .hero-note p { margin: 0; color: rgba(240, 250, 252, 0.82); }
+
+    .hero-note ul {
+      margin: 1rem 0 0;
+      padding-left: 1.15rem;
+      color: rgba(240, 250, 252, 0.94);
+    }
+
+    .hero-note li + li { margin-top: 0.55rem; }
+
+    .jump-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.55rem;
+      padding-left: clamp(1rem, 2vw, 2rem);
+    }
+
+    .jump-links a {
+      position: relative;
+      padding: 0.3rem 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: color 180ms var(--ease-out-quart), border-color 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart);
+      animation: reveal-up 760ms var(--ease-out-expo) both;
+    }
+
+    .jump-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -0.35rem;
+      height: 0.2rem;
+      background: rgba(14, 116, 144, 0.12);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 220ms ease;
+    }
+
+    .jump-links a:hover::after, .jump-links a.active::after { transform: scaleX(1); }
+
+    .jump-links a:nth-child(2) { animation-delay: 60ms; }
+    .jump-links a:nth-child(3) { animation-delay: 120ms; }
+    .jump-links a:nth-child(4) { animation-delay: 180ms; }
+    .jump-links a:nth-child(5) { animation-delay: 240ms; }
+    .jump-links a:nth-child(6) { animation-delay: 300ms; }
+    .jump-links a:nth-child(7) { animation-delay: 360ms; }
+
+    .jump-links a.active { color: var(--ink); border-color: var(--accent); }
+
+    main { padding: 1.4rem 0 5rem; }
+
+    .section {
+      position: relative;
+      padding: clamp(2.8rem, 5vw, 5.6rem);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      animation: reveal-up 920ms var(--ease-out-expo) both;
+    }
+
+    .section + .section { margin-top: 1.8rem; }
+
+    .section-paper { background: var(--paper); box-shadow: var(--shadow); }
+
+    .section-wash {
+      background: linear-gradient(180deg, rgba(213, 238, 242, 0.92) 0%, rgba(158, 205, 211, 0.42) 100%);
+    }
+
+    main > .section:nth-of-type(2) { animation-delay: 70ms; }
+    main > .section:nth-of-type(3) { animation-delay: 140ms; }
+    main > .section:nth-of-type(4) { animation-delay: 210ms; }
+    main > .section:nth-of-type(5) { animation-delay: 280ms; }
+    main > .section:nth-of-type(6) { animation-delay: 350ms; }
+    main > .section:nth-of-type(7) { animation-delay: 420ms; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+      gap: 1.25rem 2rem;
+      align-items: end;
+      margin-bottom: 2.4rem;
+    }
+
+    .section-head.is-focused h2 {
+      transform: translateX(0.18rem);
+      color: var(--accent-strong);
+    }
+
+    .section-head h2 {
+      margin: 0.25rem 0 0;
+      font-size: clamp(2.4rem, 4.2vw, 4.2rem);
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      transition: transform 260ms var(--ease-out-quart), color 260ms var(--ease-out-quart);
+    }
+
+    .section-head p { margin: 0; color: var(--muted); font-size: 1rem; }
+
+    .conclusion-list, .map-list, .misread-list,
+    .help-list, .onepage-list, .layer-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .conclusion-list { display: grid; gap: 1.15rem; }
+
+    .conclusion-list li {
+      display: grid;
+      grid-template-columns: 6rem minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1.05rem 0;
+      align-items: start;
+    }
+
+    .conclusion-list li:nth-child(even) {
+      padding-left: clamp(0.8rem, 3vw, 2.8rem);
+    }
+
+    .conclusion-num {
+      color: var(--accent-mid);
+      font-family: var(--font-display);
+      font-size: clamp(2.9rem, 5vw, 4.9rem);
+      line-height: 0.82;
+      font-weight: 700;
+    }
+
+    .conclusion-list strong, .map-title, .misread-list h3,
+    .help-list strong, .onepage-list strong, .layer-list strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+
+    .conclusion-list p, .map-summary, .misread-list p,
+    .help-list p, .onepage-list p, .layer-list p {
+      margin: 0;
+      color: var(--muted);
+      max-width: var(--reading);
+    }
+
+    .map-list { display: grid; gap: 1.1rem; }
+
+    .map-list li {
+      display: grid;
+      grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem 0;
+    }
+
+    .map-list li:nth-child(odd) { padding-right: clamp(0rem, 2vw, 1.5rem); }
+    .map-list li:nth-child(even) { padding-left: clamp(0.6rem, 3vw, 2.5rem); }
+
+    .map-num {
+      color: var(--accent-mid);
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 4vw, 3.3rem);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .map-link {
+      align-self: center;
+      padding: 0.6rem 0.9rem;
+      border-radius: 0.85rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart);
+    }
+
+    .detail-stack { display: grid; gap: 1.8rem; }
+
+    .detail-entry {
+      --entry-shift: 0rem;
+      position: relative;
+      padding: clamp(1.4rem, 3vw, 2rem);
+      border-radius: 1.8rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(213, 238, 242, 0.82) 100%);
+      box-shadow: 0 20px 42px rgba(16, 30, 32, 0.09);
+      transform: translate3d(var(--entry-shift), 0, 0);
+      transition: transform 320ms var(--ease-out-quart), box-shadow 320ms var(--ease-out-quart), opacity 520ms var(--ease-out-expo);
+    }
+
+    .detail-entry::before {
+      content: """;
+      position: absolute;
+      top: 0.7rem; right: 1rem;
+      color: rgba(14, 116, 144, 0.11);
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 7vw, 6rem);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .detail-entry:nth-child(odd) { --entry-shift: -1rem; }
+    .detail-entry:nth-child(even) { --entry-shift: 1.4rem; }
+
+    .detail-entry.is-visible:hover {
+      transform: translate3d(var(--entry-shift), -0.35rem, 0);
+      box-shadow: 0 26px 56px rgba(16, 30, 32, 0.12);
+    }
+
+    .detail-frame {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+
+    .detail-intro h3 {
+      margin: 0.35rem 0 0.7rem;
+      font-size: clamp(1.8rem, 3.2vw, 2.9rem);
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .answer {
+      max-width: 30rem;
+      margin: 0;
+      color: var(--accent-strong);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .detail-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin: 0;
+    }
+
+    .detail-facts div {
+      padding: 1rem 1.05rem;
+      border-radius: 1.1rem;
+      background: rgba(255, 255, 255, 0.66);
+    }
+
+    .detail-facts div:nth-child(3n + 1) { background: rgba(14, 116, 144, 0.08); }
+
+    .detail-facts dt {
+      margin: 0 0 0.45rem;
+      color: var(--accent);
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .detail-facts dd { margin: 0; color: var(--muted); }
+
+    .memory-line {
+      position: relative;
+      margin: 1rem 0 0;
+      padding-top: 1rem;
+      padding-left: 0.5rem;
+      max-width: 52rem;
+      color: var(--ink);
+      font-size: 1.03rem;
+      background:
+        linear-gradient(90deg, rgba(6, 182, 212, 0.18), rgba(6, 182, 212, 0.02)) 0 100% / 0% 58% no-repeat;
+      transition: background-size 520ms var(--ease-out-expo), transform 320ms var(--ease-out-quart);
+    }
+
+    .memory-line::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 1rem; bottom: 0.1rem;
+      width: 0.16rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), rgba(14, 116, 144, 0.18));
+      opacity: 0.45;
+    }
+
+    .memory-line.is-lit {
+      background-size: 100% 58%;
+      transform: translateX(0.18rem);
+    }
+
+    .memory-line strong { color: var(--accent); margin-right: 0.3rem; }
+
+    .concept-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem 2.2rem;
+      margin: 0;
+    }
+
+    .concept-list div {
+      --concept-tilt: 0deg;
+      --concept-shift: 0rem;
+      position: relative;
+      padding: 0.95rem 0 1.1rem;
+      transform: translate3d(var(--concept-shift), 0, 0) rotate(var(--concept-tilt));
+      transform-origin: left top;
+    }
+
+    .concept-list div::before {
+      content: "";
+      position: absolute;
+      left: -1rem; top: 1.2rem;
+      width: 0.38rem; height: 2.1rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(14, 116, 144, 0.2), rgba(14, 116, 144, 0));
+      transform: rotate(8deg);
+      opacity: 0.8;
+    }
+
+    .concept-list div:nth-child(odd) { --concept-tilt: -1.2deg; --concept-shift: -1.2rem; }
+    .concept-list div:nth-child(even) { --concept-tilt: 1.1deg; --concept-shift: 1rem; }
+    .concept-list div:nth-child(3n) { --concept-tilt: -0.4deg; --concept-shift: 1.8rem; }
+
+    .concept-list dt { margin: 0 0 0.4rem; font-size: 1.35rem; font-weight: 700; }
+    .concept-list dd { margin: 0; color: var(--muted); }
+
+    .misread-list, .help-list, .onepage-list, .layer-list { display: grid; gap: 1rem; }
+
+    .misread-list li, .help-list li, .onepage-list li, .layer-list li { padding: 1rem 0; }
+
+    .onepage-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+      gap: 1.5rem 2rem;
+      align-items: start;
+    }
+
+    .closing-frame {
+      padding: 1.5rem 1.3rem;
+      border-radius: 1.5rem;
+      background: linear-gradient(180deg, rgba(12, 74, 110, 0.98) 0%, rgba(14, 116, 144, 0.96) 100%);
+      color: var(--paper);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .closing-frame h3 { margin: 0 0 0.6rem; font-size: 1.7rem; font-weight: 700; }
+    .closing-frame p { margin: 0; color: rgba(240, 250, 252, 0.76); }
+    .closing-frame .layer-list strong { color: var(--paper); }
+    .closing-frame .layer-list p { color: rgba(240, 250, 252, 0.78); }
+
+    footer { padding: 0 0 4rem; color: var(--muted); }
+    footer p { margin: 0.35rem 0; }
+
+    .backtop {
+      position: fixed;
+      right: 1.1rem; bottom: 1.1rem;
+      z-index: 10;
+      padding: 0.85rem 0.95rem;
+      border: 0;
+      border-radius: 0.95rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow-strong);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart), visibility 180ms var(--ease-out-quart);
+    }
+
+    body.js-ready .section,
+    body.js-ready .detail-entry,
+    body.js-ready .concept-list > div,
+    body.js-ready .misread-list li,
+    body.js-ready .help-list li,
+    body.js-ready .onepage-list li,
+    body.js-ready .layer-list li {
+      opacity: 0;
+      transition: opacity 520ms var(--ease-out-expo), transform 520ms var(--ease-out-expo);
+    }
+
+    body.js-ready .section { transform: translate3d(0, 1.2rem, 0); }
+    body.js-ready .section.is-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+
+    body.js-ready .detail-entry { transform: translate3d(var(--entry-shift), 1.25rem, 0); }
+    body.js-ready .detail-entry.is-visible { opacity: 1; transform: translate3d(var(--entry-shift), 0, 0); }
+
+    body.js-ready .concept-list > div,
+    body.js-ready .misread-list li,
+    body.js-ready .help-list li,
+    body.js-ready .onepage-list li,
+    body.js-ready .layer-list li { transform: translate3d(0, 0.9rem, 0); }
+
+    body.js-ready .concept-list > div.is-visible,
+    body.js-ready .misread-list li.is-visible,
+    body.js-ready .help-list li.is-visible,
+    body.js-ready .onepage-list li.is-visible,
+    body.js-ready .layer-list li.is-visible {
+      opacity: 1;
+      transform: translate3d(var(--concept-shift, 0rem), 0, 0) rotate(var(--concept-tilt, 0deg));
+    }
+
+    .backtop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    /* Hat color badges */
+    .hat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .hat-white { background: rgba(200, 200, 200, 0.2); color: #555; border: 1px solid rgba(200,200,200,0.4); }
+    .hat-red { background: rgba(239, 68, 68, 0.12); color: #b91c1c; border: 1px solid rgba(239,68,68,0.24); }
+    .hat-black { background: rgba(30, 30, 30, 0.1); color: #1a1a1a; border: 1px solid rgba(30,30,30,0.2); }
+    .hat-yellow { background: rgba(234, 179, 8, 0.15); color: #a16207; border: 1px solid rgba(234,179,8,0.3); }
+    .hat-green { background: rgba(34, 197, 94, 0.12); color: #166534; border: 1px solid rgba(34,197,94,0.24); }
+    .hat-blue { background: rgba(14, 116, 144, 0.12); color: #0c4a6e; border: 1px solid rgba(14,116,144,0.24); }
+
+    @keyframes reveal-up {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes thread-flow {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -180; }
+    }
+
+    @media (min-width: 981px) {
+      #details .section-head,
+      #concepts .section-head,
+      #misreads .section-head,
+      #help .section-head,
+      #onepage .section-head {
+        position: sticky;
+        top: 0.9rem;
+        z-index: 5;
+        padding-bottom: 1rem;
+        background: linear-gradient(180deg, rgba(240, 250, 252, 0.96) 0%, rgba(240, 250, 252, 0.88) 74%, rgba(240, 250, 252, 0) 100%);
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .masthead, .section-head, .detail-frame, .onepage-wrap { grid-template-columns: 1fr; }
+
+      .masthead-mark {
+        right: 1rem;
+        top: auto; bottom: 0.4rem;
+        font-size: clamp(4rem, 18vw, 7rem);
+      }
+
+      .detail-facts, .concept-list { grid-template-columns: 1fr; }
+
+      .hero-note,
+      .detail-entry:nth-child(odd),
+      .detail-entry:nth-child(even) { transform: none; }
+
+      .detail-entry { --entry-shift: 0rem; }
+      .concept-list div { --concept-tilt: 0deg; --concept-shift: 0rem; }
+
+      .map-list li { grid-template-columns: 3rem minmax(0, 1fr); }
+      .map-link { justify-self: start; }
+    }
+
+    @media (max-width: 720px) {
+      .site-head, main, footer { width: min(calc(100% - 1.25rem), var(--content)); }
+      .masthead, .section { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .jump-links { padding-left: 0; }
+      .reading-whisper { display: flex; }
+
+      .conclusion-list li, .map-list li {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+      }
+
+      .conclusion-list li:nth-child(even), .map-list li:nth-child(even) { padding-left: 0; }
+      .map-list li:nth-child(odd) { padding-right: 0; }
+      h1 { font-size: 3.3rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .masthead-mark { transform: none !important; }
+      .memory-line { background-size: 100% 58%; transform: none !important; }
+      .ink-thread { display: none; }
+
+      body.js-ready .section,
+      body.js-ready .detail-entry,
+      body.js-ready .concept-list > div,
+      body.js-ready .misread-list li,
+      body.js-ready .help-list li,
+      body.js-ready .onepage-list li,
+      body.js-ready .layer-list li { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="progress-rail" aria-hidden="true"><span class="progress-fill" id="progressFill"></span></div>
+  <svg class="ink-thread" id="inkThread" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <path class="ink-thread-glow" id="inkThreadGlow"></path>
+    <path class="ink-thread-path" id="inkThreadPath"></path>
+  </svg>
+
+  <header class="site-head">
+    <p class="site-kicker">Book Breakdown</p>
+    <section class="masthead" aria-labelledby="hero-title">
+      <div class="masthead-copy">
+        <p class="author">Edward de Bono</p>
+        <h1 id="hero-title">六顶思考帽<span>Six Thinking Hats</span></h1>
+        <p class="lede">六顶帽子不是六种人，而是六种思维模式——同一个人可以戴所有六顶。当所有人戴上同一顶帽子时，对抗变成了协作，争论变成了平行探索。</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#map">先看 6 个核心问题</a>
+          <a class="secondary-link" href="#conclusions">2 分钟读完结论</a>
+        </div>
+        <p class="reading-whisper" id="readingWhisper">这页适合慢一点读。</p>
+      </div>
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+      <span class="masthead-mark" aria-hidden="true">SIX<br>HATS</span>
+      <aside class="hero-note" aria-label="阅读抓手">
+        <strong>先抓住这三件事</strong>
+        <p>这不是思维技巧清单，而是一套改变协作方式的平行思维框架。</p>
+        <ul>
+          <li>帽子是角色，不是人格——同一个人应该使用所有六顶。</li>
+          <li>核心洞见：平行思维（一起朝一个方向看）比对抗性思维（互相辩驳立场）产生更好的结果。</li>
+          <li>最常被滥用的是黑帽，最常被忽略的是黄帽，最重要却最少用到的是蓝帽。</li>
+        </ul>
+      </aside>
+    </section>
+    <nav class="jump-links" aria-label="页面导航">
+      <a href="#conclusions">核心结论</a>
+      <a href="#map">问题地图</a>
+      <a href="#details">详细拆解</a>
+      <a href="#concepts">关键概念</a>
+      <a href="#misreads">常见误解</a>
+      <a href="#help">现实帮助</a>
+      <a href="#onepage">一页总结</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="conclusions" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Core Conclusions</p>
+          <h2>全书核心结论</h2>
+        </div>
+        <p>如果只读这一部分，你应该记住的是：六帽系统最大的价值不是六顶帽子本身，而是"换帽子"这个动作——它打破了思维的惯性锁定。</p>
+      </div>
+      <ol class="conclusion-list">
+        <li>
+          <span class="conclusion-num">01</span>
+          <div>
+            <strong>混合思维是低效会议的根本原因</strong>
+            <p>在同一时刻混合事实、情绪、批判、创意和过程，导致思维相互干扰，防御性情绪主导了逻辑探索。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">02</span>
+          <div>
+            <strong>六顶帽子是角色，不是人格</strong>
+            <p>同一个人可以而且应该使用所有六顶帽子；把帽子等同于人格类型是对这个系统的根本性误用。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">03</span>
+          <div>
+            <strong>平行思维优于对抗性思维</strong>
+            <p>所有人同时朝一个方向思考，能产生更丰富的结果，也更不容易触发自我防御和立场保护。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">04</span>
+          <div>
+            <strong>黑帽最常被过度使用</strong>
+            <p>批判性思维在创意萌芽期扼杀可能性；而黄帽（积极思维）是最被忽视但往往价值最大的帽子。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">05</span>
+          <div>
+            <strong>蓝帽是会议效率的关键</strong>
+            <p>蓝帽决定了何时用哪顶帽子、议程如何安排、讨论结果如何总结——没有蓝帽管理，六帽系统就会退化为无序游戏。</p>
+          </div>
+        </li>
+        <li>
+          <span class="conclusion-num">06</span>
+          <div>
+            <strong>不需要每次都用完六顶帽子</strong>
+            <p>六帽系统的真正价值在于能够在需要时"换帽子"——有意识地切换思维模式，而不是强制走完所有步骤。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="map" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Question Map</p>
+          <h2>全书问题地图</h2>
+        </div>
+        <p>这本书适合按问题读，不适合按章节背。下面这 6 个问题，基本覆盖了全书的论证路线。</p>
+      </div>
+      <ol class="map-list">
+        <li>
+          <span class="map-num">01</span>
+          <div>
+            <strong class="map-title">问题一：为什么会议总是陷入争论和低效？</strong>
+            <p class="map-summary">因为传统会议是对抗性的，不同思维模式混在一起，自我防御阻止了真正的探索。</p>
+          </div>
+          <a class="map-link" href="#q1">展开</a>
+        </li>
+        <li>
+          <span class="map-num">02</span>
+          <div>
+            <strong class="map-title">问题二：什么是平行思维，它如何解决对抗性思维？</strong>
+            <p class="map-summary">平行思维让所有人同时朝一个方向看，把合作探索取代了立场防御。</p>
+          </div>
+          <a class="map-link" href="#q2">展开</a>
+        </li>
+        <li>
+          <span class="map-num">03</span>
+          <div>
+            <strong class="map-title">问题三：六顶帽子各自代表什么，什么时候用？</strong>
+            <p class="map-summary">白帽=事实，红帽=情感，黑帽=风险，黄帽=价值，绿帽=创意，蓝帽=过程。</p>
+          </div>
+          <a class="map-link" href="#q3">展开</a>
+        </li>
+        <li>
+          <span class="map-num">04</span>
+          <div>
+            <strong class="map-title">问题四：为什么人们倾向于混合不同类型的思维？</strong>
+            <p class="map-summary">人类思维天然是整合性的，分离思维类型需要刻意训练和系统约束。</p>
+          </div>
+          <a class="map-link" href="#q4">展开</a>
+        </li>
+        <li>
+          <span class="map-num">05</span>
+          <div>
+            <strong class="map-title">问题五：使用六帽系统最常见的错误是什么？</strong>
+            <p class="map-summary">黑帽霸权、忽视黄帽、帽子身份化、缺少蓝帽——这四个错误覆盖了大多数失败的六帽实践。</p>
+          </div>
+          <a class="map-link" href="#q5">展开</a>
+        </li>
+        <li>
+          <span class="map-num">06</span>
+          <div>
+            <strong class="map-title">问题六：如何在日常工作和决策中有效运用这个系统？</strong>
+            <p class="map-summary">从单帽声明开始，逐渐引入双帽序列，再扩展到完整的团队六帽流程。</p>
+          </div>
+          <a class="map-link" href="#q6">展开</a>
+        </li>
+      </ol>
+    </section>
+
+    <section id="details" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Deep Dive</p>
+          <h2>核心问题详细拆解</h2>
+        </div>
+        <p>每个问题都按同一套结构拆开：一句话答案、核心逻辑、常见误解、现实启发。这样更适合长期回看。</p>
+      </div>
+
+      <div class="detail-stack">
+        <article id="q1" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 1</p>
+              <h3>为什么会议总是陷入争论和低效？</h3>
+              <p class="answer">一句话答案：大家在同一时刻思考不同的事，却以为自己在讨论同一件事。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>剖析传统会议是对抗性的：每个人带着自己的立场进入，思维的目的不是探索而是防守和攻击。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>当人们发言时，他们同时在做多件事：提供事实、表达立场、批判他人、提出创意——这些模式相互干扰。"立场"会触发自我防御，使会议变成"谁赢了"的竞赛。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>会议最常见情形：有人提出想法，另一人立刻反对，第三人要求数据，第四人表达担忧——在任何方向都没有走深就四散了。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>对抗性思维、立场防御、混合思维、协作探索。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>批判性思维本身没有错——问题是它被用在了错误的时机（创意萌芽时）和错误方式（指向人而不是指向想法）。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>会议前可以自问：这个会议的目的是"辩出谁对"还是"想清楚怎么做"？不同的目的需要完全不同的对话结构。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>大多数低效会议的根本问题不是参与者不够聪明，而是大家在同一时刻思考不同的问题，却以为在讨论同一件事。</p>
+        </article>
+
+        <article id="q2" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 2</p>
+              <h3>什么是平行思维，它如何解决对抗性思维？</h3>
+              <p class="answer">一句话答案：平行思维让所有人同时朝同一个方向看——把"你支持还是反对"变成"我们一起从这个角度看看"。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>六帽系统的哲学基础，解释为什么"并行"是比"对抗"更适合复杂问题的思维方式。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>现实问题通常是多维的、情景依赖的，需要从多个角度同时探索。不同角度可以"同时都是真的"而不需要互相否定。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>作者的比喻：对抗性思维像两人站在不同位置争论同一幅画；平行思维像两人一起绕着画走，各自描述所见，最终得到更完整的图像。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>平行思维、协作建构、多角度探索、共同框架。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>平行思维不是"大家都要同意"，而是"大家暂时同意从这个角度看"——帽子切换后，之前的分歧可以再回来讨论。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>"我们现在换上黑帽，用5分钟一起看这个方案的风险"——这句话能把"你为什么总是泼冷水"变成一个有时限的协作步骤。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>平行思维的秘密是：改变不了别人怎么想，但可以改变大家"一起从哪里看"。</p>
+        </article>
+
+        <article id="q3" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 3</p>
+              <h3>六顶帽子各自代表什么，什么时候用？</h3>
+              <p class="answer">一句话答案：每顶帽子给思维划定一个纯粹的专注区间，每次只开一个频道，信号才最清晰。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt><span class="hat-badge hat-white">⬜ 白帽</span> 事实模式</dt>
+                <dd>只问"我们有什么数据？我们需要什么信息？"不做评判，不做推论，只是事实本身。</dd>
+              </div>
+              <div>
+                <dt><span class="hat-badge hat-red">🔴 红帽</span> 情感模式</dt>
+                <dd>允许情绪、直觉、感受进入讨论，不需要解释理由——"我就是对这个方案有不好的感觉"是有效的红帽发言。</dd>
+              </div>
+              <div>
+                <dt><span class="hat-badge hat-black">⚫ 黑帽</span> 风险模式</dt>
+                <dd>找问题、识别风险、提出反对理由——最有力的批判模式，但必须用于想法，而不是用于人。</dd>
+              </div>
+              <div>
+                <dt><span class="hat-badge hat-yellow">🟡 黄帽</span> 价值模式</dt>
+                <dd>主动寻找价值、好处和可能性——在提案面临阻力时，黄帽帮助回答"为什么值得继续这个方向"。</dd>
+              </div>
+              <div>
+                <dt><span class="hat-badge hat-green">🟢 绿帽</span> 创意模式</dt>
+                <dd>纯粹的创意探索，不评判任何想法，鼓励横向思维和意外联想——质量让位给数量和新奇性。</dd>
+              </div>
+              <div>
+                <dt><span class="hat-badge hat-blue">🔵 蓝帽</span> 过程模式</dt>
+                <dd>元思维，管理思考过程本身——"我们现在在讨论什么？""接下来应该换哪顶帽子？""我们有没有跑题？"</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>六顶帽子不是六种人，而是六个纯粹的思维频道——每次只开一个，信号才最清晰。</p>
+        </article>
+
+        <article id="q4" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 4</p>
+              <h3>为什么人们倾向于混合不同类型的思维？</h3>
+              <p class="answer">一句话答案：人类思维天然是整合性的，分离思维类型需要刻意训练——但在特定场景下，分离能产生更好的质量。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>解释混合思维的自然根源，以及为什么分离思维类型反而能产生更高质量的结果。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>大脑的整合性在日常生活中是优势；但在需要严谨思考的场景，整合性会让不同层面的思维互相干扰：情绪影响事实判断，批判扼杀创意萌芽。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>如果提出创意的人立刻被要求"证明这个想法可行"（黑帽要求），结果不是更好的创意，而是防御性地保护不成熟的想法。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>思维整合性、思维干扰、刻意切换、单一焦点。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>不是说混合思维总是错的——日常生活不需要刻意分离；六帽系统是在特定场景（需要清晰思考时）主动使用的工具，而不是生活方式。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>独自思考重要问题时，可以给自己分配不同的帽子时间——先戴白帽5分钟只收集事实，再戴绿帽5分钟只产生想法，分段思考往往比同时想所有层面更系统。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>思维的力量不来自同时想很多方面，而来自在正确的时刻只想一个方面，把它想透。</p>
+        </article>
+
+        <article id="q5" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 5</p>
+              <h3>使用六帽系统最常见的错误是什么？</h3>
+              <p class="answer">一句话答案：过度使用黑帽、忽视黄帽、帽子身份化、缺少蓝帽——这四个错误覆盖了大多数失败的六帽实践。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>错误一：黑帽霸权</dt>
+                <dd>批判性思维被过度推崇，"能找到问题"等同于"聪明"，导致黑帽在创意阶段就出现，扼杀了可能性。</dd>
+              </div>
+              <div>
+                <dt>错误二：黄帽被视为不客观</dt>
+                <dd>职场文化把乐观主义等同于不成熟，导致黄帽被跳过——但没有黄帽，团队没有共同的"为什么值得"来支撑想法。</dd>
+              </div>
+              <div>
+                <dt>错误三：帽子变成人格标签</dt>
+                <dd>"你总是戴黑帽"是对这个系统的误用——帽子是临时角色，不是固定身份，每个人都有责任使用所有帽子。</dd>
+              </div>
+              <div>
+                <dt>错误四：缺少蓝帽</dt>
+                <dd>没有蓝帽管理，六帽系统会退化为无序的换帽子游戏，而不是有方向的协作探索。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>黑帽霸权、帽子身份化、蓝帽缺失、黄帽价值。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>会议开始前，蓝帽式问题是："今天我们用什么顺序思考这个问题？先创意还是先评估？"——这一步能极大提高整个会议的质量。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>六帽系统最容易失败的地方，不是人们不理解它，而是人们把自己最熟悉的那顶帽子摘不下来。</p>
+        </article>
+
+        <article id="q6" class="detail-entry">
+          <div class="detail-frame">
+            <div class="detail-intro">
+              <p class="detail-label">Question 6</p>
+              <h3>如何在日常工作和决策中有效运用这个系统？</h3>
+              <p class="answer">一句话答案：从单帽声明开始，循序渐进——先建立语言习惯，再引入团队流程，最终形成协作文化。</p>
+            </div>
+            <dl class="detail-facts">
+              <div>
+                <dt>这部分在讲什么</dt>
+                <dd>六帽系统的实践路径，包括个人使用、双人使用和团队使用的不同场景和入门方式。</dd>
+              </div>
+              <div>
+                <dt>作者的核心逻辑</dt>
+                <dd>六帽系统的门槛不在于理解，而在于习惯养成。最好的入门：先在思考前给自己声明帽子，建立语言习惯；再把语言习惯引入对话；最后把对话结构引入会议。</dd>
+              </div>
+              <div>
+                <dt>关键证据 / 案例</dt>
+                <dd>从红帽开始是最容易的入门——给人们一个"此刻允许表达直觉和感受，不需要解释理由"的安全空间，通常立刻激活更真实的讨论。</dd>
+              </div>
+              <div>
+                <dt>关键概念</dt>
+                <dd>单帽声明、帽子序列设计、蓝帽议程、渐进式引入。</dd>
+              </div>
+              <div>
+                <dt>常见误解</dt>
+                <dd>不需要每次讨论都走完六顶帽子——根据问题类型，只用两三顶最相关的帽子；六帽系统的价值在于让你有意识地切换。</dd>
+              </div>
+              <div>
+                <dt>现实启发</dt>
+                <dd>重要个人决策的30分钟六帽流程：白帽10分钟（已知事实）→ 红帽3分钟（直觉感受）→ 黑帽5分钟（最大风险）→ 黄帽5分钟（最大价值）→ 绿帽5分钟（第三种选项）→ 蓝帽2分钟（下一步）。</dd>
+              </div>
+            </dl>
+          </div>
+          <p class="memory-line"><strong>一句话记忆点：</strong>六帽系统给你最大的礼物不是六顶帽子，而是"换帽子"这个动作本身——它打破了"我只能从这个角度看"的思维锁定。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="concepts" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Key Concepts</p>
+          <h2>关键概念速查</h2>
+        </div>
+        <p>这些概念是读懂全书的基础词汇，也是你在工作中遇到协作或决策困境时的快速参照。</p>
+      </div>
+      <dl class="concept-list">
+        <div>
+          <dt>平行思维</dt>
+          <dd>所有人同时从同一个角度思考问题，探索取代对抗，协作取代辩驳——六帽系统的哲学基础。</dd>
+        </div>
+        <div>
+          <dt>白帽（事实）</dt>
+          <dd>只问"我们知道什么？我们需要什么信息？"不做评判，不做推论，只是事实本身的纯粹呈现。</dd>
+        </div>
+        <div>
+          <dt>红帽（情感）</dt>
+          <dd>情感和直觉模式：感受不需要解释理由，直觉本身是有价值的信息，红帽给它们一个合法的表达空间。</dd>
+        </div>
+        <div>
+          <dt>黑帽（风险）</dt>
+          <dd>批判和风险模式：找问题、识别障碍、提出反对——最重要但最容易被滥用的帽子，关键是时机和方式。</dd>
+        </div>
+        <div>
+          <dt>黄帽（价值）</dt>
+          <dd>价值和乐观模式：主动寻找好处和可能性——最容易被忽视但在逆境中往往最有价值的帽子。</dd>
+        </div>
+        <div>
+          <dt>绿帽（创意）</dt>
+          <dd>创意和探索模式：横向思维、意外联想，质量让位给数量和新奇性——这里没有错误的想法。</dd>
+        </div>
+        <div>
+          <dt>蓝帽（过程）</dt>
+          <dd>元思维模式：管理思考过程本身，决定议程、控制时间、总结结论——通常由主持人或项目负责人使用。</dd>
+        </div>
+        <div>
+          <dt>对抗性思维</dt>
+          <dd>传统西方辩论式思维，各方坚守立场互相辩驳——适合追究责任，不适合需要协作探索的复杂问题。</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="misreads" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Common Misreads</p>
+          <h2>常见误解</h2>
+        </div>
+        <p>这本书容易被简化或误用——这些纠正比单纯理解六顶帽子的颜色更有价值。</p>
+      </div>
+      <ol class="misread-list">
+        <li>
+          <h3>误解：六顶帽子代表六种人格类型</h3>
+          <p>帽子是临时角色，不是固定身份——同一个人在不同情境中应该使用所有六顶帽子。把帽子等同于人格，是对这个系统最常见的根本性误用。</p>
+        </li>
+        <li>
+          <h3>误解：黑帽是"坏帽子"，应该尽量少用</h3>
+          <p>黑帽是最重要的帽子之一，关键是要用在正确的时机——在创意探索（绿帽/黄帽）阶段之后，而不是在创意萌芽时立刻使用。</p>
+        </li>
+        <li>
+          <h3>误解：黄帽是"天真乐观"，不够务实</h3>
+          <p>黄帽要求你主动寻找价值和可能性，这需要严格的思维纪律，并不比黑帽容易；它防止了过早放弃有潜力的想法。</p>
+        </li>
+        <li>
+          <h3>误解：必须每次都用完全部六顶帽子</h3>
+          <p>可以根据问题灵活选择相关的帽子；关键是有意识地声明"现在我在用哪顶帽子"——单帽声明本身就有价值。</p>
+        </li>
+        <li>
+          <h3>误解：红帽是不理性的，应该在专业场合避免</h3>
+          <p>直觉和情绪是有价值的信息，红帽给它们一个合法的表达空间，反而防止了它们以隐蔽的方式悄悄影响所有其他层面的判断。</p>
+        </li>
+        <li>
+          <h3>误解：六帽系统只适合团队会议</h3>
+          <p>个人思考时同样可以用——给不同的帽子分配不同的时间段，可以极大提高独立决策的系统性和全面性。</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="help" class="section section-wash">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">Why It Helps</p>
+          <h2>这本书对现实有什么帮助</h2>
+        </div>
+        <p>它最大的价值，不是给你一套思维术语，而是一个可以立即在会议室里使用的协作改变工具。</p>
+      </div>
+      <ul class="help-list">
+        <li>
+          <strong>把混乱的会议变成有结构的探索</strong>
+          <p>用蓝帽声明议程，用白帽收集事实，用绿帽激发创意，用黄帽找到价值，用黑帽评估风险——每一步都有清晰的焦点。</p>
+        </li>
+        <li>
+          <strong>提供非指责性的思维切换语言</strong>
+          <p>"我们现在换上黑帽"比"你这个想法有问题"更不容易触发防御，因为它指向的是模式，不是人。</p>
+        </li>
+        <li>
+          <strong>帮助个人做更全面的重要决策</strong>
+          <p>在重要的个人决策前走一遍简化的六帽流程，确保自己没有遗漏情感、风险、价值或创意中的某个关键维度。</p>
+        </li>
+        <li>
+          <strong>在团队中建立心理安全感</strong>
+          <p>红帽的使用给情绪和直觉一个合法的表达出口，让团队成员感到自己的真实想法被允许存在，而不是只能说"正确"的话。</p>
+        </li>
+        <li>
+          <strong>为创意工作保护探索空间</strong>
+          <p>在绿帽阶段声明"现在不做评判"，可以让创意人在没有批判压力的情况下产生更多的想法，然后再引入黄帽和黑帽进行有序评估。</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="onepage" class="section section-paper">
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">One Page</p>
+          <h2>一页看懂这本书</h2>
+        </div>
+        <p>如果你以后只回看一个部分，就看这里。这一页把全书压成了最值得记住的 8 句话和 5 个层次。</p>
+      </div>
+      <div class="onepage-wrap">
+        <ol class="onepage-list">
+          <li>
+            <strong>1. 它的核心洞见</strong>
+            <p>六顶帽子不是六种人，而是六种思维模式——同一个人应该使用全部六顶。</p>
+          </li>
+          <li>
+            <strong>2. 它颠覆的习惯</strong>
+            <p>平行思维（一起朝一个方向看）比对抗性思维（各方坚守立场辩驳）能产生更丰富、更少防御的结果。</p>
+          </li>
+          <li>
+            <strong>3. 它的六个频道</strong>
+            <p>白=事实，红=情感，黑=风险，黄=价值，绿=创意，蓝=过程——每顶帽子管一个纯粹的思维维度。</p>
+          </li>
+          <li>
+            <strong>4. 它最大的警告</strong>
+            <p>最容易被滥用的是黑帽，最容易被忽视的是黄帽，最重要却最少被用到的是蓝帽。</p>
+          </li>
+          <li>
+            <strong>5. 它对会议的改造</strong>
+            <p>一个帽子声明（"我们现在换上黑帽"）可以立刻把人身攻击式的批评变成有时限的协作步骤。</p>
+          </li>
+          <li>
+            <strong>6. 它对个人的价值</strong>
+            <p>独自思考重要决策时，分段使用不同帽子，能比"同时想所有维度"更系统地覆盖盲点。</p>
+          </li>
+          <li>
+            <strong>7. 它最低的入门门槛</strong>
+            <p>从单帽声明开始——先建立语言习惯，再引入团队，循序渐进比一次性全部引入更容易持久。</p>
+          </li>
+          <li>
+            <strong>8. 它最值得记住的礼物</strong>
+            <p>"换帽子"这个动作本身，打破了"我只能从这个角度看"的思维锁定——这才是六帽系统最深的价值。</p>
+          </li>
+        </ol>
+        <aside class="closing-frame">
+          <h3>用一个框架记住全书</h3>
+          <ul class="layer-list">
+            <li>
+              <strong>问题诊断</strong>
+              <p>传统会议是对抗性的，混合思维相互干扰，自我防御阻止了真正的探索。</p>
+            </li>
+            <li>
+              <strong>核心洞见</strong>
+              <p>平行思维：同时朝一个方向看，让合作取代对抗。</p>
+            </li>
+            <li>
+              <strong>解决工具</strong>
+              <p>六顶帽子：白（事实）、红（情感）、黑（风险）、黄（价值）、绿（创意）、蓝（过程）。</p>
+            </li>
+            <li>
+              <strong>使用原则</strong>
+              <p>帽子是角色不是人格，蓝帽管控流程，不需要每次用全六顶。</p>
+            </li>
+            <li>
+              <strong>最终目标</strong>
+              <p>在需要时，有意识地切换思维模式，全面而高效地解决问题。</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>书名：《六顶思考帽》 | 英文名：<em>Six Thinking Hats</em> | 作者：Edward de Bono</p>
+    <p>阅读提示：这是一份问题驱动拆书，重点是帮助你建立判断框架，而不是替代原书阅读。</p>
+  </footer>
+
+  <button class="backtop" id="backtop" type="button" aria-label="返回顶部">返回顶部</button>
+
+  <script>
+    document.body.classList.add('js-ready');
+
+    const navLinks = Array.from(document.querySelectorAll('.jump-links a'));
+    const sections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter((section, index, arr) => section && arr.indexOf(section) === index);
+    const backtop = document.getElementById('backtop');
+    const progressFill = document.getElementById('progressFill');
+    const readingWhisper = document.getElementById('readingWhisper');
+    const memoryLines = Array.from(document.querySelectorAll('.memory-line'));
+    const heroMark = document.querySelector('.masthead-mark');
+    const inkThread = document.getElementById('inkThread');
+    const inkThreadPath = document.getElementById('inkThreadPath');
+    const inkThreadGlow = document.getElementById('inkThreadGlow');
+    const heroCanvas = document.getElementById('heroCanvas');
+    const revealTargets = Array.from(document.querySelectorAll('.section, .detail-entry, .concept-list > div, .misread-list li, .help-list li, .onepage-list li, .layer-list li'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const currentHour = new Date().getHours();
+
+    const whisperText = (() => {
+      if (currentHour < 11) return '早上读这本书，你会对今天的第一个会议有不同的看法。';
+      if (currentHour < 18) return '适合在一个会议结束后，安静地反思一下刚才大家戴的是哪顶帽子。';
+      return '夜里读这本书，你会想到今天的讨论里有多少黑帽和多少黄帽。';
+    })();
+
+    if (readingWhisper) readingWhisper.textContent = whisperText;
+
+    const setupHeroCanvas = () => {
+      if (!heroCanvas) return;
+      const ctx = heroCanvas.getContext('2d');
+      if (!ctx) return;
+
+      const state = {
+        width: 0, height: 0,
+        dpr: Math.min(window.devicePixelRatio || 1, 2),
+        pointerX: 0.72, pointerY: 0.32, time: 0
+      };
+
+      const resize = () => {
+        const bounds = heroCanvas.getBoundingClientRect();
+        state.width = bounds.width;
+        state.height = bounds.height;
+        heroCanvas.width = Math.max(1, Math.floor(bounds.width * state.dpr));
+        heroCanvas.height = Math.max(1, Math.floor(bounds.height * state.dpr));
+        ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
+        draw(state.time);
+      };
+
+      const drawBloom = (x, y, radius, colorA, colorB) => {
+        const gradient = ctx.createRadialGradient(x, y, radius * 0.08, x, y, radius);
+        gradient.addColorStop(0, colorA);
+        gradient.addColorStop(1, colorB);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      };
+
+      const hatColors = [
+        'rgba(200,200,200,0.14)',
+        'rgba(239,68,68,0.10)',
+        'rgba(30,30,30,0.08)',
+        'rgba(234,179,8,0.12)',
+        'rgba(34,197,94,0.10)',
+        'rgba(14,116,144,0.12)'
+      ];
+
+      const drawHatRings = (time) => {
+        const cx = state.width * 0.72;
+        const cy = state.height * 0.38;
+
+        for (let i = 0; i < 6; i += 1) {
+          const angle = (time * 0.0003 + i * Math.PI / 3);
+          const r = 60 + i * 18;
+          const x = cx + Math.cos(angle) * (r * 0.5);
+          const y = cy + Math.sin(angle) * (r * 0.22);
+          const pulse = 1 + Math.sin(time * 0.0014 + i * 0.8) * 0.06;
+
+          ctx.beginPath();
+          ctx.ellipse(x, y, r * pulse, r * 0.38 * pulse, angle * 0.1, 0, Math.PI * 2);
+          ctx.strokeStyle = hatColors[i];
+          ctx.lineWidth = 1.4 + i * 0.15;
+          ctx.stroke();
+        }
+      };
+
+      const drawThreads = (time) => {
+        for (let i = 0; i < 8; i += 1) {
+          const baseX = state.width * (0.56 + i * 0.05);
+          const drift = Math.sin(time * 0.0012 + i * 1.4) * 22;
+          const topY = state.height * (0.12 + (i % 3) * 0.08);
+          const bottomY = state.height * (0.76 - (i % 2) * 0.12);
+
+          ctx.beginPath();
+          ctx.moveTo(baseX - 22, topY);
+          ctx.bezierCurveTo(
+            baseX + drift, state.height * 0.24,
+            baseX - drift * 0.8, state.height * 0.56,
+            baseX + 14, bottomY
+          );
+          ctx.lineWidth = 1 + (i % 3) * 0.45;
+          ctx.strokeStyle = `rgba(14, 116, 144, ${0.055 + i * 0.008})`;
+          ctx.stroke();
+        }
+      };
+
+      const draw = (time = 0) => {
+        state.time = time;
+        ctx.clearRect(0, 0, state.width, state.height);
+
+        drawBloom(
+          state.width * 0.74 + Math.sin(time * 0.0009) * 18,
+          state.height * 0.24 + Math.cos(time * 0.001) * 12,
+          Math.min(state.width, state.height) * 0.28,
+          'rgba(14, 116, 144, 0.12)', 'rgba(14, 116, 144, 0)'
+        );
+        drawBloom(
+          state.width * 0.86 + (state.pointerX - 0.5) * 34,
+          state.height * 0.66 + (state.pointerY - 0.5) * 18,
+          Math.min(state.width, state.height) * 0.22,
+          'rgba(12, 74, 110, 0.11)', 'rgba(12, 74, 110, 0)'
+        );
+        drawBloom(
+          state.width * 0.64, state.height * 0.58,
+          Math.min(state.width, state.height) * 0.18,
+          'rgba(6, 182, 212, 0.09)', 'rgba(6, 182, 212, 0)'
+        );
+        drawThreads(time);
+        drawHatRings(time);
+      };
+
+      resize();
+
+      const onPointerMove = (event) => {
+        const bounds = heroCanvas.getBoundingClientRect();
+        state.pointerX = (event.clientX - bounds.left) / Math.max(bounds.width, 1);
+        state.pointerY = (event.clientY - bounds.top) / Math.max(bounds.height, 1);
+      };
+
+      const host = heroCanvas.closest('.masthead');
+      host?.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('resize', resize);
+
+      if (prefersReducedMotion) { draw(0); return; }
+
+      let frameId = 0;
+      const loop = (time) => { draw(time); frameId = window.requestAnimationFrame(loop); };
+      frameId = window.requestAnimationFrame(loop);
+    };
+
+    setupHeroCanvas();
+
+    const setActive = (id) => {
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+      document.querySelectorAll('.section-head').forEach((head) => {
+        const section = head.closest('.section');
+        head.classList.toggle('is-focused', section?.id === id);
+      });
+    };
+
+    const buildInkPath = (points) => {
+      if (!points.length) return '';
+      if (points.length === 1) {
+        const [{ x, y }] = points;
+        return `M ${x - 72} ${y - 28} C ${x - 38} ${y - 18}, ${x - 24} ${y + 12}, ${x} ${y}`;
+      }
+      let path = `M ${points[0].x} ${points[0].y}`;
+      for (let i = 1; i < points.length; i += 1) {
+        const previous = points[i - 1];
+        const current = points[i];
+        const midpointX = (previous.x + current.x) / 2;
+        path += ` C ${midpointX} ${previous.y}, ${midpointX} ${current.y}, ${current.x} ${current.y}`;
+      }
+      return path;
+    };
+
+    const updateInkThread = () => {
+      if (!inkThread || !inkThreadPath || !inkThreadGlow || prefersReducedMotion) return;
+
+      const visiblePoints = memoryLines.map((line) => {
+        const rect = line.getBoundingClientRect();
+        const visible = rect.bottom > window.innerHeight * 0.08 && rect.top < window.innerHeight * 0.92;
+        if (!visible) return null;
+        return { x: Math.max(36, rect.left - 26), y: rect.top + rect.height * 0.52 };
+      }).filter(Boolean);
+
+      if (!visiblePoints.length) {
+        inkThread.classList.remove('is-active');
+        inkThreadPath.setAttribute('d', '');
+        inkThreadGlow.setAttribute('d', '');
+        return;
+      }
+
+      const d = buildInkPath(visiblePoints);
+      inkThread.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
+      inkThreadPath.setAttribute('d', d);
+      inkThreadGlow.setAttribute('d', d);
+      inkThread.classList.add('is-active');
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-20% 0px -55% 0px', threshold: [0.2, 0.45, 0.7] });
+
+    sections.forEach((section) => observer.observe(section));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+
+    revealTargets.forEach((target, index) => {
+      target.style.transitionDelay = `${Math.min(index % 5, 4) * 55}ms`;
+      if (prefersReducedMotion) {
+        target.classList.add('is-visible');
+      } else {
+        revealObserver.observe(target);
+      }
+    });
+
+    const memoryObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-lit');
+          memoryObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -18% 0px', threshold: 0.35 });
+
+    memoryLines.forEach((line) => memoryObserver.observe(line));
+
+    const updateScrollUI = () => {
+      const scrollTop = window.scrollY;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(scrollTop / scrollable, 1) : 0;
+
+      if (progressFill) {
+        progressFill.style.width = `${progress * 100}%`;
+        progressFill.style.filter = progress > 0.96 ? 'saturate(1.15) brightness(1.03)' : 'none';
+      }
+
+      if (heroMark && !prefersReducedMotion) {
+        heroMark.style.setProperty('--hero-mark-y', `${Math.min(scrollTop * 0.08, 28)}px`);
+        heroMark.style.setProperty('--hero-mark-x', `${Math.min(scrollTop * -0.02, 0)}px`);
+      }
+
+      updateInkThread();
+      backtop.classList.toggle('show', scrollTop > 720);
+    };
+
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+    window.addEventListener('resize', updateScrollUI, { passive: true });
+    updateScrollUI();
+
+    backtop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  </script>
+</body>
+</html>
