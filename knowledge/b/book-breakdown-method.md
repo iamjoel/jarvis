@@ -6,10 +6,9 @@
 
 1. 生成两个文件，并保存到 `data/b` 目录下：
    - `book-[english-name].md`
-   - `book-[english-name].html`
+   - `pages/book-[english-name]/index.html`
 
-2. 必须先读取并遵循这个设计文件：
-   - `knowledge/b/book-breakdown-design.md`
+2. 设计参考: `pages/book-home-deus/index.html`
 
 ## 核心要求
 
@@ -45,36 +44,6 @@
 ## HTML 要求
 
 基于 Markdown 内容生成一个纯 HTML 单页，不使用 React / Vue / 构建工具。
-
-要求：
-- 可直接本地打开
-- CSS 写在 `<style>` 中
-- 少量 JS 写在 `<script>` 中
-- 使用语义化 HTML
-- 响应式，兼容桌面和手机
-- 遵循 `design.md`
-
-页面至少包含：
-- Hero 区
-- 全书核心结论区
-- 问题地图区
-- 详细拆解区
-- 关键概念区
-- 常见误解区
-- 一页总结区
-- 页面内导航
-- 返回顶部
-- 平滑滚动
-
-## 页面风格
-
-整体要像“清晰、可信、易读的知识产品页面”：
-- 不像论文
-- 不像营销页
-- 有层级
-- 有留白
-- 方便扫读
-- 适合长时间阅读
 
 ## 文件命名
 
