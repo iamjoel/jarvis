@@ -14,6 +14,7 @@
 |------|------|
 | [存在之谜](./c/cunzai-zhimi.md) | 为什么是有，而不是无？形而上学的终极问题 |
 | [LLM 引发的问题](./l/llm-caused-problems.md) | 使用 LLM 过程中出现的典型问题与讨论 |
+| [如何高效沟通？](./h/how-to-communicate-effectively.md) | 高效沟通的核心要素、关键子问题与参考书目 |
 | [为什么近代世界里，不同大陆的人类社会发展出了巨大差距？](./w/why-societies-diverged.md) | 关于人类文明分叉的根本性历史问题，及其重要性阐述 |
 | [为什么是智人统治了世界？](./s/why-sapiens-rule-the-world.md) | 智人凭借认知革命与集体虚构能力脱颖而出的深度解析 |
 
@@ -116,6 +117,20 @@
 | [能源史](./e/energy-history.md) | 人类文明与火、煤、油、电的千年演变史 |
 
 
+
+### 📖 拆书笔记
+
+对优质书籍的系统拆解与精华提炼。
+
+#### 💬 沟通
+
+| 文档 | 简介 |
+|------|------|
+| [《关于说话的一切》](./b/book-everything-about-speaking.md) | 说话艺术的系统框架：内容、方式、时机与关系 |
+| [《好好说话》](./b/book-good-talk.md) | 五种权力场景下的实用话术技巧 |
+| [《非暴力沟通》](./b/book-nonviolent-communication.md) | 以观察、感受、需要、请求为核心的连接式沟通 |
+
+---
 
 ### 📅 Timeline（时间线）
 
