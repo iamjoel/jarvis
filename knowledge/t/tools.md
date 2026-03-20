@@ -20,6 +20,7 @@
 
 ## Design
 * [Color Hunt](https://www.colorhunt.co/) Color palette inspiration.
+* [Impeccable](https://impeccable.style/) 提升 UI 和 UX 的 Skill。把设计词汇封装成 Skill。
 * [Stitch](https://stitch.withgoogle.com/) Google 出的 Vibe 设计图的工具。无限画布风格。
   * 支持编辑，导出。
   * 会生成设计系统( UI + Design.md)。 也能从取某个网站抓取那个网站的设计，生成设计系统。(extract the design system from xxx)。
