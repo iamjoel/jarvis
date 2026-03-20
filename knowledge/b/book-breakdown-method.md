@@ -1,14 +1,11 @@
 # 拆书方法论
 ```md
-拆书：{书名}
+拆书：{书名}。
 
 请完成以下任务：
 
-1. 生成两个文件，并保存到 `data/b` 目录下：
-   - `book-[english-name].md`
-   - `pages/book-[english-name]/index.html`
-
-2. 设计参考: `pages/book-home-deus/index.html`
+1. 生成 `data/b/book-[english-name].md`。
+2. 如果需要生成 HTML，则生成 `pages/book-[english-name]/index.html`。纯 HTML 单页，不使用 React / Vue / 构建工具。设计参考: `pages/book-home-deus/index.html`。
 
 ## 核心要求
 
@@ -41,12 +38,7 @@
 - 这本书对现实有什么帮助
 - 一页看懂这本书
 
-## HTML 要求
-
-基于 Markdown 内容生成一个纯 HTML 单页，不使用 React / Vue / 构建工具。
-
 ## 文件命名
-
 先将书名转成合适的英文文件名：
 
 - 用英文书名
