@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>《反脆弱》Chaos Simulator</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f1ecdf;
+      --bg-deep: #d8c9af;
+      --bg-inkwash: rgba(34, 24, 18, 0.08);
+      --panel: rgba(251, 247, 238, 0.84);
+      --panel-strong: rgba(255, 252, 245, 0.96);
+      --ink: #1f1815;
+      --ink-soft: #5d5147;
+      --line: rgba(43, 30, 24, 0.12);
+      --accent: #9a3d27;
+      --accent-2: #c7792d;
+      --accent-3: #215f57;
+      --fragile: #a94b39;
+      --robust: #6c675e;
+      --antifragile: #1c6f61;
+      --gold: #b98b49;
+      --shadow: 0 22px 48px rgba(31, 24, 21, 0.08);
+      --shadow-soft: 0 8px 18px rgba(31, 24, 21, 0.04);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --content: 1240px;
+      --display: "Iowan Old Style", "Baskerville", "Songti SC", "STSong", "Noto Serif SC", serif;
+      --body: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --section-gap: clamp(28px, 5vw, 72px);
+      --grid-gap: clamp(16px, 2vw, 24px);
+      --progress: 0%;
+      --stress: 42;
+      --barbell-safe: 90%;
+      --clarity: 44%;
+      --risk-bias: 26%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(201, 121, 45, 0.12), transparent 22rem),
+        radial-gradient(circle at 92% 16%, rgba(33, 95, 87, 0.12), transparent 20rem),
+        linear-gradient(180deg, #f7f1e6 0%, var(--bg) 28%, #e8decc 100%);
+      line-height: 1.65;
+      overflow-x: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::before {
+      background:
+        linear-gradient(rgba(31, 24, 21, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 24, 21, 0.03) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.24));
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.58), transparent 20rem),
+        radial-gradient(circle at 78% 12%, rgba(185, 139, 73, 0.16), transparent 18rem),
+        radial-gradient(circle at 50% 120%, rgba(33, 95, 87, 0.1), transparent 24rem);
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .progress {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      height: 4px;
+      background: rgba(255, 250, 241, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .progress span {
+      display: block;
+      width: var(--progress);
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--antifragile));
+      transition: width 140ms linear;
+    }
+
+    .shell {
+      width: min(calc(100% - 28px), var(--content));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 28px 0 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 36% 34%, rgba(255, 255, 255, 0.84), transparent 20%),
+        conic-gradient(from 180deg, var(--accent), var(--gold), var(--antifragile), var(--accent));
+      box-shadow: inset 0 0 0 1px rgba(31, 24, 21, 0.08);
+    }
+
+    .topnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .topnav a {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 0;
+      min-height: 44px;
+      border-bottom: 1px solid transparent;
+      transition: color 180ms var(--ease), border-color 180ms var(--ease);
+    }
+
+    .topnav a:hover,
+    .topnav a:focus-visible {
+      color: var(--ink);
+      border-color: rgba(31, 24, 21, 0.28);
+      outline: 2px solid rgba(154, 61, 39, 0.18);
+      outline-offset: 4px;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.18fr) minmax(340px, 0.82fr);
+      gap: var(--grid-gap);
+      padding: clamp(24px, 4vw, 44px);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(253, 249, 241, 0.98) 0%, rgba(253, 249, 241, 0.94) 60%, rgba(221, 207, 181, 0.9) 100%);
+      border: 1px solid rgba(31, 24, 21, 0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(18px);
+      opacity: 0.72;
+      z-index: 0;
+    }
+
+    .hero::before {
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: -140px;
+      background: radial-gradient(circle, rgba(154, 61, 39, 0.2), transparent 68%);
+    }
+
+    .hero::after {
+      width: 420px;
+      height: 420px;
+      left: -180px;
+      bottom: -220px;
+      background: radial-gradient(circle, rgba(33, 95, 87, 0.18), transparent 70%);
+    }
+
+    .hero-copy,
+    .hero-lab {
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    .impact-number,
+    .quote-line,
+    .memory-item strong {
+      font-family: var(--display);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 9ch;
+      font-size: clamp(58px, 10vw, 118px);
+      line-height: 0.88;
+      letter-spacing: -0.06em;
+    }
+
+    .subtitle {
+      display: inline-block;
+      margin-top: 18px;
+      color: #6b3f2d;
+      font-size: clamp(14px, 1.8vw, 22px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      max-width: 34rem;
+      margin: 20px 0 0;
+      font-size: clamp(18px, 2vw, 24px);
+      color: #2a1f1b;
+    }
+
+    .hero-thesis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .thesis-card {
+      padding: 14px 0 0;
+      border-top: 2px solid rgba(31, 24, 21, 0.12);
+    }
+
+    .thesis-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .thesis-card span {
+      display: block;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .hero-lab {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .panel {
+      position: relative;
+      background: transparent;
+      border-top: 1px solid rgba(31, 24, 21, 0.08);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .panel-header > * {
+      min-width: 0;
+    }
+
+    .panel-header h3,
+    .panel-title {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .panel-note,
+    .small-copy {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .sim-panel {
+      padding: 18px 18px 10px;
+      border-top: 0;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(255, 250, 244, 0.92), rgba(245, 237, 224, 0.9));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .control-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .slider-block {
+      display: grid;
+      gap: 10px;
+    }
+
+    .slider-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    input[type="range"] {
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, rgba(154, 61, 39, 0.26), rgba(185, 139, 73, 0.36), rgba(28, 111, 97, 0.34));
+      outline: none;
+    }
+
+    input[type="range"]:focus-visible {
+      outline: 2px solid rgba(154, 61, 39, 0.2);
+      outline-offset: 6px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff9f0;
+      border: 2px solid var(--accent);
+      box-shadow: 0 4px 14px rgba(154, 61, 39, 0.26);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff9f0;
+      border: 2px solid var(--accent);
+      box-shadow: 0 4px 14px rgba(154, 61, 39, 0.26);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .legend i {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .impact-card {
+      padding: 12px 0 0;
+      border-top: 1px solid rgba(31, 24, 21, 0.12);
+    }
+
+    .impact-card label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .impact-number {
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }
+
+    .impact-card p {
+      margin: 10px 0 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .sim-canvas-wrap {
+      position: relative;
+      padding: 16px;
+      border-top: 1px solid rgba(31, 24, 21, 0.08);
+      background:
+        linear-gradient(180deg, rgba(31, 24, 21, 0.03), transparent 35%),
+        rgba(255, 253, 248, 0.52);
+    }
+
+    .sim-canvas-wrap::before {
+      content: "压力越大，三类系统的命运差异越大";
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      color: rgba(31, 24, 21, 0.34);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    main {
+      padding: 18px 0 70px;
+    }
+
+    section {
+      margin-top: var(--section-gap);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-head > * {
+      min-width: 0;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 70px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    .section-head p {
+      max-width: 52rem;
+      margin: 14px 0 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: var(--grid-gap);
+    }
+
+    .response-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--grid-gap);
+    }
+
+    .response-card {
+      position: relative;
+      padding: 18px 0 0;
+      border-top: 2px solid var(--card-tone);
+      min-height: 0;
+    }
+
+    .response-card::before {
+      display: none;
+    }
+
+    .response-card h3 {
+      margin: 12px 0 10px;
+      font-size: 28px;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .response-card p,
+    .response-card li {
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .response-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+
+    .response-meter {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(31, 24, 21, 0.08);
+      overflow: hidden;
+    }
+
+    .response-meter span {
+      display: block;
+      height: 100%;
+      width: var(--meter);
+      background: var(--card-tone);
+      transition: width 320ms var(--ease);
+    }
+
+    .response-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .quote-panel {
+      padding: 22px;
+      border-top: 0;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(160deg, rgba(25, 21, 18, 0.96), rgba(54, 39, 28, 0.94));
+      color: #f7f0e5;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .quote-panel .panel-title,
+    .quote-panel .panel-note {
+      color: inherit;
+    }
+
+    .quote-line {
+      margin: 20px 0 12px;
+      font-size: clamp(28px, 3.6vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+    }
+
+    .quote-panel small {
+      display: block;
+      color: rgba(247, 240, 229, 0.72);
+      font-size: 13px;
+    }
+
+    .curve-grid,
+    .barbell-grid,
+    .pressure-grid,
+    .skin-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.96fr);
+      gap: var(--grid-gap);
+    }
+
+    .chart-panel,
+    .text-panel,
+    .control-panel {
+      padding: 20px;
+    }
+
+    .curve-notes,
+    .principle-list,
+    .memory-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .note-row,
+    .principle-item,
+    .memory-item {
+      padding: 14px 0 0;
+      border-top: 1px solid rgba(31, 24, 21, 0.1);
+    }
+
+    .note-row strong,
+    .principle-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .note-row p,
+    .principle-item p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .barbell-visual {
+      position: relative;
+      min-height: 360px;
+      padding: 24px;
+      overflow: hidden;
+      border-top: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 252, 245, 0.68), rgba(241, 233, 217, 0.54));
+    }
+
+    .barbell-rod {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 52%;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(31, 24, 21, 0.18), rgba(31, 24, 21, 0.34), rgba(31, 24, 21, 0.18));
+      transform: translateY(-50%);
+    }
+
+    .barbell-weight {
+      position: absolute;
+      top: 52%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-weight: 800;
+      box-shadow: inset 0 0 0 1px rgba(31, 24, 21, 0.08);
+    }
+
+    .barbell-left {
+      left: 7%;
+      width: clamp(180px, 22vw, 260px);
+      aspect-ratio: 1;
+      background:
+        radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.62), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), transparent 40%),
+        color-mix(in oklab, #c9b38b 72%, white);
+    }
+
+    .barbell-right {
+      right: 7%;
+      width: clamp(112px, 12vw, 148px);
+      aspect-ratio: 1;
+      background:
+        radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.58), transparent 18%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.14), transparent 40%),
+        color-mix(in oklab, #1c6f61 72%, white);
+      color: #f9f5ee;
+    }
+
+    .barbell-core {
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      width: 180px;
+      padding: 16px;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      border-radius: 22px;
+      background: rgba(255, 250, 241, 0.78);
+      border: 1px dashed rgba(31, 24, 21, 0.16);
+      color: var(--ink-soft);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .allocation-strip {
+      display: grid;
+      grid-template-columns: var(--barbell-safe) calc(100% - var(--barbell-safe));
+      gap: 0;
+      height: 20px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(31, 24, 21, 0.08);
+    }
+
+    .allocation-strip span:first-child {
+      background: linear-gradient(90deg, rgba(201, 179, 139, 0.98), rgba(177, 148, 96, 0.98));
+    }
+
+    .allocation-strip span:last-child {
+      background: linear-gradient(90deg, rgba(28, 111, 97, 0.82), rgba(33, 95, 87, 0.98));
+    }
+
+    .presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      min-height: 44px;
+      border: 0;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: color 180ms var(--ease), border-color 180ms var(--ease);
+    }
+
+    .chip:hover,
+    .chip:focus-visible,
+    .chip.is-active {
+      color: var(--ink);
+      border-color: rgba(31, 24, 21, 0.28);
+      outline: 2px solid rgba(154, 61, 39, 0.18);
+      outline-offset: 4px;
+    }
+
+    .pressure-panel {
+      padding: 20px;
+      min-height: 380px;
+      border-top: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 252, 245, 0.62), rgba(241, 233, 217, 0.46));
+    }
+
+    .pressure-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0;
+      border-bottom: 1px solid rgba(31, 24, 21, 0.1);
+    }
+
+    .mode-switch button {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      min-height: 44px;
+      border: 0;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+
+    .mode-switch button:focus-visible {
+      outline: 2px solid rgba(154, 61, 39, 0.18);
+      outline-offset: 4px;
+    }
+
+    .mode-switch button.is-active {
+      color: var(--ink);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(20, minmax(0, 1fr));
+      align-items: end;
+      gap: 8px;
+      min-height: 220px;
+      padding: 18px 0 4px;
+    }
+
+    .bar {
+      position: relative;
+      border-radius: 14px 14px 4px 4px;
+      min-height: 22px;
+      background: rgba(31, 24, 21, 0.08);
+      overflow: hidden;
+    }
+
+    .bar::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: var(--h, 40%);
+      background: linear-gradient(180deg, rgba(154, 61, 39, 0.48), rgba(154, 61, 39, 0.9));
+      transition: height 320ms var(--ease), background-color 320ms var(--ease);
+    }
+
+    .bar.good::after {
+      background: linear-gradient(180deg, rgba(33, 95, 87, 0.44), rgba(33, 95, 87, 0.9));
+    }
+
+    .burst-line {
+      position: relative;
+      margin-top: 14px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(31, 24, 21, 0.08);
+      overflow: hidden;
+    }
+
+    .burst-line span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-2), var(--fragile));
+      transition: width 420ms var(--ease);
+    }
+
+    .negative-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(300px, 0.94fr);
+      gap: var(--grid-gap);
+    }
+
+    .subtraction-panel {
+      padding: 20px;
+      border-top: 0;
+    }
+
+    .toxins {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .toxin {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      min-height: 44px;
+      border: 0;
+      border-bottom: 1px solid rgba(31, 24, 21, 0.1);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: opacity 220ms var(--ease), border-color 220ms var(--ease), color 220ms var(--ease);
+    }
+
+    .toxin.is-removed {
+      opacity: 0.42;
+      border-color: transparent;
+      text-decoration: line-through;
+    }
+
+    .toxin:focus-visible {
+      outline: 2px solid rgba(154, 61, 39, 0.18);
+      outline-offset: 4px;
+    }
+
+    .clarity-shell {
+      display: grid;
+      place-items: center;
+      min-height: 340px;
+      padding: 22px;
+      border-top: 0;
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.64), transparent 40%),
+        linear-gradient(180deg, rgba(255, 252, 245, 0.92), rgba(231, 223, 208, 0.86));
+    }
+
+    .clarity-orbit {
+      position: relative;
+      width: clamp(240px, 30vw, 340px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        conic-gradient(from 180deg, rgba(154, 61, 39, 0.24), rgba(185, 139, 73, 0.12), rgba(33, 95, 87, 0.56), rgba(154, 61, 39, 0.24));
+      box-shadow: inset 0 0 0 28px rgba(255, 252, 245, 0.86);
+      isolation: isolate;
+    }
+
+    .clarity-orbit::before,
+    .clarity-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 16%;
+      border: 1px dashed rgba(31, 24, 21, 0.12);
+    }
+
+    .clarity-core {
+      position: absolute;
+      inset: 28%;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 252, 245, 0.94);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .clarity-core strong {
+      display: block;
+      font-family: var(--display);
+      font-size: clamp(38px, 5vw, 62px);
+      letter-spacing: -0.05em;
+    }
+
+    .clarity-core span {
+      color: var(--ink-soft);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .skin-scale {
+      position: relative;
+      min-height: 340px;
+      padding: 24px 24px 16px;
+      overflow: hidden;
+      border-top: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255, 252, 245, 0.62), rgba(241, 233, 217, 0.44));
+    }
+
+    .beam {
+      position: absolute;
+      left: 50%;
+      top: 38%;
+      width: 76%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(31, 24, 21, 0.76);
+      transform: translateX(-50%) rotate(var(--tilt));
+      transform-origin: center;
+      transition: transform 360ms var(--ease);
+    }
+
+    .beam::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -76px;
+      width: 6px;
+      height: 80px;
+      border-radius: 999px;
+      background: rgba(31, 24, 21, 0.76);
+      transform: translateX(-50%);
+    }
+
+    .scale-base {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      width: 132px;
+      height: 96px;
+      border-radius: 24px 24px 10px 10px;
+      background: linear-gradient(180deg, rgba(31, 24, 21, 0.16), rgba(31, 24, 21, 0.3));
+      transform: translateX(-50%);
+    }
+
+    .pan {
+      position: absolute;
+      top: 44%;
+      width: 180px;
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255, 252, 245, 0.86);
+      border: 1px solid rgba(31, 24, 21, 0.08);
+      box-shadow: var(--shadow-soft);
+      transition: transform 360ms var(--ease);
+    }
+
+    .pan strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .pan p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .pan-left {
+      left: 8%;
+      transform: translateY(calc(var(--risk-bias) * -0.12));
+    }
+
+    .pan-right {
+      right: 8%;
+      transform: translateY(calc(var(--risk-bias) * 0.22));
+    }
+
+    .risk-meter {
+      margin-top: 16px;
+      height: 14px;
+      border-radius: 999px;
+      background: rgba(31, 24, 21, 0.08);
+      overflow: hidden;
+    }
+
+    .risk-meter span {
+      display: block;
+      width: var(--risk-bias);
+      height: 100%;
+      background: linear-gradient(90deg, rgba(185, 139, 73, 0.82), rgba(154, 61, 39, 0.92));
+      transition: width 320ms var(--ease);
+    }
+
+    .skin-examples {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .skin-examples button {
+      display: block;
+      width: 100%;
+      min-height: 44px;
+      padding: 12px 0;
+      text-align: left;
+      border: 0;
+      border-bottom: 1px solid rgba(31, 24, 21, 0.1);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: color 180ms var(--ease), border-color 180ms var(--ease);
+    }
+
+    .skin-examples button:hover,
+    .skin-examples button:focus-visible,
+    .skin-examples button.is-active {
+      color: var(--accent);
+      border-color: rgba(31, 24, 21, 0.28);
+      outline: 2px solid rgba(154, 61, 39, 0.18);
+      outline-offset: 4px;
+    }
+
+    .memory-wrap {
+      padding: clamp(22px, 3vw, 34px);
+    }
+
+    .memory-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 20px;
+    }
+
+    .memory-item strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 34px;
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }
+
+    .memory-item p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 0 0 32px;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .footer-panel {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0 0;
+      border-top: 1px solid rgba(31, 24, 21, 0.1);
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .concept-grid,
+      .curve-grid,
+      .barbell-grid,
+      .pressure-grid,
+      .negative-grid,
+      .skin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .response-grid,
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-thesis,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .barbell-visual {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .shell {
+        width: min(calc(100% - 18px), var(--content));
+      }
+
+      header {
+        padding-top: 18px;
+      }
+
+      .topbar,
+      .section-head,
+      .footer-panel {
+        display: block;
+      }
+
+      .topnav {
+        margin-top: 12px;
+      }
+
+      .response-card,
+      .pressure-panel,
+      .skin-scale {
+        min-height: initial;
+      }
+
+      .timeline {
+        gap: 5px;
+      }
+
+      .barbell-left {
+        left: 4%;
+      }
+
+      .barbell-right {
+        right: 4%;
+      }
+
+      .barbell-core {
+        width: 150px;
+        padding: 12px;
+        font-size: 12px;
+      }
+
+      .pan {
+        width: min(44vw, 158px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span></span></div>
+
+  <header class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Book Infographic / Chaos Simulator</span>
+      </div>
+      <nav class="topnav" aria-label="章节导航">
+        <a href="#triad">三分法</a>
+        <a href="#convexity">凸性</a>
+        <a href="#barbell">杠铃</a>
+        <a href="#intervention">干预</a>
+        <a href="#negative">减法</a>
+        <a href="#skin">Skin in the Game</a>
+      </nav>
+    </div>
+
+    <section class="hero" data-reveal>
+      <div class="hero-copy">
+        <p class="eyebrow">Nassim Nicholas Taleb / Antifragile</p>
+        <h1>反脆弱</h1>
+        <span class="subtitle">不是扛住混乱 而是借混乱成长</span>
+        <p class="lede">塔勒布最激进的判断不是“世界危险”，而是“世界本该波动”。真正强大的系统，并不请求命运温柔，它要求命运施压。</p>
+
+        <div class="hero-thesis">
+          <div class="thesis-card">
+            <strong>脆弱</strong>
+            <span>害怕波动。看似稳定，实则把损失集中到一次崩溃里。</span>
+          </div>
+          <div class="thesis-card">
+            <strong>韧性</strong>
+            <span>能扛住冲击，但冲击过去之后，它仍然只是原来的样子。</span>
+          </div>
+          <div class="thesis-card">
+            <strong>反脆弱</strong>
+            <span>需要扰动。它把错误、压力和随机性转译成更高一级的能力。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-lab">
+        <div class="panel sim-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Live Disturbance Console</p>
+              <h3>扰动实验台</h3>
+            </div>
+            <p class="panel-note">拖动滑块，直接观察三种结构如何面对同样的世界。</p>
+          </div>
+
+          <div class="control-grid">
+            <div class="slider-block">
+              <div class="slider-meta">
+                <span>扰动强度</span>
+                <strong aria-live="polite"><span id="stressValue">42</span> / 100</strong>
+              </div>
+              <input id="stressSlider" type="range" min="0" max="100" value="42" aria-label="扰动强度">
+              <div class="legend">
+                <span><i style="background: var(--fragile)"></i>Fragile</span>
+                <span><i style="background: var(--robust)"></i>Robust</span>
+                <span><i style="background: var(--antifragile)"></i>Antifragile</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="impact-grid">
+            <div class="impact-card">
+              <label>脆弱系统</label>
+              <div class="impact-number" id="fragileImpact">-34%</div>
+              <p>压力增加后损失加速累积。</p>
+            </div>
+            <div class="impact-card">
+              <label>韧性系统</label>
+              <div class="impact-number" id="robustImpact">+0%</div>
+              <p>目标只是生存，不是增益。</p>
+            </div>
+            <div class="impact-card">
+              <label>反脆弱系统</label>
+              <div class="impact-number" id="antifragileImpact">+27%</div>
+              <p>波动本身成为燃料。</p>
+            </div>
+          </div>
+
+          <div class="sim-canvas-wrap">
+            <canvas id="disturbanceCanvas" width="760" height="280" aria-label="三种系统对扰动的响应曲线"></canvas>
+            <p id="disturbanceSummary" class="sr-only" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="shell">
+    <section id="triad" data-reveal>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Part I</p>
+          <h2>世界不是二分法，<br>而是三分法。</h2>
+          <p>塔勒布最重要的语言发明，是补上“脆弱”的真正对立面。不是强壮，不是韧性，而是一种在受压时自动升级的结构。</p>
+        </div>
+        <div class="section-tag">九头蛇，不是凤凰</div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="response-grid">
+          <article class="response-card" style="--card-tone: var(--fragile); --meter: 26%;">
+            <span class="response-badge">Fragile</span>
+            <h3>脆弱</h3>
+            <div class="response-meter"><span id="fragileMeter"></span></div>
+            <ul>
+              <li>怕波动，尤其怕意外。</li>
+              <li>平时看起来平稳，实际上在偷偷积累断裂点。</li>
+              <li>例子：高杠杆金融、被过度保护的系统、只靠单一路径生存的人。</li>
+            </ul>
+          </article>
+
+          <article class="response-card" style="--card-tone: var(--robust); --meter: 51%;">
+            <span class="response-badge">Robust</span>
+            <h3>韧性</h3>
+            <div class="response-meter"><span id="robustMeter"></span></div>
+            <ul>
+              <li>能承受冲击，但没有把冲击转化成增益的机制。</li>
+              <li>它的目标是恢复原状，而非借机跃迁。</li>
+              <li>是不错的防守，但不是塔勒布心中的最高级别。</li>
+            </ul>
+          </article>
+
+          <article class="response-card" style="--card-tone: var(--antifragile); --meter: 73%;">
+            <span class="response-badge">Antifragile</span>
+            <h3>反脆弱</h3>
+            <div class="response-meter"><span id="antifragileMeter"></span></div>
+            <ul>
+              <li>从波动、错误和小挫折中获益。</li>
+              <li>不要求预测未来，而是提前把结构改成“越乱越有利”。</li>
+              <li>例子：肌肉、免疫系统、带期权性的副业与探索。</li>
+            </ul>
+          </article>
+        </div>
+
+        <aside class="panel quote-panel">
+          <p class="eyebrow">Key Question</p>
+          <div class="panel-title">为什么现代人总想消灭波动？</div>
+          <p class="quote-line">因为我们把“安静”误认成“安全”。</p>
+          <p class="panel-note">《反脆弱》最反直觉的提醒是：小压力不是事故，它往往是系统的训练方式。真正危险的是长期平滑之后的一次总清算。</p>
+          <small>这也是本页采用 Chaos Simulator 的原因：它不是静态地解释概念，而是让你直接看见结构差异。</small>
+        </aside>
+      </div>
+    </section>
+
+    <section id="convexity" data-reveal>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Part II</p>
+          <h2>凸性不是比喻，<br>是反脆弱的数学骨架。</h2>
+          <p>当坏结果的损失有下限、好结果的收益却能持续扩张，你就站在一条向上的不对称曲线上。塔勒布真正迷恋的是这种结构，不是勇气叙事。</p>
+        </div>
+        <div class="section-tag">Convexity / Optionality</div>
+      </div>
+
+      <div class="curve-grid">
+        <div class="panel chart-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Payoff Topology</p>
+              <h3>收益曲线图</h3>
+            </div>
+            <p class="panel-note">横轴是波动与随机性，纵轴是净结果。</p>
+          </div>
+          <canvas id="convexityCanvas" width="760" height="360" aria-label="脆弱、韧性、反脆弱的收益曲线"></canvas>
+        </div>
+
+        <div class="curve-notes">
+          <div class="note-row">
+            <strong>脆弱 = 凹性</strong>
+            <p>看起来收益稳定，但坏消息来时，损失会比你预期得更深更快。</p>
+          </div>
+          <div class="note-row">
+            <strong>韧性 = 近似线性</strong>
+            <p>它的工作是把波动影响压回零附近，代价是也很难从剧烈变化里得到跃迁式红利。</p>
+          </div>
+          <div class="note-row">
+            <strong>反脆弱 = 凸性</strong>
+            <p>当上行空间比下行空间大得多，波动就从威胁变成朋友。期权、副业、写作、创业都是这种逻辑。</p>
+          </div>
+          <div class="note-row">
+            <strong>一句话</strong>
+            <p>真正的问题不是“未来会不会乱”，而是“你的结构是不是一旦乱起来就更有利”。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="barbell" data-reveal>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Part III</p>
+          <h2>杠铃策略：<br>把安全与野心放在两端。</h2>
+          <p>塔勒布最著名的操作框架并不追求“适度”。他怀疑中间地带，因为那里往往既没有真正安全，也没有真正上涨空间。</p>
+        </div>
+        <div class="section-tag">90% Safe / 10% Optionality</div>
+      </div>
+
+      <div class="barbell-grid">
+        <div class="panel barbell-visual">
+          <div class="barbell-rod" aria-hidden="true"></div>
+          <div class="barbell-weight barbell-left" id="safeWeight">90%</div>
+          <div class="barbell-weight barbell-right" id="riskWeight">10%</div>
+          <div class="barbell-core">避开中间地带<br>因为它最像安全，也最容易全损</div>
+        </div>
+
+        <div class="panel control-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Allocation Engine</p>
+              <h3>调整你的杠铃</h3>
+            </div>
+            <p class="panel-note">并不是越激进越好，而是下限必须先被锁死。</p>
+          </div>
+
+          <div class="slider-block">
+            <div class="slider-meta">
+              <span>安全仓位</span>
+              <strong aria-live="polite"><span id="safeValue">90</span>%</strong>
+            </div>
+            <input id="barbellSlider" type="range" min="70" max="97" value="90" aria-label="安全仓位百分比">
+          </div>
+
+          <div class="allocation-strip" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="presets" role="group" aria-label="杠铃策略预设">
+            <button class="chip is-active" type="button" data-safe="90" aria-pressed="true">经典 90 / 10</button>
+            <button class="chip" type="button" data-safe="85" aria-pressed="false">探索者 85 / 15</button>
+            <button class="chip" type="button" data-safe="95" aria-pressed="false">保守者 95 / 5</button>
+          </div>
+
+          <div class="principle-list" style="margin-top: 14px;">
+            <div class="principle-item">
+              <strong>财务版</strong>
+              <p>主要收入与现金流极度稳健，小部分资金暴露在高波动、高上行的机会里。</p>
+            </div>
+            <div class="principle-item">
+              <strong>职业版</strong>
+              <p>保留稳定工作，同时持续写作、做产品、做副业，让上行不只依赖一份工资。</p>
+            </div>
+            <div class="principle-item">
+              <strong>哲学版</strong>
+              <p>先保证你能活下来，再让命运有机会送你惊喜。先守住不可逆，再追求可能的大赢。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="intervention" data-reveal>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Part IV</p>
+          <h2>最危险的稳定，<br>是人为压制出来的稳定。</h2>
+          <p>森林小火、市场小跌、孩子小挫折，这些小波动本身就是信息与修复机制。你若把它们全部抹平，就会在暗处积累一场更大的爆裂。</p>
+        </div>
+        <div class="section-tag">Interventionism</div>
+      </div>
+
+      <div class="pressure-grid">
+        <div class="panel pressure-panel">
+          <div class="pressure-header">
+            <div>
+              <p class="eyebrow">Pressure Chamber</p>
+              <h3>波动抑制模拟</h3>
+            </div>
+            <div class="mode-switch" role="group" aria-label="干预模式">
+              <button id="allowMode" class="is-active" type="button" aria-pressed="true">允许小波动</button>
+              <button id="suppressMode" type="button" aria-pressed="false">全部压制</button>
+            </div>
+          </div>
+          <p class="small-copy">每一根柱代表一次本可被释放的压力。允许小波动时，系统不断排压；全部压制时，风险被推迟，却不会消失。</p>
+          <div class="timeline" id="timeline" aria-hidden="true"></div>
+          <div class="burst-line" aria-label="累计爆裂风险" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="22">
+            <span id="burstMeter"></span>
+          </div>
+          <p id="pressureSummary" class="sr-only" aria-live="polite"></p>
+        </div>
+
+        <div class="curve-notes">
+          <div class="note-row">
+            <strong>森林火灾</strong>
+            <p>清除每一次小火，表面上是治理；实质上是在囤积下一次大火的燃料。</p>
+          </div>
+          <div class="note-row">
+            <strong>金融系统</strong>
+            <p>长期压低利率和回避正常修正，看起来在“维稳”，但实际上是在扩张尾部风险。</p>
+          </div>
+          <div class="note-row">
+            <strong>个人成长</strong>
+            <p>不允许小失败的人，最后会在一次真正的现实冲击里发现自己没有训练过。</p>
+          </div>
+          <div class="note-row">
+            <strong>一句话</strong>
+            <p>真正的安全，不是让系统永远安静，而是让系统经常被轻微打扰却始终能恢复。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="negative" data-reveal>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Part V</p>
+          <h2>Via Negativa：<br>先停止伤害，再谈优化。</h2>
+          <p>复杂系统里，“添加”经常带来你看不见的副作用。塔勒布更相信减法，因为人类对什么有害，通常比对什么有益知道得更清楚。</p>
+        </div>
+        <div class="section-tag">Subtraction First</div>
+      </div>
+
+      <div class="negative-grid">
+        <div class="panel subtraction-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Removal Ritual</p>
+              <h3>点掉你想停止的伤害源</h3>
+            </div>
+            <p class="panel-note">每移除一个拖累，系统清晰度都会提升。</p>
+          </div>
+          <div class="toxins" id="toxins">
+            <button class="toxin" type="button" data-label="加工食品" aria-pressed="false">加工食品</button>
+            <button class="toxin" type="button" data-label="久坐" aria-pressed="false">久坐</button>
+            <button class="toxin" type="button" data-label="伪稳定岗位" aria-pressed="false">伪稳定岗位</button>
+            <button class="toxin" type="button" data-label="过度预测" aria-pressed="false">过度预测</button>
+            <button class="toxin" type="button" data-label="无代价建议" aria-pressed="false">无代价建议</button>
+            <button class="toxin" type="button" data-label="复杂补丁" aria-pressed="false">复杂补丁</button>
+          </div>
+          <div class="principle-list" style="margin-top: 20px;">
+            <div class="principle-item">
+              <strong>健康</strong>
+              <p>先去掉明显有害的习惯，往往比寻找一套完美补剂更有效。</p>
+            </div>
+            <div class="principle-item">
+              <strong>工作</strong>
+              <p>删掉低效会议、无意义流程、让你持续脆弱的单点依赖。</p>
+            </div>
+            <div class="principle-item">
+              <strong>知识</strong>
+              <p>你不必总知道“正确答案”，但你可以先识别哪些结构一定会带来副作用。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel clarity-shell">
+          <div class="clarity-orbit">
+            <div class="clarity-core">
+              <div>
+                <strong id="clarityValue">44%</strong>
+                <span>system clarity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skin" data-reveal>
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Part VI</p>
+          <h2>不承担后果的人，<br>会系统性地高估自己的判断。</h2>
+          <p>Skin in the Game 既是道德原则，也是效率原则。只享受上行、把下行甩给别人的人，天然会把系统设计得更脆弱。</p>
+        </div>
+        <div class="section-tag">Asymmetric Responsibility</div>
+      </div>
+
+      <div class="skin-grid">
+        <div class="panel skin-scale" id="skinScale" style="--tilt: 5deg;">
+          <div class="beam" aria-hidden="true"></div>
+          <div class="pan pan-left">
+            <strong>决策收益</strong>
+            <p id="benefitText">上行被决策者完整拿走。</p>
+          </div>
+          <div class="pan pan-right">
+            <strong>失败代价</strong>
+            <p id="costText">下行被转移给他人承担。</p>
+          </div>
+          <div class="scale-base" aria-hidden="true"></div>
+        </div>
+
+        <div class="panel control-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Choose A Scenario</p>
+              <h3>责任失衡示例</h3>
+            </div>
+            <p class="panel-note">切换案例，看秤如何倾斜。</p>
+          </div>
+
+          <div class="risk-meter" aria-label="责任不对称程度" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="26">
+            <span id="riskMeter"></span>
+          </div>
+
+          <div class="skin-examples" role="group" aria-label="责任失衡示例选择">
+            <button class="is-active" type="button" data-tilt="5" data-risk="26%" data-benefit="上行被决策者完整拿走。" data-cost="下行被转移给他人承担。" aria-pressed="true">金融赌徒：输了由系统兜底</button>
+            <button type="button" data-tilt="1" data-risk="10%" data-benefit="顾问建议会影响自己的声誉与收入。" data-cost="建议失误时顾问也会受损。" aria-pressed="false">有声誉约束的顾问</button>
+            <button type="button" data-tilt="8" data-risk="36%" data-benefit="政策制定者收获功劳与职位稳定。" data-cost="错误后果由公众长期吸收。" aria-pressed="false">脱离后果的政策制定者</button>
+            <button type="button" data-tilt="-2" data-risk="6%" data-benefit="创业者获得回报，但同时押上时间、金钱与名誉。" data-cost="失败成本主要由自己承担。" aria-pressed="false">真正押上自己的创业者</button>
+          </div>
+
+          <div class="principle-list" style="margin-top: 14px;">
+            <div class="principle-item">
+              <strong>汉谟拉比直觉</strong>
+              <p>如果建筑师不用住进自己造的房子，他对风险的判断就会天然失真。</p>
+            </div>
+            <div class="principle-item">
+              <strong>现实应用</strong>
+              <p>接受建议前先问一句：如果这建议错了，对方会损失什么？如果答案是“几乎没有”，就该打折。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal>
+      <div class="panel memory-wrap">
+        <div class="section-head" style="margin-bottom: 0;">
+          <div>
+            <p class="eyebrow">Takeaways</p>
+            <h2>如果只带走 6 句话</h2>
+            <p>把这本书记成一套结构判断，而不是一组励志口号。</p>
+          </div>
+          <div class="section-tag">One-Page Memory</div>
+        </div>
+
+        <div class="memory-grid">
+          <article class="memory-item">
+            <strong>1</strong>
+            <p>世界分三类：脆弱、韧性、反脆弱。大多数人误把韧性当成最高目标。</p>
+          </article>
+          <article class="memory-item">
+            <strong>2</strong>
+            <p>真正的问题不是有没有风险，而是你的结构遇到风险时会不会自动恶化。</p>
+          </article>
+          <article class="memory-item">
+            <strong>3</strong>
+            <p>凸性意味着下行有限、上行扩张。期权性，是反脆弱在现实中的抓手。</p>
+          </article>
+          <article class="memory-item">
+            <strong>4</strong>
+            <p>杠铃策略不是求中庸，而是先把下限锁住，再给自己保留巨大的惊喜空间。</p>
+          </article>
+          <article class="memory-item">
+            <strong>5</strong>
+            <p>压制小波动会积累大风险。稳定若靠人为抹平，往往只是推迟爆炸时间。</p>
+          </article>
+          <article class="memory-item">
+            <strong>6</strong>
+            <p>Via Negativa 与 Skin in the Game 共同指向同一件事：先去掉伤害，再让承担后果的人做决定。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-panel">
+      <span>Source: <code>data/b/book-antifragile.md</code></span>
+      <span>Built as a self-contained HTML infographic for direct local viewing.</span>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const stressSlider = document.getElementById("stressSlider");
+    const stressValue = document.getElementById("stressValue");
+    const fragileImpact = document.getElementById("fragileImpact");
+    const robustImpact = document.getElementById("robustImpact");
+    const antifragileImpact = document.getElementById("antifragileImpact");
+    const fragileMeter = document.getElementById("fragileMeter");
+    const robustMeter = document.getElementById("robustMeter");
+    const antifragileMeter = document.getElementById("antifragileMeter");
+
+    const disturbanceCanvas = document.getElementById("disturbanceCanvas");
+    const convexityCanvas = document.getElementById("convexityCanvas");
+    const disturbanceSummary = document.getElementById("disturbanceSummary");
+    let disturbanceCtx;
+    let convexityCtx;
+
+    const barbellSlider = document.getElementById("barbellSlider");
+    const safeValue = document.getElementById("safeValue");
+    const safeWeight = document.getElementById("safeWeight");
+    const riskWeight = document.getElementById("riskWeight");
+    const chips = Array.from(document.querySelectorAll(".chip"));
+
+    const timeline = document.getElementById("timeline");
+    const burstMeter = document.getElementById("burstMeter");
+    const pressureSummary = document.getElementById("pressureSummary");
+    const allowMode = document.getElementById("allowMode");
+    const suppressMode = document.getElementById("suppressMode");
+    let suppressPressure = false;
+
+    const toxins = Array.from(document.querySelectorAll(".toxin"));
+    const clarityValue = document.getElementById("clarityValue");
+
+    const skinScale = document.getElementById("skinScale");
+    const benefitText = document.getElementById("benefitText");
+    const costText = document.getElementById("costText");
+    const riskMeter = document.getElementById("riskMeter");
+    const skinButtons = Array.from(document.querySelectorAll(".skin-examples button"));
+
+    const timelineBars = [];
+    for (let i = 0; i < 20; i += 1) {
+      const bar = document.createElement("div");
+      bar.className = "bar";
+      timeline.appendChild(bar);
+      timelineBars.push(bar);
+    }
+
+    function formatPercent(value) {
+      return `${value > 0 ? "+" : ""}${Math.round(value)}%`;
+    }
+
+    function updateStress(value) {
+      const stress = Number(value);
+      root.style.setProperty("--stress", stress);
+      stressValue.textContent = stress;
+
+      const fragile = -Math.pow(stress / 100, 1.45) * 78;
+      const robust = (stress - 50) * 0.04;
+      const antifragile = Math.pow(stress / 100, 1.66) * 72 - 2;
+
+      fragileImpact.textContent = formatPercent(fragile);
+      robustImpact.textContent = formatPercent(robust);
+      antifragileImpact.textContent = formatPercent(antifragile);
+      disturbanceSummary.textContent = `当前扰动强度 ${stress}。脆弱系统 ${formatPercent(fragile)}，韧性系统 ${formatPercent(robust)}，反脆弱系统 ${formatPercent(antifragile)}。`;
+
+      fragileMeter.style.width = `${Math.max(8, 84 - stress * 0.62)}%`;
+      robustMeter.style.width = `${Math.max(44, 50 + (stress - 50) * 0.06)}%`;
+      antifragileMeter.style.width = `${Math.min(94, 28 + stress * 0.64)}%`;
+
+      drawDisturbance();
+      drawConvexity();
+    }
+
+    function resizeCanvas(canvas) {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const cssWidth = canvas.clientWidth || canvas.width;
+      const cssHeight = canvas.getAttribute("height");
+      canvas.width = cssWidth * ratio;
+      canvas.height = cssHeight * ratio;
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return ctx;
+    }
+
+    function drawAxes(ctx, width, height, padding) {
+      ctx.strokeStyle = "rgba(31, 24, 21, 0.12)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(padding, height - padding);
+      ctx.lineTo(width - padding, height - padding);
+      ctx.moveTo(padding, padding);
+      ctx.lineTo(padding, height - padding);
+      ctx.stroke();
+
+      ctx.fillStyle = "rgba(31, 24, 21, 0.45)";
+      ctx.font = '12px "PingFang SC", sans-serif';
+      ctx.fillText("波动 / 压力", width - padding - 56, height - padding - 10);
+      ctx.save();
+      ctx.translate(18, padding + 12);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText("净结果", 0, 0);
+      ctx.restore();
+    }
+
+    function drawDisturbance() {
+      const canvas = disturbanceCanvas;
+      const ctx = disturbanceCtx;
+      const width = canvas.clientWidth;
+      const height = Number(canvas.getAttribute("height"));
+      ctx.clearRect(0, 0, width, height);
+      drawAxes(ctx, width, height, 34);
+
+      const stress = Number(stressSlider.value) / 100;
+      const lines = [
+        {
+          color: getComputedStyle(root).getPropertyValue("--fragile").trim(),
+          label: "Fragile",
+          fn: (x) => 0.75 - Math.pow(x, 1.55) * (0.3 + stress * 0.9)
+        },
+        {
+          color: getComputedStyle(root).getPropertyValue("--robust").trim(),
+          label: "Robust",
+          fn: (x) => 0.5 + (x - 0.5) * 0.02
+        },
+        {
+          color: getComputedStyle(root).getPropertyValue("--antifragile").trim(),
+          label: "Antifragile",
+          fn: (x) => 0.28 + Math.pow(x, 1.65) * (0.22 + stress * 0.72)
+        }
+      ];
+
+      const chartWidth = width - 68;
+      const chartHeight = height - 68;
+      const pulseX = 34 + chartWidth * stress;
+
+      ctx.save();
+      ctx.fillStyle = "rgba(154, 61, 39, 0.08)";
+      ctx.fillRect(pulseX - 14, 18, 28, chartHeight + 20);
+      ctx.restore();
+
+      lines.forEach((line) => {
+        ctx.beginPath();
+        for (let i = 0; i <= 80; i += 1) {
+          const x = i / 80;
+          const y = line.fn(x);
+          const px = 34 + chartWidth * x;
+          const py = 34 + chartHeight * (1 - y);
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.strokeStyle = line.color;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        const ey = line.fn(stress);
+        const epx = pulseX;
+        const epy = 34 + chartHeight * (1 - ey);
+        ctx.fillStyle = line.color;
+        ctx.beginPath();
+        ctx.arc(epx, epy, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = line.color;
+        ctx.font = '12px "PingFang SC", sans-serif';
+        ctx.fillText(line.label, width - 116, 34 + lines.indexOf(line) * 20);
+      });
+    }
+
+    function drawConvexity() {
+      const canvas = convexityCanvas;
+      const ctx = convexityCtx;
+      const width = canvas.clientWidth;
+      const height = Number(canvas.getAttribute("height"));
+      ctx.clearRect(0, 0, width, height);
+      drawAxes(ctx, width, height, 38);
+
+      const chartWidth = width - 76;
+      const chartHeight = height - 84;
+      const stress = Number(stressSlider.value) / 100;
+      const midpointY = 38 + chartHeight * 0.52;
+
+      ctx.strokeStyle = "rgba(31, 24, 21, 0.09)";
+      ctx.setLineDash([4, 6]);
+      ctx.beginPath();
+      ctx.moveTo(38, midpointY);
+      ctx.lineTo(width - 38, midpointY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      const curves = [
+        {
+          color: getComputedStyle(root).getPropertyValue("--fragile").trim(),
+          fn: (x) => 0.64 - Math.pow(x, 1.5) * 0.58
+        },
+        {
+          color: getComputedStyle(root).getPropertyValue("--robust").trim(),
+          fn: (x) => 0.5 - x * 0.02
+        },
+        {
+          color: getComputedStyle(root).getPropertyValue("--antifragile").trim(),
+          fn: (x) => 0.34 + Math.pow(x, 1.78) * 0.6
+        }
+      ];
+
+      curves.forEach((curve) => {
+        ctx.beginPath();
+        for (let i = 0; i <= 80; i += 1) {
+          const x = i / 80;
+          const y = curve.fn(x);
+          const px = 38 + chartWidth * x;
+          const py = 38 + chartHeight * (1 - y);
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.strokeStyle = curve.color;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      });
+
+      const focusX = 38 + chartWidth * stress;
+      ctx.fillStyle = "rgba(31, 24, 21, 0.08)";
+      ctx.fillRect(focusX - 1, 22, 2, chartHeight + 20);
+    }
+
+    function updateBarbell(value) {
+      const safe = Number(value);
+      const risk = 100 - safe;
+      safeValue.textContent = safe;
+      safeWeight.textContent = `${safe}%`;
+      riskWeight.textContent = `${risk}%`;
+      root.style.setProperty("--barbell-safe", `${safe}%`);
+      chips.forEach((chip) => {
+        const isActive = Number(chip.dataset.safe) === safe;
+        chip.classList.toggle("is-active", isActive);
+        chip.setAttribute("aria-pressed", String(isActive));
+      });
+    }
+
+    function buildPressureData() {
+      return Array.from({ length: 20 }, (_, index) => {
+        const baseline = 18 + ((index * 13) % 34);
+        if (!suppressPressure) {
+          return { height: baseline + ((index % 4) * 8), good: true };
+        }
+        const extra = index < 16 ? index * 2.4 : 18 + (index - 15) * 28;
+        return { height: Math.min(96, baseline * 0.4 + extra), good: index < 15 };
+      });
+    }
+
+    function renderPressure() {
+      const data = buildPressureData();
+      data.forEach((entry, index) => {
+        const bar = timelineBars[index];
+        bar.style.setProperty("--h", `${entry.height}%`);
+        bar.classList.toggle("good", entry.good);
+      });
+      const risk = suppressPressure ? 84 : 22;
+      burstMeter.style.width = `${risk}%`;
+      allowMode.classList.toggle("is-active", !suppressPressure);
+      suppressMode.classList.toggle("is-active", suppressPressure);
+      allowMode.setAttribute("aria-pressed", String(!suppressPressure));
+      suppressMode.setAttribute("aria-pressed", String(suppressPressure));
+      burstMeter.parentElement?.setAttribute("aria-valuenow", String(risk));
+      pressureSummary.textContent = suppressPressure
+        ? "当前模式为全部压制。累计爆裂风险 84。压力被推迟并集中到后段。"
+        : "当前模式为允许小波动。累计爆裂风险 22。系统持续释放小压力。";
+    }
+
+    function updateClarity() {
+      toxins.forEach((item) => {
+        item.setAttribute("aria-pressed", String(item.classList.contains("is-removed")));
+      });
+      const removed = toxins.filter((item) => item.classList.contains("is-removed")).length;
+      const clarity = 44 + removed * 8;
+      root.style.setProperty("--clarity", `${clarity}%`);
+      clarityValue.textContent = `${clarity}%`;
+    }
+
+    function updateSkin(button) {
+      skinButtons.forEach((item) => {
+        const isActive = item === button;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
+      });
+      skinScale.style.setProperty("--tilt", `${button.dataset.tilt}deg`);
+      root.style.setProperty("--risk-bias", button.dataset.risk);
+      benefitText.textContent = button.dataset.benefit;
+      costText.textContent = button.dataset.cost;
+      riskMeter.style.width = button.dataset.risk;
+      riskMeter.parentElement?.setAttribute("aria-valuenow", String(parseInt(button.dataset.risk, 10)));
+    }
+
+    function updateProgress() {
+      const doc = document.documentElement;
+      const scrollRange = doc.scrollHeight - window.innerHeight;
+      const progress = scrollRange > 0 ? (window.scrollY / scrollRange) * 100 : 0;
+      root.style.setProperty("--progress", `${progress}%`);
+    }
+
+    stressSlider.addEventListener("input", (event) => updateStress(event.target.value));
+    barbellSlider.addEventListener("input", (event) => updateBarbell(event.target.value));
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const safe = Number(chip.dataset.safe);
+        barbellSlider.value = safe;
+        updateBarbell(safe);
+      });
+    });
+
+    allowMode.addEventListener("click", () => {
+      suppressPressure = false;
+      renderPressure();
+    });
+
+    suppressMode.addEventListener("click", () => {
+      suppressPressure = true;
+      renderPressure();
+    });
+
+    toxins.forEach((toxin) => {
+      toxin.addEventListener("click", () => {
+        toxin.classList.toggle("is-removed");
+        updateClarity();
+      });
+    });
+
+    skinButtons.forEach((button) => {
+      button.addEventListener("click", () => updateSkin(button));
+    });
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", () => {
+      disturbanceCtx = resizeCanvas(disturbanceCanvas);
+      convexityCtx = resizeCanvas(convexityCanvas);
+      drawDisturbance();
+      drawConvexity();
+    });
+
+    disturbanceCtx = resizeCanvas(disturbanceCanvas);
+    convexityCtx = resizeCanvas(convexityCanvas);
+
+    updateStress(stressSlider.value);
+    updateBarbell(barbellSlider.value);
+    renderPressure();
+    updateClarity();
+    updateSkin(skinButtons[0]);
+    updateProgress();
+  </script>
+</body>
+</html>
