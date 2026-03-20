@@ -1,10 +1,10 @@
 # 拆书方法论
 ```md
-拆书：{书名}。
+拆书：{书名}。如果这本书在 `data/b/` 下已存在，则跳过这本书的拆书任务。
 
 请完成以下任务：
 
-1. 生成 `data/b/book-[english-name].md`。
+1. 生成 `data/b/book-[english-name].md`。并在 `data/b/readme.md` 的拆书列表里添加链接和简介。
 2. 如果需要生成 HTML，则生成 `pages/book-[english-name]/index.html`。纯 HTML 单页，不使用 React / Vue / 构建工具。设计参考: `pages/book-home-deus/index.html`。
 
 ## 核心要求
