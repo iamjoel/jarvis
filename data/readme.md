@@ -60,6 +60,7 @@
 | [《沉思录》](./b/book-meditations.md) | 多葛哲学关于自律、接受与内在秩序的实践 |
 | [《臣服的力量》](./b/book-the-power-of-surrender.md) | 放下控制执念，与现实合作 |
 | [《圣多纳释放法》](./b/book-the-sedona-method.md) | 通过情绪释放练习获得轻盈与平静 |
+| [《禅者的初心》](./b/book-zen-mind-beginners-mind.md) | 铃木俊隆：以初心面对生命，在禅修中发现无限可能——专家之心选项有限，初心中充满可能 |
 
 **如何理解焦虑、欲望与情绪？**
 
@@ -68,6 +69,18 @@
 | [《重塑杏仁核：情绪修复脑科学》](./b/book-rewire-your-anxious-brain.md) | 从神经科学理解焦虑，并建立干预路径 |
 | [《贪婪的多巴胺》](./b/book-the-molecule-of-more.md) | 多巴胺如何塑造欲望、上瘾、野心与不满足 |
 | [《被讨厌的勇气》](./b/book-the-courage-to-be-disliked.md) | 从阿德勒心理学理解烦恼、课题分离与自由 |
+
+### 文学与人生
+
+**武侠小说能教给我们什么？**
+
+| 文档 | 简介 |
+|------|------|
+| [《三少爷的剑》](./b/book-sword-of-the-third-young-master.md) | 古龙：一个生来就是"天下第一剑"的少年，试图逃离命运，却发现无论如何伪装，剑终究属于他 |
+| [《七种武器》](./b/book-seven-weapons.md) | 古龙：以七种器物为名，写出七种人性力量——真正的武器从不是钢铁，而是人心 |
+| [《陆小凤传奇》](./b/book-legend-of-lu-xiaofeng.md) | 古龙：陆小凤用两根手指和一颗聪明的心，证明真正的英雄不需要无敌，只需要足够人性化 |
+| [《楚留香传奇》](./b/book-legend-of-chu-liuxiang.md) | 古龙：楚留香是古龙美学的化身——在粗粝的武林里，做一个有品位的人是最难也最值的选择 |
+| [《多情剑客无情剑》](./b/book-sentimental-swordsman-ruthless-sword.md) | 古龙：李寻欢的故事关于，当深爱与深义不能共存时，人如何做出无悔的选择 |
 
 ### 成长、工作与财富
 
@@ -145,6 +158,8 @@
 | [哈耶克学说](./h/hayek.md) | 理解价格、分散知识与自发秩序 |
 | [《理性乐观派》](./b/book-the-rational-optimist.md) | 交易与创新如何推动人类繁荣 |
 | [《自下而上：万物进化史》](./b/book-the-evolution-of-everything.md) | 很多秩序来自涌现，而不是中央设计 |
+| [《置身事外：中国政府与经济发展》](./b/book-caught-in-the-middle.md) | 兰小欢：理解土地财政与政绩激励，才能真正读懂中国经济奇迹 |
+| [《分析与思考：黄奇帆的复旦经济课》](./b/book-analysis-and-thinking-huang-qifan.md) | 黄奇帆：从实战视角拆解中国宏观经济五大结构性问题 |
 
 **如何投资，并在不确定性中管理风险？**
 
@@ -175,6 +190,10 @@
 | [《战争论》](./b/book-on-war.md) | 战争、政治与战略之间的深层关系 |
 | [《乌合之众》](./b/book-the-crowd.md) | 群体心理如何放大情绪、暗示与极端化 |
 | [《权力：庙堂博弈的底层逻辑》](./b/book-power-the-hidden-logic.md) | 解析权力运作的底层规则：依赖关系、信息战与联盟维系 |
+| [《可能性的艺术：比较政治学 30 讲》](./b/book-art-of-possibility-comparative-politics.md) | 刘瑜：为什么不同国家走向不同政治路径——破除"历史必然论"的单线叙事 |
+| [《民主的细节》](./b/book-democracy-in-detail.md) | 刘瑜：从美国政治的具体细节看民主作为"活的制度"的真实面貌 |
+| [《观念的水位》](./b/book-the-water-level-of-ideas.md) | 刘瑜：观念不是空谈，它是制度变迁的真正驱动力 |
+| [《送你一颗子弹》](./b/book-a-bullet-for-you.md) | 刘瑜：一个知识人在剑桥的日记——如何好奇、孤独、思考与自己和解 |
 
 **历史如何塑造今天的世界？**
 
@@ -186,6 +205,10 @@
 | [一战后的中东历史](./h/history-middle-east-after-ww1.md) | 现代中东格局如何形成，以及为何长期动荡 |
 | [伊斯兰教](./i/islam.md) | 从宗教、历史与文明影响理解伊斯兰世界 |
 | [《中国历史的地理密码》](./b/book-geographic-code-of-chinese-history.md) | 郭建龙从地理视角解读中国历史的分合规律与文明演变 |
+| [《历史深处的忧虑》](./b/book-near-to-the-wild-heart-of-life.md) | 林达：近距离看美国——宪法、司法与民权，自由究竟从何处生长 |
+| [《总统是靠不住的》](./b/book-the-president-is-not-reliable.md) | 林达："好的制度不依赖好人，而是设计来约束坏人"——三权分立与水门事件 |
+| [《我也有一个梦想》](./b/book-i-have-a-dream-too.md) | 林达：马丁·路德·金与美国民权运动——自由不是被赠予的，是被争取的 |
+| [《如彗星划过夜空》](./b/book-like-a-comet-crossing-the-night-sky.md) | 林达：每个人都像彗星，在历史夜空中短暂划过，留下的光迹才是意义所在 |
 
 ### 人类的未来
 
