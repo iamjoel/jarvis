@@ -39,6 +39,7 @@
 | [《控糖革命》](./g/glucose-revolution.md) | 血糖波动如何影响精力、体重、食欲与衰老 |
 | [《疯狂的尿酸》](./u/uric-acid.md) | 尿酸、果糖与代谢综合征之间的隐藏联系 |
 | [《长寿饮食》](./b/book-the-longevity-diet.md) | 饮食模式如何作用于衰老与疾病风险 |
+| [《空腹力革命》](./b/book-empty-stomach-revolution.md) | 石原结实从医学角度阐述空腹状态如何激活自愈力、提升免疫与延缓衰老 |
 
 ### 心理与内在
 
@@ -107,6 +108,7 @@
 |------|------|
 | [为什么是智人统治了世界？](./s/why-sapiens-rule-the-world.md) | 从认知革命与集体想象力解释智人的优势 |
 | [《人类简史》](./b/book-sapiens.md) | 从认知革命、农业革命到科学革命的人类总叙事 |
+| [《原始富足：布须曼人的生活之道》](./b/book-affluence-without-abundance.md) | 布须曼人每周工作15小时、平等而富足，揭示人类天然状态与现代欲望陷阱 |
 
 **为什么不同社会的发展会出现巨大差距？**
 
@@ -160,6 +162,7 @@
 | [《思考，快与慢》](./b/book-thinking-fast-and-slow.md) | 从系统 1 / 系统 2 理解决策偏差 |
 | [《怪诞行为学》](./b/book-predictably-irrational.md) | 解释日常选择中稳定而可预测的非理性 |
 | [《系统之美》](./b/book-thinking-in-systems.md) | 学会从反馈回路和整体结构看问题 |
+| [《影响力》](./b/book-influence.md) | 西奥迪尼揭示说服与顺从背后的六大心理原则 |
 
 ### 政治、历史与权力
 
@@ -171,6 +174,7 @@
 | [《1984》](./b/book-1984.md) | 极权如何通过语言、监视与恐惧塑造现实 |
 | [《战争论》](./b/book-on-war.md) | 战争、政治与战略之间的深层关系 |
 | [《乌合之众》](./b/book-the-crowd.md) | 群体心理如何放大情绪、暗示与极端化 |
+| [《权力：庙堂博弈的底层逻辑》](./b/book-power-the-hidden-logic.md) | 解析权力运作的底层规则：依赖关系、信息战与联盟维系 |
 
 **历史如何塑造今天的世界？**
 
@@ -181,6 +185,7 @@
 | [日本近代史](./j/japan-modern-history.md) | 理解日本近代国家、产业与社会演变 |
 | [一战后的中东历史](./h/history-middle-east-after-ww1.md) | 现代中东格局如何形成，以及为何长期动荡 |
 | [伊斯兰教](./i/islam.md) | 从宗教、历史与文明影响理解伊斯兰世界 |
+| [《中国历史的地理密码》](./b/book-geographic-code-of-chinese-history.md) | 郭建龙从地理视角解读中国历史的分合规律与文明演变 |
 
 ### 人类的未来
 
@@ -239,6 +244,7 @@
 | [《心智探奇》](./b/book-how-the-mind-works.md) | 从进化心理学理解心智结构与人类本性 |
 | [《哥德尔、艾舍尔、巴赫》](./b/book-godel-escher-bach.md) | 从数学、音乐、递归与符号系统思考意识 |
 | [《如何创造思维》](./b/book-how-to-create-a-mind.md) | 把心智理解为层级模式识别系统 |
+| [《维特根斯坦传：天才之为责任》](./b/book-wittgenstein-duty-of-genius.md) | 通过传记呈现维特根斯坦如何用语言哲学重塑人类对意义与思维边界的理解 |
 
 ### 人与自然
 
