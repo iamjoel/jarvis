@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>共识帝国 | 把《人类简史》玩出来</title>
+  <meta name="description" content="一个把《人类简史》做成轻游戏的单页静态网页：通过四个历史转折点理解共同叙事、农业代价、统一力量与科学革命。">
+  <style>
+    :root {
+      --bg: oklch(95% 0.024 75);
+      --bg-deep: oklch(89% 0.036 75);
+      --paper: oklch(98% 0.012 82);
+      --paper-2: oklch(95.5% 0.014 82);
+      --ink: oklch(23% 0.022 45);
+      --muted: oklch(47% 0.03 48);
+      --soft: oklch(74% 0.028 64);
+      --accent: oklch(56% 0.136 36);
+      --accent-strong: oklch(42% 0.12 32);
+      --accent-faint: oklch(90% 0.032 42);
+      --olive: oklch(58% 0.07 120);
+      --shadow: 0 26px 70px rgba(62, 44, 35, 0.12);
+      --shadow-soft: 0 16px 34px rgba(62, 44, 35, 0.08);
+      --radius-lg: 1.4rem;
+      --radius-xl: 2rem;
+      --content: 78rem;
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Songti SC", "Noto Serif SC", serif;
+      --body: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at top left, rgba(189, 114, 78, 0.14), transparent 26rem),
+        radial-gradient(circle at 86% 10%, rgba(136, 145, 100, 0.14), transparent 20rem),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.22;
+      background:
+        repeating-linear-gradient(
+          112deg,
+          transparent 0 24px,
+          rgba(92, 73, 61, 0.022) 24px 26px,
+          transparent 26px 48px
+        ),
+        repeating-radial-gradient(
+          circle at 10% 20%,
+          rgba(92, 73, 61, 0.03) 0 1px,
+          transparent 1px 16px
+        );
+    }
+
+    a,
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .shell {
+      width: min(calc(100% - 1.5rem), var(--content));
+      margin: 0 auto;
+      padding: 1rem 0 3rem;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+      gap: clamp(1.25rem, 3vw, 2.75rem);
+      padding: clamp(1.6rem, 4vw, 3.6rem);
+      margin-top: 1rem;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(251, 247, 241, 0.98), rgba(247, 238, 227, 0.95)),
+        var(--paper);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "SAPIENS";
+      position: absolute;
+      right: clamp(1rem, 4vw, 3rem);
+      top: 0.8rem;
+      font-family: var(--display);
+      font-size: clamp(3.2rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.06em;
+      color: rgba(140, 77, 50, 0.1);
+      pointer-events: none;
+    }
+
+    .kicker,
+    .section-kicker,
+    .small-label {
+      margin: 0;
+      color: var(--accent-strong);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1,
+    h2,
+    h3,
+    .verdict-value,
+    .metric-value {
+      font-family: var(--display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      margin: 0.65rem 0 0;
+      max-width: 11ch;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.92;
+    }
+
+    .hero-subtitle {
+      margin: 1.2rem 0 0;
+      max-width: 43rem;
+      font-size: 1.08rem;
+      color: color-mix(in oklab, var(--ink) 82%, var(--muted));
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.6rem;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .ghost-button,
+    .chip-button,
+    .choice-card {
+      transition:
+        transform 200ms var(--ease),
+        box-shadow 200ms var(--ease),
+        background-color 200ms var(--ease),
+        color 200ms var(--ease),
+        opacity 200ms var(--ease);
+    }
+
+    .primary-button,
+    .secondary-button,
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .primary-button {
+      background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 90%, white), var(--accent-strong));
+      color: var(--paper);
+      box-shadow: 0 16px 32px rgba(115, 54, 32, 0.24);
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover,
+    .ghost-button:hover,
+    .choice-card:hover,
+    .chip-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .secondary-button {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink);
+    }
+
+    .ghost-button {
+      background: rgba(123, 69, 45, 0.08);
+      color: var(--accent-strong);
+    }
+
+    .hero-note {
+      display: grid;
+      gap: 0.9rem;
+      align-content: start;
+      padding: 1.1rem;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(255, 251, 246, 0.94), rgba(247, 238, 227, 0.88));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .stat-inline {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .stat-inline strong {
+      font-size: 1.12rem;
+      color: var(--ink);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.88fr);
+      gap: 1.1rem;
+      margin-top: 1.2rem;
+      align-items: start;
+    }
+
+    .panel {
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(252, 248, 243, 0.96), rgba(245, 237, 229, 0.92));
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .play-panel {
+      display: grid;
+      gap: 1rem;
+      padding: clamp(1.15rem, 2vw, 1.6rem);
+    }
+
+    .stage-head {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .stage-topline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: space-between;
+    }
+
+    .stage-count {
+      padding: 0.32rem 0.72rem;
+      border-radius: 999px;
+      background: rgba(124, 71, 47, 0.08);
+      color: var(--accent-strong);
+      font-size: 0.8rem;
+      font-weight: 750;
+      letter-spacing: 0.04em;
+    }
+
+    .stage-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 0.96;
+    }
+
+    .stage-question {
+      margin: 0;
+      max-width: 52ch;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .choice-card {
+      display: grid;
+      gap: 0.55rem;
+      text-align: left;
+      padding: 1.1rem 1rem 1rem;
+      border-radius: 1.3rem;
+      background: rgba(255, 252, 247, 0.92);
+      box-shadow: inset 0 0 0 1px rgba(128, 94, 75, 0.08);
+    }
+
+    .choice-card.is-selected {
+      background: color-mix(in oklab, var(--accent-faint) 78%, white);
+      box-shadow:
+        inset 0 0 0 1px rgba(128, 94, 75, 0.12),
+        0 16px 26px rgba(123, 69, 45, 0.12);
+    }
+
+    .choice-card[disabled] {
+      cursor: default;
+      opacity: 0.92;
+    }
+
+    .choice-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      font-size: 1.06rem;
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    .choice-summary,
+    .choice-tradeoff {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .choice-tradeoff strong {
+      color: var(--accent-strong);
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.85rem;
+      align-items: center;
+      padding-top: 0.2rem;
+    }
+
+    .micro-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .feedback-block {
+      display: grid;
+      gap: 0.9rem;
+      padding: 1rem;
+      border-radius: 1.3rem;
+      background: rgba(255, 252, 247, 0.74);
+    }
+
+    .feedback-block h3,
+    .systems-panel h3,
+    .summary-panel h3 {
+      margin: 0;
+      font-size: 1.16rem;
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .feedback-card {
+      padding: 0.9rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .feedback-card p,
+    .feedback-body,
+    .logic-note,
+    .summary-panel p,
+    .systems-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .feedback-body {
+      font-size: 0.98rem;
+    }
+
+    .logic-note {
+      padding: 0.85rem 0.95rem;
+      border-radius: 1rem;
+      background: rgba(124, 71, 47, 0.08);
+      color: color-mix(in oklab, var(--ink) 84%, var(--muted));
+    }
+
+    .systems-panel {
+      display: grid;
+      gap: 1rem;
+      padding: clamp(1rem, 2vw, 1.25rem);
+      position: sticky;
+      top: 0.8rem;
+    }
+
+    .metric-stack,
+    .timeline,
+    .concept-list,
+    .path-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .metric {
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .metric-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .metric-label {
+      font-size: 0.92rem;
+      font-weight: 730;
+      color: var(--ink);
+    }
+
+    .metric-value {
+      font-size: 1.08rem;
+      color: var(--accent-strong);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-track {
+      height: 0.7rem;
+      border-radius: 999px;
+      background: rgba(112, 90, 76, 0.12);
+      overflow: hidden;
+    }
+
+    .metric-fill {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      transition: width 420ms var(--ease), background-color 220ms var(--ease);
+      background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 86%, white), var(--accent-strong));
+    }
+
+    .metric-scale .metric-fill {
+      background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 84%, white), color-mix(in oklab, var(--accent) 60%, var(--olive)));
+    }
+
+    .metric-cooperation .metric-fill {
+      background: linear-gradient(90deg, color-mix(in oklab, var(--olive) 58%, white), var(--olive));
+    }
+
+    .metric-order .metric-fill {
+      background: linear-gradient(90deg, color-mix(in oklab, var(--accent-strong) 76%, white), var(--accent-strong));
+    }
+
+    .metric-knowledge .metric-fill {
+      background: linear-gradient(90deg, color-mix(in oklab, var(--soft) 66%, white), var(--accent));
+    }
+
+    .metric-wellbeing .metric-fill {
+      background: linear-gradient(90deg, color-mix(in oklab, var(--olive) 42%, white), color-mix(in oklab, var(--olive) 76%, var(--accent)));
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.8rem;
+      align-items: start;
+      opacity: 0.55;
+      transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+    }
+
+    .timeline-item.is-reached,
+    .timeline-item.is-current {
+      opacity: 1;
+    }
+
+    .timeline-item.is-current {
+      transform: translateX(0.2rem);
+    }
+
+    .timeline-dot {
+      width: 0.92rem;
+      height: 0.92rem;
+      margin-top: 0.3rem;
+      border-radius: 999px;
+      background: rgba(112, 90, 76, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(112, 90, 76, 0.12);
+    }
+
+    .timeline-item.is-reached .timeline-dot,
+    .timeline-item.is-current .timeline-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 0.28rem rgba(174, 89, 52, 0.12);
+    }
+
+    .timeline-title {
+      font-weight: 760;
+      color: var(--ink);
+    }
+
+    .timeline-copy {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .network {
+      display: grid;
+      gap: 0.95rem;
+      padding: 1rem;
+      border-radius: 1.3rem;
+      background: rgba(255, 252, 247, 0.7);
+    }
+
+    .network-stage {
+      position: relative;
+      min-height: 13rem;
+    }
+
+    .network-ring {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      border: 1px dashed rgba(119, 90, 72, 0.18);
+      opacity: 0.2;
+      transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+    }
+
+    .network-ring.is-on {
+      opacity: 1;
+    }
+
+    .ring-1 { width: 4.6rem; height: 4.6rem; }
+    .ring-2 { width: 8rem; height: 8rem; }
+    .ring-3 { width: 11.6rem; height: 11.6rem; }
+    .ring-4 { width: 15rem; height: 15rem; }
+
+    .network-node {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 4.8rem;
+      min-height: 4.8rem;
+      padding: 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 252, 247, 0.9);
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 760;
+      box-shadow: inset 0 0 0 1px rgba(112, 90, 76, 0.08);
+      transform: translate(-50%, -50%) scale(0.82);
+      opacity: 0.3;
+      transition: transform 260ms var(--ease), opacity 260ms var(--ease), color 260ms var(--ease), box-shadow 260ms var(--ease);
+      text-align: center;
+    }
+
+    .network-node.is-on {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      color: var(--ink);
+      box-shadow:
+        inset 0 0 0 1px rgba(112, 90, 76, 0.08),
+        0 14px 26px rgba(124, 71, 47, 0.12);
+    }
+
+    .node-band { left: 50%; top: 50%; }
+    .node-village { left: 50%; top: 20%; }
+    .node-city { left: 78%; top: 50%; }
+    .node-empire { left: 50%; top: 80%; }
+    .node-lab { left: 22%; top: 50%; }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .chip-button {
+      padding: 0.58rem 0.82rem;
+      border-radius: 999px;
+      background: rgba(255, 252, 247, 0.88);
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 740;
+      box-shadow: inset 0 0 0 1px rgba(112, 90, 76, 0.08);
+    }
+
+    .chip-button[hidden] {
+      display: none;
+    }
+
+    .chip-button.is-active {
+      background: rgba(124, 71, 47, 0.1);
+      color: var(--accent-strong);
+    }
+
+    .concept-detail {
+      min-height: 4.5rem;
+      padding: 0.95rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .path-item {
+      padding: 0.8rem 0.92rem;
+      border-radius: 1rem;
+      background: rgba(255, 252, 247, 0.7);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .path-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--ink);
+    }
+
+    .summary-panel {
+      margin-top: 1.15rem;
+      padding: clamp(1rem, 2vw, 1.3rem);
+      display: grid;
+      gap: 1rem;
+    }
+
+    .final-panel {
+      display: none;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 1.3rem;
+      background:
+        linear-gradient(145deg, rgba(249, 241, 231, 0.96), rgba(245, 235, 223, 0.92));
+    }
+
+    .final-panel.is-visible {
+      display: grid;
+    }
+
+    .verdict-wrap {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .verdict-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .verdict-value {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 0.9;
+      color: var(--accent-strong);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .verdict-track {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 0.8rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(126, 90, 70, 0.14), rgba(174, 89, 52, 0.3));
+      outline: none;
+    }
+
+    .verdict-track::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--accent-strong);
+      border: 0;
+      box-shadow: 0 8px 18px rgba(115, 54, 32, 0.24);
+    }
+
+    .verdict-track::-moz-range-thumb {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent-strong);
+      box-shadow: 0 8px 18px rgba(115, 54, 32, 0.24);
+    }
+
+    .verdict-scale {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .result-card {
+      display: none;
+      gap: 0.8rem;
+      padding: 0.95rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.54);
+    }
+
+    .result-card.is-visible {
+      display: grid;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .answer {
+      padding: 0.9rem;
+      border-radius: 1rem;
+      background: rgba(255, 252, 247, 0.68);
+    }
+
+    .answer strong {
+      display: block;
+      margin-bottom: 0.28rem;
+      color: var(--ink);
+    }
+
+    .footer-note {
+      margin-top: 1.2rem;
+      padding: 0 0.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .systems-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(calc(100% - 1rem), var(--content));
+      }
+
+      .hero {
+        padding: 1.2rem;
+      }
+
+      .feedback-grid,
+      .answers {
+        grid-template-columns: 1fr;
+      }
+
+      .control-row {
+        align-items: stretch;
+      }
+
+      .primary-button,
+      .secondary-button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition-duration: 0ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="hero panel">
+      <div class="hero-copy">
+        <p class="kicker">Book To Game / Sapiens</p>
+        <h1>共识帝国<span class="visually-hidden">：</span></h1>
+        <p class="hero-subtitle">
+          把《人类简史》压缩成一场 3–8 分钟的文明推演。你不会扮演英雄，而是扮演一套不断扩张的人类组织逻辑：先讲故事，再种小麦，再发明统一秩序，最后承认无知并持续加速。
+        </p>
+        <div class="hero-actions">
+          <button class="primary-button" id="startButton">开始推演</button>
+          <button class="secondary-button" id="restartHeroButton">重新开始</button>
+        </div>
+      </div>
+      <aside class="hero-note">
+        <p class="section-kicker">你要回答的不是胜负</p>
+        <div class="stat-inline">
+          <strong>智人为什么赢了？</strong>
+          <p>因为能让陌生人相信同一个故事，从而在更大尺度上协作。</p>
+        </div>
+        <div class="stat-inline">
+          <strong>文明更强，是否就更幸福？</strong>
+          <p>这正是赫拉利要你怀疑的地方。你会在最后亲自做一次判断。</p>
+        </div>
+        <div class="stat-inline">
+          <strong>玩法结构</strong>
+          <p>四幕选择、五项指标、一次结尾判决。没有“正确路线”，只有不同的历史代价。</p>
+        </div>
+      </aside>
+    </header>
+
+    <main id="gameArea">
+      <section class="play-panel panel" aria-labelledby="stageTitle">
+        <div class="stage-head">
+          <div class="stage-topline">
+            <p class="small-label">历史推演</p>
+            <div class="stage-count" id="stageCount">第 1 / 4 幕</div>
+          </div>
+          <h2 class="stage-title" id="stageTitle">等待开始</h2>
+          <p class="stage-question" id="stageQuestion">点击“开始推演”，进入第一个历史转折点。</p>
+        </div>
+
+        <div class="choice-grid" id="choiceGrid" aria-live="polite"></div>
+
+        <div class="control-row">
+          <p class="micro-note" id="selectionHint">先做出一个选择，再进入下一幕。</p>
+          <div class="hero-actions" style="margin-top: 0;">
+            <button class="ghost-button" id="restartButton">重置路线</button>
+            <button class="primary-button" id="nextButton" disabled>进入下一幕</button>
+          </div>
+        </div>
+
+        <section class="feedback-block" aria-labelledby="feedbackTitle">
+          <div class="stage-topline">
+            <h3 id="feedbackTitle">后果回声</h3>
+            <p class="small-label" id="feedbackTag">尚未选择</p>
+          </div>
+          <p class="feedback-body" id="feedbackBody">
+            每一幕都会让你看到一个关键张力：系统变大了，个体是否也过得更好了？
+          </p>
+          <div class="feedback-grid">
+            <div class="feedback-card">
+              <p class="small-label">你得到什么</p>
+              <p id="gainText">开始后，这里会显示你获得的能力。</p>
+            </div>
+            <div class="feedback-card">
+              <p class="small-label">你失去什么</p>
+              <p id="costText">开始后，这里会显示你付出的代价。</p>
+            </div>
+          </div>
+          <p class="logic-note" id="logicNote">
+            这不是历史百科，而是一本书的核心逻辑模型。
+          </p>
+        </section>
+
+        <section class="final-panel" id="finalPanel" aria-labelledby="finalTitle">
+          <div class="stage-topline">
+            <h3 id="finalTitle">最后一问</h3>
+            <p class="small-label">文明判决</p>
+          </div>
+          <p class="feedback-body">
+            现在请你先给出自己的判断：你的这条历史路线，让人类整体变得更幸福了吗？
+          </p>
+          <div class="verdict-wrap">
+            <div class="verdict-top">
+              <div>
+                <p class="small-label">你的判断值</p>
+                <div class="verdict-value" id="verdictValue">50</div>
+              </div>
+              <p class="feedback-body" id="verdictLabel">中性怀疑</p>
+            </div>
+            <label for="verdictSlider" class="visually-hidden">文明是否更幸福</label>
+            <input class="verdict-track" id="verdictSlider" type="range" min="0" max="100" step="1" value="50">
+            <div class="verdict-scale">
+              <span>0 · 文明更强，但未必更幸福</span>
+              <span>100 · 文明越进步，人就越幸福</span>
+            </div>
+            <button class="primary-button" id="submitVerdictButton">提交判断</button>
+          </div>
+
+          <div class="result-card" id="resultCard">
+            <h3>系统回收</h3>
+            <p class="feedback-body" id="resultSummary"></p>
+            <p class="logic-note" id="resultLogic"></p>
+            <div class="answers">
+              <div class="answer">
+                <strong>这本书在回答什么问题？</strong>
+                <span id="answerQuestion">等待结算。</span>
+              </div>
+              <div class="answer">
+                <strong>作者的核心结论是什么？</strong>
+                <span id="answerConclusion">等待结算。</span>
+              </div>
+              <div class="answer">
+                <strong>哪些关键因素彼此相关？</strong>
+                <span id="answerRelations">等待结算。</span>
+              </div>
+              <div class="answer">
+                <strong>为什么这个结论重要？</strong>
+                <span id="answerImportance">等待结算。</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="systems-panel panel">
+        <section>
+          <div class="stage-topline">
+            <h3>文明仪表</h3>
+            <p class="small-label">实时变化</p>
+          </div>
+          <div class="metric-stack">
+            <div class="metric metric-scale">
+              <div class="metric-top">
+                <span class="metric-label">规模</span>
+                <span class="metric-value" id="scaleValue">18</span>
+              </div>
+              <div class="metric-track"><span class="metric-fill" id="scaleFill"></span></div>
+            </div>
+            <div class="metric metric-cooperation">
+              <div class="metric-top">
+                <span class="metric-label">协作</span>
+                <span class="metric-value" id="cooperationValue">24</span>
+              </div>
+              <div class="metric-track"><span class="metric-fill" id="cooperationFill"></span></div>
+            </div>
+            <div class="metric metric-order">
+              <div class="metric-top">
+                <span class="metric-label">秩序</span>
+                <span class="metric-value" id="orderValue">18</span>
+              </div>
+              <div class="metric-track"><span class="metric-fill" id="orderFill"></span></div>
+            </div>
+            <div class="metric metric-knowledge">
+              <div class="metric-top">
+                <span class="metric-label">知识</span>
+                <span class="metric-value" id="knowledgeValue">12</span>
+              </div>
+              <div class="metric-track"><span class="metric-fill" id="knowledgeFill"></span></div>
+            </div>
+            <div class="metric metric-wellbeing">
+              <div class="metric-top">
+                <span class="metric-label">福祉</span>
+                <span class="metric-value" id="wellbeingValue">64</span>
+              </div>
+              <div class="metric-track"><span class="metric-fill" id="wellbeingFill"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="stage-topline">
+            <h3>时间线</h3>
+            <p class="small-label">四个转折点</p>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </section>
+
+        <section class="network">
+          <div class="stage-topline">
+            <h3>共识地图</h3>
+            <p class="small-label">你能组织多大范围的人</p>
+          </div>
+          <div class="network-stage" aria-hidden="true">
+            <div class="network-ring ring-1" id="ring1"></div>
+            <div class="network-ring ring-2" id="ring2"></div>
+            <div class="network-ring ring-3" id="ring3"></div>
+            <div class="network-ring ring-4" id="ring4"></div>
+            <div class="network-node node-band" id="nodeBand">部落</div>
+            <div class="network-node node-village" id="nodeVillage">村落</div>
+            <div class="network-node node-city" id="nodeCity">城邦</div>
+            <div class="network-node node-empire" id="nodeEmpire">帝国</div>
+            <div class="network-node node-lab" id="nodeLab">实验室</div>
+          </div>
+          <p id="networkCaption">你现在更像一支仍靠熟人关系维持秩序的小群体。</p>
+        </section>
+
+        <section>
+          <div class="stage-topline">
+            <h3>概念芯片</h3>
+            <p class="small-label">hover / 点击复习</p>
+          </div>
+          <div class="chip-row concept-list" id="conceptList"></div>
+          <div class="concept-detail" id="conceptDetail">开始推演后，相关概念会逐步解锁。</div>
+        </section>
+
+        <section>
+          <div class="stage-topline">
+            <h3>你的路线</h3>
+            <p class="small-label">已选历史路径</p>
+          </div>
+          <div class="path-list" id="pathList">
+            <div class="path-item">你还没有作出选择。</div>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <section class="summary-panel panel">
+      <div class="stage-topline">
+        <h3>这页想让你带走什么</h3>
+        <p class="small-label">阅读回收</p>
+      </div>
+      <p>《人类简史》的关键，不是记住更多历史细节，而是记住一个结构：智人靠想象秩序做大规模合作，靠农业、统一力量与科学持续放大能力，但“系统更强”与“人更幸福”从来不是同一件事。</p>
+    </section>
+
+    <p class="footer-note">
+      提示：这是一个帮助理解全书主轴的交互模型，不是完整历史模拟器。想看完整设计说明，请阅读同目录下的 `design.md`。
+    </p>
+  </div>
+
+  <noscript>
+    <div class="shell">
+      <p class="footer-note">此页面需要 JavaScript 才能运行交互逻辑。</p>
+    </div>
+  </noscript>
+
+  <script>
+    const stages = [
+      {
+        id: "cognitive",
+        title: "第一幕：认知革命",
+        question: "150 名智人分散在同一片草原。你要怎么让陌生人彼此协作，而不是只停留在熟人小圈子？",
+        tag: "共同叙事",
+        choices: [
+          {
+            title: "继续依赖熟人八卦",
+            summary: "只传播关于真实个体的信息，让合作维持在彼此认识的小群体里。",
+            tradeoff: "福祉较高，但扩张能力很弱。",
+            gain: "你保住了小群体的灵活与日常舒适。",
+            cost: "你几乎不可能组织大规模陌生人协作。",
+            logic: "这对应赫拉利区分人类与其他动物的关键线：仅靠关于真实个体的信息，不足以支撑大规模合作。",
+            delta: { scale: 6, cooperation: 7, order: 4, knowledge: 2, wellbeing: 8 }
+          },
+          {
+            title: "发明共享祖灵与旗号",
+            summary: "让人相信同一套祖先神话、部落徽记与仪式，从而为陌生人建立信任。",
+            tradeoff: "协作能力显著上升，但你必须持续维护共同想象。",
+            gain: "陌生人开始因为共同故事而站到一起。",
+            cost: "社会需要不断重复仪式与象征，维持这套故事的有效性。",
+            logic: "这就是《人类简史》的核心：智人能讲述并共享虚构故事，因此能进行灵活的大规模合作。",
+            delta: { scale: 22, cooperation: 20, order: 10, knowledge: 4, wellbeing: 2 }
+          },
+          {
+            title: "依靠威吓与首领崇拜",
+            summary: "用等级、惩罚与神化领袖快速收拢人群。",
+            tradeoff: "秩序建立得快，但协作更脆弱，福祉明显下降。",
+            gain: "你得到了一种效率极高的短期服从结构。",
+            cost: "社会更依赖恐惧而非共享认同，长期韧性不足。",
+            logic: "强制也能形成秩序，但它不是赫拉利强调的那种可跨区域、可复制的灵活协作。",
+            delta: { scale: 12, cooperation: 5, order: 18, knowledge: 1, wellbeing: -8 }
+          }
+        ]
+      },
+      {
+        id: "agriculture",
+        title: "第二幕：农业交易",
+        question: "人口开始增长。你会如何解决食物问题？扩大供给，往往意味着更辛苦、更单一的生活。",
+        tag: "农业革命",
+        choices: [
+          {
+            title: "维持狩猎采集",
+            summary: "继续保持流动生活、食物多样性与较高自主性。",
+            tradeoff: "个体生活质量好，但社会规模受限。",
+            gain: "你保留了更轻的劳动负担和更灵活的生活方式。",
+            cost: "你的文明很难积累 surplus，也难支撑复杂层级结构。",
+            logic: "赫拉利并不是浪漫化原始社会，而是提醒我们：农业带来的“进步”并不自动等于个体过得更好。",
+            delta: { scale: 4, cooperation: 5, order: 2, knowledge: 3, wellbeing: 10 }
+          },
+          {
+            title: "混合种植，缓慢定居",
+            summary: "在保留部分采集弹性的同时，开始积累可预测粮食。",
+            tradeoff: "这是折中路径：规模与福祉都温和变化。",
+            gain: "你获得了更稳定的供给与更持续的聚落组织。",
+            cost: "劳动开始加重，生活自由度开始下降。",
+            logic: "农业并非只有一个结果，它的核心在于用更稳定的产出换取更高的人口密度与更重的结构约束。",
+            delta: { scale: 14, cooperation: 8, order: 8, knowledge: 4, wellbeing: -4 }
+          },
+          {
+            title: "全力押注小麦 surplus",
+            summary: "迅速定居、扩张耕地、提高总产量，让更多人口被土地绑定。",
+            tradeoff: "规模暴涨，但个体劳动、疾病与脆弱性显著增加。",
+            gain: "你拥有了喂养更大社会的基础。",
+            cost: "你也让更多人陷入更辛苦、更单调、更易受灾的生活。",
+            logic: "这正对应赫拉利的著名挑衅：农业革命在系统层面扩大了人类社会，但未必让多数个体活得更好。",
+            delta: { scale: 24, cooperation: 10, order: 12, knowledge: 4, wellbeing: -16 }
+          }
+        ]
+      },
+      {
+        id: "unification",
+        title: "第三幕：统一陌生人",
+        question: "你的社会横跨更大区域。现在需要一种更强的统一力量，把彼此陌生的人编进同一张网。",
+        tag: "互联主观现实",
+        choices: [
+          {
+            title: "让货币成为通用语言",
+            summary: "把价值抽象成人人都能接受的交换符号。",
+            tradeoff: "交换效率高，但人际关系更容易被价格逻辑吞没。",
+            gain: "陌生人之间获得了极高的可扩展信任。",
+            cost: "你把越来越多的关系压缩成可交易的价值。",
+            logic: "赫拉利把货币视为最普遍的相互信任系统之一，本质仍是被共同相信的故事。",
+            delta: { scale: 18, cooperation: 16, order: 8, knowledge: 6, wellbeing: -4 }
+          },
+          {
+            title: "用帝国统一尺度",
+            summary: "借助征服、行政、标准化与基础设施扩张秩序。",
+            tradeoff: "秩序和规模最强，但压迫与同质化代价最大。",
+            gain: "你建立了覆盖广域的行政机器与共同规则。",
+            cost: "统一往往伴随暴力、强制与边缘群体的损失。",
+            logic: "帝国在书中不是偶然插曲，而是让不同文化被拉进更大秩序的关键机制之一。",
+            delta: { scale: 22, cooperation: 10, order: 20, knowledge: 6, wellbeing: -10 }
+          },
+          {
+            title: "传播普世宗教",
+            summary: "让跨族群的人因为共享意义与终极秩序而愿意归属同一世界。",
+            tradeoff: "意义感更强，但也会带来教义约束与排他性。",
+            gain: "你得到了一种比血缘更大、比价格更深的共同认同。",
+            cost: "当不同真理系统冲突时，统一也会变成新的分裂来源。",
+            logic: "在赫拉利那里，宗教与货币、帝国并列，都是把陌生人捆在一起的 imagined order。",
+            delta: { scale: 16, cooperation: 14, order: 12, knowledge: 4, wellbeing: -1 }
+          }
+        ]
+      },
+      {
+        id: "science",
+        title: "第四幕：承认无知",
+        question: "旧世界已成型。下一步，你要如何面对未知？继续相信既有真理，还是把“我们不知道”变成新引擎？",
+        tag: "科学革命",
+        choices: [
+          {
+            title: "守住既有秩序",
+            summary: "优先维护稳定，相信祖先知识与现有体系已经足够。",
+            tradeoff: "短期秩序稳定，但创新与扩张放缓。",
+            gain: "你减少了社会失控和剧烈波动的风险。",
+            cost: "你也放慢了技术、知识与新的组织能力。",
+            logic: "这条路说明：没有“承认无知”，就很难出现赫拉利所说的现代知识爆炸。",
+            delta: { scale: 4, cooperation: 3, order: 10, knowledge: -6, wellbeing: 2 }
+          },
+          {
+            title: "建立好奇心共同体",
+            summary: "鼓励观察、实验、修正错误，把未知当作可探索对象。",
+            tradeoff: "知识上升明显，但节奏更不稳定。",
+            gain: "你开启了系统性的求知能力。",
+            cost: "旧权威受到挑战，社会需要适应不确定性。",
+            logic: "科学革命真正特别的地方，不是自信地宣称真理，而是承认自己无知，并用方法去补足它。",
+            delta: { scale: 10, cooperation: 5, order: -2, knowledge: 18, wellbeing: -2 }
+          },
+          {
+            title: "把科学、资本与扩张绑在一起",
+            summary: "把探索、商业与地缘扩张相互加速，快速积累能力。",
+            tradeoff: "文明力量冲到最高，但个体感受未必同步改善。",
+            gain: "你获得了前所未有的知识速度与系统力量。",
+            cost: "加速也意味着更深的不平等、更强的异化与更高的心理张力。",
+            logic: "赫拉利指出现代力量并非只来自科学本身，而来自科学、资本和帝国逻辑的联动。",
+            delta: { scale: 18, cooperation: 8, order: 8, knowledge: 24, wellbeing: -8 }
+          }
+        ]
+      }
+    ];
+
+    const conceptMap = [
+      {
+        id: "imagined",
+        label: "想象秩序",
+        unlockStage: 0,
+        detail: "指那些并不存在于物理世界，却被大量人共同相信、因而具有真实力量的秩序，如国家、公司、货币、人权。"
+      },
+      {
+        id: "cognitive",
+        label: "认知革命",
+        unlockStage: 0,
+        detail: "约 7 万年前，智人开始具备讲述与传播虚构故事的能力，这是大规模合作的起点。"
+      },
+      {
+        id: "agriculture",
+        label: "农业交易",
+        unlockStage: 1,
+        detail: "农业提高了社会总产出与人口规模，却常常以个体更重的劳动、更高的风险和更单一的生活为代价。"
+      },
+      {
+        id: "unification",
+        label: "统一力量",
+        unlockStage: 2,
+        detail: "货币、帝国、宗教虽然形式不同，但都能把陌生人整合进更大的共同体，因此都属于互联主观现实。"
+      },
+      {
+        id: "ignorance",
+        label: "承认无知",
+        unlockStage: 3,
+        detail: "科学革命的真正起点不是“我知道”，而是“我不知道，所以我要系统探索”。"
+      }
+    ];
+
+    const initialMetrics = {
+      scale: 18,
+      cooperation: 24,
+      order: 18,
+      knowledge: 12,
+      wellbeing: 64
+    };
+
+    const state = {
+      started: false,
+      stageIndex: 0,
+      metrics: { ...initialMetrics },
+      selectedChoiceIndex: null,
+      picks: [],
+      verdict: 50
+    };
+
+    const elements = {
+      startButton: document.getElementById("startButton"),
+      restartHeroButton: document.getElementById("restartHeroButton"),
+      restartButton: document.getElementById("restartButton"),
+      nextButton: document.getElementById("nextButton"),
+      stageCount: document.getElementById("stageCount"),
+      stageTitle: document.getElementById("stageTitle"),
+      stageQuestion: document.getElementById("stageQuestion"),
+      choiceGrid: document.getElementById("choiceGrid"),
+      selectionHint: document.getElementById("selectionHint"),
+      feedbackTag: document.getElementById("feedbackTag"),
+      feedbackBody: document.getElementById("feedbackBody"),
+      gainText: document.getElementById("gainText"),
+      costText: document.getElementById("costText"),
+      logicNote: document.getElementById("logicNote"),
+      timeline: document.getElementById("timeline"),
+      pathList: document.getElementById("pathList"),
+      conceptList: document.getElementById("conceptList"),
+      conceptDetail: document.getElementById("conceptDetail"),
+      networkCaption: document.getElementById("networkCaption"),
+      finalPanel: document.getElementById("finalPanel"),
+      verdictSlider: document.getElementById("verdictSlider"),
+      verdictValue: document.getElementById("verdictValue"),
+      verdictLabel: document.getElementById("verdictLabel"),
+      submitVerdictButton: document.getElementById("submitVerdictButton"),
+      resultCard: document.getElementById("resultCard"),
+      resultSummary: document.getElementById("resultSummary"),
+      resultLogic: document.getElementById("resultLogic"),
+      answerQuestion: document.getElementById("answerQuestion"),
+      answerConclusion: document.getElementById("answerConclusion"),
+      answerRelations: document.getElementById("answerRelations"),
+      answerImportance: document.getElementById("answerImportance")
+    };
+
+    const metricElements = {
+      scale: { value: document.getElementById("scaleValue"), fill: document.getElementById("scaleFill") },
+      cooperation: { value: document.getElementById("cooperationValue"), fill: document.getElementById("cooperationFill") },
+      order: { value: document.getElementById("orderValue"), fill: document.getElementById("orderFill") },
+      knowledge: { value: document.getElementById("knowledgeValue"), fill: document.getElementById("knowledgeFill") },
+      wellbeing: { value: document.getElementById("wellbeingValue"), fill: document.getElementById("wellbeingFill") }
+    };
+
+    const networkNodes = {
+      band: document.getElementById("nodeBand"),
+      village: document.getElementById("nodeVillage"),
+      city: document.getElementById("nodeCity"),
+      empire: document.getElementById("nodeEmpire"),
+      lab: document.getElementById("nodeLab")
+    };
+
+    const rings = [
+      document.getElementById("ring1"),
+      document.getElementById("ring2"),
+      document.getElementById("ring3"),
+      document.getElementById("ring4")
+    ];
+
+    function clamp(value) {
+      return Math.max(0, Math.min(100, value));
+    }
+
+    function resetState() {
+      state.started = true;
+      state.stageIndex = 0;
+      state.metrics = { ...initialMetrics };
+      state.selectedChoiceIndex = null;
+      state.picks = [];
+      state.verdict = 50;
+      elements.verdictSlider.value = "50";
+      elements.resultCard.classList.remove("is-visible");
+      elements.finalPanel.classList.remove("is-visible");
+      render();
+    }
+
+    function startGame() {
+      resetState();
+      document.getElementById("gameArea").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function getCurrentStage() {
+      return stages[state.stageIndex];
+    }
+
+    function describeVerdict(value) {
+      if (value <= 24) return "强烈怀疑";
+      if (value <= 44) return "偏向否定";
+      if (value <= 56) return "中性怀疑";
+      if (value <= 76) return "偏向肯定";
+      return "高度肯定";
+    }
+
+    function renderTimeline() {
+      elements.timeline.innerHTML = "";
+      stages.forEach((stage, index) => {
+        const item = document.createElement("div");
+        item.className = "timeline-item";
+        if (index < state.stageIndex || (index === state.stageIndex && state.started)) {
+          item.classList.add("is-reached");
+        }
+        if (index === state.stageIndex && state.started && state.stageIndex < stages.length) {
+          item.classList.add("is-current");
+        }
+        item.innerHTML = `
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-title">${stage.title}</div>
+            <div class="timeline-copy">${stage.tag}</div>
+          </div>
+        `;
+        elements.timeline.appendChild(item);
+      });
+    }
+
+    function renderMetrics() {
+      Object.entries(metricElements).forEach(([key, refs]) => {
+        const value = Math.round(state.metrics[key]);
+        refs.value.textContent = String(value);
+        refs.fill.style.width = `${value}%`;
+      });
+    }
+
+    function renderNetwork() {
+      const expansion = Math.round(
+        (state.metrics.scale + state.metrics.cooperation + state.metrics.order + state.metrics.knowledge) / 4
+      );
+
+      const bandOn = expansion >= 0;
+      const villageOn = expansion >= 28;
+      const cityOn = expansion >= 45;
+      const empireOn = expansion >= 63;
+      const labOn = state.metrics.knowledge >= 44;
+
+      networkNodes.band.classList.toggle("is-on", bandOn);
+      networkNodes.village.classList.toggle("is-on", villageOn);
+      networkNodes.city.classList.toggle("is-on", cityOn);
+      networkNodes.empire.classList.toggle("is-on", empireOn);
+      networkNodes.lab.classList.toggle("is-on", labOn);
+
+      rings[0].classList.toggle("is-on", villageOn);
+      rings[1].classList.toggle("is-on", cityOn);
+      rings[2].classList.toggle("is-on", empireOn);
+      rings[3].classList.toggle("is-on", labOn);
+
+      let caption = "你现在更像一支仍靠熟人关系维持秩序的小群体。";
+      if (villageOn) caption = "你的共同规则已经能支撑稳定村落。";
+      if (cityOn) caption = "你开始拥有跨聚落协作，城邦与市场得以出现。";
+      if (empireOn) caption = "你已经能把大范围陌生人纳入同一套制度或信念。";
+      if (labOn) caption = "你不仅在扩张地盘，也在扩张对世界的解释与控制能力。";
+      elements.networkCaption.textContent = caption;
+    }
+
+    function renderPath() {
+      elements.pathList.innerHTML = "";
+      if (!state.picks.length) {
+        elements.pathList.innerHTML = '<div class="path-item">你还没有作出选择。</div>';
+        return;
+      }
+
+      state.picks.forEach((pick, index) => {
+        const item = document.createElement("div");
+        item.className = "path-item";
+        item.innerHTML = `<strong>第 ${index + 1} 幕 · ${pick.stage}</strong>${pick.choice}`;
+        elements.pathList.appendChild(item);
+      });
+    }
+
+    function renderConcepts() {
+      elements.conceptList.innerHTML = "";
+
+      const unlocked = conceptMap.filter((concept) => concept.unlockStage <= state.picks.length - 1);
+      if (!unlocked.length) {
+        elements.conceptDetail.textContent = "开始推演后，相关概念会逐步解锁。";
+        return;
+      }
+
+      unlocked.forEach((concept, index) => {
+        const button = document.createElement("button");
+        button.className = "chip-button";
+        button.type = "button";
+        button.textContent = concept.label;
+        if (index === unlocked.length - 1) {
+          button.classList.add("is-active");
+          elements.conceptDetail.textContent = concept.detail;
+        }
+        button.addEventListener("mouseenter", () => {
+          setConceptActive(concept.id);
+        });
+        button.addEventListener("focus", () => {
+          setConceptActive(concept.id);
+        });
+        button.addEventListener("click", () => {
+          setConceptActive(concept.id);
+        });
+        button.dataset.conceptId = concept.id;
+        elements.conceptList.appendChild(button);
+      });
+    }
+
+    function setConceptActive(conceptId) {
+      const concept = conceptMap.find((item) => item.id === conceptId);
+      if (!concept) return;
+      document.querySelectorAll(".chip-button").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.conceptId === conceptId);
+      });
+      elements.conceptDetail.textContent = concept.detail;
+    }
+
+    function renderFeedback() {
+      if (!state.picks.length) {
+        elements.feedbackTag.textContent = "尚未选择";
+        elements.feedbackBody.textContent = "每一幕都会让你看到一个关键张力：系统变大了，个体是否也过得更好了？";
+        elements.gainText.textContent = "开始后，这里会显示你获得的能力。";
+        elements.costText.textContent = "开始后，这里会显示你付出的代价。";
+        elements.logicNote.textContent = "这不是历史百科，而是一本书的核心逻辑模型。";
+        return;
+      }
+
+      const lastPick = state.picks[state.picks.length - 1];
+      elements.feedbackTag.textContent = lastPick.tag;
+      elements.feedbackBody.textContent = `你刚刚选择了“${lastPick.choice}”。${lastPick.summary}`;
+      elements.gainText.textContent = lastPick.gain;
+      elements.costText.textContent = lastPick.cost;
+      elements.logicNote.textContent = lastPick.logic;
+    }
+
+    function renderStage() {
+      if (!state.started) {
+        elements.stageCount.textContent = "第 1 / 4 幕";
+        elements.stageTitle.textContent = "等待开始";
+        elements.stageQuestion.textContent = "点击“开始推演”，进入第一个历史转折点。";
+        elements.choiceGrid.innerHTML = "";
+        elements.nextButton.disabled = true;
+        elements.selectionHint.textContent = "先做出一个选择，再进入下一幕。";
+        return;
+      }
+
+      if (state.stageIndex >= stages.length) {
+        elements.stageCount.textContent = "第 4 / 4 幕";
+        elements.stageTitle.textContent = "四幕已完成";
+        elements.stageQuestion.textContent = "你已经建立起一条完整历史路线。现在，轮到你判断：文明变强之后，人类是否也更幸福了？";
+        elements.choiceGrid.innerHTML = "";
+        elements.nextButton.disabled = true;
+        elements.selectionHint.textContent = "滑动下方判决条并提交判断。";
+        elements.finalPanel.classList.add("is-visible");
+        return;
+      }
+
+      const stage = getCurrentStage();
+      elements.finalPanel.classList.remove("is-visible");
+      elements.stageCount.textContent = `第 ${state.stageIndex + 1} / ${stages.length} 幕`;
+      elements.stageTitle.textContent = stage.title;
+      elements.stageQuestion.textContent = stage.question;
+      elements.choiceGrid.innerHTML = "";
+
+      stage.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "choice-card";
+        button.innerHTML = `
+          <div class="choice-title">
+            <span>${choice.title}</span>
+            <span class="small-label">${stage.tag}</span>
+          </div>
+          <p class="choice-summary">${choice.summary}</p>
+          <p class="choice-tradeoff"><strong>取舍：</strong>${choice.tradeoff}</p>
+        `;
+        if (state.selectedChoiceIndex === index) {
+          button.classList.add("is-selected");
+        }
+        button.addEventListener("click", () => {
+          state.selectedChoiceIndex = index;
+          renderStage();
+          previewChoice(choice, stage);
+        });
+        elements.choiceGrid.appendChild(button);
+      });
+
+      elements.nextButton.disabled = state.selectedChoiceIndex === null;
+      elements.selectionHint.textContent = state.selectedChoiceIndex === null
+        ? "选一条历史路径，再推进时间。"
+        : "你已经选定路线，可以进入下一幕。";
+    }
+
+    function previewChoice(choice, stage) {
+      elements.feedbackTag.textContent = `${stage.tag} / 预演`;
+      elements.feedbackBody.textContent = `如果你选择“${choice.title}”，文明会沿着这条逻辑发展：${choice.summary}`;
+      elements.gainText.textContent = choice.gain;
+      elements.costText.textContent = choice.cost;
+      elements.logicNote.textContent = choice.logic;
+    }
+
+    function applyChoice() {
+      const stage = getCurrentStage();
+      const choice = stage.choices[state.selectedChoiceIndex];
+      if (!choice) return;
+
+      Object.keys(state.metrics).forEach((key) => {
+        state.metrics[key] = clamp(state.metrics[key] + choice.delta[key]);
+      });
+
+      state.picks.push({
+        stage: stage.title,
+        tag: stage.tag,
+        choice: choice.title,
+        summary: choice.summary,
+        gain: choice.gain,
+        cost: choice.cost,
+        logic: choice.logic
+      });
+
+      state.stageIndex += 1;
+      state.selectedChoiceIndex = null;
+      render();
+    }
+
+    function renderVerdict() {
+      const verdict = Number(elements.verdictSlider.value);
+      elements.verdictValue.textContent = String(verdict);
+      elements.verdictLabel.textContent = describeVerdict(verdict);
+    }
+
+    function submitVerdict() {
+      const civilizationPower = Math.round(
+        (state.metrics.scale + state.metrics.cooperation + state.metrics.order + state.metrics.knowledge) / 4
+      );
+      const happinessGap = civilizationPower - state.metrics.wellbeing;
+      const verdict = Number(elements.verdictSlider.value);
+      const skepticismDistance = Math.abs(verdict - 28);
+
+      let summary = "";
+      let logic = "";
+
+      if (happinessGap >= 18) {
+        summary = `你的文明力量达到 ${civilizationPower}，但福祉只有 ${state.metrics.wellbeing}。你建成了一套更强的系统，却没有同步建成更幸福的个体生活。`;
+        logic = "这正是《人类简史》的核心提醒：历史扩张和技术加速，并不会自动转换成幸福增长。";
+      } else if (happinessGap <= -8) {
+        summary = `你的路线把福祉维持在 ${state.metrics.wellbeing}，甚至高于文明力量 ${civilizationPower}。你保护了人，但也放慢了扩张机器。`;
+        logic = "这说明赫拉利关心的不是“文明一定更糟”，而是要区分系统规模与个体体验这两套指标。";
+      } else {
+        summary = `你的文明力量 ${civilizationPower} 与福祉 ${state.metrics.wellbeing} 之间没有出现极端撕裂。你走出了一条相对均衡但并不彻底的现代化路线。`;
+        logic = "这条路线仍然证明：幸福不是文明进步的自动副产品，而是另一套需要单独回答的问题。";
+      }
+
+      if (skepticismDistance <= 20) {
+        logic += " 你的判断接近赫拉利式的怀疑：文明更强，不代表人一定更幸福。";
+      } else if (verdict >= 70) {
+        logic += " 你的判断明显比赫拉利更乐观；而这本书的锋芒恰恰在于质疑这种线性乐观。";
+      } else {
+        logic += " 你的判断比“文明即幸福”的看法更谨慎，这更接近本书的基本张力。";
+      }
+
+      elements.resultSummary.textContent = summary;
+      elements.resultLogic.textContent = logic;
+      elements.answerQuestion.textContent = "智人为什么能压倒其他物种，以及文明扩张究竟让人类得到了什么、失去了什么。";
+      elements.answerConclusion.textContent = "智人的核心优势是 imagined order 带来的大规模合作；文明增长可以增强系统力量，却不保证幸福同步上升。";
+      elements.answerRelations.textContent = "共同叙事推动协作，农业推动规模，货币 / 帝国 / 宗教推动统一，承认无知推动科学加速，而福祉始终与这些力量保持张力。";
+      elements.answerImportance.textContent = "因为它迫使我们重新审视“进步”这个词：更强、更快、更统一，未必就是更适合人生活。";
+      elements.resultCard.classList.add("is-visible");
+    }
+
+    function render() {
+      renderMetrics();
+      renderTimeline();
+      renderPath();
+      renderConcepts();
+      renderFeedback();
+      renderNetwork();
+      renderStage();
+      renderVerdict();
+    }
+
+    elements.startButton.addEventListener("click", startGame);
+    elements.restartHeroButton.addEventListener("click", resetState);
+    elements.restartButton.addEventListener("click", resetState);
+    elements.nextButton.addEventListener("click", applyChoice);
+    elements.verdictSlider.addEventListener("input", renderVerdict);
+    elements.submitVerdictButton.addEventListener("click", submitVerdict);
+
+    render();
+  </script>
+</body>
+</html>

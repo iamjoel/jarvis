@@ -26,6 +26,9 @@
   * 会生成设计系统( UI + Design.md)。 也能从取某个网站抓取那个网站的设计，生成设计系统。(extract the design system from xxx)。
   * 多种导出方式。 Copy as code 就是对应的 html 代码。
 
+## Visualization
+* [Carbon](https://carbon.now.sh/) Beautiful code snippets in the blink of an eye. Support many themes and languages. Can export as PNG or SVG.
+
 ## Coding
 * [Better T Stack](https://www.better-t-stack.dev/new) generate the scaffold of a project with selected tech stacks.  It's also a great way to know the latest popular tech stacks in different categories.
 * [shadcn Admin Template](https://github.com/satnaing/shadcn-admin)
