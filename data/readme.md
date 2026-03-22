@@ -26,6 +26,7 @@
 | [《Outlive》](./o/outlive.md) | 彼得·阿提亚关于运动、营养、睡眠与医学 3.0 的健康长寿框架 |
 | [《Infinite Body》](./b/book-infinite-body.md) | 从身体功能、训练与自我感知出发，重新理解身体能力 |
 | [《躁动的无意识》](./b/book-exercised.md) | 利伯曼从进化生物学揭示人类为何天生不爱运动，以及运动对现代健康的真正意义 |
+| [《皮肤简史》](./b/book-the-remarkable-life-of-the-skin.md) | 蒙蒂·莱曼揭示皮肤作为屏障、免疫器官与心理-生物界面的惊人复杂性 |
 
 **如何延长健康寿命？**
 
@@ -41,6 +42,13 @@
 | [《疯狂的尿酸》](./u/uric-acid.md) | 尿酸、果糖与代谢综合征之间的隐藏联系 |
 | [《长寿饮食》](./b/book-the-longevity-diet.md) | 饮食模式如何作用于衰老与疾病风险 |
 | [《空腹力革命》](./b/book-empty-stomach-revolution.md) | 石原结实从医学角度阐述空腹状态如何激活自愈力、提升免疫与延缓衰老 |
+| [《菌群大脑》](./b/book-the-psychobiotic-revolution.md) | 肠道微生物通过肠-脑轴深刻影响情绪与心理健康，饮食是最有力的菌群干预手段 |
+
+**如何理性看待医疗与筛查？**
+
+| 文档 | 简介 |
+|------|------|
+| [《病患悖论》](./b/book-the-patient-paradox.md) | 麦卡特尼揭示过度诊断与医疗商业化的真相，教你用绝对风险数字做出真正知情的医疗决策 |
 
 ### 心理与内在
 
@@ -61,6 +69,7 @@
 | [《沉思录》](./b/book-meditations.md) | 多葛哲学关于自律、接受与内在秩序的实践 |
 | [《臣服的力量》](./b/book-the-power-of-surrender.md) | 放下控制执念，与现实合作 |
 | [《圣多纳释放法》](./b/book-the-sedona-method.md) | 通过情绪释放练习获得轻盈与平静 |
+| [《禅者的初心》](./b/book-zen-mind-beginners-mind.md) | 铃木俊隆：以初心面对生命，在禅修中发现无限可能——专家之心选项有限，初心中充满可能 |
 
 **如何理解焦虑、欲望与情绪？**
 
@@ -69,6 +78,18 @@
 | [《重塑杏仁核：情绪修复脑科学》](./b/book-rewire-your-anxious-brain.md) | 从神经科学理解焦虑，并建立干预路径 |
 | [《贪婪的多巴胺》](./b/book-the-molecule-of-more.md) | 多巴胺如何塑造欲望、上瘾、野心与不满足 |
 | [《被讨厌的勇气》](./b/book-the-courage-to-be-disliked.md) | 从阿德勒心理学理解烦恼、课题分离与自由 |
+
+### 文学与人生
+
+**武侠小说能教给我们什么？**
+
+| 文档 | 简介 |
+|------|------|
+| [《三少爷的剑》](./b/book-sword-of-the-third-young-master.md) | 古龙：一个生来就是"天下第一剑"的少年，试图逃离命运，却发现无论如何伪装，剑终究属于他 |
+| [《七种武器》](./b/book-seven-weapons.md) | 古龙：以七种器物为名，写出七种人性力量——真正的武器从不是钢铁，而是人心 |
+| [《陆小凤传奇》](./b/book-legend-of-lu-xiaofeng.md) | 古龙：陆小凤用两根手指和一颗聪明的心，证明真正的英雄不需要无敌，只需要足够人性化 |
+| [《楚留香传奇》](./b/book-legend-of-chu-liuxiang.md) | 古龙：楚留香是古龙美学的化身——在粗粝的武林里，做一个有品位的人是最难也最值的选择 |
+| [《多情剑客无情剑》](./b/book-sentimental-swordsman-ruthless-sword.md) | 古龙：李寻欢的故事关于，当深爱与深义不能共存时，人如何做出无悔的选择 |
 
 ### 成长、工作与财富
 
@@ -146,6 +167,8 @@
 | [哈耶克学说](./h/hayek.md) | 理解价格、分散知识与自发秩序 |
 | [《理性乐观派》](./b/book-the-rational-optimist.md) | 交易与创新如何推动人类繁荣 |
 | [《自下而上：万物进化史》](./b/book-the-evolution-of-everything.md) | 很多秩序来自涌现，而不是中央设计 |
+| [《置身事外：中国政府与经济发展》](./b/book-caught-in-the-middle.md) | 兰小欢：理解土地财政与政绩激励，才能真正读懂中国经济奇迹 |
+| [《分析与思考：黄奇帆的复旦经济课》](./b/book-analysis-and-thinking-huang-qifan.md) | 黄奇帆：从实战视角拆解中国宏观经济五大结构性问题 |
 
 **如何投资，并在不确定性中管理风险？**
 
@@ -176,6 +199,10 @@
 | [《战争论》](./b/book-on-war.md) | 战争、政治与战略之间的深层关系 |
 | [《乌合之众》](./b/book-the-crowd.md) | 群体心理如何放大情绪、暗示与极端化 |
 | [《权力：庙堂博弈的底层逻辑》](./b/book-power-the-hidden-logic.md) | 解析权力运作的底层规则：依赖关系、信息战与联盟维系 |
+| [《可能性的艺术：比较政治学 30 讲》](./b/book-art-of-possibility-comparative-politics.md) | 刘瑜：为什么不同国家走向不同政治路径——破除"历史必然论"的单线叙事 |
+| [《民主的细节》](./b/book-democracy-in-detail.md) | 刘瑜：从美国政治的具体细节看民主作为"活的制度"的真实面貌 |
+| [《观念的水位》](./b/book-the-water-level-of-ideas.md) | 刘瑜：观念不是空谈，它是制度变迁的真正驱动力 |
+| [《送你一颗子弹》](./b/book-a-bullet-for-you.md) | 刘瑜：一个知识人在剑桥的日记——如何好奇、孤独、思考与自己和解 |
 
 **历史如何塑造今天的世界？**
 
@@ -187,6 +214,10 @@
 | [一战后的中东历史](./h/history-middle-east-after-ww1.md) | 现代中东格局如何形成，以及为何长期动荡 |
 | [伊斯兰教](./i/islam.md) | 从宗教、历史与文明影响理解伊斯兰世界 |
 | [《中国历史的地理密码》](./b/book-geographic-code-of-chinese-history.md) | 郭建龙从地理视角解读中国历史的分合规律与文明演变 |
+| [《历史深处的忧虑》](./b/book-near-to-the-wild-heart-of-life.md) | 林达：近距离看美国——宪法、司法与民权，自由究竟从何处生长 |
+| [《总统是靠不住的》](./b/book-the-president-is-not-reliable.md) | 林达："好的制度不依赖好人，而是设计来约束坏人"——三权分立与水门事件 |
+| [《我也有一个梦想》](./b/book-i-have-a-dream-too.md) | 林达：马丁·路德·金与美国民权运动——自由不是被赠予的，是被争取的 |
+| [《如彗星划过夜空》](./b/book-like-a-comet-crossing-the-night-sky.md) | 林达：每个人都像彗星，在历史夜空中短暂划过，留下的光迹才是意义所在 |
 
 ### 人类的未来
 
@@ -230,6 +261,15 @@
 | [《它们的性》](./b/book-animal-sex.md) | 动物界繁殖策略与演化博弈 |
 | [《鱼不存在》](./b/book-why-fish-dont-exist.md) | 从分类学与科学史反思秩序、混沌与生命叙事 |
 | [《寄生虫星球》](./b/book-parasite-rex.md) | 齐默揭示寄生虫如何操控宿主、驱动进化、维持生态平衡，是地球生命系统不可或缺的幕后主宰 |
+| [《基因传》](./b/book-the-gene.md) | 悉达多·穆克吉从孟德尔到CRISPR，讲述基因的发现、滥用与改写生命的未来 |
+
+**细胞、癌症与病毒：生命微观世界的规则与失控**
+
+| 文档 | 简介 |
+|------|------|
+| [《细胞传》](./b/book-the-song-of-the-cell.md) | 悉达多·穆克吉追溯细胞生物学百年历程，从细胞的运作到CAR-T疗法的细胞医学革命 |
+| [《癌症传》](./b/book-the-emperor-of-all-maladies.md) | 悉达多·穆克吉以传记体讲述癌症的历史，从古代切除术到靶向疗法，揭示癌症的细胞本质 |
+| [《进击的病毒》](./b/book-viruses-a-very-short-introduction.md) | 多萝西·克劳福德介绍病毒的结构、感染机制与大流行规律，解释为何病毒比细菌更难对付 |
 
 ### 物质、能量与宇宙
 
