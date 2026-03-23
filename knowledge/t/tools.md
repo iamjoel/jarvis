@@ -30,7 +30,7 @@
 * [Carbon](https://carbon.now.sh/) Beautiful code snippets in the blink of an eye. Support many themes and languages. Can export as PNG or SVG.
 
 ## Coding
-* [Better T Stack](https://www.better-t-stack.dev/new) generate the scaffold of a project with selected tech stacks.  It's also a great way to know the latest popular tech stacks in different categories.
+* [Better T Stack](https://www.better-t-stack.dev/new) generate the scaffold of a project with selected tech stacks.  It's also a great way to know the latest popular tech stacks in different categories. [Tech stack compare](../../data/t/tech-stack-better-t-stack.md)
 * [shadcn Admin Template](https://github.com/satnaing/shadcn-admin)
 
 
@@ -43,6 +43,9 @@
 
 ## Automation
 * [Espanso](https://espanso.org/) detects when you type a keyword and replaces it while you're typing. It support call shell command. It is  lightweight. It that can replace [ScriptKit](https://www.scriptkit.com/) in many scenario. [My Config](../../private/tool-config/espanso/README.md). 
+
+## Marketing
+* [Amplitude](https://amplitude.com/) Product analytics. It can track user behavior and analyze the data to help you make informed decisions about your product. It has a powerful API that allows you to query your data and integrate it with other tools.
 
 ## Networking
 * [IP、域名、AS](https://ping0.cc/ip/) 可以查到是否是家庭 IP 。如果用了梯子，就会变成 IDC 的 IP 了。
