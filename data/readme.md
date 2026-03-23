@@ -33,6 +33,8 @@
 | 文档 | 简介 |
 |------|------|
 | [如何在身体保持健康的情况下长寿？](./h/health-longevity-question.md) | 健康长寿问题树，适合作为总入口 |
+| [混合耐力竞技赛事对比：HYROX、CrossFit、Spartan Race、DEKA FIT、Murph Challenge](./h/hybrid-fitness-racing.md) | 混合健身竞技是近年来全球增长最快的大众运动赛事品类之一。本文对比五大主流赛事，帮助你找到最适合自己的挑战目标。 |
+
 
 **饮食、血糖与代谢为什么重要？**
 

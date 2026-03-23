@@ -33,8 +33,5 @@
 - [实验室用不同动物的历史](./h/history-laboratory-animals.md)
 - [韩国近代史（政治、经济、文化与产业格局）](../data/h/history-korea-modern.md)
 
-### Health & Fitness
-- [混合耐力竞技赛事对比：HYROX、CrossFit、Spartan Race、DEKA FIT、Murph Challenge](../data/h/hybrid-fitness-racing.md)
-
 ### AI Tools & Products
 - [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
