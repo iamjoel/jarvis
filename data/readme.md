@@ -345,6 +345,7 @@
 | [《万物有灵且美》](./b/book-all-creatures-great-and-small.md) | 从兽医故事理解人与动物的情感连接 |
 | [云南主要可食用菌](./y/yunnan-edible-mushrooms.md) | 从具体物种出发感受自然知识的丰富性 |
 | [川西自然风光景点指南](./c/chuanxi-scenic-spots.md) | 九寨沟、稻城亚丁、四姑娘山等14处川西高原精华景点详览 |
+| [青海景点指南](./q/qinghai-scenic-spots.md) | 青海湖、茶卡盐湖、水上雅丹、塔尔寺等18处青海精华景点详览，含盐湖奇观、经典雪山与人文古迹 |
 
 ---
 
