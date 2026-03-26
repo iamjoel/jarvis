@@ -1,4 +1,5 @@
 # [Skill](https://agentskills.io/home)
+
 ## Development
 * React
   * [Next.js Agent Skills](https://github.com/vercel-labs/next-skills)
@@ -7,11 +8,17 @@
   * [vue](https://github.com/antfu/skills/tree/main/skills/vue) Antfu.
 
 ## Design
+* [Impeccable](https://impeccable.style/) 提升 UI 和 UX 的 Skill。把设计词汇封装成 Skill。
 * [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) Provides design intelligence for building professional UI/UX across multiple platforms and frameworks. 100 Industry-Specific Reasoning Rules.
 * [Theme Factory Skill](https://github.com/ComposioHQ/awesome-claude-skills/blob/master/theme-factory/SKILL.md) This skill provides a curated collection of professional font and color themes themes, each with carefully selected color palettes and font pairings. Once a theme is chosen, it can be applied to any artifact.
 
 ## Presentation
 * [AntV generateInfographic Skills](https://infographic.antv.vision/ai)
+
+## Effective Work
+* [mattpocock Agent Skills](https://github.com/mattpocock/skills) Planning & Design, Development,
+* [gstack](https://github.com/garrytan/gstack) Author is the ceo of CEO of Y Combinator. How he do the works.
+* [Superpowers](https://github.com/obra/superpowers) brainstorming, writing-plans, receiving-code-review and so on. 
 
 ## Venders
 * [Antfu Skills](https://github.com/antfu/skills)
