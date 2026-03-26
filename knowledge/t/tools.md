@@ -50,5 +50,8 @@
 ## Networking
 * [IP、域名、AS](https://ping0.cc/ip/) 可以查到是否是家庭 IP 。如果用了梯子，就会变成 IDC 的 IP 了。
 
+## For LLM
+* [Turn website into a CLI](../../data/t/to-cli.md) Turn website into a CLI.
+
 ## Resource
 * [Simon Willison's Tools](https://tools.simonwillison.net/) A collection of useful tools and utilities.
