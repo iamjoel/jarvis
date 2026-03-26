@@ -200,6 +200,7 @@
 | 文档 | 简介 |
 |------|------|
 | [《漫步华尔街》](./b/book-a-random-walk-down-wall-street.md) | 指数投资、分散化与长期主义的代表性框架 |
+| [宽基 ETF 深度解析](./e/etf-broad-based.md) | 宽基ETF的定义、核心优势、A股/港股/美股主流产品全景（含规模最大的ETF）及投资策略 |
 | [《反脆弱》](./b/book-antifragile.md) | 如何让系统在波动、冲击和不确定中获益 |
 | [《随机漫步的傻瓜》](./b/book-fooled-by-randomness.md) | 警惕把运气误认为能力 |
 | [《原则》](./b/book-principles.md) | 把经验沉淀为原则，用系统化决策降低混乱 |
