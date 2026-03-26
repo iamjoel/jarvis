@@ -32,7 +32,7 @@
 ## Coding
 * [Better T Stack](https://www.better-t-stack.dev/new) generate the scaffold of a project with selected tech stacks.  It's also a great way to know the latest popular tech stacks in different categories. [Tech stack compare](../../data/t/tech-stack-better-t-stack.md)
 * [shadcn Admin Template](https://github.com/satnaing/shadcn-admin)
-
+* [Page Agent](https://github.com/alibaba/page-agent) Add UI Agent to your web page. Can control web interfaces with natural language. Created by Alibaba.
 
 ## Presentation
 * PPT
