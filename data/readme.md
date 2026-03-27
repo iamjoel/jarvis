@@ -442,6 +442,7 @@
 |------|------|
 | [LLM 资源](./l/llm-resource.md) | LLM 相关人物、工具与学习资源汇总 |
 | [Codex](./c/codex.md) | OpenAI Codex 与编程 Agent 的能力边界 |
+| [Harness](./h/harness.md) | Claude 和 OpenAI 语境下 harness（测试/评估套具）的含义、典型模式与实践建议 |
 | [上下文管理](./c/context-manage.md) | 长对话、长任务中的上下文压缩与管理 |
 | [AIEOS](./a/aieos.md) | AI Agent 可移植身份标准 |
 | [信息素协作（Stigmergy）](./s/stigmergy.md) | 多 Agent 协作的一种组织思路 |
