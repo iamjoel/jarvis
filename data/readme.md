@@ -45,6 +45,7 @@
 | [如何在身体保持健康的情况下长寿？](./h/health-longevity-question.md) | 健康长寿问题树，适合作为总入口 |
 | [混合耐力竞技赛事对比：HYROX、CrossFit、Spartan Race、DEKA FIT、Murph Challenge](./h/hybrid-fitness-racing.md) | 混合健身竞技是近年来全球增长最快的大众运动赛事品类之一。本文对比五大主流赛事，帮助你找到最适合自己的挑战目标。 |
 | [最大摄氧量（VO₂ max）](./v/vo2max.md) | VO₂ max 是预测全因死亡率最强的单一生理指标，本文深入介绍其定义、参考值、测量方法、与寿命的关系，以及如何通过训练有效提升它 |
+| [心率变异性（HRV）](./h/hrv.md) | HRV 是自主神经系统的"仪表盘"，涵盖定义、测量指标、正常范围、应用场景（运动恢复、压力监测、疾病预警）及提升方法 |
 
 
 **饮食、血糖与代谢为什么重要？**
@@ -201,6 +202,7 @@
 | 文档 | 简介 |
 |------|------|
 | [《漫步华尔街》](./b/book-a-random-walk-down-wall-street.md) | 指数投资、分散化与长期主义的代表性框架 |
+| [宽基 ETF 深度解析](./e/etf-broad-based.md) | 宽基ETF的定义、核心优势、A股/港股/美股主流产品全景（含规模最大的ETF）及投资策略 |
 | [《反脆弱》](./b/book-antifragile.md) | 如何让系统在波动、冲击和不确定中获益 |
 | [《随机漫步的傻瓜》](./b/book-fooled-by-randomness.md) | 警惕把运气误认为能力 |
 | [《原则》](./b/book-principles.md) | 把经验沉淀为原则，用系统化决策降低混乱 |
