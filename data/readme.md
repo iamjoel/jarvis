@@ -31,8 +31,8 @@
 
 | 文档 | 简介 |
 |------|------|
-| [《Outlive》](./o/outlive.md) | 彼得·阿提亚关于运动、营养、睡眠与医学 3.0 的健康长寿框架 |
-| [《Infinite Body》](./b/book-infinite-body.md) | 从身体功能、训练与自我感知出发，重新理解身体能力 |
+| [《超越百岁》](./o/outlive.md) | 彼得·阿提亚关于运动、营养、睡眠与医学 3.0 的健康长寿框架 |
+| [《无限可能的身体》](./b/book-infinite-body.md) | 从身体功能、训练与自我感知出发，重新理解身体能力 |
 | [《躁动的无意识》](./b/book-exercised.md) | 利伯曼从进化生物学揭示人类为何天生不爱运动，以及运动对现代健康的真正意义 |
 | [《皮肤简史》](./b/book-the-remarkable-life-of-the-skin.md) | 蒙蒂·莱曼揭示皮肤作为屏障、免疫器官与心理-生物界面的惊人复杂性 |
 | [《呼吸革命》](./b/book-breath.md) | 詹姆斯·奈斯特揭示现代人如何失去正确呼吸的能力，以及鼻呼吸、慢呼吸与CO₂耐受力如何显著改善健康 |
@@ -101,6 +101,16 @@
 | [《重塑杏仁核：情绪修复脑科学》](./b/book-rewire-your-anxious-brain.md) | 从神经科学理解焦虑，并建立干预路径 |
 | [《贪婪的多巴胺》](./b/book-the-molecule-of-more.md) | 多巴胺如何塑造欲望、上瘾、野心与不满足 |
 | [《被讨厌的勇气》](./b/book-the-courage-to-be-disliked.md) | 从阿德勒心理学理解烦恼、课题分离与自由 |
+
+**人是怎么被塑造成现在这样的？**
+
+| 文档 | 简介 |
+|------|------|
+| [人格、依恋、创伤与成长史：人是怎么被塑造成现在这样的？](./p/personality-attachment-trauma-development.md) | 从成长环境、依恋模板、创伤反应与羞耻感理解成年人格与关系模式的形成 |
+| [《亲密关系》](./b/book-intimate-relationships.md) | 从依恋理论与社会心理学理解成人关系模式 |
+| [《臣服的力量》](./b/book-the-power-of-surrender.md) | 从控制执念、不安全感与关系接受进入早期适应模式 |
+| [副交感神经：身体的"休息与修复"系统](./p/parasympathetic-nervous-system.md) | 从神经系统角度理解安全感、冻结反应与恢复能力 |
+| [人类激素深度指南](./h/hormones-human.md) | 从激素和压力轴理解身心状态如何塑造情绪、依恋与恢复 |
 
 ### 文学与人生
 
