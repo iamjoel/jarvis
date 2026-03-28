@@ -116,6 +116,83 @@ Claude 的 **Computer Use** 功能使用了一个工具 harness：
 - Harness 在每次 Claude 发出工具调用时负责执行、截图、返回结果，形成"视觉反馈闭环"。
 - 官方 demo 仓库 `anthropics/anthropic-quickstarts` 中的 `computer-use-demo` 就是一个完整的 harness 实现。
 
+### 3.4 Harness Design for Long-Running Application Development
+
+> 原文：[Harness design for long-running application development](https://www.anthropic.com/engineering/harness-design-long-running-apps)（Anthropic Engineering Blog，2026-03-24，作者 Prithvi Rajasekaran）
+
+这是 Anthropic 迄今最系统的 harness 设计实践文章，核心命题是：**如何让 Agent 在跨越多小时、多 session 的长周期任务中保持稳定输出质量**。
+
+#### 3.4.1 两类核心失败模式
+
+| 失败模式 | 现象 | 根因 |
+|----------|------|------|
+| **"一口气做完"（One-shotting）** | Agent 试图在单次 session 中完成整个项目，导致上下文耗尽、后续 session 无法接续 | 缺乏任务分段机制 |
+| **"上下文焦虑"（Context Anxiety）** | Agent 感知到上下文窗口接近上限，提前宣布任务"完成"而遗漏大量需求 | 缺乏明确的 session 边界和移交文档 |
+
+#### 3.4.2 受 GAN 启发的三 Agent 架构
+
+Anthropic 将整个开发任务拆分给三个专职 Agent，类比生成对抗网络（GAN）的生成器-判别器思路：
+
+```
+用户需求（1-4 句话）
+       │
+       ▼
+┌─────────────┐
+│  Planner    │  把模糊需求扩展为详细产品 spec，
+│  规划 Agent  │  给出架构指导但不过度规定实现细节
+└──────┬──────┘
+       │ spec + 架构指南
+       ▼
+┌─────────────┐
+│  Generator  │  按 sprint 分段实现，每段结束产出
+│  生成 Agent  │  代码 + 自检报告 + 下一段 contract
+└──────┬──────┘
+       │ 运行中的应用 + sprint contract
+       ▼
+┌─────────────┐
+│  Evaluator  │  用 Playwright 等工具像真实用户一样
+│  评估 Agent  │  端到端测试，只有全部通过才算验收
+└─────────────┘
+```
+
+**各角色分工：**
+
+- **Planner（规划 Agent）**：把 1-4 句话的用户需求转化为完整产品 spec，扩充功能细节，提供技术架构建议（如 React + Vite + FastAPI + SQLite），但不锁死实现路径。
+- **Generator（生成 Agent）**：按 sprint 逐段构建，每段有明确的"sprint contract"（可验证的交付标准）；每段结束后进行自审，并产出结构化的移交产物供下一段或下一个 Agent 接续。
+- **Evaluator（评估 Agent）**：完全独立于 Generator，用 Playwright 驱动浏览器执行 E2E 测试，严格对照 sprint contract 打分，未通过则拒绝验收并生成 bug 报告反馈给 Generator。
+
+#### 3.4.3 上下文移交：Harness 的"交接班文件"
+
+**Agent 之间不共享内存，只通过文件传递结构化 artifact**：
+
+| Artifact 类型 | 内容 | 传递方向 |
+|---------------|------|---------|
+| 产品 spec | 功能列表、架构决策、依赖说明 | Planner → Generator |
+| Sprint contract | 当前 sprint 的可验证交付标准 | Generator ↔ Evaluator |
+| 自检报告 | 代码变更摘要、已知问题 | Generator → Evaluator |
+| Bug 报告 | 测试失败详情、复现步骤 | Evaluator → Generator |
+| 移交文档 | 已完成进度、下一 sprint 待做事项 | Generator session N → session N+1 |
+
+这套"交接班文件"机制解决了长任务中上下文断裂的问题：即使 Generator 发生 context reset，也能从移交文档恢复状态，而不是从头开始。
+
+#### 3.4.4 为什么要分离 Generator 和 Evaluator？
+
+> **LLM 自我评估存在严重偏差**：模型在评估自己生成的输出时，倾向于给出过高评分，对细微错误视而不见。
+
+解决方案是**让完全独立的 Agent 来评估**：
+
+- Evaluator Agent 没有任何上下文包袱，以"第一次看到这个应用"的视角执行测试。
+- Evaluator 严格按照事先协商好的 sprint contract 评分，而非主观判断"看起来还行"。
+- 只有 Evaluator 通过验收，Generator 才能进入下一个 sprint 或声明完成。
+
+#### 3.4.5 harness 设计最佳实践（来自 Anthropic）
+
+1. **从简单接口开始**：定义最小化、边界清晰的 Agent 间接口，避免过度工程化。
+2. **迭代观察并修复 harness 失败，而非模型失败**：大多数问题出在 harness 设计上，而不是模型能力不够。
+3. **显式验证循环**：每个 sprint 必须有可执行的验收标准，拒绝主观判断。
+4. **不要依赖更大的上下文窗口**：上下文工程（分段 + 移交文档）比堆上下文更可靠。
+5. **文件即协议**：Agent 间通信只走文件，不走共享内存或直接函数调用，保持解耦。
+
 ---
 
 ## 四、业界通用的 lm-evaluation-harness
@@ -148,6 +225,7 @@ lm-evaluation-harness
 | **测试 Harness** | 验证代码修改是否正确 | SWE-bench harness、pytest/Jest 封装 |
 | **评估 Harness** | 评测模型在标准基准上的能力 | lm-evaluation-harness、openai/evals |
 | **Agent Harness** | 给 Agent 提供工具执行环境与反馈闭环 | Claude Computer Use、Codex 沙盒 |
+| **长任务 Harness** | 跨 session 的长周期应用开发 | Anthropic Planner-Generator-Evaluator |
 
 ---
 
@@ -180,3 +258,4 @@ lm-evaluation-harness
 - [EleutherAI/lm-evaluation-harness](https://github.com/EleutherAI/lm-evaluation-harness)
 - [Anthropic: Claude Code Best Practices](https://docs.anthropic.com/en/docs/claude-code/best-practices)
 - [anthropics/anthropic-quickstarts: computer-use-demo](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo)
+- [Harness design for long-running application development (Anthropic Engineering, 2026-03-24)](https://www.anthropic.com/engineering/harness-design-long-running-apps)
