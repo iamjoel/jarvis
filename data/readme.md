@@ -321,6 +321,7 @@
 | [伊斯兰教](./i/islam.md) | 从宗教、历史与文明影响理解伊斯兰世界 |
 | [《中国历史的地理密码》](./b/book-geographic-code-of-chinese-history.md) | 郭建龙从地理视角解读中国历史的分合规律与文明演变 |
 | [《财政密码》](./b/book-fiscal-code.md) | 郭建龙：财政制度是两千年王朝兴衰的核心变量——田赋、货币、官营经济的得失，决定了中央集权的命运 |
+| [《中央帝国的哲学密码》](./b/book-philosophical-code-of-central-empire.md) | 郭建龙：儒、法、道、佛如何被历代帝王工具化——"外儒内法"是两千年中央集权的哲学公式 |
 | [《历史深处的忧虑》](./b/book-near-to-the-wild-heart-of-life.md) | 林达：近距离看美国——宪法、司法与民权，自由究竟从何处生长 |
 | [《总统是靠不住的》](./b/book-the-president-is-not-reliable.md) | 林达："好的制度不依赖好人，而是设计来约束坏人"——三权分立与水门事件 |
 | [《我也有一个梦想》](./b/book-i-have-a-dream-too.md) | 林达：马丁·路德·金与美国民权运动——自由不是被赠予的，是被争取的 |
