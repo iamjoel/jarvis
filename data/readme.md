@@ -134,6 +134,7 @@
 |------|------|
 | [《原子习惯》](./b/book-atomic-habits.md) | 用系统和环境设计，而不是意志力，来塑造习惯 |
 | [《深度工作》](./b/book-deep-work.md) | 在分心时代重新建立高价值的深度专注能力 |
+| [持续部分关注（Continuous Partial Attention）](./c/continuous-partial-attention.md) | 琳达·斯通提出的数字时代注意力模式：对所有事情保持浅层在线，但对任何事情都不真正在场 |
 | [《终身成长》](./b/book-mindset.md) | 成长型思维如何改变学习、表现与韧性 |
 
 **如何提高个人效能与职业能力？**
