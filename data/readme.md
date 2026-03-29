@@ -202,8 +202,8 @@
 |------|------|
 | [如何高效沟通？](./h/how-to-communicate-effectively.md) | 围绕高效沟通拆解关键问题与方法 |
 | [《非暴力沟通》](./b/book-nonviolent-communication.md) | 从观察、感受、需要、请求建立高质量表达 |
-| [《Good Talk》](./b/book-good-talk.md) | 面向现实场景的表达、说服与沟通技巧 |
-| [《Everything About Speaking》](./b/book-everything-about-speaking.md) | 更系统地理解表达、演讲与说话能力 |
+| [《好好说话：新鲜有趣的话术精进技巧》](./b/book-good-talk.md) | 面向现实场景的表达、说服与沟通技巧 |
+| [《关于说话的一切》](./b/book-everything-about-speaking.md) | 更系统地理解表达、演讲与说话能力 |
 
 **如何建立更好的亲密关系？**
 
@@ -456,7 +456,7 @@
 | 文档 | 简介 |
 |------|------|
 | [《量子大唠嗑》](./b/book-quantum-gossip.md) | 用更直观的方式理解量子世界的反直觉规律 |
-| [《Cosmos》](./b/book-cosmos.md) | 从宇宙尺度重新理解科学、文明与人的位置 |
+| [《宇宙》](./b/book-cosmos.md) | 从宇宙尺度重新理解科学、文明与人的位置 |
 
 ### 心智、意识与自然中的智能
 
