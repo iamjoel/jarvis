@@ -52,6 +52,7 @@
 
 ## For LLM
 * [Turn website into a CLI](../../data/t/to-cli.md) Turn website into a CLI.
+* [Agentation](https://www.agentation.com/) Agentation turns UI annotations into structured context that AI coding agents can understand and act on.
 
 ## Resource
 * [Simon Willison's Tools](https://tools.simonwillison.net/) A collection of useful tools and utilities.

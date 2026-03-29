@@ -16,8 +16,9 @@
 * [AntV generateInfographic Skills](https://infographic.antv.vision/ai)
 
 ## Effective Work
-* [mattpocock Agent Skills](https://github.com/mattpocock/skills) Planning & Design, Development,
+* [mattpocock Agent Skills](https://github.com/mattpocock/skills) Planning & Design, Development
 * [gstack](https://github.com/garrytan/gstack) Author is the ceo of CEO of Y Combinator. How he do the works.
+* [ljg-skills](https://github.com/lijigang/ljg-skills) 李玉刚的 skills。
 * [Superpowers](https://github.com/obra/superpowers) brainstorming, writing-plans, receiving-code-review and so on. 
 
 ## Venders
