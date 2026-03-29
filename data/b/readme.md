@@ -11,6 +11,7 @@
 | [《漫步华尔街》](./book-a-random-walk-down-wall-street.md) | *A Random Walk Down Wall Street* | 打败市场几乎不可能，买入并持有指数基金才是最聪明的投资策略。 |
 | [《原始富足：布须曼人的生活之道》](./book-affluence-without-abundance.md) | *Affluence Without Abundance: The Disappearing World of the Bushmen* | 布须曼人以每周15小时劳动养活自己、活出满足感——这不是贫穷，而是一种被我们遗忘了20万年的富足智慧 |
 | [《万物有灵且美》](./book-all-creatures-great-and-small.md) | *All Creatures Great and Small* | 这本书用最平凡的事——一头牛、一条狗、一个农夫——告诉我们：每一个生命都值得被认真对待。 |
+| [《过敏的真相》](./book-allergic-the-truth.md) | *Allergic: Our Irritated Bodies in a Changing World* | 过敏不是免疫力弱，而是免疫系统对现代工业化环境的"错误警报"；医学人类学家麦克费尔用科学与人文双重视角，追问为什么全球过敏流行病在我们的城市、工厂和生活方式里找到了根源。 |
 | [《分析与思考：黄奇帆的复旦经济课》](./book-analysis-and-thinking-huang-qifan.md) | *Analysis and Thinking: Huang Qifan's Fudan Economics Lectures* | 黄奇帆用从政数十年积累的实战经验，将中国宏观经济的五大结构性问题——实体、金融、房地产、资本市场、对外开放——拆解成可理解、可操作的政策分析框架。 |
 | [《它们的性》](./book-animal-sex.md) | *Animal Sex: The Wild World of Reproductive Strategies* | 从螳螂的"性食同类"到雌雄同体的海蜗牛，动物的性行为远比人类想象的奇异——每一种策略都是演化写就的精妙答案。 |
 | [《反脆弱》](./book-antifragile.md) | *Antifragile: Things That Gain from Disorder* | 不要只求不被打倒，要让压力和混乱成为让你更强壮的燃料。 |
@@ -49,6 +50,7 @@
 | [《我也有一个梦想》](./book-i-have-a-dream-too.md) | *I Have a Dream Too* | 一个关于梦想与现实之间漫长距离的故事：自由不是被赠予的，是被争取的，一寸一寸，不回头。 |
 | [《无限可能的身体》](./book-infinite-body.md) | *(Body of Infinite Possibility)* | 卢永利用运动科学与东方身体观的融合视角，帮助读者重新认识自己的身体——它不是一台会坏的机器，而是一个有自我修复能力的智慧系统。 |
 | [《影响力》](./book-influence.md) | *Influence: The Psychology of Persuasion* | 我们的大脑依赖"心理捷径"做决定，而这些捷径可以被系统性地触发——理解它，你既能保护自己，也能正当地影响他人。 |
+| [《免疫：对抗过敏、癌症、肿瘤、病毒和自律神经失调》](./book-immune-against-allergies-cancer-viruses.md) | *Immunity: Fighting Allergies, Cancer, Tumors, Viruses and Autonomic Nervous System Disorders* | 免疫学家安保彻揭示：白细胞受自律神经支配——长期压力激活交感神经、导致粒细胞过多，是癌症和慢性病的根源；而过敏则是副交感过度的另一面；两者都能通过恢复自律神经平衡来改善。 |
 | [《亲密关系》](./book-intimate-relationships.md) | *Intimate Relationships* | 爱情不是命运，是一系列可以被理解、研究和改善的心理与行为模式 |
 | [《楚留香传奇》](./book-legend-of-chu-liuxiang.md) | *Legend of Chu Liuxiang* （又名 *Clue of the Moon*） | 楚留香是古龙美学的化身——他用优雅证明，在这个粗粝的武林里，做一个有品位的人是最难也最值的选择。 |
 | [《陆小凤传奇》](./book-legend-of-lu-xiaofeng.md) | *Legend of Lu Xiaofeng* | 陆小凤用两根手指和一颗聪明的心，证明真正的英雄不需要无敌，只需要足够人性化。 |
@@ -129,6 +131,7 @@
 | [《思考，快与慢》](./book-thinking-fast-and-slow.md) | *Thinking, Fast and Slow* | 你以为自己在理性思考，其实大多数时候是系统1在替你做决定，然后系统2在事后编故事 |
 | [《系统之美》](./book-thinking-in-systems.md) | *Thinking in Systems: A Primer* | 我们生活在系统中，却总是用线性因果思维理解非线性世界——学会系统思维，才能看清复杂问题的真正结构和杠杆点。 |
 | [《像山一样思考》（选自《沙郡年记》）](./book-thinking-like-a-mountain.md) | *Thinking Like a Mountain* (from *A Sand County Almanac*) | 这本书用一声狼嚎开始，用整个大地伦理结束：一个物种的存亡，牵动的是整个生命体系的命运，而不只是那个物种自己。 |
+| [《这就是免疫力》](./book-this-is-immunity.md) | *This Is Immunity: How 90% of Diseases Can Be Prevented by Your Immune System* | 寄生虫免疫学家藤田纮一郎揭示：90%的疾病可以靠免疫力预防，而免疫力的核心在肠道；NK细胞、笑声、体温和肠道菌群——这些是你每天都可以掌控的免疫杠杆。 |
 | [《生命不能承受之轻》](./book-unbearable-lightness.md) | *The Unbearable Lightness of Being* | 昆德拉借托马斯、特蕾莎、萨宾娜和弗兰兹的四段人生，追问在没有"永恒轮回"的宇宙中，一次性的生命究竟是沉甸甸的意义，还是轻飘飘的虚无。 |
 | [《消失的亚洲》](./book-vanishing-asia.md) | *Vanishing Asia* | 这是一部跨越半个世纪的文明目击：凯利用镜头留住了那些已经或即将消失的亚洲文化细节，让我们看见这个星球曾经拥有的多样性。 |
 | [《进击的病毒》](./book-viruses-a-very-short-introduction.md) | *Viruses: A Very Short Introduction* | 病毒比细菌更古老、更普遍、更难对付——它们不是生命的敌人，而是生命演化的永久伴侣，也是我们健康最持久的挑战。 |
@@ -140,5 +143,6 @@
 | [《鱼不存在》](./book-why-fish-dont-exist.md) | *Why Fish Don't Exist: A Story of Loss, Love, and the Hidden Order of Life* | 鱼在最新的生物分类学中真的不存在——这个令人震惊的科学事实，成了科学记者米勒探索人生意义、虚无主义解药和危险执念的出发点。 |
 | [《维特根斯坦传：天才之为责任》](./book-wittgenstein-duty-of-genius.md) | *Wittgenstein: The Duty of Genius* | 维特根斯坦的一生本身就是一部哲学作品——他用极端的道德严苛性活出了他认为"思想与行动必须一致"的信念，并在此过程中彻底改写了西方哲学对语言的理解。 |
 | [《昨日之前的世界》](./book-world-until-yesterday.md) | *The World Until Yesterday: What Can We Learn from Traditional Societies?* | 贾雷德·戴蒙德：现代文明在飞速发展中遗失了什么，传统社会的智慧如何启示当代人 |
+| [《肠子知道答案》](./book-gut-knows-the-answer.md) | *Your Gut Knows the Answer: The Science of Intestinal Health* | 消化科医生丁彬彬带你读懂肠道发出的每一个信号：幽门螺杆菌、肠道菌群失衡、便血、腹胀——肠道是人体最大的免疫器官，也是最容易被忽视的健康入口，定期胃肠镜是最有效的消化道癌症早筛手段。 |
 | [《禅与摩托车维修艺术》](./book-zen-and-the-art-of-motorcycle-maintenance.md) | *Zen and the Art of Motorcycle Maintenance: An Inquiry into Values* | 这本书表面是骑摩托车横越美国，实际是一个人试图理解：什么是"好"，以及为什么我们失去了那种感觉。 |
 | [《禅者的初心》](./book-zen-mind-beginners-mind.md) | *Zen Mind, Beginner's Mind* | 初心中有无数可能，专家之心中只剩少数——真正的修行，是永远以新鲜的眼睛看待自己和世界。 |
