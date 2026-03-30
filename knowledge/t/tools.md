@@ -51,7 +51,8 @@
 * [IP、域名、AS](https://ping0.cc/ip/) 可以查到是否是家庭 IP 。如果用了梯子，就会变成 IDC 的 IP 了。
 
 ## For LLM
-* [Turn website into a CLI](../../data/t/to-cli.md) Turn website into a CLI.
+* [Anything to  CLI](../../data/t/to-cli.md) Turn website into a CLI.
+* [CLI for agent](../../data/c/cli-for-agent.md) A collection of CLI tools for AI agents.
 * [Agentation](https://www.agentation.com/) Agentation turns UI annotations into structured context that AI coding agents can understand and act on.
 
 ## Resource
