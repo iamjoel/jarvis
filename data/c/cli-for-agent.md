@@ -4,6 +4,7 @@
 ## CLI
 1. [lark-cli](https://github.com/larksuite/cli) 飞书官方出的 cli 工具。还包含了一些 skills。
 2. [wecom-cli](https://github.com/WecomTeam/wecom-cli) 企业微信官方出的 cli 工具。
+3. [DingTalk Workspace CLI](https://github.com/DingTalk-Real-AI/dingtalk-workspace-cli) 钉钉官方出的 cli 工具。
 3. [Google workspace cli](https://github.com/googleworkspace/cli)
 
 cli
