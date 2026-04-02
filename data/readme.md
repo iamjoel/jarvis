@@ -535,6 +535,12 @@
 | [Prompt 优先级](./p/prompt-priority.md) | 多层 Prompt 冲突时如何判断 |
 | [翻译场景 Prompt](./p/prompt-scence-translator.md) | 面向翻译任务的 Prompt 模板 |
 
+**Workflow / Agent 框架调研**
+
+| 文档 | 简介 |
+|------|------|
+| [Workflow 框架深度对比：DeepAgents vs Vercel Workflow vs VoltAgent](./w/workflow-frameworks-comparison.md) | 三大 Workflow 框架（LangChain DeepAgents / Vercel Workflow SDK / VoltAgent）的优缺点、横向对比与 Demo |
+
 **如何构建软件、前端与可视化？**
 
 | 文档 | 简介 |
