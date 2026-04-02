@@ -506,6 +506,7 @@
 |------|------|
 | [LLM 资源](./l/llm-resource.md) | LLM 相关人物、工具与学习资源汇总 |
 | [Codex](./c/codex.md) | OpenAI Codex 与编程 Agent 的能力边界 |
+| [Claude Code 源码泄露：值得研究的逻辑与对世界的影响](./c/claude-code-leaked.md) | 2026 年 3 月 Anthropic Claude Code 512K 行源码意外泄露的完整分析：模块化提示引擎、三层自愈记忆、双轨权限模型、KAIROS 后台 Agent、Undercover Mode 等核心设计，及其对 AI 行业竞争、开源社区与安全合规的深远影响 |
 | [Harness](./h/harness.md) | Claude 和 OpenAI 语境下 harness（测试/评估套具）的含义、典型模式与实践建议 |
 | [上下文管理](./c/context-manage.md) | 长对话、长任务中的上下文压缩与管理 |
 | [AIEOS](./a/aieos.md) | AI Agent 可移植身份标准 |
