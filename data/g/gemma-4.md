@@ -124,8 +124,8 @@ curl -fsSL https://ollama.com/install.sh | sh
 # 下载并运行 E4B 模型（约 8GB）
 ollama run gemma4:4b
 
-# 下载并运行 27B 模型（需要 16–24GB 显存）
-ollama run gemma4:27b
+# 下载并运行 31B 模型（需要 20–32GB 显存）
+ollama run gemma4:31b
 ```
 
 ### 6.2 通过 Hugging Face Transformers 运行
