@@ -109,6 +109,7 @@
 | [《小王子》](./book-the-little-prince.md) | *The Little Prince (Le Petit Prince)* | 一个来自外星球的小王子用他与玫瑰和狐狸的故事，告诉我们什么叫做"驯养"，以及为什么一朵花可以比整个宇宙更重要 |
 | [《长寿：逆转和延缓衰老的科学饮食》（上下册）](./book-the-longevity-diet.md) | *The Longevity Diet: Discover the New Science Behind Stem Cell Activation and Regeneration to Slow Aging, Fight Disease, and Optimize Weight* | 隆戈用数十年的衰老研究和基础科学，结合全球长寿人群的饮食数据，提出了一套基于科学的长寿饮食方案，核心是"模拟禁食饮食"（FMD）。 |
 | [《贪婪的多巴胺》](./book-the-molecule-of-more.md) | *The Molecule of More: How a Single Chemical in Your Brain Drives Love, Sex, and Creativity—and Will Determine the Future of the Human Race* | 这本书揭示了一个颠覆常识的真相：多巴胺不是"快乐分子"，而是"更多分子"——它驱动的不是当下的享受，而是对未来可能性的永恒渴望。 |
+| [《末日松茸》](./book-the-mushroom-at-the-end-of-the-world.md) | *The Mushroom at the End of the World: On the Possibility of Life in Capitalist Ruins* | 一朵无法被驯化的蘑菇，连结了俄勒冈的难民采摘者、日本的礼品文化和资本主义废墟——安娜·秦用松茸的全球商品链，追问在不确定的废墟时代，生命如何以"补丁式"的方式拼凑出共存的可能。 |
 | [《人月神话》](./book-the-mythical-man-month.md) | *The Mythical Man-Month: Essays on Software Engineering* | 软件工程的本质复杂性决定了没有任何单一技术能让生产力提升一个数量级——理解这一点是软件管理的出发点。 |
 | [《学会呼吸：重新掌握天生本能》](./book-the-oxygen-advantage.md) | *The Oxygen Advantage* | 呼吸不是越多越好，学会轻、慢、少地用鼻子呼吸，才能真正让身体获得更多氧气。 |
 | [《病患悖论：为什么"过度"医疗不利于你的健康？》](./book-the-patient-paradox.md) | *The Patient Paradox: Why Sexed-Up Medicine is Bad for Your Health* | 医疗系统正在把健康的人变成担心自己生病的人——真正的"为你好"，有时是告诉你不需要某项检查或治疗。 |
