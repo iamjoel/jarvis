@@ -32,6 +32,7 @@
 | [《棉花帝国：一部资本主义全球史》](./book-empire-of-cotton.md) | *Empire of Cotton: A Global History* | 棉花不只是一种纤维，它是现代资本主义的"基因"——在它的生产链上，战争、奴役、殖民与工业化共同构成了我们今天世界的底层逻辑。 |
 | [《空腹力革命》](./book-empty-stomach-revolution.md) | *Empty Stomach Revolution* | 少吃、保持空腹，才能激活身体自愈力，获得真正的健康与长寿。 |
 | [《当下的启蒙》](./book-enlightenment-now.md) | *Enlightenment Now: The Case for Reason, Science, Humanism, and Progress* | 世界正在变得越来越好——不是感觉上，而是数据上：寿命、健康、财富、安全、民主、知识、幸福全面进步，而驱动这一切的是启蒙时代确立的理性与科学精神。 |
+| [《菌络万物》](./book-entangled-life.md) | *Entangled Life: How Fungi Make Our Worlds, Change Our Minds & Shape Our Futures* | 脚下的土壤里隐藏着一个你从未真正认识的王国——真菌构成地球最庞大的生命网络，连接整片森林、分解死亡物质、改变人类意识，它们的存在彻底颠覆了"个体""智能"与"生命"的定义。 |
 | [《关于说话的一切》](./book-everything-about-speaking.md) | *Everything About Speaking* | 说话是一门可以系统学习的艺术，涵盖内容、方式、时机与关系四个维度 |
 | [《宝贵的人生建议》](./book-excellent-advice-for-living.md) | *Excellent Advice for Living: Wisdom I Wish I'd Known Earlier* | 这是凯文·凯利在68岁生日写给女儿的人生建议的扩展版，每条建议都是他亲身验证过的实用智慧，而非理论说教。 |
 | [《躁动的无意识》](./book-exercised.md) | *Exercised: Why Something We Never Evolved to Do Is Healthy and Rewarding* | 人类天生不爱运动并非懒惰，而是进化的理性策略；真正的问题是：为什么在不需要运动的时代，我们反而必须主动去运动？ |
