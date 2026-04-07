@@ -126,6 +126,7 @@
 | [《社会契约论》](./book-the-social-contract.md) | *The Social Contract* | 人生而自由，但无处不在枷锁之中——唯有人民自我立法，权威才能获得真正的合法性 |
 | [《细胞传》](./book-the-song-of-the-cell.md) | *The Song of the Cell: An Exploration of Medicine and the New Human* | 所有生命现象的本质，都是细胞的故事；现代医学最深刻的变革，都发生在人类学会读懂细胞的那一刻。 |
 | [《艺术的故事》](./book-the-story-of-art.md) | *The Story of Art* | 从史前洞穴壁画到20世纪实验艺术，这是一部面向普通人的西方艺术全史，它告诉你：每一件伟大作品都在解决一个具体的视觉问题。 |
+| [《人体的故事：进化、健康与疾病》](./book-the-story-of-the-human-body.md) | *The Story of the Human Body: Evolution, Health, and Disease* | 我们的身体是为石器时代设计的，却被迫生活在21世纪——利伯曼用进化生物学揭示：大多数现代慢性病都是"错配疾病"，是进化设定的身体与现代生活方式之间冲突的产物。 |
 | [《局外人》](./book-the-stranger.md) | *The Stranger (L'Étranger)* | 社会杀死默尔索，不是因为他杀了人，而是因为他拒绝假装悲伤 |
 | [《观念的水位》](./book-the-water-level-of-ideas.md) | *The Water Level of Ideas* | 一本关于思想力量的随笔集：观念不是空谈，它是制度变迁的真正驱动力——而"观念的水位"决定了一个社会能走多远。 |
 | [《我的世界观》](./book-the-world-as-i-see-it.md) | *The World as I See It (Mein Weltbild)* | 一个用方程式描述宇宙的人，同样用简洁有力的文字描述他对人生、自由、道德与神秘的理解——两者都令人惊叹 |
