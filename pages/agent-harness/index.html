@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent Harness</title>
+    <meta
+      name="description"
+      content="用一个轻量、可视化的 HTML 页面解释 Agent harness 是什么、为什么重要，以及它如何形成执行闭环。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-glow page-glow-a" aria-hidden="true"></div>
+    <div class="page-glow page-glow-b" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#top">Agent Harness</a>
+      <nav class="topnav" aria-label="页面导航">
+        <a href="#overview">概念</a>
+        <a href="#loop">闭环</a>
+        <a href="#modes">模式</a>
+        <a href="#architecture">架构</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section reveal">
+        <div class="hero-copy">
+          <p class="eyebrow">Execution Layer for Reliable Agents</p>
+          <h1>
+            Agent harness 不是模型本身，
+            <span>而是让 Agent 可执行、可验证、可交接的那一层。</span>
+          </h1>
+          <p class="hero-text">
+            它把工具、沙盒、测试、评分、日志和上下文移交组织成一个稳定回路，让 Agent
+            不只是“会回答”，而是能在真实任务里持续交付。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#loop">看执行闭环</a>
+            <a class="button button-secondary" href="#modes">看四种模式</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="signal-card">
+            <p class="signal-label">一句话定义</p>
+            <p class="signal-value">
+              用标准化环境包住 Agent，并把反馈重新喂回去。
+            </p>
+          </div>
+
+          <div class="signal-grid" aria-label="核心能力">
+            <article>
+              <span class="signal-kicker">01</span>
+              <h2>可执行</h2>
+              <p>能调工具、跑命令、读写文件，而不只生成文本。</p>
+            </article>
+            <article>
+              <span class="signal-kicker">02</span>
+              <h2>可验证</h2>
+              <p>每次动作之后都有测试、评估或可观察反馈。</p>
+            </article>
+            <article>
+              <span class="signal-kicker">03</span>
+              <h2>可复现</h2>
+              <p>同一任务在同一 harness 下能重复运行与比较。</p>
+            </article>
+            <article>
+              <span class="signal-kicker">04</span>
+              <h2>可交接</h2>
+              <p>长任务中，状态与契约能通过文件持续传递。</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section id="overview" class="section split reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Concept</p>
+          <h2>把零散能力“套起来”，Agent 才开始像系统。</h2>
+        </div>
+
+        <div class="definition-grid">
+          <article class="definition-card accent-coral">
+            <p class="card-tag">输入</p>
+            <h3>任务与上下文</h3>
+            <p>Issue、需求、代码库、浏览器界面、运行中的应用，都是 harness 的观测对象。</p>
+          </article>
+          <article class="definition-card accent-teal">
+            <p class="card-tag">中间层</p>
+            <h3>执行环境</h3>
+            <p>沙盒、命令执行、工具注册、超时控制、日志收集与权限边界共同组成 harness。</p>
+          </article>
+          <article class="definition-card accent-yellow">
+            <p class="card-tag">输出</p>
+            <h3>反馈与评分</h3>
+            <p>测试结果、通过率、失败日志、E2E 验收、handoff 文档，决定 Agent 下一步动作。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="loop" class="section reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Closed Loop</p>
+          <h2>没有 harness，Agent 只能猜；有了 harness，Agent 才能迭代。</h2>
+        </div>
+
+        <div class="loop-layout">
+          <div class="loop-diagram" aria-label="Agent Harness 执行闭环">
+            <div class="loop-core">
+              <span>Agent</span>
+            </div>
+            <div class="loop-orbit orbit-a">理解任务</div>
+            <div class="loop-orbit orbit-b">执行动作</div>
+            <div class="loop-orbit orbit-c">观察结果</div>
+            <div class="loop-orbit orbit-d">修正策略</div>
+          </div>
+
+          <div class="loop-steps">
+            <article>
+              <span>1</span>
+              <div>
+                <h3>标准化入口</h3>
+                <p>harness 把“怎么开始”固定下来，例如跑测试、启动浏览器、加载仓库、拉起任务。</p>
+              </div>
+            </article>
+            <article>
+              <span>2</span>
+              <div>
+                <h3>受控执行</h3>
+                <p>Agent 在权限清晰的环境中调用 shell、文件系统、网页工具或评测框架。</p>
+              </div>
+            </article>
+            <article>
+              <span>3</span>
+              <div>
+                <h3>反馈回流</h3>
+                <p>pass/fail、日志、截图、评分与异常被结构化返回，而不是散落在外部系统里。</p>
+              </div>
+            </article>
+            <article>
+              <span>4</span>
+              <div>
+                <h3>继续迭代</h3>
+                <p>Agent 基于同一回路继续修改、验证、再提交，从“一次性输出”转向“闭环生产”。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="modes" class="section reveal">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow">Four Modes</p>
+            <h2>Harness 常见的四种工作方式</h2>
+          </div>
+          <div class="mode-switch" role="tablist" aria-label="Harness 模式切换">
+            <button class="mode-button is-active" type="button" data-mode="test">
+              测试
+            </button>
+            <button class="mode-button" type="button" data-mode="eval">
+              评估
+            </button>
+            <button class="mode-button" type="button" data-mode="agent">
+              Agent
+            </button>
+            <button class="mode-button" type="button" data-mode="longrun">
+              长任务
+            </button>
+          </div>
+        </div>
+
+        <div class="mode-stage">
+          <article class="mode-card is-active" data-panel="test">
+            <p class="card-tag">Test Harness</p>
+            <h3>验证代码是否真的被修好</h3>
+            <p>典型场景是修复 Issue、执行补丁、运行测试套件，然后用测试结果判定是否 resolved。</p>
+            <ul>
+              <li>代表场景：SWE-bench、`pytest` / `jest` 封装</li>
+              <li>核心产物：通过率、错误日志、回归信号</li>
+            </ul>
+          </article>
+
+          <article class="mode-card" data-panel="eval">
+            <p class="card-tag">Eval Harness</p>
+            <h3>比较模型能力而不是猜印象分</h3>
+            <p>它统一数据集、模型调用方式与评分规则，让不同模型在同一标准下被测量。</p>
+            <ul>
+              <li>代表场景：`openai/evals`、`lm-evaluation-harness`</li>
+              <li>核心产物：accuracy、match、model-graded 等指标</li>
+            </ul>
+          </article>
+
+          <article class="mode-card" data-panel="agent">
+            <p class="card-tag">Agent Harness</p>
+            <h3>给 Agent 一套能执行真实工作的操作层</h3>
+            <p>它把文件系统、shell、浏览器、截图、鼠标键盘和任务状态串起来，形成工具闭环。</p>
+            <ul>
+              <li>代表场景：Codex 沙盒、Claude Computer Use</li>
+              <li>核心产物：工具返回值、环境状态、操作记录</li>
+            </ul>
+          </article>
+
+          <article class="mode-card" data-panel="longrun">
+            <p class="card-tag">Long-running Harness</p>
+            <h3>让长周期任务可以跨 session 接力</h3>
+            <p>重点不只是执行，而是把规划、实现、评估和移交文档做成协议，防止上下文断裂。</p>
+            <ul>
+              <li>代表场景：Planner / Generator / Evaluator 分工</li>
+              <li>核心产物：spec、contract、bug report、handoff</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="architecture" class="section architecture reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Long-Running Architecture</p>
+          <h2>当任务很长时，harness 还负责“交接班”。</h2>
+        </div>
+
+        <div class="architecture-grid">
+          <article class="role-card">
+            <p class="role-index">A</p>
+            <h3>Planner</h3>
+            <p>把模糊目标扩展成可实施的 spec，明确边界、验收标准与技术建议。</p>
+          </article>
+          <article class="role-card">
+            <p class="role-index">B</p>
+            <h3>Generator</h3>
+            <p>按 sprint 逐段实现，每段结束都产出代码、自检与下一段 contract。</p>
+          </article>
+          <article class="role-card">
+            <p class="role-index">C</p>
+            <h3>Evaluator</h3>
+            <p>独立验证是否达标，用 E2E、Playwright 或规则脚本像真实用户一样检查结果。</p>
+          </article>
+        </div>
+
+        <div class="handoff-board">
+          <div class="handoff-copy">
+            <p class="card-tag">Handoff Artifacts</p>
+            <h3>文件不是附属物，而是 Agent 之间的协议。</h3>
+            <p>
+              长任务里最常见的失败不是模型不会做，而是 session
+              之间没有结构化移交。好的 harness 会把 spec、sprint contract、bug
+              report、handoff 文档变成固定产物。
+            </p>
+          </div>
+
+          <div class="artifact-list" aria-label="交接产物">
+            <article>
+              <strong>Spec</strong>
+              <span>定义目标与范围</span>
+            </article>
+            <article>
+              <strong>Contract</strong>
+              <span>定义本轮可验证交付</span>
+            </article>
+            <article>
+              <strong>Bug Report</strong>
+              <span>把失败具体化，便于修复</span>
+            </article>
+            <article>
+              <strong>Handoff</strong>
+              <span>让下一个 session 可直接续跑</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section summary reveal">
+        <div class="summary-panel">
+          <p class="eyebrow">Takeaway</p>
+          <h2>Harness 的价值，不在于“包一层”，而在于把 Agent 从回答者变成执行者。</h2>
+          <p>
+            当环境、工具、验证与移交都被标准化，Agent
+            才能持续完成复杂任务，而不是在每次上下文切换后重新开始。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Agent Harness • static HTML page • built for quick understanding and sharing</p>
+    </footer>
+
+    <script src="./main.js" defer></script>
+  </body>
+</html>
