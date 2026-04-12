@@ -431,7 +431,7 @@ CKD 最危险的特点是**早中期几乎无症状**——肾脏代偿能力极
 ## 参考资料
 
 - KDIGO (Kidney Disease: Improving Global Outcomes). *CKD Evaluation and Management Guidelines.* 2024
-- Zhang L, et al. *Prevalence of chronic kidney disease in China: a cross-sectional survey.* The Lancet. 2012
+- Zhang L, et al. *Prevalence of chronic kidney disease in China: a cross-sectional survey.* Lancet. 2012
 - Kidney Disease: Improving Global Outcomes (KDIGO) AKI Work Group. *KDIGO Clinical Practice Guideline for Acute Kidney Injury.* Kidney International Supplements. 2012
 - Heerspink HJL, et al. *Dapagliflozin in Patients with Chronic Kidney Disease.* NEJM. 2020
 - Schrier RW. *Diseases of the Kidney & Urinary Tract.* 8th Ed. Lippincott Williams & Wilkins. 2007
