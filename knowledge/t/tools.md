@@ -42,6 +42,7 @@
   * [drauu](https://github.com/antfu/drauu) SVG-based drawing tool in browser. Built for Slidev.
 
 ## Automation
+* [Cucumber](https://cucumber.io/docs/guides/browser-automation) Browser automation tool with semantic syntax.
 * [Espanso](https://espanso.org/) detects when you type a keyword and replaces it while you're typing. It support call shell command. It is  lightweight. It that can replace [ScriptKit](https://www.scriptkit.com/) in many scenario. [My Config](../../private/tool-config/espanso/README.md). 
 
 ## Marketing

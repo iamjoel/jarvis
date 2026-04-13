@@ -14,8 +14,8 @@ If the user needs information from Twitter/X, Reddit, WeRead (微信读书), or 
 
 ## HTML Design System
 When creating or editing HTML pages and their CSS:
-1. Treat `design-system/miro.md` as the default design system.
+1. Treat `design-system/miro.md` as the default design system. [Preview](https://getdesign.md/design-md/miro/preview).
 2. Unless the user says otherwise, follow the Miro-inspired direction: light canvas, near-black text, generous whitespace, pastel accents, rounded components, and minimal shadow depth.
-3. Use `design-system/Supabase.md` when the page is better served by a dark, developer-facing, terminal-like, or more technical product aesthetic.
+3. Use `design-system/Supabase.md` when the page is better served by a dark, developer-facing, terminal-like, or more technical product aesthetic. [Preview](https://getdesign.md/design-md/supabase/preview).
 4. If both references are relevant, keep one system dominant instead of blending them evenly.
 5. When no explicit design direction is given, start from Miro and switch to Supabase only with a concrete reason.
