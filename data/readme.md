@@ -188,6 +188,7 @@
 | [《思考，快与慢》](./b/book-thinking-fast-and-slow.md) | 从系统 1 / 系统 2、偏差与前景理论理解判断为何经常失真 |
 | [《系统之美》](./b/book-thinking-in-systems.md) | 用反馈、时延和杠杆点训练对复杂问题的判断力 |
 | [《穷查理宝典》](./b/book-poor-charlies-almanack.md) | 用多元思维模型扩展判断框架，避免单一学科视角 |
+| [荟萃分析（Meta-Analysis）深度指南](./m/meta-analysis.md) | 荟萃分析是什么、为什么重要、完整方法论步骤、核心统计概念（效应量、异质性、发表偏倚）、优缺点、常见误区及著名案例 |
 
 **如何看待财富？**
 
