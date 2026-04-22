@@ -4,6 +4,10 @@
 >
 > Better-T-Stack 是一个现代 TypeScript 全栈脚手架工具，支持端到端类型安全，允许你自由组合各层技术栈。本文对其每个分类下的技术选项进行优缺点和使用场景的对比。
 
+```
+pnpm create better-t-stack@latest {project-name} --frontend tanstack-router --backend hono --runtime workers --api trpc --auth none --payments none --database sqlite --orm drizzle --db-setup d1 --package-manager pnpm --no-git --web-deploy cloudflare --server-deploy cloudflare --no-install --addons turborepo --examples none
+```
+
 ---
 
 ## 1. 前端框架（Frontend）
