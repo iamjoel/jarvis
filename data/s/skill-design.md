@@ -3,7 +3,8 @@ Status: Draft
 ---
 
 # Skill Design
-[Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md) Copy a DESIGN.md into your project, tell your AI agent "build me a page that looks like this" and get pixel-perfect UI that actually matches.
+* [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md) Copy a DESIGN.md into your project, tell your AI agent "build me a page that looks like this" and get pixel-perfect UI that actually matches.
+* [styles](https://styles.refero.design/) Design taste, extracted. 也支持 DESIGN.md。
 
 
 ## [Impeccable](https://impeccable.style)
