@@ -384,6 +384,7 @@
 |------|------|
 | [光刻机行业深度介绍](./g/guangkeji.md) | 光刻机的工作原理、发展史、ASML 垄断逻辑、EUV 技术解析、芯片战争中的地缘博弈与中国突围之路 |
 | [M5Stack 深度指南](./m/m5stack.md) | 深圳出品的模块化 ESP32 开发平台：产品线全览（Core/Stick/Atom）、UIFlow 2 图形化编程、与 Arduino 对比，以及 IoT 原型到工业边缘 AI 的应用路径 |
+| [GD01 对比 Atlas / 外骨骼 / 工程机械](./g/gd01-vs-atlas-exoskeleton-engineering-machinery.md) | 从“人在系统中的位置、控制难点、风险与商业成熟度”对比四条技术路线，帮助判断载人机甲的真实技术坐标与落地约束 |
 
 ### 人类的未来
 
