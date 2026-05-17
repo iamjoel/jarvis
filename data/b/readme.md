@@ -103,6 +103,7 @@
 | [《乌合之众》](./book-the-crowd.md) | *The Crowd: A Study of the Popular Mind* | 在人群中，聪明人会变蠢——群体不是个体的简单加总，而是一个截然不同的心理存在。 |
 | [《卓有成效的管理者》](./book-the-effective-executive.md) | *The Effective Executive: The Definitive Guide to Getting the Right Things Done* | 有效性不是天赋，而是可以学习的习惯；卓有成效的管理者做正确的事，而非把事情做正确。 |
 | [《癌症传》](./book-the-emperor-of-all-maladies.md) | *The Emperor of All Maladies: A Biography of Cancer* | 癌症不是外来入侵者，而是我们自身细胞的叛乱——它的历史，就是人类理解自身生命的历史。 |
+| [《用户体验要素》](./book-the-elements-of-user-experience.md) | *The Elements of User Experience: User-Centered Design for the Web and Beyond* | 好产品不是先画页面，而是先回答“为谁解决什么问题”，再把战略、范围、结构、框架、表现层层对齐。 |
 | [《自下而上：万物进化史》](./book-the-evolution-of-everything.md) | *The Evolution of Everything: How New Ideas Emerge* | 世界上最重要的秩序不是由设计者创造的，而是由无数个体的分散行为演化而来——基因、语言、道德、市场、技术，莫不如此；理解自发涌现，是理解复杂世界的关键。 |
 | [《基因传》](./book-the-gene.md) | *The Gene: An Intimate History* | 从孟德尔的豌豆到CRISPR基因编辑，基因的历史是一部关于遗传、身份与人类命运的科学与道德交织的史诗。 |
 | [《必然》](./book-the-inevitable.md) | *The Inevitable: Understanding the 12 Technological Forces That Will Shape Our Future* | 未来30年的数字化转型并非偶然，而是由12种必然的技术力量驱动；这些趋势不可阻挡，但我们可以选择如何在其中定位自己。 |
