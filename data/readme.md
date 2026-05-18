@@ -339,6 +339,7 @@
 | [韩国近代史](./h/history-korea-modern.md) | 理解朝鲜半岛现代转型与国家发展路径 |
 | [日本近代史](./j/japan-modern-history.md) | 理解日本近代国家、产业与社会演变 |
 | [一战后的中东历史](./h/history-middle-east-after-ww1.md) | 现代中东格局如何形成，以及为何长期动荡 |
+| [《圣地与枪炮》](./b/book-holy-land-and-guns.md) | 用"圣地"与"枪炮"两条线索理解中东的宗教认同、帝国遗产、石油利益与外部强权干预 |
 | [伊斯兰教](./i/islam.md) | 从宗教、历史与文明影响理解伊斯兰世界 |
 | [《中国历史的地理密码》](./b/book-geographic-code-of-chinese-history.md) | 郭建龙从地理视角解读中国历史的分合规律与文明演变 |
 | [《财政密码》](./b/book-fiscal-code.md) | 郭建龙：财政制度是两千年王朝兴衰的核心变量——田赋、货币、官营经济的得失，决定了中央集权的命运 |

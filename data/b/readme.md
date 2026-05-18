@@ -45,6 +45,7 @@
 | [《大突破：工业革命与现代世界的形成》](./book-great-breakthrough.md) | *The Great Breakthrough: The Industrial Revolution and the Making of the Modern World* | 工业革命不是偶然的技术突破，而是启蒙思想、市场制度、能源革命与持续创新文化共同作用的历史"大突破"。 |
 | [《枪炮、病菌与钢铁》](./book-guns-germs-steel.md) | *Guns, Germs, and Steel* | 贾雷德·戴蒙德：为什么欧亚文明征服了其他大陆？地理、生态与扩散条件是决定因素 |
 | [《幸福的方法》](./book-happier.md) | *Happier: Learn the Secrets to Daily Joy and Lasting Fulfillment* | 幸福不是目的地，而是当下意义与快乐的同时存在——本-沙哈尔的哈佛最受欢迎课程，用汉堡模型和日常练习，让幸福从哲学变成实践。 |
+| [《圣地与枪炮》](./book-holy-land-and-guns.md) | *Holy Land and Guns* | 中东不是天生混乱，而是圣地叙事、帝国崩解、殖民划界、石油利益和现代武力共同压缩在同一片土地上的结果 |
 | [《未来简史》](./book-homo-deus.md) | *Homo Deus: A Brief History of Tomorrow* | 这本书不是在预测某个确定的未来，而是在追问：当算法、生物技术和数据权力不断增强，人类还会不会继续站在世界中心。 |
 | [《心智探奇：人类心智的起源与进化》](./book-how-the-mind-works.md) | *How the Mind Works* | 心智不是灵魂的居所，而是为了解决祖先在进化环境中遇到的具体问题而构建的计算系统——平克用计算主义 + 进化论的双重视角，系统回答"我们为什么这样思考"。 |
 | [《如何创造思维》](./book-how-to-create-a-mind.md) | *How to Create a Mind: The Secret of Human Thought Revealed* | 大脑的工作原理可以被归结为约3亿个"模式识别器"组成的层级结构，而创造真正的AI就是在计算机上重建这一结构——这既是工程目标，也是理解人类思维本质的途径。 |

@@ -5,6 +5,13 @@ For any research task requested by the user:
 2. Review `data/readme.md`.
 3. Update `data/readme.md` if the new or changed output should be indexed, linked, or described there.
 
+## Maintain Document Density
+When creating or editing Markdown documents under `data/`:
+1. Add a high-density summary block near the top of the document, immediately after the main title when practical. Match the block heading and content language to the current document's primary language, such as `## 高密度摘要` for Chinese documents or `## High-Density Summary` for English documents.
+2. Use the block to capture the document's most reusable knowledge: one-sentence conclusion, core mechanism, judgment entry point, common misconceptions, and related documents.
+3. When changing a document's conclusions, structure, scope, or important details, update its high-density summary block in the same edit.
+4. If an existing `data/` document does not yet have a high-density summary block and you make a meaningful content edit, add one instead of leaving the document in the older format.
+
 ## Fetch Information from the Web
 If the user needs information from Twitter/X, Reddit, WeRead (微信读书), or any specific website:
 1. Use `Bash` to inspect available tools with `opencli list`.
