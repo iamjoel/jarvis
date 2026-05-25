@@ -2,6 +2,10 @@
 
 高敏感（Highly Sensitive Person, HSP）不是“矫情”或“脆弱”，而是一种先天气质特征。高敏感者对外界刺激、情绪信息和细节变化更容易感知，也更容易被影响。
 
+## 人群比例（大致范围）
+
+主流研究通常认为，高敏感特质在人群中的比例大约在 **15%–20%**，并且在不同性别中都可见，不是少见的“异常”状态，而是正常的人格与气质差异之一。
+
 ## 常见特征
 
 - **感官敏锐**：对噪音、强光、气味、拥挤环境更敏感。
@@ -24,6 +28,15 @@
 - **抗压阈值低**：高刺激环境下恢复速度较慢。
 - **容易自责**：对反馈和评价更敏感，内耗风险更高。
 
+## 神经科学研究（简要）
+
+目前神经科学研究的共识不是“高敏感=疾病”，而是**信息加工更深、对情绪与环境线索反应更强**。常见发现包括：
+
+- **更强的情绪与社会线索加工**：fMRI 研究发现，高敏感个体在看到他人情绪（尤其亲密他人的情绪）时，和情绪/共情相关脑区（如岛叶、前扣带皮层等）反应更明显。
+- **更高的注意与感觉加工敏感度**：在视觉细节、细微变化等任务中，高敏感相关特质与更高的感知与注意投入有关。
+- **“对环境更敏感”而非“只对负面敏感”**：一些研究支持“差异易感性”观点——高敏感个体在不良环境中更容易受影响，但在支持性环境中也可能获得更大收益。
+- **可能存在生物学基础**：研究者提出高敏感与神经递质系统及遗传差异有关，但目前仍在发展中，不能简化为单一基因决定。
+
 ## 生活建议
 
 1. **建立“降噪”习惯**：固定留白时间，减少持续高刺激输入。
@@ -33,6 +46,12 @@
 5. **低刺激环境优先**：优化光线、声音、作息，提升稳定感。
 6. **用优势选场景**：选择重视深度、质量和共情的工作与关系。
 7. **减少自我否定**：把“敏感”视为特质，不等于缺陷。
+
+## 参考研究（延伸阅读）
+
+- Aron, E. N., & Aron, A. (1997). *Sensory-processing sensitivity and its relation to introversion and emotionality*. Journal of Personality and Social Psychology.
+- Jagiellowicz, J., et al. (2011). *The trait of sensory processing sensitivity and neural responses to changes in visual scenes*. Social Cognitive and Affective Neuroscience.
+- Acevedo, B. P., et al. (2014). *The highly sensitive brain: an fMRI study of sensory processing sensitivity and response to others’ emotions*. Brain and Behavior.
 
 ## 一句话总结
 
