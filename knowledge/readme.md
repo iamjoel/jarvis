@@ -38,5 +38,8 @@
 - [实验室用不同动物的历史](./h/history-laboratory-animals.md)
 - [韩国近代史（政治、经济、文化与产业格局）](../data/h/history-korea-modern.md)
 
+### Health
+- [接触野生动物血液和内脏时，病原体会穿透皮肤吗？](./h/health-wild-animal-blood-viscera-infection-risk.md)
+
 ### AI Tools & Products
 - [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
