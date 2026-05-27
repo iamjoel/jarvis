@@ -40,6 +40,7 @@
 
 ### Health
 - [接触野生动物血液和内脏时，病原体会穿透皮肤吗？](./h/health-wild-animal-blood-viscera-infection-risk.md)
+- [为什么食用野生动物肉更容易有寄生虫和病毒感染风险](./h/health-wild-animal-meat-parasite-virus-risk.md)
 
 ### AI Tools & Products
 - [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
