@@ -136,6 +136,7 @@
 | 文档 | 简介 |
 |------|------|
 | [大脑边缘系统深度指南](./l/limbic-system.md) | 边缘系统（杏仁核、海马体、下丘脑、扣带回）如何驱动情绪、记忆与动机，以及如何主动调节它 |
+| [心理上的高敏感（HSP）](../knowledge/p/psychological-high-sensitivity.md) | 介绍高敏感特质的人群比例、核心特征、优势与挑战，以及神经科学研究与日常应对建议 |
 | [《重塑杏仁核：情绪修复脑科学》](./b/book-rewire-your-anxious-brain.md) | 从神经科学理解焦虑，并建立干预路径 |
 | [《贪婪的多巴胺》](./b/book-the-molecule-of-more.md) | 多巴胺如何塑造欲望、上瘾、野心与不满足 |
 | [《被讨厌的勇气》](./b/book-the-courage-to-be-disliked.md) | 从阿德勒心理学理解烦恼、课题分离与自由 |
