@@ -48,7 +48,7 @@ create_date: 2026-05-31
 
 #### 3. 三文鱼 / 鲑鱼、鳟鱼
 
-它们肉色偏粉红，核心原因就是虾青素。  
+它们肉色偏粉红，核心原因就是虾青素。
 不过要注意：
 
 - **野生鲑鱼**：主要来自自然食物链中的磷虾和甲壳类。
@@ -132,7 +132,7 @@ create_date: 2026-05-31
 - 某些亚组（患者人群、较高剂量、亚洲样本）下降幅度更明显
 - **收缩压总体不显著**
 
-这类结果的正确理解方式是：  
+这类结果的正确理解方式是：
 **可能有轻微生理作用，但远不足以替代生活方式干预或降压药。**
 
 ### 5）对炎症和氧化应激：证据最一致，但大多是“实验室指标变好”
@@ -142,7 +142,7 @@ create_date: 2026-05-31
 - IL-6、TNF-α 等炎症指标下降
 - SOD、TAC 等抗氧化能力指标上升
 
-这证明虾青素**确实不是“什么都没发生”**。它在人体内有可检测到的生物学效应。  
+这证明虾青素**确实不是“什么都没发生”**。它在人体内有可检测到的生物学效应。
 但要注意一个关键区别：
 
 - **指标改善 ≠ 临床结局一定改善**
@@ -186,7 +186,7 @@ create_date: 2026-05-31
 4. 缺少高质量、多中心、长期 RCT 的稳定复现
 5. 即使有改善，很多也还是“轻度改善”
 
-所以更谨慎的结论是：  
+所以更谨慎的结论是：
 **这些方向“有研究、有可能”，但距离“证据已非常强”还差一大截。**
 
 ## 安全性怎么理解？
@@ -207,9 +207,9 @@ create_date: 2026-05-31
 
 #### 不是纯智商税，因为：
 
-1. **分子真实存在**，不是杜撰概念  
-2. **天然食物中确实存在**，动物颜色变化就是证据  
-3. **人体试验里确实有可重复的生物学效应**，尤其是炎症/氧化应激指标  
+1. **分子真实存在**，不是杜撰概念
+2. **天然食物中确实存在**，动物颜色变化就是证据
+3. **人体试验里确实有可重复的生物学效应**，尤其是炎症/氧化应激指标
 4. **在代谢异常人群中**，确实出现了一些小幅但统计学显著的改善
 
 #### 容易被卖成智商税，因为：
@@ -258,15 +258,15 @@ create_date: 2026-05-31
 
 ## 参考资料
 
-1. **Lipid profile and glucose changes after supplementation with astaxanthin: a systematic review and meta-analysis of randomized controlled trials**（2015）  
+1. **Lipid profile and glucose changes after supplementation with astaxanthin: a systematic review and meta-analysis of randomized controlled trials**（2015）
    结论：在一般人群中，对血脂和血糖总体无显著改善。
-2. **Astaxanthin Influence on Health Outcomes of Adults at Risk of Metabolic Syndrome: A Systematic Review and Meta-Analysis**（Nutrients, 2022）  
+2. **Astaxanthin Influence on Health Outcomes of Adults at Risk of Metabolic Syndrome: A Systematic Review and Meta-Analysis**（Nutrients, 2022）
    结论：在代谢综合征风险成人中，LDL 有下降，总胆固醇和收缩压仅边缘获益。
-3. **Impact of astaxanthin supplementation on blood pressure: A systematic review and meta-analysis of randomized controlled trials**（2021）  
+3. **Impact of astaxanthin supplementation on blood pressure: A systematic review and meta-analysis of randomized controlled trials**（2021）
    结论：舒张压小幅下降，收缩压总体不显著。
-4. **Effect of astaxanthin on physical activity factors, lipid profile and antioxidant biomarkers: a systematic review and meta-analysis**（Journal of Functional Foods, 2024）  
+4. **Effect of astaxanthin on physical activity factors, lipid profile and antioxidant biomarkers: a systematic review and meta-analysis**（Journal of Functional Foods, 2024）
    结论：抗氧化指标改善较一致，运动表现提升不稳定。
-5. **The Role of Astaxanthin as an Antioxidant and Anti-Inflammatory Supplement in Humans: A Systematic Review and Meta-Analysis**（International Journal of Molecular Sciences, 2026）  
+5. **The Role of Astaxanthin as an Antioxidant and Anti-Inflammatory Supplement in Humans: A Systematic Review and Meta-Analysis**（International Journal of Molecular Sciences, 2026）
    结论：炎症与氧化应激相关指标有改善，但临床硬终点证据仍有限。
-6. **Effects of Astaxanthin Supplementation on Glycemic Control and Lipid Profile in Patients with Prediabetes and Type 2 Diabetes Mellitus: A Meta-Analysis**（2026）  
+6. **Effects of Astaxanthin Supplementation on Glycemic Control and Lipid Profile in Patients with Prediabetes and Type 2 Diabetes Mellitus: A Meta-Analysis**（2026）
    结论：糖前期 / 2 型糖尿病人群的血糖和血脂指标有小到中等幅度改善。
