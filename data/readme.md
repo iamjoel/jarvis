@@ -601,6 +601,7 @@
 | 文档 | 简介 |
 |------|------|
 | [前端资源](./f/frontend.md) | UI 组件库、工具链与前端生态入口 |
+| [Next.js、Astro、Hono、VoidZero/Vite+ 框架对比](./f/frontend-frameworks-nextjs-astro-hono-voidzero.md) | 从页面应用、内容站、API 服务、工具链四个层级对比 Next.js、Astro、Hono 与 VoidZero/Vite+ 的适用场景 |
 | [前端技术史](./f/frontend-history.md) | Web 前端技术脉络梳理 |
 | [Web 后端整体技术发展史](./b/backend-history.md) | 主要后端语言、生态与演变路线 |
 | [AntV 信息图表](./a/antv-infographic.md) | 信息可视化与图表表达的相关资源 |
