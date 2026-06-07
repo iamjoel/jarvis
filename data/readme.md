@@ -272,6 +272,7 @@
 | 文档 | 简介 |
 |------|------|
 | [哈耶克学说](./h/hayek.md) | 理解价格、分散知识与自发秩序 |
+| [多中心治理](./a/austrian-economics-polycentricity.md) | 理解多中心治理的定义、历史来源、适用问题，以及它和哈耶克自发秩序、奥地利学派的关系 |
 | [《理性乐观派》](./b/book-the-rational-optimist.md) | 交易与创新如何推动人类繁荣 |
 | [《自下而上：万物进化史》](./b/book-the-evolution-of-everything.md) | 很多秩序来自涌现，而不是中央设计 |
 | [《置身事外：中国政府与经济发展》](./b/book-caught-in-the-middle.md) | 兰小欢：理解土地财政与政绩激励，才能真正读懂中国经济奇迹 |
