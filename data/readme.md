@@ -80,6 +80,7 @@
 | [《疯狂的尿酸》](./u/uric-acid.md) | 尿酸、果糖与代谢综合征之间的隐藏联系 |
 | [《长寿饮食》](./b/book-the-longevity-diet.md) | 饮食模式如何作用于衰老与疾病风险 |
 | [虾青素（Astaxanthin）](./h/astaxanthin.md) | 用荟萃分析视角拆解虾青素的天然来源、真实健康影响，以及它到底是不是“智商税” |
+| [氨糖是不是智商税：基于荟萃分析的证据判断](./a/antang-glucosamine-meta-analysis.md) | 综合 BMJ、BJSM、ACR、NICE、NCCIH、ESCEO 等荟萃分析和指南，区分普通保健、骨关节炎止痛、软骨修复等不同场景下氨糖是否值得买 |
 | [《空腹力革命》](./b/book-empty-stomach-revolution.md) | 石原结实从医学角度阐述空腹状态如何激活自愈力、提升免疫与延缓衰老 |
 | [《菌群大脑》](./b/book-the-psychobiotic-revolution.md) | 肠道微生物通过肠-脑轴深刻影响情绪与心理健康，饮食是最有力的菌群干预手段 |
 | [《吃土》](./b/book-eat-dirt.md) | 乔希·阿克斯从功能医学角度阐述"肠漏综合征"如何引发现代慢性病，以及通过全食物、益生菌与自然生活方式修复肠道的5R方案 |
