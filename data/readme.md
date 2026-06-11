@@ -4,7 +4,7 @@
 
 - **一句话结论**：`data/` 以“问题”为入口组织个人、社会、自然三大主题，优先支持从问题到行动的检索路径。
 - **核心机制**：先定位总问题，再沿分主题表格进入专题文档，最后沉淀高频结论到 `knowledge/`。
-- **判断入口**：如果你要找“某个问题该看什么”，先看本目录索引；如果要找“稳定原则”，再转到 `knowledge/`。
+- **判断入口**：如果你要找“某个问题该看什么”，先看本目录索引；食物内容优先用“滚汤入魂、酸得开胃、辣到上头、碳水封神”等风味分类进入；如果要找“稳定原则”，再转到 `knowledge/`。
 - **常见误区**：按作者或学科找资料会降低命中率；本库优先按场景问题而非传统学科分类。
 - **相关文档**：[`knowledge/readme.md`](../knowledge/readme.md)、[`m/missing-important-understandings.md`](./m/missing-important-understandings.md)、[`u/unified-framework-energy-information-evolution-feedback.md`](./u/unified-framework-energy-information-evolution-feedback.md)。
 
@@ -98,9 +98,22 @@
 
 **不同地方有哪些好吃的？**
 
+先按风味进入，比只按地域更容易找到真正想吃的东西：
+
+| 风味分类 | 覆盖范围 | 代表文档 |
+|------|------|------|
+| 滚汤入魂 | 高汤、骨汤、汤菜、汤面、浓汤、河鲜海鲜带来的“汤底记忆” | [洛阳水席](./l/luoyang-shuixi.md)、[胡辣汤](./h/hulatang.md)、[苏州时令饮食地图](./s/suzhou-seasonal-foods.md) |
+| 酸得开胃 | 醋酸、酸汤、酸浆、乳酸发酵、酸辣结构带来的开胃感 | [云南酸浆米线](./y/yunnan-suanjiang-mixian.md)、[山西代表性面食](./s/shanxi-noodles.md)、[贵州代表美食](./f/food-guizhou.md) |
+| 辣到上头 | 辣椒、花椒、胡椒、油泼辣子、干辣椒香带来的刺激感 | [重庆代表美食](./f/food-chongqing.md)、[四川代表美食](./f/food-sichuan.md)、[湖南代表美食](./f/food-hunan.md)、[杨凌蘸水面](./y/yangling-zhanshui-mian.md) |
+| 碳水封神 | 面、粉、米线、馒头、饺子、糕团等主食带来的满足感 | [山西代表性面食](./s/shanxi-noodles.md)、[杨凌蘸水面](./y/yangling-zhanshui-mian.md)、[云南酸浆米线](./y/yunnan-suanjiang-mixian.md)、[不同面粉深度指南](./f/flour-guide.md) |
+| 山野暴击 | 野生菌、松茸、鸡枞、干巴菌、山珍、森林泥土气息 | [云南主要可食用菌](./y/yunnan-edible-mushrooms.md)、[云南代表美食](./f/food-yunnan.md) |
+| 油脂炸裂 | 烤、炸、煎、烧腊、肥瘦肉、脆皮、焦香和肉汁 | [北京代表美食](./f/food-beijing.md)、[陕西代表美食](./f/food-shaanxi.md)、[新疆代表美食](./f/food-xinjiang.md)、[广东代表美食](./f/food-guangdong.md) |
+| 发酵暗涌 | 酒酿、酸浆、酱、臭、泡菜、菌群等复杂发酵风味 | [云南酸浆米线](./y/yunnan-suanjiang-mixian.md)、[《菌群大脑》](./b/book-the-psychobiotic-revolution.md)、[《吃土》](./b/book-eat-dirt.md) |
+| 香料风暴 | 胡椒、花椒、八角、桂皮、香茅、迷迭香、藏红花等复合香气 | [胡辣汤](./h/hulatang.md)、[香草、香料与芳香植物](./x/xiangcao-aromatic-plants.md)、[四川代表美食](./f/food-sichuan.md)、[云南代表美食](./f/food-yunnan.md) |
+
 | 文档 | 简介 |
 |------|------|
-| [中国各省份代表美食荟萃分析](./food-china-provinces/readme.md) | 按 34 个省级行政区分文件整理各城市代表美食，用类荟萃分析方法交叉地方政府、文旅、非遗、地方媒体与本地日常消费证据，降低网红和景区偏倚 |
+| [中国各省份代表美食荟萃分析](./f/food-readme.md) | 按 34 个省级行政区分文件整理各城市代表美食，用类荟萃分析方法交叉地方政府、文旅、非遗、地方媒体与本地日常消费证据，降低网红和景区偏倚 |
 | [中国最知名的 10 个地方美食](./c/china-top-10-famous-foods.md) | 从全国识别度、产地绑定、地方根基和传播稳定性四个维度，汇总北京烤鸭、重庆火锅、兰州牛肉面等 10 个最知名地方美食，并标出常见失真版本 |
 | [苏州时令饮食地图](./s/suzhou-seasonal-foods.md) | 按月份和季节整理苏州最值得吃的时令食物：青团、酒酿饼、炒肉团子、三虾面、枫镇大面、鸡头米、水八仙、大闸蟹、藏书羊肉、冬酿酒与年节糕团 |
 | [云南主要可食用菌](./y/yunnan-edible-mushrooms.md) | 按物种整理云南代表性野生菌和食用方式：松茸、鸡枞、干巴菌、牛肝菌、黑松露、鸡油菌、青头菌等 |
