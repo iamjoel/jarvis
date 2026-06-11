@@ -1,5 +1,13 @@
 # Data
 
+## 高密度摘要
+
+- **一句话结论**：`data/` 以“问题”为入口组织个人、社会、自然三大主题，优先支持从问题到行动的检索路径。
+- **核心机制**：先定位总问题，再沿分主题表格进入专题文档，最后沉淀高频结论到 `knowledge/`。
+- **判断入口**：如果你要找“某个问题该看什么”，先看本目录索引；如果要找“稳定原则”，再转到 `knowledge/`。
+- **常见误区**：按作者或学科找资料会降低命中率；本库优先按场景问题而非传统学科分类。
+- **相关文档**：[`knowledge/readme.md`](../knowledge/readme.md)、[`m/missing-important-understandings.md`](./m/missing-important-understandings.md)、[`u/unified-framework-energy-information-evolution-feedback.md`](./u/unified-framework-energy-information-evolution-feedback.md)。
+
 按“问题”组织内容。分类:
 
 - 个人：人和自己的关系
@@ -42,6 +50,7 @@
 | [过敏深度指南](./a/allergy.md) | 从免疫机制到诊断治疗全面介绍过敏：IgE 反应、常见过敏原、五大疾病谱、卫生假说、免疫治疗与肠道菌群的关键作用 |
 | [抗生素深度指南](./a/antibiotics.md) | 抗生素五大杀菌机制（细胞壁破坏、核糖体抑制等）、为何对病毒完全无效的根本原因、耐药性产生机制，以及合理用药原则 |
 | [咳嗽深度指南](./c/cough.md) | 覆盖急性/亚急性/慢性咳嗽的全部主要成因（UACS、哮喘、GERD、ACEI药物、COPD等）、系统诊断流程、对因与对症治疗方案及红旗症状识别 |
+| [鹦鹉热（Psittacosis）深度介绍](./q/psittacosis.md) | 系统介绍鹦鹉热病原与传播路径，涵盖人感染症状、鸟感染表现、近年中国公开病例数据、诊疗与预防要点 |
 | [静脉曲张深度指南](./j/jingmai-quzhang.md) | 从静脉瓣膜失功能机制到 CEAP 分级、危险因素、症状识别、彩超诊断，以及保守/微创（热消融、硬化疗法）/外科治疗的完整决策框架 |
 | [血栓深度指南](./x/xueshuan.md) | 以 Virchow 三联征为核心，全面解析动脉/静脉/微血管血栓的机制、分类（DVT、肺栓塞、心梗、脑卒中）、诊断检查、抗凝/溶栓/介入治疗及预防策略 |
 | [动脉斑块深度指南](./d/dongmai-bankai.md) | 从脂纹到易损斑块的全程演进机制、稳定与不稳定斑块的结构差异、斑块破裂/侵蚀触发急性血栓的分子路径，以及他汀/抗血小板/介入治疗与预防策略 |
