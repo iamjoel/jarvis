@@ -21,7 +21,7 @@
 | 辣到上头 | 辣椒、花椒、胡椒、油泼辣子、干辣椒香带来的刺激感 | [重庆代表美食](./f/food-chongqing.md)、[四川代表美食](./f/food-sichuan.md)、[湖南代表美食](./f/food-hunan.md)、[杨凌蘸水面](./y/yangling-zhanshui-mian.md) |
 | 碳水封神 | 面、粉、米线、馒头、饺子、糕团等主食带来的满足感 | [山西代表性面食](./s/shanxi-noodles.md)、[杨凌蘸水面](./y/yangling-zhanshui-mian.md)、[云南酸浆米线](./y/yunnan-suanjiang-mixian.md)、[不同面粉深度指南](./f/flour-guide.md) |
 | 山野暴击 | 野生菌、松茸、鸡枞、干巴菌、山珍、森林泥土气息 | [云南主要可食用菌](./y/yunnan-edible-mushrooms.md)、[云南代表美食](./f/food-yunnan.md) |
-| 油脂炸裂 | 烤、炸、煎、烧腊、肥瘦肉、脆皮、焦香和肉汁 | [北京代表美食](./f/food-beijing.md)、[陕西代表美食](./f/food-shaanxi.md)、[新疆代表美食](./f/food-xinjiang.md)、[广东代表美食](./f/food-guangdong.md) |
+| 油脂炸裂 | 烤、炸、煎、烧腊、肥瘦肉、脆皮、焦香和肉汁 | [北京代表美食](./f/food-beijing.md)、[陕西代表美食](./f/food-shaanxi.md)、[新疆代表美食](./f/food-xinjiang.md)、[广东代表美食](./f/food-guangdong.md)、[啫啫煲](./z/zhezhe-bao.md) |
 | 发酵暗涌 | 酒酿、酸浆、酱、臭、泡菜、菌群等复杂发酵风味 | [云南酸浆米线](./y/yunnan-suanjiang-mixian.md)、[《菌群大脑》](./b/book-the-psychobiotic-revolution.md)、[《吃土》](./b/book-eat-dirt.md) |
 | 香料风暴 | 胡椒、花椒、八角、桂皮、香茅、迷迭香、藏红花等复合香气 | [胡辣汤](./h/hulatang.md)、[香草、香料与芳香植物](./x/xiangcao-aromatic-plants.md)、[四川代表美食](./f/food-sichuan.md)、[云南代表美食](./f/food-yunnan.md) |
 
@@ -36,6 +36,7 @@
 | [洛阳水席](./l/luoyang-shuixi.md) | 介绍洛阳传统宴席：八凉十六热、以汤行菜、牡丹燕菜、连汤肉片、酸汤焦炸丸，以及第一次点水席的策略 |
 | [胡辣汤](./h/hulatang.md) | 介绍河南代表早餐：胡椒暖辣、骨汤底味、勾芡厚汤、逍遥镇与北舞渡两大流派，以及第一次喝胡辣汤的搭配与判断方法 |
 | [山西代表性面食](./s/shanxi-noodles.md) | 介绍山西的代表性面食体系：刀削面、莜面栲栳栳、剔尖、猫耳朵、擦尖与老陈醋，理解为什么山西是“面食之乡” |
+| [啫啫煲](./z/zhezhe-bao.md) | 深度介绍粤菜"镬气砂锅合体"的极致菜式：爆炒镬气如何产生、砂锅蓄热焠香原理、猪颈骨/田鸡/黄鳝等经典食材，以及为何堂食不可替代 |
 
 **如何理解香草、香料与芳香植物的风味？**
 
