@@ -13,7 +13,7 @@ create_date: 2026-06-11
 **核心机制**：植物的特殊香味主要来自挥发性芳香分子组合不同——香草偏香兰素及相关芳香醛类，迷迭香偏桉油精和樟脑样调，香茅偏柠檬醛，藏红花则由藏红花醛等成分带来蜂蜜、干草、药草和金属感。  
 **判断入口**：先分“甜香 / 花果香 / 木质草本 / 柑橘清香 / 药感辛香”五条主线，再看它更适合甜品、肉类、汤底、茶饮还是香氛。  
 **常见误区**：香草不只有一种风味；香料植物也不只是“越重越好闻”，很多高级香气来自甜、绿、苦、辛、木、花之间的平衡。  
-**相关文档**：[麦卡伦威士忌入门：桶型、年份、价格与“霉味”从哪里来](../m/macallan-whisky-guide.md)、[云南酸浆米线](../y/yunnan-suanjiang-mixian.md)、[植物生物学、农业与土壤生命：生命支持系统的绿色底座](../p/plant-biology-agriculture-soil-life.md)。
+**相关文档**：[麦卡伦威士忌入门：桶型、年份、价格与"霉味"从哪里来](../m/macallan-whisky-guide.md)、[云南酸浆米线](../y/yunnan-suanjiang-mixian.md)、[植物生物学、农业与土壤生命：生命支持系统的绿色底座](../p/plant-biology-agriculture-soil-life.md)、[木姜子深度介绍（中国西南野生柑橘辛香料）](../m/mujianzi.md)。
 
 ---
 
@@ -258,3 +258,4 @@ create_date: 2026-06-11
 - Missouri Botanical Garden Plant Finder: Salvia rosmarinus. https://www.missouribotanicalgarden.org/PlantFinder/PlantFinderDetails.aspx
 - Encyclopaedia Britannica: Lemongrass. https://www.britannica.com/plant/lemongrass
 - Encyclopaedia Britannica: Saffron. https://www.britannica.com/plant/saffron
+- Liu, Y. et al. (2012). Biological activities of essential oil from *Litsea cubeba*. *Industrial Crops and Products*, 40, 1–6.
