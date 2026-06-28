@@ -12,6 +12,13 @@ When creating or editing Markdown documents under `data/`:
 3. When changing a document's conclusions, structure, scope, or important details, update its high-density summary block in the same edit.
 4. If an existing `data/` document does not yet have a high-density summary block and you make a meaningful content edit, add one instead of leaving the document in the older format.
 
+## Explain Why Questions Matter
+When creating or editing question-driven index pages, including `data/readme.md` and the secondary indexes it links to:
+1. After each standalone question heading, add one concise sentence explaining why that question matters.
+2. Do not use verbose boilerplate such as “这个问题重要，因为”; state the reason directly.
+3. If questions are listed in a table, add a `为什么重要` column instead of adding separate paragraphs.
+4. Keep the explanation short and decision-oriented: explain what the question helps the reader understand, judge, avoid, or choose.
+
 ## Fetch Information from the Web
 If the user needs information from Twitter/X, Reddit, WeRead (微信读书), or any specific website:
 1. Use `Bash` to inspect available tools with `opencli list`.
