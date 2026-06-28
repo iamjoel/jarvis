@@ -61,6 +61,7 @@
 | [Role Task Format（RTF）](./p/prompt-fw-rtf.md) | 结构清晰的通用 Prompt 框架 |
 | [Prompt 优先级](./p/prompt-priority.md) | 多层 Prompt 冲突时如何判断 |
 | [翻译场景 Prompt](./p/prompt-scence-translator.md) | 面向翻译任务的 Prompt 模板 |
+| [运动项目输出模板](../knowledge/t/template-exercise-project-output.md) | 用“介绍、好处、风险、适用情况、怎么做、引用、推荐资源”约束 HIIT、动物流等运动项目介绍 |
 
 **Workflow / Agent 框架调研**
 
@@ -83,4 +84,3 @@
 | 文档 | 简介 |
 |------|------|
 | [精选文章](./a/awesome-articles.md) | 值得深读的长文与跨学科文章入口 |
-

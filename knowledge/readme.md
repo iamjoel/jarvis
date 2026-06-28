@@ -44,3 +44,6 @@
 
 ### AI Tools & Products
 - [OpenClaw & Alternatives Comparison](./o/openclaw-alternatives-comparison.md)
+
+### Templates
+- [运动项目输出模板](./t/template-exercise-project-output.md)

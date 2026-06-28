@@ -19,6 +19,11 @@ If the user needs information from Twitter/X, Reddit, WeRead (微信读书), or 
 3. Use that tool to retrieve the information.
 4. Only use fallback methods if no suitable tool is available.
 
+## Use Output Templates
+If user want to generate output, prefer to use the following templates.
+
+1. When the user asks to generate or refine an introduction for a specific exercise modality such as HIIT, animal flow, CrossFit or swimming, use template defined in `knowledge/t/template-exercise-project-output.md`.
+
 ## HTML Design System
 When creating or editing HTML pages and their CSS:
 1. Treat `design-system/miro.md` as the default design system. [Preview](https://getdesign.md/design-md/miro/preview).
