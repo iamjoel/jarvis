@@ -31,6 +31,7 @@ If user want to generate output, prefer to use the following templates.
 
 1. When the user asks to generate or refine an introduction for a specific exercise modality such as HIIT, animal flow, CrossFit or swimming, use template defined in `knowledge/t/template-exercise-project-output.md`.
 2. When the user asks to generate or refine a body indicator document such as blood pressure, blood glucose, blood lipids, uric acid, VO₂ max, HRV, creatinine, eGFR, waist circumference or body fat percentage, use template defined in `knowledge/t/template-body-indicator-output.md`.
+3. When the user asks to generate or refine a health risk behavior document such as smoking, excessive alcohol use, sedentary behavior, sleep deprivation, overeating or other harmful habits, use template defined in `knowledge/t/template-health-risk-behavior-output.md`.
 
 ## HTML Design System
 When creating or editing HTML pages and their CSS:
