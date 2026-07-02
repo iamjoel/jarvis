@@ -53,6 +53,7 @@
 | [《无限可能的身体》](./book-infinite-body.md) | *(Body of Infinite Possibility)* | 卢永利用运动科学与东方身体观的融合视角，帮助读者重新认识自己的身体——它不是一台会坏的机器，而是一个有自我修复能力的智慧系统。 |
 | [《影响力》](./book-influence.md) | *Influence: The Psychology of Persuasion* | 我们的大脑依赖"心理捷径"做决定，而这些捷径可以被系统性地触发——理解它，你既能保护自己，也能正当地影响他人。 |
 | [《免疫：对抗过敏、癌症、肿瘤、病毒和自律神经失调》](./book-immune-against-allergies-cancer-viruses.md) | *Immunity: Fighting Allergies, Cancer, Tumors, Viruses and Autonomic Nervous System Disorders* | 免疫学家安保彻揭示：白细胞受自律神经支配——长期压力激活交感神经、导致粒细胞过多，是癌症和慢性病的根源；而过敏则是副交感过度的另一面；两者都能通过恢复自律神经平衡来改善。 |
+| [《战斗细胞：人体免疫系统奇妙之旅》](./book-immune-a-journey.md) | *Immune: A Journey into the Mysterious System That Keeps You Alive* | Kurzgesagt 创始人菲利普·德特玛用故事和插图把免疫系统讲成一套识别、报警、杀伤、记忆和克制的细胞网络，适合作为免疫学第一本入门书。 |
 | [《亲密关系》](./book-intimate-relationships.md) | *Intimate Relationships* | 爱情不是命运，是一系列可以被理解、研究和改善的心理与行为模式 |
 | [《楚留香传奇》](./book-legend-of-chu-liuxiang.md) | *Legend of Chu Liuxiang* （又名 *Clue of the Moon*） | 楚留香是古龙美学的化身——他用优雅证明，在这个粗粝的武林里，做一个有品位的人是最难也最值的选择。 |
 | [《陆小凤传奇》](./book-legend-of-lu-xiaofeng.md) | *Legend of Lu Xiaofeng* | 陆小凤用两根手指和一颗聪明的心，证明真正的英雄不需要无敌，只需要足够人性化。 |
