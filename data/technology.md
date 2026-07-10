@@ -20,6 +20,8 @@
 |------|------|
 | [光刻机行业深度介绍](./g/guangkeji.md) | 光刻机的工作原理、发展史、ASML 垄断逻辑、EUV 技术解析、芯片战争中的地缘博弈与中国突围之路 |
 | [M5Stack 深度指南](./m/m5stack.md) | 深圳出品的模块化 ESP32 开发平台：产品线全览（Core/Stick/Atom）、UIFlow 2 图形化编程、与 Arduino 对比，以及 IoT 原型到工业边缘 AI 的应用路径 |
+| [常见传感器硬件项目方案与选型指南](./h/hardware-sensor-project-recommendations.md) | 从主控、传感器、供电、通信和安装出发，给出环境监测、空气质量、存在感知、机器人、户外节点与设备监测六套可落地组合 |
+| [三个有惊艳感的 ESP32 多传感器物联网项目](./i/iot-projects-esp32-learning.md) | 用空气精灵、无摄像头空间雷达和赛博植物生命舱，递进学习多传感器采集、融合、实时通信、闭环控制与可靠性 |
 | [GD01 对比 Atlas / 外骨骼 / 工程机械](./g/gd01-vs-atlas-exoskeleton-engineering-machinery.md) | 从“人在系统中的位置、控制难点、风险与商业成熟度”对比四条技术路线，帮助判断载人机甲的真实技术坐标与落地约束 |
 
 ### 人类的未来
