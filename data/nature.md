@@ -56,6 +56,7 @@
 | 文档 | 简介 |
 |------|------|
 | [生命科学兴趣视角：`data/` 里还缺哪些关键骨架？](./l/life-sciences-missing-foundations.md) | 基于当前 `data/` 覆盖面，指出生命科学最值得补的底层入口：分子细胞、基因调控、发育、实验方法、组学、神经科学、微生物、植物、演化机制与医学证据判断 |
+| [生命科学最权威的信息源：全球 5 个 + 中国 5 个](./l/life-sciences-authoritative-information-sources.md) | 列出 PubMed/PMC、NCBI Bookshelf、Nature、Science、Cell Press，以及 SinoMed、CNKI、万方、NSTL、China CDC Weekly 的定位、权威性与使用顺序 |
 | [分子细胞生物学基础：生命在细胞里如何运转？](./m/molecular-cell-biology-foundations.md) | 用细胞、DNA、RNA、蛋白质、膜、线粒体、细胞器和信号通路建立现代生命科学的共同语言 |
 | [生命科学方法与模型生物：结论是怎么被证明的？](./l/life-science-methods-and-model-organisms.md) | 解释体外、细胞、动物、人体研究的证据边界，以及酵母、果蝇、线虫、斑马鱼、小鼠、拟南芥等模型生物为什么重要 |
 | [基因调控与表观遗传：为什么同一套基因能长出不同细胞？](./g/gene-regulation-and-epigenetics.md) | 从启动子、增强子、转录因子、染色质、DNA 甲基化和非编码 RNA 理解基因不是命运清单，而是动态调控系统 |
