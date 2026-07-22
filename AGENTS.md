@@ -33,6 +33,11 @@ If user want to generate output, prefer to use the following templates.
 2. When the user asks to generate or refine a body indicator document such as blood pressure, blood glucose, blood lipids, uric acid, VO₂ max, HRV, creatinine, eGFR, waist circumference or body fat percentage, use template defined in `knowledge/t/template-body-indicator-output.md`.
 3. When the user asks to generate or refine a health risk behavior document such as smoking, excessive alcohol use, sedentary behavior, sleep deprivation, overeating or other harmful habits, use template defined in `knowledge/t/template-health-risk-behavior-output.md`.
 4. When the user asks to generate or refine a disease document such as gout, diabetes, hypertension, flu, COVID-19, herniated disk, allergy or asthma, use template defined in `knowledge/t/template-disease-output.md`.
+5. When the user asks to create or refine a project issue, select the matching type template:
+   - Feature or behavior change: `knowledge/t/template-project-issue-feat.md`.
+   - Bug fix: `knowledge/t/template-project-issue-fix.md`.
+   - Maintenance, migration, cleanup, configuration, or documentation work: `knowledge/t/template-project-issue-chore.md`.
+   These templates guide issue content only. Actual writes under `private/projects` must follow `private/projects/readme.md` and its plan/apply approval workflow; selecting a template does not authorize a direct edit.
 
 ## HTML Design System
 When creating or editing HTML pages and their CSS:

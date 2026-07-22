@@ -47,3 +47,6 @@
 
 ### Templates
 - [运动项目输出模板](./t/template-exercise-project-output.md)
+- [Feat Issue 模板](./t/template-project-issue-feat.md)
+- [Fix Issue 模板](./t/template-project-issue-fix.md)
+- [Chore Issue 模板](./t/template-project-issue-chore.md)
