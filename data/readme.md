@@ -53,10 +53,11 @@
 
 识别缺口能帮助后续补资料时优先补关键框架，而不是只按兴趣零散扩展。
 
-| 文档 | 简介 |
-|------|------|
-| [当前 `data/` 里还缺哪些比较重要的理解？](./m/missing-important-understandings.md) | 基于现有覆盖面对“个人 / 社会 / 自然”三大维度做结构诊断，指出关键缺口与建议补齐顺序 |
-| [统一框架：能量、信息、演化、反馈](./u/unified-framework-energy-information-evolution-feedback.md) | 用一套跨领域框架把个人、社会与自然串起来，作为整套 `data/` 的隐形主线 |
+| 文档 | 为什么重要 | 简介 |
+|------|------|------|
+| [当前 `data/` 里还缺哪些比较重要的理解？](./m/missing-important-understandings.md) | 帮助后续补资料时优先填补关键框架，而不是继续按兴趣零散扩展 | 基于现有覆盖面对“个人 / 社会 / 自然”三大维度做结构诊断，指出关键缺口与建议补齐顺序 |
+| [统一框架：能量、信息、演化、反馈](./u/unified-framework-energy-information-evolution-feedback.md) | 帮助判断不同领域的现象能否放进同一套因果框架 | 用一套跨领域框架把个人、社会与自然串起来，作为整套 `data/` 的隐形主线 |
+| [Jarvis 的 `knowledge/` 模块目前包含什么、怎样协作、最该改什么？](./k/knowledge-module-analysis.md) | 帮助判断哪些内容该沉淀为知识、怎样变成能力，以及应优先修复什么 | 盘点 `knowledge/` 的内容结构、与 `data/`、`AGENTS.md`、`pages/`、`skills/` 的协作关系，并给出三项优先改进建议 |
 
 ## 维护规则
 

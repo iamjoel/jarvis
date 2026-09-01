@@ -1,5 +1,13 @@
 # 拆书列表
 
+## 高密度摘要
+
+- **一句话结论**：本页是全部拆书的按书名入口，适合已知书名时快速定位；按问题选书应先进入[书籍索引](../books.md)。
+- **核心机制**：每份拆书提炼作者回答的问题、核心机制、现实启发和判断边界，而不是只堆叠书摘或章节摘要。
+- **判断入口**：知道书名时在本页搜索；只知道想解决的问题时转到书籍、个人、社会、自然或技术索引。
+- **常见误区**：英文名只在公开书目可核对时填写；一本书的作者主张不自动等于已被独立证据确认的事实。
+- **相关文档**：[书籍索引](../books.md)、[个人问题索引](../personal.md)、[社会问题索引](../society.md)、[自然问题索引](../nature.md)、[技术索引](../technology.md)。
+
 按"问题驱动拆书"方法论生成的书籍拆解，按书名字母顺序排列。
 
 | 书名 | 英文名 | 简介 |
@@ -50,7 +58,8 @@
 | [《心智探奇：人类心智的起源与进化》](./book-how-the-mind-works.md) | *How the Mind Works* | 心智不是灵魂的居所，而是为了解决祖先在进化环境中遇到的具体问题而构建的计算系统——平克用计算主义 + 进化论的双重视角，系统回答"我们为什么这样思考"。 |
 | [《如何创造思维》](./book-how-to-create-a-mind.md) | *How to Create a Mind: The Secret of Human Thought Revealed* | 大脑的工作原理可以被归结为约3亿个"模式识别器"组成的层级结构，而创造真正的AI就是在计算机上重建这一结构——这既是工程目标，也是理解人类思维本质的途径。 |
 | [《我也有一个梦想》](./book-i-have-a-dream-too.md) | *I Have a Dream Too* | 一个关于梦想与现实之间漫长距离的故事：自由不是被赠予的，是被争取的，一寸一寸，不回头。 |
-| [《无限可能的身体》](./book-infinite-body.md) | *(Body of Infinite Possibility)* | 卢永利用运动科学与东方身体观的融合视角，帮助读者重新认识自己的身体——它不是一台会坏的机器，而是一个有自我修复能力的智慧系统。 |
+| [《无限可能的身体》](./book-infinite-body.md) | —（公开书目未标注） | 健康是适应与恢复的能力；卢永利先拆解健康如何被资本和媒体产品化，再用光暗、饥饱、活动休息、冷热、群体独处五组节律重建实践。 |
+| [《无限可能的身体》拆书校验报告](./book-infinite-body-validation.md) | — | 用微信读书的完整目录、个人划线与热门划线复核现有拆书，区分框架准确性、作者观点保真度、高风险错误与重大遗漏。 |
 | [《影响力》](./book-influence.md) | *Influence: The Psychology of Persuasion* | 我们的大脑依赖"心理捷径"做决定，而这些捷径可以被系统性地触发——理解它，你既能保护自己，也能正当地影响他人。 |
 | [《免疫：对抗过敏、癌症、肿瘤、病毒和自律神经失调》](./book-immune-against-allergies-cancer-viruses.md) | *Immunity: Fighting Allergies, Cancer, Tumors, Viruses and Autonomic Nervous System Disorders* | 免疫学家安保彻揭示：白细胞受自律神经支配——长期压力激活交感神经、导致粒细胞过多，是癌症和慢性病的根源；而过敏则是副交感过度的另一面；两者都能通过恢复自律神经平衡来改善。 |
 | [《战斗细胞：人体免疫系统奇妙之旅》](./book-immune-a-journey.md) | *Immune: A Journey into the Mysterious System That Keeps You Alive* | Kurzgesagt 创始人菲利普·德特玛用故事和插图把免疫系统讲成一套识别、报警、杀伤、记忆和克制的细胞网络，适合作为免疫学第一本入门书。 |

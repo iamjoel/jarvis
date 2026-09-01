@@ -4,9 +4,9 @@
 
 - **一句话结论**：社会问题索引用来理解人类如何协作、竞争、治理、交易、传播信息并塑造历史。
 - **核心机制**：从“人是什么样的物种”出发，向沟通协作、经济秩序、制度治理、信息舆论、人口城市、政治历史和产业技术展开。
-- **判断入口**：技术与 AI 相关内容优先进入 [技术索引](./technology.md)；书籍拆解优先进入 [书籍索引](./books.md)。
+- **判断入口**：技术与 AI 相关内容优先进入 [技术索引](./technology.md)；书籍拆解优先进入 [书籍索引](./books.md)；想通过桌游理解结构化竞争、合作和沟通时看 [主流现代桌游规则速览](./g/mainstream-board-game-rules-guide.md)。
 - **常见误区**：社会问题不是单一学科问题；制度、信息、经济、权力和技术经常互相解释。
-- **相关文档**：[总索引](./readme.md)、[技术索引](./technology.md)、[书籍索引](./books.md)、[统一框架](./u/unified-framework-energy-information-evolution-feedback.md)。
+- **相关文档**：[总索引](./readme.md)、[技术索引](./technology.md)、[书籍索引](./books.md)、[主流现代桌游规则速览](./g/mainstream-board-game-rules-guide.md)、[统一框架](./u/unified-framework-energy-information-evolution-feedback.md)。
 
 ## 社会
 
@@ -53,6 +53,14 @@
 |------|------|
 | [《亲密关系》](./b/book-intimate-relationships.md) | 从社会心理学理解爱情、依恋与长期关系 |
 | [《爱的艺术》](./b/book-the-art-of-loving.md) | 爱不是感觉，而是一种需要练习的能力 |
+
+**主流桌游怎样用规则组织竞争、合作与沟通？**
+
+桌游把目标、信息、资源和行动边界公开化，是观察协商、信任、欺骗、合作与群体决策的低成本实验场。
+
+| 文档 | 简介 |
+|------|------|
+| [主流现代桌游规则速览](./g/mainstream-board-game-rules-guide.md) | 结合 BGA 当前热度，按聚会、家庭、策略与合作分类，提炼 18 款代表性桌游的目标、回合、胜负条件、常见误解和设计机制 |
 
 ### 经济、秩序与决策
 
