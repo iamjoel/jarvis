@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f1eb">
+  <title>CORPUS — 人体肌肉图谱</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%233d554a'/%3E%3Cpath d='M21 9a9 9 0 1 0 0 14' fill='none' stroke='%23e9dfc9' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+:root{--paper:#f3f1eb;--ink:#293a32;--muted:#7b8178;--line:#d7d9ce;--green:#3d594a;--red:#9b5040;--bone:#b3a47c;--panel:#f8f7f1}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:var(--paper);color:var(--ink);font:12px 'DM Sans','Noto Sans SC',sans-serif}button,input,select{font:inherit;color:inherit}button{border:0;background:none;cursor:pointer}button:hover{color:var(--red)}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:4px}[hidden]{display:none!important}
+header{height:70px;margin:0 30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;padding:0;letter-spacing:.17em;font-size:14px}.brand svg{width:32px;height:32px}.brand b{font-size:9px;color:var(--muted);font-weight:400;margin-left:8px;letter-spacing:.1em}.header-note{font-size:8px;letter-spacing:.2em;color:var(--muted)}
+main{height:calc(100dvh - 70px);min-height:590px;position:relative}.viewport{position:absolute;inset:0 0 36px;overflow:hidden}#scene{display:block;width:100%;height:100%;touch-action:none;cursor:grab}#scene:active{cursor:grabbing}#ruler,#labels{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#ruler text{font:9px 'Barlow Condensed',sans-serif;fill:#a6ad9d}#ruler line{stroke:#c5cdba;stroke-width:.7}
+.intro{position:absolute;top:33px;left:30px;pointer-events:none}.eyebrow{display:flex;align-items:center;gap:8px;letter-spacing:.12em;font-size:8px;color:var(--muted)}.eyebrow i{height:5px;width:5px;border-radius:50%;background:var(--green)}h1{font-size:clamp(30px,3vw,46px);line-height:1.30;font-weight:500;letter-spacing:-.065em;margin:19px 0 16px}h1 span{color:#69816b}.intro p{font-size:10px;line-height:1.9;color:var(--muted);margin:0}.intro-meta{font-size:7px;letter-spacing:.11em;color:#8a9386;margin-top:22px}.intro-meta span{margin:0 7px}
+.library{position:absolute;left:30px;top:289px;bottom:61px;width:207px;display:flex;flex-direction:column}.section-label{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:9px;letter-spacing:.08em;color:var(--muted)}.section-label span{font:500 11px 'Barlow Condensed',sans-serif;letter-spacing:.09em}.search{margin:13px 0 0;display:flex;align-items:center;border-bottom:1px solid var(--line);padding:0 0 9px;gap:9px}.search svg{width:14px;height:14px;color:var(--muted);flex-shrink:0}.search input{background:transparent;border:0;min-width:0;width:100%;font-size:10px;outline:none}.search input::placeholder{color:#8a9085}.filters{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:13px 0 8px}.system-filter{display:flex;gap:12px}.system-filter button{padding:3px 0;font-size:9px;color:var(--muted)}.system-filter button[aria-pressed=true]{color:var(--green);border-bottom:1px solid var(--green)}.filters select{width:52px;border:0;background:transparent;font-size:9px;color:var(--muted);cursor:pointer}.filters option{background:var(--paper)}#partList{overflow-y:auto;min-height:0;flex:1;scrollbar-width:thin;scrollbar-color:#c9cfbf transparent;overscroll-behavior:contain;padding-right:4px}.part-row{width:100%;padding:10px 0;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e1e3d9;font-size:10px;text-align:left}.part-row>.part-number{font:500 10px 'Barlow Condensed',sans-serif;color:#9ca492;width:13px}.part-row .part-title{flex:1}.part-row i{width:5px;height:5px;border:1px solid var(--bone);border-radius:50%;margin-right:2px}.part-row.muscle i{background:var(--red);border-color:var(--red)}.part-row.active{color:var(--red)}.part-row.active .part-number{color:var(--red)}.part-row.active .part-title{font-weight:500}#clearSelection{font-size:9px;text-align:left;padding:12px 0 0;color:var(--red)}#emptyState{padding:30px 0;font-size:10px;color:var(--muted)}
+.right-rail{position:absolute;right:30px;top:31px;width:222px}.mode-switch{display:flex;gap:3px;border:1px solid #d3dace;border-radius:5px;background:#e6eadf;padding:4px}.mode-switch button{flex:1;white-space:nowrap;font-size:10px;padding:8px 4px;color:#7d8779;border-radius:3px}.mode-switch button:first-child{flex:1.45}.mode-switch button[aria-pressed=true]{color:#eef0e7;background:var(--green)}.overview{padding-top:34px}.overview>.section-label{font-size:8px;letter-spacing:.11em}.overview h2{font-size:25px;font-weight:400;line-height:1.45;letter-spacing:-.05em;margin:18px 0 13px}.overview>p{color:var(--muted);font-size:10px;line-height:1.9;margin:0 0 20px}.legend{display:grid;gap:11px;margin:22px 0}.legend>span{display:flex;align-items:center;font-size:9px;gap:8px}.legend i{width:6px;height:6px;border-radius:50%}.muscle-dot{background:var(--red)}.bone-dot{background:var(--bone)}.tendon-dot{background:#e3d7b9;border:1px solid #b4b394}.legend small{font:500 9px 'Barlow Condensed',sans-serif;letter-spacing:.12em;color:var(--muted);margin-left:auto}.explore-button{border-top:1px solid var(--line);border-bottom:1px solid var(--line);width:100%;display:flex;justify-content:space-between;padding:12px 0;font-size:10px}.explore-button span{color:var(--red);font-size:15px;line-height:1}
+.detail{padding-top:24px}.detail-top{display:flex;align-items:center;justify-content:space-between;color:var(--red);font-size:9px;letter-spacing:.06em}.detail-top button{padding:0;font-size:20px;line-height:1;color:var(--muted)}.detail h2{font-weight:500;font-size:25px;letter-spacing:-.04em;margin:16px 0 4px;line-height:1.4}#detailLatin{color:var(--muted);font-size:10px;font-style:italic}#detailDescription{font-size:11px;line-height:1.9;color:#75806f;margin:19px 0}.function-label{font-size:8px;color:#8e9983;border-top:1px solid var(--line);padding-top:13px}#detailAction{margin:8px 0 0;font-size:10px;line-height:1.7}.detail-actions{display:flex;gap:18px;margin-top:15px}.detail-actions button{font-size:10px;display:flex;justify-content:space-between;flex:1;text-align:left;padding:7px 0}.detail-actions button[aria-pressed=true]{color:var(--red)}.detail-actions span{color:var(--muted)}
+.layer-controls{border-top:1px solid var(--line);padding-top:20px;margin-top:25px}.range-label{display:flex;align-items:center;justify-content:space-between;margin-top:21px;font-size:10px}.range-label output{font:500 18px 'Barlow Condensed',sans-serif;color:var(--green);line-height:1;font-variant-numeric:tabular-nums}.range-label output span{font-size:9px;margin-left:3px}.opacity-label{margin-top:22px}input[type=range]{display:block;appearance:none;height:2px;width:100%;background:linear-gradient(to right,#627c65 var(--progress,0%),#c7d0bd var(--progress,0%));margin:13px 0 8px;cursor:ew-resize}input[type=range]::-webkit-slider-thumb{appearance:none;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px var(--paper)}input[type=range]:disabled{opacity:.35;cursor:default}.switch-row{display:flex;align-items:center;justify-content:space-between;margin-top:18px;font-size:10px}.toggle{appearance:none;width:24px;height:13px;position:relative;border-radius:9px;background:#cbd1c1;cursor:pointer;margin:0}.toggle:before{content:'';width:7px;height:7px;border-radius:50%;background:#f8f9f0;position:absolute;left:3px;top:3px;transition:transform .18s}.toggle:checked{background:#6b8369}.toggle:checked:before{transform:translateX(11px)}
+.view-caption{position:absolute;left:50%;bottom:94px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;font-size:8px;color:#8c9881;white-space:nowrap;pointer-events:none}.view-caption i{width:15px;height:1px;background:#a9b69c}.view-controls{position:absolute;left:50%;bottom:52px;transform:translateX(-50%);display:flex;align-items:center;gap:3px;background:#eff2e8e8;border:1px solid #cdd6c3;border-radius:5px;padding:4px}.view-controls button{min-width:32px;height:25px;font-size:11px;color:#78866d;border-radius:3px}.view-controls button[aria-pressed=true]{background:#dae3ce;color:var(--green)}.view-controls>span{width:1px;height:13px;background:var(--line);margin:0 5px}
+.label{position:absolute;white-space:nowrap;font-size:10px;color:#727e68;display:flex;align-items:center;pointer-events:auto;gap:9px;padding:0;transition:opacity .2s}.label>i{display:block;width:26px;height:1px;background:#a6b293;position:relative}.label>i:before{position:absolute;content:'';width:3px;height:3px;border-radius:50%;background:#84956f;left:-2px;top:-1px}.label span{padding:4px 0;border-bottom:1px solid #c1cbb5;background:#f3f1ebc9}.label small{font:500 9px 'Barlow Condensed',sans-serif;margin-left:8px;letter-spacing:.04em;color:#adb7a0}.label.left{flex-direction:row-reverse;transform:translateX(-100%)}.label.left>i:before{left:auto;right:-2px}.label.muscle{color:#935744}.label.muscle>i{background:#bc9680}.label.muscle>i:before{background:#a77c64}.label.active span{color:var(--green);border-color:var(--green);font-weight:500}
+
+footer{position:absolute;bottom:0;left:30px;right:30px;height:36px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;color:#8b9382;font-size:8px}footer>span:first-child{font:500 9px 'Barlow Condensed',sans-serif;letter-spacing:.13em}footer i{width:4px;height:4px;display:inline-block;background:#809477;border-radius:50%;margin:0 6px 2px 0}footer a{color:inherit;text-decoration:none}footer a:hover{color:var(--green)}
+#loading{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:18px;background:var(--paper);z-index:30;color:var(--muted);font-size:10px;transition:opacity .4s}#loading.done{opacity:0;pointer-events:none}.loader-mark{font-size:30px;border:1px solid #a2b196;height:58px;width:58px;border-radius:50%;display:grid;place-content:center;color:var(--green);font-family:Georgia,serif}
+@media(max-height:790px) and (min-width:801px){.intro{top:26px}h1{font-size:34px;margin:17px 0 13px}.intro-meta{margin-top:15px}.library{top:248px}.overview{padding-top:25px}.overview h2{font-size:22px;margin:15px 0 12px}.legend{margin:17px 0;gap:9px}.overview>p{font-size:9px}.layer-controls{margin-top:19px;padding-top:17px}.range-label{margin-top:17px}.opacity-label{margin-top:16px}.switch-row{margin-top:15px}.detail h2{font-size:24px}.detail{padding-top:20px}#detailDescription{font-size:10px;margin:15px 0;line-height:1.8}.detail-actions{margin-top:10px}.part-row{padding:9px 0}}
+@media(max-width:1080px){header{margin:0 22px}.header-note{display:none}.intro,.library{left:22px}.library{width:179px}.right-rail{width:190px;right:22px}.intro p{font-size:9px}.eyebrow{font-size:7px}.mode-switch button{font-size:9px}.overview>p{font-size:9px}.label{font-size:9px}.label small{display:none}.overview h2{font-size:22px}.detail h2{font-size:23px}#detailDescription{font-size:10px}.legend small{font-size:8px}}
+@media(max-width:800px){html,body{overflow:auto}header{height:62px;margin:0 18px}.brand{gap:8px;font-size:12px}.brand b{font-size:7px;margin-left:3px}.brand svg{width:27px;height:27px}main{height:1310px;min-height:1310px}.intro{top:21px;left:20px}.intro h1{font-size:25px;margin:12px 0;line-height:1.25}.intro p,.intro-meta{display:none}.eyebrow{font-size:6px}.viewport{top:117px;bottom:auto;height:550px}.right-rail{display:contents}.mode-switch{position:absolute;top:24px;right:18px;width:172px}.overview{display:none}.view-caption{top:669px;bottom:auto;font-size:8px}.view-controls{top:693px;bottom:auto}.layer-controls{position:absolute;top:752px;left:20px;right:20px;margin:0;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:0 25px}.layer-controls>.section-label{grid-column:1/-1}.range-label{margin-top:18px;grid-column:1;grid-row:2}.opacity-label{grid-column:1/-1;grid-row:2}.layer-controls>#opacity{grid-column:1/-1;grid-row:3}.switch-row{margin-top:24px;grid-row:5}.library{top:957px;bottom:64px;left:20px;right:20px;width:auto}.library .search{margin-top:12px}.filters{margin-top:12px}#partList{display:grid;grid-template-columns:1fr 1fr;column-gap:20px;flex:1}.part-row{font-size:10px;padding:10px 0}.detail{position:absolute;top:148px;right:18px;z-index:12;background:#f8f7efee;border:1px solid #cdd6c0;border-top:2px solid var(--green);border-radius:4px;padding:14px;width:202px}.detail h2{font-size:22px;margin-top:10px}#detailDescription{font-size:10px;line-height:1.7}.function-label{font-size:8px}.detail-actions{gap:12px}.detail-actions button{font-size:9px}#detailAction{font-size:9px}.label{font-size:8px;gap:4px}.label>i{width:15px}footer{left:18px;right:18px;font-size:7px}footer>span:first-child{font-size:8px}footer>span:nth-child(2){display:none}}
+@media(max-width:800px){
+  .detail{top:750px;left:20px;right:20px;width:auto;padding:18px}
+  main:has(#detail:not([hidden])){height:1638px;min-height:1638px}
+  main:has(#detail:not([hidden])) .layer-controls{top:1080px}
+  main:has(#detail:not([hidden])) .library{top:1285px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}}
+
+.note-link{display:block;margin-top:18px;color:var(--red);font-size:11px;text-underline-offset:4px}.filters select{width:78px}
+#leaders{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#leaders path{fill:none;stroke:#a77c64;stroke-width:1}#leaders circle{fill:#a77c64}.label>i{display:none!important}
+#components{margin-top:16px}#componentList{padding-left:16px;font-size:11px;line-height:1.9;margin:9px 0}.component-label{position:absolute;padding:4px 7px;border-radius:4px;background:#f8f7efeb;color:#8d4835;font-size:10px;white-space:nowrap;pointer-events:none;border:1px solid #d8c8b8}
+</style>
+  <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.165.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.165.0/examples/jsm/"}}</script>
+</head>
+<body>
+  <header>
+    <button class="brand" id="home" aria-label="返回全身总览"><svg viewBox="0 0 34 34" fill="none" aria-hidden="true"><circle cx="17" cy="17" r="14" stroke="currentColor" stroke-width=".6"/><circle cx="17" cy="9" r="2.5" stroke="currentColor"/><path d="M17 12v9m0-7-7 4m7-4 7 4m-7 3-5 7m5-7 5 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg><span>CORPUS <b>/ MUSCLE ATLAS</b></span></button>
+    <span class="header-note">AN EXPLORATION OF HUMAN MUSCLES</span>
+  </header>
+  <main>
+    <section class="viewport" aria-label="交互式人体肌肉模型">
+      <canvas id="scene" tabindex="0" aria-label="三维人体：拖拽旋转、滚轮缩放，也可使用结构索引选择"></canvas>
+      <svg id="ruler" aria-hidden="true"></svg>
+      <svg id="leaders" aria-hidden="true"></svg><div id="labels"></div>
+      <div id="loading"><div class="loader-mark">C</div><span id="loadingText">正在构建肌肉与肌纤维</span></div>
+    </section>
+
+    <section class="intro">
+      <div class="eyebrow"><i></i> HUMAN MUSCLES / VOL. 01</div>
+      <h1>人体肌肉<br><span>交互图谱。</span></h1>
+      <p>从肌纤维到日常发力。<br>探索七大肌群的位置与作用。</p>
+      <div class="intro-meta">7 MUSCLE REGIONS <span> / </span> LIVE 3D</div>
+    </section>
+
+    <nav class="library" aria-label="人体结构索引">
+      <div class="section-label">结构索引 <span id="resultCount">19</span></div>
+      <label class="search"><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="4.7" stroke="currentColor"/><path d="m11 11 4 4" stroke="currentColor"/></svg><input id="search" type="search" placeholder="搜索名称 / Search" aria-label="搜索解剖结构"></label>
+      <div class="filters"><span>肌群部位</span><select id="region" aria-label="按身体部位筛选"><option value="all">全身</option><option value="arm">手臂</option><option value="shoulder">肩</option><option value="chest">胸</option><option value="abdomen">腹</option><option value="back">背</option><option value="glutes">臀</option><option value="leg">腿</option></select></div>
+      <div id="partList"></div><div id="emptyState" hidden>未找到匹配的结构</div>
+      <button id="clearSelection" hidden>↩ 返回全身</button>
+    </nav>
+
+    <aside class="right-rail">
+      <section class="overview" id="overview">
+        <div class="section-label">MUSCLES IN MOTION.</div>
+        <h2>肌肉协同，<br>产生运动。</h2>
+        <p>观察肌腹、肌腱与纤维走向。<br>选择任意结构，观察它的位置与形态。</p>
+        <div class="legend"><span><i class="muscle-dot"></i> 肌肉 <small>MUSCLE</small></span><span><i class="tendon-dot"></i> 肌腱 <small>CONNECTIVE</small></span></div>
+        <button id="startExplore" class="explore-button">从胸大肌开始探索 <span>↗</span></button>
+      </section>
+      <section class="detail" id="detail" hidden aria-live="polite">
+        <div class="detail-top"><span id="detailIndex"></span><button id="closeDetail" aria-label="关闭结构详情">×</button></div>
+        <h2 id="detailName"></h2><span id="detailLatin"></span><p id="detailDescription"></p>
+        <div class="function-label">主要作用</div><p id="detailAction"></p><section id="components" hidden><div class="function-label" id="componentTitle"></div><ul id="componentList"></ul></section>
+        <a id="noteLink" class="note-link" hidden></a><div class="detail-actions"><button id="focus">聚焦结构 <span>⌖</span></button><button id="isolate" aria-pressed="false">单独查看 <span>◈</span></button></div>
+      </section>
+      <section class="layer-controls">
+        <div class="section-label">显示设置 <span>APPEARANCE</span></div>
+        <div class="range-label opacity-label"><label for="opacity">肌肉不透明度</label><output id="opacityValue">100<span>%</span></output></div>
+        <input id="opacity" type="range" min="10" max="100" value="100" aria-label="肌肉不透明度">
+      </section>
+    </aside>
+
+    <div class="view-caption"><span id="viewName">前面观</span><i></i><span id="modeCaption">主要肌群与肌纤维</span></div>
+    <div class="view-controls" aria-label="观察视角"><button data-view="front" aria-pressed="true">前</button><button data-view="back" aria-pressed="false">后</button><button data-view="side" aria-pressed="false">侧</button></div>
+  </main>
+  <script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+const {buildAnatomy,catalog,regions}=(()=>{
+
+const V=a=>new THREE.Vector3(...a), TAU=Math.PI*2, lerp=THREE.MathUtils.lerp;
+const regions={all:'全身',head:'头颈',torso:'躯干',arm:'上肢',leg:'下肢'};
+const catalog=[
+  ['skull','bone','head','颅骨','Cranium','包围脑部，构成头面部的骨性框架。模型保留眼眶、鼻腔和颧部轮廓。','保护脑部 · 支撑面部'],
+  ['jaw','bone','head','下颌骨','Mandible','面部下方可活动的骨骼，与颞骨共同形成颞下颌关节。','咀嚼 · 承托下牙'],
+  ['spine','bone','torso','脊柱','Vertebral column','颈椎、胸椎、腰椎以及骶尾部共同支撑躯干。椎体之间保留椎间盘示意。','支撑 · 保护脊髓'],
+  ['ribs','bone','torso','肋骨','Ribs','十二对弧形肋骨与胸椎相连，和胸骨共同围成胸廓；下方两对为浮肋。','胸廓保护 · 呼吸运动'],
+  ['sternum','bone','torso','胸骨','Sternum','位于胸部前方正中，包含胸骨柄、胸骨体和剑突。','连接肋软骨 · 保护胸腔'],
+  ['girdle','bone','arm','锁骨与肩胛骨','Pectoral girdle','锁骨和肩胛骨构成肩带，把上肢连接到躯干。肩胛骨贴近胸廓后方。','肩带连接 · 肌肉附着'],
+  ['pelvis','bone','torso','骨盆','Pelvis','左右髋骨与骶骨共同形成骨盆，髋臼与股骨头相接。','承重传递 · 保护盆腔'],
+  ['humerus','bone','arm','肱骨','Humerus','上臂的长骨，上端构成肩关节的一部分，下端参与肘关节。','上臂支撑 · 关节杠杆'],
+  ['forearm','bone','arm','桡骨与尺骨','Radius & ulna','两根前臂骨并排分布；解剖学姿势下，桡骨位于拇指侧。','前臂支撑 · 旋前旋后'],
+  ['hand','bone','arm','手骨','Bones of the hand','包含腕骨、掌骨和指骨。模型将手掌与手指小骨逐节生成。','精细抓握 · 手部活动'],
+  ['femur','bone','leg','股骨','Femur','连接髋与膝的长骨，股骨颈使股骨头朝向骨盆内侧。','下肢承重 · 行走杠杆'],
+  ['patella','bone','leg','髌骨','Patella','位于膝关节前方，嵌于股四头肌肌腱内。','保护膝前方 · 改善伸膝力臂'],
+  ['shin','bone','leg','胫骨与腓骨','Tibia & fibula','胫骨位于内侧，承担小腿大部分轴向负荷；腓骨位于外侧。','小腿支撑 · 踝部稳定'],
+  ['foot','bone','leg','足骨','Bones of the foot','跗骨、跖骨和趾骨形成足部支撑结构，并参与构成足弓。','支撑体重 · 推进步态'],
+  ['trapezius','muscle','torso','斜方肌','Trapezius','从颈背正中展开至肩部，在背面形成宽阔的三角形肌片。','肩胛骨运动 · 肩带稳定'],
+  ['pectoral','muscle','torso','胸大肌','Pectoralis major','宽阔的扇形胸肌，由胸前方向上臂会聚。可观察其扇形纤维方向。','上臂内收 · 内旋'],
+  ['latissimus','muscle','torso','背阔肌','Latissimus dorsi','覆盖下背部的大型扇形肌，纤维向腋后与上臂方向会聚。','上臂后伸 · 内收'],
+  ['rectus','muscle','torso','腹直肌','Rectus abdominis','腹部正中两侧的纵向肌带，腱划将肌腹分隔成多个可见区段。','躯干屈曲 · 腹壁支撑'],
+  ['oblique','muscle','torso','腹外斜肌','External oblique','位于腹壁外侧，肌纤维斜向前下方，参与躯干旋转与腹壁稳定。','躯干旋转 · 腹压维持'],
+  ['serratus','muscle','torso','前锯肌','Serratus anterior','附于胸廓外侧，呈锯齿状肌束。帮助肩胛骨贴近胸壁。','肩胛前伸 · 稳定肩胛'],
+  ['erector','muscle','torso','竖脊肌群','Erector spinae','沿脊柱两侧纵向分布，支撑直立姿势，并参与躯干后伸。','维持姿势 · 脊柱后伸'],
+  ['deltoid','muscle','arm','三角肌','Deltoid','包覆肩关节外侧的肌群，向肱骨中上段会聚，形成圆润的肩部轮廓。','上臂外展 · 肩部控制'],
+  ['biceps','muscle','arm','肱二头肌','Biceps brachii','位于上臂前侧，肌腹向肘部收细，并通过肌腱连接前臂。','屈肘 · 前臂旋后'],
+  ['triceps','muscle','arm','肱三头肌','Triceps brachii','位于上臂后侧，与前方的屈肘肌群形成作用上的配合。','伸肘'],
+  ['flexors','muscle','arm','前臂屈肌群','Forearm flexors','前臂掌侧的多条肌腹逐渐转为细长肌腱，向手腕与手部延伸。','屈腕 · 屈指'],
+  ['extensors','muscle','arm','前臂伸肌群','Forearm extensors','分布在前臂背侧，协助腕关节和手指伸展。','伸腕 · 伸指'],
+  ['gluteus','muscle','leg','臀大肌','Gluteus maximus','形成臀部主要轮廓，覆盖骨盆后外侧并向股骨方向延伸。','髋关节后伸 · 起身支撑'],
+  ['quadriceps','muscle','leg','股四头肌群','Quadriceps femoris','大腿前方的主要伸膝肌群。模型以多条不同走向的肌腹呈现其外形。','伸膝 · 下肢支撑'],
+  ['adductors','muscle','leg','大腿内收肌群','Hip adductors','从骨盆内下方向股骨延伸，填充大腿内侧。','大腿内收 · 骨盆稳定'],
+  ['sartorius','muscle','leg','缝匠肌','Sartorius','细长的带状肌，从髋部外上方斜跨大腿前方，延伸至膝内侧。','协助屈髋 · 屈膝'],
+  ['hamstrings','muscle','leg','腘绳肌群','Hamstrings','位于大腿后侧，从骨盆下方向膝部两侧延伸。','屈膝 · 髋关节后伸'],
+  ['gastrocnemius','muscle','leg','腓肠肌与比目鱼肌','Calf muscles','小腿后方的主要肌群向下收窄，并汇入跟腱区域。','踝跖屈 · 步行推进'],
+  ['tibialis','muscle','leg','胫骨前肌','Tibialis anterior','沿胫骨前外侧走行，肌腱经过踝前方到达足内侧。','踝背屈 · 足内翻'],
+].map(([id,system,region,name,latin,description,action])=>({id,system,region,name,latin,description,action}));
+
+function buildAnatomy(){
+  const root=new THREE.Group(),parts=[],pickables=[];
+  const bone=new THREE.MeshStandardMaterial({color:0xdbd0af,roughness:.54,metalness:.02});
+  const cartilage=new THREE.MeshStandardMaterial({color:0xe7e0ca,roughness:.72});
+  const tooth=new THREE.MeshStandardMaterial({color:0xf0e7d1,roughness:.38});
+  const tendon=new THREE.MeshStandardMaterial({color:0xd8cbb0,roughness:.66});
+  const seam=new THREE.MeshStandardMaterial({color:0x9b906f,roughness:.85});
+  const fiberMap=makeFiberMap();
+  const flesh=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:true,roughness:.61,bumpMap:fiberMap,bumpScale:.0007,side:THREE.DoubleSide});
+  const linesMaterial=new THREE.LineBasicMaterial({color:0xd59379,transparent:true,opacity:.24});
+  const materialNames=new Map([[bone,'bone'],[cartilage,'cartilage'],[tooth,'tooth'],[tendon,'tendon'],[flesh,'muscle'],[seam,'suture']]);
+  for(const [m,n]of materialNames)m.name=n;
+  const lookup=new Map(catalog.map(x=>[x.id,x]));
+  function part(id,side=0){
+    const data=lookup.get(id),g=new THREE.Group();g.userData={id,side,system:data.system};root.add(g);
+    parts.push({id,side,system:data.system,region:data.region,group:g,materials:[]});return g;
+  }
+  function add(g,geo,mat,pos=[0,0,0],scale=[1,1,1]){const m=new THREE.Mesh(geo,mat);m.position.set(...pos);m.scale.set(...scale);m.castShadow=true;m.receiveShadow=true;g.add(m);return m;}
+  function oval(g,pos,scale,mat=bone){return add(g,new THREE.SphereGeometry(1,24,16),mat,pos,scale);}
+  function rounded(g,pos,dims,mat=bone){return add(g,new RoundedBoxGeometry(...dims,2,Math.min(...dims)*.25),mat,pos);}
+  function tube(g,points,r,mat=bone,closed=false,radial=8){
+    const curve=new THREE.CatmullRomCurve3(points.map(V),closed,'centripetal');
+    return add(g,new THREE.TubeGeometry(curve,Math.min(128,Math.max(24,points.length*10)),r,radial,closed),mat);
+  }
+  function spindle(g,points,width,depth,mat=bone,isMuscle=false){
+    const curve=new THREE.CatmullRomCurve3(points.map(V)),nu=isMuscle?44:28,nv=isMuscle?40:20;
+    const positions=[],normals=[],uv=[],colors=[],indices=[];
+    const red=new THREE.Color(0x9c4638),pale=new THREE.Color(0xd9c8a6),c=new THREE.Color();
+    const frame=(t)=>{const center=curve.getPoint(t),tangent=curve.getTangent(t).normalize();let normal=new THREE.Vector3().crossVectors(tangent,new THREE.Vector3(0,0,1)).normalize();if(normal.length()<.1)normal.set(1,0,0);return{center,normal,binormal:new THREE.Vector3().crossVectors(tangent,normal).normalize()};};
+    const sample=(t,angle)=>{
+      const {center,normal,binormal}=frame(t);
+      const profile=isMuscle?.14+.86*Math.pow(Math.sin(Math.PI*t),.7):(.58+.50*Math.exp(-Math.pow((t-.09)/.115,2))+.5*Math.exp(-Math.pow((t-.91)/.12,2)));
+      const ridge=isMuscle?1+.009*Math.cos(angle*36+t*4):1+.04*Math.sin(angle*3+t*5);
+      return center.addScaledVector(normal,Math.cos(angle)*width*profile*ridge).addScaledVector(binormal,Math.sin(angle)*depth*profile*ridge);
+    };
+    for(let i=0;i<=nu;i++)for(let j=0;j<=nv;j++){
+      const t=i/nu,a=j/nv*TAU,p=sample(t,a);positions.push(p.x,p.y,p.z);uv.push(t*2,j/nv);
+      if(isMuscle){const blend=THREE.MathUtils.smoothstep(Math.min(t,1-t),.045,.19);c.copy(pale).lerp(red,blend);c.multiplyScalar(1+.04*Math.sin(a*9+t*4));colors.push(c.r,c.g,c.b);}
+    }
+    for(let i=0;i<nu;i++)for(let j=0;j<nv;j++){const a=i*(nv+1)+j,b=a+nv+1;indices.push(a,a+1,b,b,a+1,b+1);}
+    const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geo.setIndex(indices);geo.computeVertexNormals();if(isMuscle)geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));add(g,geo,mat);
+    if(isMuscle)for(let j=0;j<18;j++){
+      const points=[];for(let i=1;i<30;i++)points.push(sample(i/30,j/18*TAU).multiplyScalar(1.0001));
+      g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),linesMaterial));
+    }
+    return sample;
+  }
+  function muscle(g,points,width,depth){const gain={deltoid:1.20,biceps:1.30,triceps:1.25,flexors:1.20,extensors:1.20}[g.userData.id]||1;return spindle(g,points,width*gain,depth*gain,flesh,true);}
+  function musclePad(g,position,dims){
+    const geo=new RoundedBoxGeometry(...dims,4,.010),a=geo.attributes.position,colors=[];
+    const red=new THREE.Color(0x9c4638),pale=new THREE.Color(0xc9a581),c=new THREE.Color();
+    for(let i=0;i<a.count;i++){const t=Math.abs(a.getY(i))/(dims[1]/2);c.copy(red).lerp(pale,THREE.MathUtils.smoothstep(t,.84,1)*.55);colors.push(c.r,c.g,c.b);}
+    geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));add(g,geo,flesh,position);
+    for(let i=0;i<15;i++){const x=position[0]+(i/14-.5)*(dims[0]-.012);g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([V([x,position[1]-dims[1]*.35,position[2]+dims[2]/2+.0001]),V([x,position[1]+dims[1]*.35,position[2]+dims[2]/2+.0001])]),linesMaterial));}
+  }
+  function fan(g,edge,insertion,depth){
+    const boundary=new THREE.CatmullRomCurve3(edge.map(V)),tip=V(insertion),nu=34,nv=38;
+    const pos=[],colors=[],uv=[],idx=[];const red=new THREE.Color(0x994638),pale=new THREE.Color(0xd2b697),c=new THREE.Color();
+    const sample=(u,v,back=false)=>{const p=boundary.getPoint(v).lerp(tip,u);p.z+=depth*Math.sin(Math.PI*u)*Math.pow(Math.sin(Math.PI*v),.6)*(back?.1:1);return p;};
+    for(let layer=0;layer<2;layer++)for(let i=0;i<=nu;i++)for(let j=0;j<=nv;j++){
+      const u=i/nu,v=j/nv,p=sample(u,v,layer===1);pos.push(p.x,p.y,p.z);uv.push(u*2,v);
+      c.copy(red).lerp(pale,THREE.MathUtils.smoothstep(u,.82,1)*.78);colors.push(c.r,c.g,c.b);
+    }
+    const offset=(nu+1)*(nv+1);
+    for(let k=0;k<2;k++)for(let i=0;i<nu;i++)for(let j=0;j<nv;j++){const a=k*offset+i*(nv+1)+j,b=a+nv+1;if(k)idx.push(a,b,a+1,b,b+1,a+1);else idx.push(a,a+1,b,b,a+1,b+1);}
+    const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geo.setIndex(idx);geo.computeVertexNormals();add(g,geo,flesh);
+    for(let j=1;j<30;j++){const pts=[];for(let i=1;i<31;i++)pts.push(sample(i/32,j/30));g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),linesMaterial));}
+  }
+  // Smooth, closed muscle sheets with fibres following their anatomical paths.
+  function anatomicalSurface(g,sample,tint,nu=64,nv=48){
+    const pos=[],uv=[],colors=[],indices=[],c=new THREE.Color(),red=new THREE.Color(0xa54e42),pale=new THREE.Color(0xcdaa8e);
+    for(let i=0;i<=nu;i++)for(let j=0;j<=nv;j++){
+      const u=i/nu,v=j/nv,p=sample(u,v);pos.push(...p);uv.push(u,v);
+      c.copy(red).lerp(pale,tint(u,v));colors.push(c.r,c.g,c.b);
+    }
+    for(let i=0;i<nu;i++)for(let j=0;j<nv;j++){const a=i*(nv+1)+j,b=a+nv+1;indices.push(a,b,a+1,a+1,b,b+1);}
+    const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geo.setIndex(indices);geo.computeVertexNormals();add(g,geo,flesh);
+  }
+  function pectoralSurface(g,s){
+    // Broad sternal origin, rounded lower border and a short humeral insertion.
+    const sample=(u,v)=>{
+      const a=v*TAU;
+      const upper=1.465-.059*u+.012*Math.sin(Math.PI*u);
+      const lower=1.310+.074*Math.pow(u,2.5)-.014*Math.sin(Math.PI*u);
+      const mid=(upper+lower)/2,half=(upper-lower)/2;
+      const belly=Math.pow(Math.sin(Math.PI*u),.6);
+      const y=mid+half*Math.cos(a);
+      const z=.126-.065*Math.pow(u,2)+(.007+.026*belly)*Math.sin(a);
+      return [s*(.009+.188*u),y,z];
+    };
+    anatomicalSurface(g,sample,(u)=>.6*THREE.MathUtils.smoothstep(u,.84,1));
+    // Curved fibres fan from the sternum towards the upper-arm tendon.
+    for(let j=1;j<36;j++){
+      const pts=[];
+      for(let i=0;i<=50;i++){const u=i/50,v=.025+.45*j/36;const p=sample(u,v);p[2]+=.00045;pts.push(V(p));}
+      g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),linesMaterial));
+    }
+  }
+  function rectusSurface(g,s){
+    const bands=[.25,.46,.66];
+    const groove=(u,v)=>Math.max(...bands.map((b,i)=>Math.exp(-Math.pow((u-b-.008*Math.cos(v*TAU+i+s*.4))/.013,2))));
+    const sample=(u,v)=>{
+      const a=v*TAU,y=1.335-.32*u;
+      const width=.019+.012*Math.sin(Math.PI*Math.pow(u,.68));
+      const taper=.25+.75*Math.pow(Math.sin(Math.PI*u),.32);
+      const depth=(.017+.006*Math.sin(Math.PI*u))*(1-.36*groove(u,v))*taper;
+      return [s*(.004+width+width*Math.cos(a)*taper),y,.101-.030*u+depth*Math.sin(a)];
+    };
+    anatomicalSurface(g,sample,(u,v)=>.34*groove(u,v)+.35*THREE.MathUtils.smoothstep(u,.91,1),96,48);
+    for(let j=1;j<20;j++){
+      const pts=[];for(let i=1;i<95;i++){const p=sample(i/96,j/40);p[2]+=.0003;pts.push(V(p));}
+      g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),linesMaterial));
+    }
+  }
+  function sheet(g,edge,tip,mat=bone){
+    const curve=new THREE.CatmullRomCurve3(edge.map(V));const pos=[],uv=[],indices=[];
+    for(let i=0;i<=32;i++)for(let j=0;j<=12;j++){const p=curve.getPoint(i/32).lerp(V(tip),j/12);p.z+=.004*Math.sin(i/32*Math.PI)*Math.sin(j/12*Math.PI);pos.push(p.x,p.y,p.z);uv.push(i/32,j/12);}
+    for(let i=0;i<32;i++)for(let j=0;j<12;j++){const a=i*13+j;indices.push(a,a+13,a+1,a+13,a+14,a+1);}
+    const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geo.setIndex(indices);geo.computeVertexNormals();const m=mat.clone();m.side=THREE.DoubleSide;add(g,geo,m);
+  }
+
+  // Skull: an implicit surface with actual orbital and nasal recesses.
+  const skull=part('skull');add(skull,skullGeometry(),bone);
+  for(const s of [-1,1]){
+    tube(skull,[[s*.014,1.724,.067],[s*.032,1.731,.078],[s*.053,1.721,.064],[s*.064,1.702,.043]],.005, bone);
+    tube(skull,[[s*.065,1.696,.030],[s*.075,1.667,.038],[s*.044,1.654,.071]],.0055,bone);
+  }
+  tube(skull,[[0,1.800,.029],[.002,1.810,.002],[-.002,1.80,-.044],[0,1.767,-.077]],.0007,seam);
+  for(const s of [-1,1])tube(skull,[[0,1.8,.032],[s*.018,1.797,.035],[s*.033,1.789,.037],[s*.050,1.774,.035],[s*.065,1.752,.025]],.00065,seam);
+  const jaw=part('jaw');tube(jaw,[[-.055,1.681,.008],[-.061,1.640,.030],[-.042,1.615,.073],[0,1.607,.091],[.042,1.615,.073],[.061,1.640,.030],[.055,1.681,.008]],.0066,bone);
+  oval(jaw,[0,1.611,.087],[.029,.009,.008]);
+  for(let i=0;i<14;i++){
+    const a=lerp(-1.30,1.30,i/13),x=Math.sin(a)*.044,z=.027+Math.cos(a)*.066;
+    const up=rounded(skull,[x,1.642,z],[.0068,.011,.0088],tooth);up.rotation.y=-a;
+    const low=rounded(jaw,[x*.95,1.628,z+.002],[.0066,.010,.008],tooth);low.rotation.y=-a;
+  }
+  const spine=part('spine');
+  const spineZ=y=>-.029-.043*Math.exp(-Math.pow((y-1.32)/.15,2))+.015*Math.exp(-Math.pow((y-1.07)/.1,2));
+  const vertebrae=[...Array.from({length:5},(_,i)=>[1.002+i*.032,.020]),...Array.from({length:12},(_,i)=>[1.166+i*.0205,.016]),...Array.from({length:7},(_,i)=>[1.420+i*.028,.012])];
+  for(const [y,r] of vertebrae){const z=spineZ(y);oval(spine,[0,y,z],[r,.009,r*.8]);oval(spine,[0,y-.0105,z],[r*.92,.0035,r*.72],cartilage);tube(spine,[[-r*.65,y,z-.006],[-r*.9,y,z-.019],[0,y,z-.034],[r*.9,y,z-.019],[r*.65,y,z-.006]],.0045);tube(spine,[[0,y,z-.026],[0,y-.009,z-.049]],.004);for(const s of [-1,1])tube(spine,[[s*r*.6,y,z-.014],[s*r*1.65,y+.003,z-.018]],.0037);}
+  oval(spine,[0,1.603,-.027],[.016,.009,.018],cartilage);
+  const ribsL=part('ribs',-1),ribsR=part('ribs',1);
+  const widths=[.071,.088,.108,.124,.137,.145,.145,.139,.126,.115,.092,.072];
+  for(const s of [-1,1])for(let i=0;i<12;i++){
+    const g=s<0?ribsL:ribsR,y=1.424-i*.019,w=widths[i];
+    const endX=i<7?.014:i<10?.028+(i-7)*.021:w*.58,endZ=i<10?.088:-.002;
+    const pts=[[s*.013,y,-.077],[s*w*.56,y+.007,-.088],[s*w,y-.015,-.042],[s*w*.94,y-.040,.034],[s*endX,y-.064,endZ]];
+    if(i>=10)pts.splice(3,2,[s*w*.94,y-.039,-.004],[s*endX,y-.058,.008]);
+    tube(g,pts,.0042,bone,false,10);
+    if(i<10)tube(g,[[s*endX,y-.064,endZ],[s*.013,y-.072,.095]],.0039,cartilage);
+  }
+  const sternum=part('sternum');oval(sternum,[0,1.432,.098],[.018,.026,.006]);oval(sternum,[0,1.351,.101],[.011,.062,.006]);tube(sternum,[[0,1.294,.101],[0,1.276,.094]],.0048,cartilage);
+
+  for(const s of [-1,1]){
+    const shoulder=part('girdle',s);
+    tube(shoulder,[[s*.011,1.457,.08],[s*.052,1.465,.095],[s*.115,1.458,.056],[s*.177,1.441,.011]],.0064);
+    sheet(shoulder,[[s*.054,1.449,-.081],[s*.137,1.449,-.071],[s*.167,1.421,-.04],[s*.127,1.335,-.099],[s*.069,1.347,-.096]],[s*.102,1.397,-.108]);
+    tube(shoulder,[[s*.061,1.414,-.10],[s*.13,1.427,-.093],[s*.185,1.441,-.018]],.007);
+    oval(shoulder,[s*.179,1.426,-.003],[.010,.018,.018],cartilage);
+    const p=part('pelvis',s);
+    sheet(p,[[s*.022,1.061,-.027],[s*.061,1.091,-.036],[s*.124,1.071,-.025],[s*.143,1.030,.004],[s*.112,.987,.022]],[s*.072,.961,.015]);
+    tube(p,[[s*.025,1.061,-.027],[s*.065,1.090,-.036],[s*.122,1.071,-.025],[s*.14,1.031,.004]],.007);
+    tube(p,[[s*.093,.971,.021],[s*.095,.919,.036],[s*.065,.895,.064],[s*.021,.904,.075],[s*.009,.930,.068],[s*.044,.953,.040],[s*.093,.971,.021]],.0072,bone,true);
+    oval(p,[s*.09,.960,.015],[.023,.025,.017],cartilage);
+    tube(p,[[s*.074,.966,.025],[s*.042,.944,.05],[s*.007,.931,.065]],.010);
+    const hum=part('humerus',s);
+    spindle(hum,[[s*.19,1.423,.008],[s*.225,1.30,.008],[s*.266,1.161,.010]],.012,.012);
+    oval(hum,[s*.19,1.428,.005],[.022,.023,.020]);
+    for(const o of [-.01,.01])oval(hum,[s*(.266+o),1.16,.011],[.012,.013,.013],cartilage);
+    const fore=part('forearm',s);
+    spindle(fore,[[s*.279,1.150,.014],[s*.307,1.043,.017],[s*.354,.936,.032]],.0075,.007);
+    spindle(fore,[[s*.254,1.154,-.002],[s*.285,1.044,.006],[s*.330,.933,.021]],.0065,.007);
+    oval(fore,[s*.256,1.165,-.005],[.01,.013,.01]);oval(fore,[s*.350,.934,.031],[.013,.009,.008],cartilage);
+    buildHand(s);
+    const f=part('femur',s);
+    oval(f,[s*.088,.948,.014],[.023,.024,.022]);
+    spindle(f,[[s*.087,.945,.014],[s*.122,.918,.001],[s*.119,.73,.001],[s*.103,.530,.010]],.016,.015);
+    oval(f,[s*.137,.916,.002],[.016,.026,.015]);
+    for(const dx of [-.01,.01])oval(f,[s*(.103+dx),.527,.007],[.015,.019,.02],cartilage);
+    const pat=part('patella',s);oval(pat,[s*.103,.506,.042],[.017,.020,.010]);
+    const shin=part('shin',s);
+    spindle(shin,[[s*.104,.493,.006],[s*.113,.365,.015],[s*.112,.143,.008]],.013,.011);
+    oval(shin,[s*.104,.491,.005],[.024,.011,.019],cartilage);
+    spindle(shin,[[s*.139,.48,-.003],[s*.143,.33,-.006],[s*.142,.14,-.005]],.0053,.0053);
+    oval(shin,[s*.143,.137,-.004],[.008,.014,.009]);
+    tube(shin,[[s*.105,.453,.028],[s*.113,.34,.026],[s*.112,.182,.019]],.0035);
+    buildFoot(s);
+  }
+  const sacrum=part('pelvis');oval(sacrum,[0,1.006,-.035],[.028,.055,.014]);
+  for(const s of [-1,1])for(let i=0;i<4;i++)oval(sacrum,[s*.013,1.036-i*.019,-.018],[.0035,.004,.002],seam);
+  tube(sacrum,[[0,.968,-.031],[0,.947,-.026],[0,.93,-.015]],.0055);
+
+  for(const s of [-1,1])buildMuscles(s);
+
+  // Merge static fragments within each named, sided anatomical part.
+  let modeledPieces=0;
+  for(const p of parts){
+    const byMaterial=new Map(),lineSets=[];
+    for(const m of [...p.group.children]){
+      if(m.isLine){lineSets.push(m);continue;}if(!m.isMesh)continue;modeledPieces++;
+      m.updateMatrix();let geo=m.geometry.clone().applyMatrix4(m.matrix);if(geo.index)geo=geo.toNonIndexed();
+      if(!byMaterial.has(m.material.uuid))byMaterial.set(m.material.uuid,{mat:m.material,geos:[]});byMaterial.get(m.material.uuid).geos.push(geo);p.group.remove(m);m.geometry.dispose();
+    }
+    for(const {mat,geos}of byMaterial.values()){
+      const material=mat.clone();const geo=mergeGeometries(geos,false);const mesh=add(p.group,geo,material);mesh.userData={id:p.id,side:p.side,system:p.system};pickables.push(mesh);p.materials.push(material);geos.forEach(g=>g.dispose());
+    }
+    // Fibres become one LineSegments draw call per part.
+    if(lineSets.length){const positions=[];for(const line of lineSets){const a=line.geometry.attributes.position;for(let i=0;i<a.count-1;i++)positions.push(a.getX(i),a.getY(i),a.getZ(i),a.getX(i+1),a.getY(i+1),a.getZ(i+1));p.group.remove(line);line.geometry.dispose();}const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));const mat=linesMaterial.clone();p.fibers=new THREE.LineSegments(geo,mat);p.group.add(p.fibers);}
+    p.center=new THREE.Box3().setFromObject(p.group).getCenter(new THREE.Vector3());
+    p.materials.forEach(m=>{m.userData={baseColor:m.color.clone(),baseOpacity:m.opacity,baseTransparent:m.transparent};});
+  }
+  return{root,parts,pickables,modeledPieces};
+
+  function buildHand(s){
+    const g=part('hand',s);
+    for(let row=0;row<2;row++)for(let i=0;i<4;i++)oval(g,[s*(.324+i*.009+row*.005),.922-row*.012,.027],[.007,.006,.008]);
+    for(let f=0;f<4;f++){
+      const base=.326+f*.015,tip=.329+f*.019,y=.834-Math.sin((f+.7)/4*Math.PI)*.008;
+      spindle(g,[[s*base,.899,.032],[s*(base+.006),.869,.031],[s*tip,y,.037]],.0045,.0045);
+      let py=y;const lengths=[.031,.020,.015].map(l=>l*(f===3?.78:f===0?.94:1));
+      for(let j=0;j<3;j++){const next=py-lengths[j];spindle(g,[[s*(tip+j*.003),py,.038],[s*(tip+(j+1)*.003),next,.043]],.0044-j*.0007,.0043-j*.0006);oval(g,[s*(tip+j*.003),py,.039],[.005,.005,.005],cartilage);py=next-.002;}
+    }
+    const thumb=[[s*.357,.908,.039],[s*.382,.885,.049],[s*.402,.860,.055],[s*.416,.836,.06]];
+    for(let j=0;j<3;j++)spindle(g,[thumb[j],thumb[j+1]],.0056-j*.0005,.0054-j*.0004);
+  }
+  function buildFoot(s){
+    const g=part('foot',s);
+    oval(g,[s*.117,.097,.008],[.022,.020,.025]);oval(g,[s*.117,.060,-.009],[.025,.027,.034]);
+    for(let i=0;i<5;i++)oval(g,[s*(.087+i*.013),.071,.050+(i%2)*.015],[.010,.012,.018]);
+    for(let i=0;i<5;i++){
+      const x=.081+i*.015,z=.156-i*.008;
+      spindle(g,[[s*(x+.004),.071,.058],[s*x,.051,.106],[s*x,.041,z]],i===0?.007:.0052,.0057);
+      let last=z;for(let j=0;j<(i?3:2);j++){const len=(i?(.015-j*.003):(.023-j*.005));spindle(g,[[s*x,.037,last],[s*x,.033,last+len]],i?.0044-j*.0005:.0065-j*.001,.0045);last+=len+.002;}
+    }
+  }
+
+  function buildMuscles(s){
+    const P=(x,y,z)=>[s*x,y,z];
+    let g;
+    g=part('trapezius',s);fan(g,[P(.004,1.554,-.051),P(.014,1.48,-.07),P(.013,1.376,-.111),P(.012,1.281,-.088)],P(.173,1.440,-.041),-.030);
+    g=part('pectoral',s);pectoralSurface(g,s);
+    g=part('latissimus',s);fan(g,[P(.017,1.29,-.11),P(.015,1.191,-.086),P(.045,1.080,-.057),P(.093,1.081,-.032)],P(.186,1.375,-.023),-.043);
+    g=part('rectus',s);rectusSurface(g,s);
+    g=part('oblique',s);muscle(g,[P(.132,1.318,.043),P(.108,1.20,.084),P(.105,1.091,.055),P(.076,1.04,.049)],.027,.022);
+    g=part('serratus',s);for(let i=0;i<5;i++)muscle(g,[P(.124,1.387-i*.024,.050),P(.147,1.367-i*.024,.036),P(.11,1.337-i*.024,.086)],.008,.007);
+    g=part('erector',s);muscle(g,[P(.025,1.44,-.084),P(.029,1.25,-.113),P(.026,1.035,-.063)],.014,.018);
+    g=part('deltoid',s);muscle(g,[P(.169,1.451,-.009),P(.210,1.397,.008),P(.219,1.31,.020)],.043,.039);
+    // Separate front and posterior portions preserve the shoulder's cap shape.
+    muscle(g,[P(.149,1.451,.041),P(.205,1.398,.041),P(.219,1.309,.021)],.020,.014);
+    g=part('biceps',s);muscle(g,[P(.208,1.377,.03),P(.232,1.282,.047),P(.270,1.166,.028)],.028,.025);
+    g=part('triceps',s);muscle(g,[P(.195,1.395,-.018),P(.227,1.291,-.035),P(.260,1.158,-.018)],.030,.027);
+    g=part('flexors',s);for(let i=0;i<3;i++)muscle(g,[P(.254+i*.009,1.155,.020),P(.284+i*.011,1.071,.040),P(.334+i*.009,.921,.045)],.012,.017);
+    for(let i=0;i<4;i++)tube(g,[P(.329+i*.008,.970,.047),P(.334+i*.011,.919,.047),P(.333+i*.015,.842,.047)],.0017,tendon);
+    g=part('extensors',s);for(let i=0;i<3;i++)muscle(g,[P(.260+i*.009,1.169,-.004),P(.294+i*.009,1.060,-.013),P(.339+i*.008,.926,.006)],.012,.014);
+    g=part('gluteus',s);muscle(g,[P(.053,1.078,-.036),P(.080,1.006,-.091),P(.133,.926,-.036)],.062,.043);
+    g=part('quadriceps',s);
+    muscle(g,[P(.101,.961,.052),P(.105,.780,.08),P(.101,.539,.050)],.035,.033);
+    muscle(g,[P(.142,.924,.014),P(.163,.741,.043),P(.121,.53,.039)],.036,.031);
+    muscle(g,[P(.074,.886,.048),P(.063,.677,.057),P(.088,.521,.042)],.030,.027);
+    tube(g,[P(.102,.556,.055),P(.102,.509,.057),P(.103,.475,.034)],.011,tendon);
+    g=part('adductors',s);muscle(g,[P(.035,.936,.044),P(.048,.811,.04),P(.079,.613,.031)],.031,.024);
+    g=part('sartorius',s);muscle(g,[P(.138,1.027,.030),P(.135,.889,.081),P(.092,.73,.115),P(.071,.568,.079),P(.080,.506,.033)],.0085,.0054);
+    g=part('hamstrings',s);for(const dx of [-.019,.021])muscle(g,[P(.081+dx,.938,-.03),P(.107+dx,.755,-.046),P(.106+dx,.516,-.019)],.027,.030);
+    g=part('gastrocnemius',s);
+    for(const dx of [-.019,.019])muscle(g,[P(.113+dx,.49,-.017),P(.113+dx,.386,-.041),P(.119,.210,-.023)],.023,.027);
+    muscle(g,[P(.146,.443,-.004),P(.149,.311,-.016),P(.119,.169,-.027)],.016,.019);
+    tube(g,[P(.119,.246,-.026),P(.118,.15,-.035),P(.119,.077,-.035)],.0065,tendon);
+    g=part('tibialis',s);muscle(g,[P(.125,.477,.03),P(.139,.352,.045),P(.135,.185,.024)],.019,.018);
+    tube(g,[P(.135,.209,.034),P(.120,.115,.037),P(.089,.073,.086),P(.080,.058,.125)],.0038,tendon);
+    for(let i=0;i<4;i++)tube(g,[P(.126,.155,.032),P(.119+i*.009,.084,.066),P(.096+i*.015,.046,.15-i*.008)],.0015,tendon);
+  }
+}
+
+function makeFiberMap(){
+  const c=document.createElement('canvas');c.width=512;c.height=512;const ctx=c.getContext('2d');
+  ctx.fillStyle='#929292';ctx.fillRect(0,0,512,512);
+  let seed=19;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+  for(let j=0;j<190;j++){const y=random()*512,gray=Math.floor(80+random()*90);ctx.strokeStyle='rgb('+gray+','+gray+','+gray+')';ctx.lineWidth=.4+random()*.7;ctx.beginPath();ctx.moveTo(-5,y);ctx.bezierCurveTo(150,y+random()*6-3,350,y+random()*6-3,518,y);ctx.stroke();}
+  const tex=new THREE.CanvasTexture(c);tex.wrapS=tex.wrapT=THREE.RepeatWrapping;tex.anisotropy=4;return tex;
+}
+
+function skullGeometry(){
+  const ellipse=(x,y,z,cx,cy,cz,rx,ry,rz)=>{const a=(x-cx)/rx,b=(y-cy)/ry,c=(z-cz)/rz;return(Math.sqrt(a*a+b*b+c*c)-1)*Math.min(rx,ry,rz);};
+  const smoothMin=(a,b,k)=>{const h=Math.max(k-Math.abs(a-b),0)/k;return Math.min(a,b)-h*h*k*.25;};
+  function field(x,y,z){
+    let d=ellipse(x,y,z,0,1.713,-.009,.077,.101,.078);
+    d=smoothMin(d,ellipse(x,y,z,0,1.665,.042,.049,.041,.048),.015);
+    for(const s of [-1,1])d=smoothMin(d,ellipse(x,y,z,s*.058,1.679,.036,.018,.026,.024),.009);
+    for(const s of [-1,1])d=-smoothMin(-d,ellipse(x,y,z,s*.031,1.703,.069,.021,.0195,.041),.0035);
+    d=-smoothMin(-d,ellipse(x,y,z,0,1.667,.084,.010,.019,.035),.002);
+    d=-smoothMin(-d,ellipse(x,y,z,0,1.632,.075,.037,.013,.035),.002);
+    return d;
+  }
+  const nx=76,ny=94,nz=80,min=[-.101,1.599,-.101],max=[.101,1.824,.124];
+  const step=[(max[0]-min[0])/nx,(max[1]-min[1])/ny,(max[2]-min[2])/nz],points=[],values=[];
+  const at=(x,y,z)=>(x*(ny+1)+y)*(nz+1)+z;
+  for(let x=0;x<=nx;x++)for(let y=0;y<=ny;y++)for(let z=0;z<=nz;z++){const p=[min[0]+x*step[0],min[1]+y*step[1],min[2]+z*step[2]];points.push(p);values.push(field(...p));}
+  const positions=[],normals=[],uv=[];
+  function normal(p){const e=.0002;return V([field(p[0]+e,p[1],p[2])-field(p[0]-e,p[1],p[2]),field(p[0],p[1]+e,p[2])-field(p[0],p[1]-e,p[2]),field(p[0],p[1],p[2]+e)-field(p[0],p[1],p[2]-e)]).normalize();}
+  function crossing(a,b){const t=values[a]/(values[a]-values[b]);return points[a].map((v,i)=>lerp(v,points[b][i],t));}
+  function tri(a,b,c){const n=normal(a);if(V(b).sub(V(a)).cross(V(c).sub(V(a))).dot(n)<0)[b,c]=[c,b];for(const p of [a,b,c]){positions.push(...p);const n=normal(p);normals.push(n.x,n.y,n.z);uv.push((p[0]+.1)/.2,(p[1]-1.6)/.23);}}
+  const tets=[[0,5,1,6],[0,1,2,6],[0,2,3,6],[0,3,7,6],[0,7,4,6],[0,4,5,6]];
+  for(let x=0;x<nx;x++)for(let y=0;y<ny;y++)for(let z=0;z<nz;z++){
+    const ids=[at(x,y,z),at(x+1,y,z),at(x+1,y+1,z),at(x,y+1,z),at(x,y,z+1),at(x+1,y,z+1),at(x+1,y+1,z+1),at(x,y+1,z+1)];
+    if(ids.every(i=>values[i]>0)||ids.every(i=>values[i]<0))continue;
+    for(const tet of tets){const inside=[],outside=[];tet.forEach(i=>(values[ids[i]]<0?inside:outside).push(ids[i]));if(!inside.length||!outside.length)continue;
+      if(inside.length===1||outside.length===1){const a=inside.length===1?inside[0]:outside[0],others=inside.length===1?outside:inside;tri(...others.map(b=>crossing(a,b)));}
+      else{const [a,b]=inside,[c,d]=outside,p=crossing(a,c),q=crossing(a,d),r=crossing(b,d),s=crossing(b,c);tri(p,q,r);tri(p,r,s);}
+    }
+  }
+  const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geo.setAttribute('normal',new THREE.Float32BufferAttribute(normals,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));return geo;
+}
+
+return {buildAnatomy,catalog:catalog.filter(d=>d.system==='muscle'),regions};
+})();
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const V=a=>new THREE.Vector3(...a);
+const viewport=$('.viewport'),canvas=$('#scene'),reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});}catch(error){$('#loadingText').textContent='WebGL 无法启动，请使用支持 WebGL 的浏览器。';throw error;}
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.setClearColor(0xf3f1eb,1);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xf3f1eb);scene.fog=new THREE.Fog(0xf3f1eb,8,24);
+const camera=new THREE.PerspectiveCamera(31,1,.01,40);camera.position.set(.04,.96,3.88);
+const controls=new OrbitControls(camera,canvas);controls.target.set(0,.94,0);controls.enableDamping=true;controls.dampingFactor=.08;controls.minDistance=.27;controls.maxDistance=7;controls.maxPolarAngle=Math.PI*.78;controls.autoRotateSpeed=.6;
+const room=new RoomEnvironment();const pmrem=new THREE.PMREMGenerator(renderer);scene.environment=pmrem.fromScene(room,.035).texture;scene.environmentIntensity=.32;room.dispose();pmrem.dispose();
+scene.add(new THREE.HemisphereLight(0xf8faf3,0x949883,.95));
+const key=new THREE.DirectionalLight(0xfff5df,2.4);key.position.set(-2.4,3.7,3);key.target.position.set(0,.95,0);scene.add(key.target);key.castShadow=true;key.shadow.mapSize.set(2048,2048);Object.assign(key.shadow.camera,{left:-1.5,right:1.5,top:1.6,bottom:-1.6,near:.1,far:8});key.shadow.normalBias=.002;key.shadow.bias=-.00008;key.shadow.radius=3;scene.add(key);
+const fill=new THREE.DirectionalLight(0xe1eadd,1.1);fill.position.set(2,1.8,2);scene.add(fill);
+const edge=new THREE.DirectionalLight(0xfffcf0,1.9);edge.position.set(.8,3,-2.2);scene.add(edge);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.MeshStandardMaterial({color:0xf3f1eb,roughness:1,envMapIntensity:.2}));ground.rotation.x=-Math.PI/2;ground.position.y=.004;ground.receiveShadow=true;scene.add(ground);
+
+const anatomy=buildAnatomy();scene.add(anatomy.root);
+const dataById=new Map(catalog.map(x=>[x.id,x]));
+const state={mode:'muscle',selected:null,selectedPart:null,isolate:false,system:'muscle',region:'all',query:'',opacity:1,view:'front',focused:false};
+let needsShadow=true,tween=null,dragStart=null,pointerDirty=false,pointerInside=false,pointerX=0,pointerY=0,hoverTick=0;
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+const labels=new Map();
+const labelTargets=new Map();
+const priority=['pectoral','deltoid','biceps','rectus','quadriceps','gastrocnemius'];
+const listing=[...priority.map(id=>dataById.get(id)),...catalog.filter(x=>!priority.includes(x.id))];
+for(const d of catalog){const label=document.createElement('button');label.className='label '+d.system;label.setAttribute('aria-label','查看'+d.name);label.innerHTML='<i></i><span>'+d.name+'<small>'+String(catalog.indexOf(d)+1).padStart(2,'0')+'</small></span>';label.hidden=true;label.onclick=()=>select(d.id,labelTargets.get(d.id));$('#labels').appendChild(label);labels.set(d.id,label);}
+
+function preferredPart(id){
+  const candidates=anatomy.parts.filter(p=>p.id===id);
+  return candidates.find(p=>p.side===(dataById.get(id).system==='muscle'?-1:1))??candidates[0];
+}
+const muscleGroups={"arm":["biceps","triceps","flexors","extensors"],"shoulder":["deltoid"],"chest":["pectoral","serratus"],"abdomen":["rectus","oblique"],"back":["trapezius","latissimus","erector"],"glutes":["gluteus"],"leg":["quadriceps","adductors","sartorius","hamstrings","gastrocnemius","tibialis"]};
+const groupNames={arm:'手臂',shoulder:'肩',chest:'胸',abdomen:'腹',back:'背',glutes:'臀',leg:'腿'};
+function inRegion(d){return state.region==='all'||(muscleGroups[state.region]?d.system==='muscle'&&muscleGroups[state.region].includes(d.id):d.region===state.region);}
+
+function updateList(){
+  const result=listing.filter(d=>(state.system==='all'||d.system===state.system)&&inRegion(d)&&(!state.query||(d.name+' '+d.latin).toLowerCase().includes(state.query)));
+  $('#resultCount').textContent=result.length.toString().padStart(2,'0');$('#emptyState').hidden=result.length>0;
+  $('#partList').replaceChildren();
+  for(const d of result){const b=document.createElement('button');b.className='part-row '+d.system+(state.selected===d.id?' active':'');b.dataset.id=d.id;b.setAttribute('aria-pressed',String(state.selected===d.id));b.innerHTML='<span class="part-number">'+String(catalog.indexOf(d)+1).padStart(2,'0')+'</span><span class="part-title">'+d.name+'</span><i></i>';b.onclick=()=>selectFromNavigation(d.id);$('#partList').appendChild(b);}
+}
+function updateMaterials(){
+  for(const p of anatomy.parts){
+    let visible=true;
+    if(state.isolate)visible=p===state.selectedPart;
+    p.group.visible=visible;
+    for(const m of p.materials){
+      const muted=state.selectedPart&&p.system==='muscle'&&p!==state.selectedPart;
+      const opacity=p.system==='muscle'?(p===state.selectedPart?1:state.opacity*(muted?.3:1)):1;
+      const transparent=opacity<.99;
+      if(m.transparent!==transparent){m.transparent=transparent;m.needsUpdate=true;}
+      m.opacity=opacity;m.depthWrite=opacity>.58;m.wireframe=false;
+      const selected=p===state.selectedPart;
+      m.color.copy(m.userData.baseColor);
+      if(state.region!=='all'&&p.system==='muscle'&&!inRegion(dataById.get(p.id)))m.color.multiplyScalar(.42);
+      if(selected)m.color.multiplyScalar(1.35);
+      m.emissive.set(selected?0xc56528:0x000000);m.emissiveIntensity=selected?.32:0;
+    }
+    if(p.fibers){p.fibers.visible=true;p.fibers.material.opacity=p===state.selectedPart?.42:.24*state.opacity*(state.selectedPart?.3:1);}
+    p.group.traverse(o=>{if(o.isMesh)o.castShadow=!(p.system==='muscle'&&state.opacity<.6);});
+  }
+  needsShadow=true;
+}
+function setMode(){
+  stopDemo();state.isolate=false;$('#isolate').setAttribute('aria-pressed','false');
+  if(state.focused){state.focused=false;setView('front');}
+  updateMaterials();
+}
+
+const components={
+  quadriceps:{kind:'组成肌肉',items:[['股直肌',[.105,.80,.08]],['股外侧肌',[.163,.75,.043]],['股内侧肌',[.063,.67,.057]],['股中间肌（深层）',null]]},
+  hamstrings:{kind:'组成肌肉',items:[['股二头肌',[.128,.755,-.046]],['半腱肌',[.088,.755,-.046]],['半膜肌（深层）',null]]},
+  gastrocnemius:{kind:'组成肌肉与肌头',items:[['腓肠肌内侧头',[.094,.386,-.041]],['腓肠肌外侧头',[.132,.386,-.041]],['比目鱼肌',[.149,.311,-.016]]]},
+  erector:{kind:'组成肌肉',items:[['髂肋肌',null],['最长肌',null],['棘肌',null]],note:'当前用整体肌带表示，未单独建模。'},
+  adductors:{kind:'主要组成肌肉',items:[['大收肌',null],['长收肌',null],['短收肌（深层）',null]],note:'当前用整体肌腹表示，未单独建模。'},
+  flexors:{kind:'主要组成肌肉',items:[['桡侧腕屈肌',null],['尺侧腕屈肌',null],['掌长肌',null],['指浅屈肌',null],['指深屈肌（深层）',null],['拇长屈肌（深层）',null]],note:'模型肌束为概括示意，不与每块肌肉一一对应。'},
+  extensors:{kind:'主要组成肌肉',items:[['桡侧腕长伸肌',null],['桡侧腕短伸肌',null],['尺侧腕伸肌',null],['指伸肌',null]],note:'模型肌束为概括示意，不与每块肌肉一一对应。'},
+  deltoid:{kind:'肌束（同一块肌肉的分部）',items:[['前束',[.205,1.398,.041]],['中束',[.21,1.397,.008]],['后束',[.201,1.405,-.030]]]},
+  biceps:{kind:'肌头（同一块肌肉的分部）',items:[['长头',null],['短头',null]],note:'当前模型表示共同肌腹，未分开显示两头。'},
+  triceps:{kind:'肌头（同一块肌肉的分部）',items:[['长头',null],['外侧头',null],['内侧头（部分位于深层）',null]],note:'当前模型表示整体轮廓，未分开显示三头。'},
+  trapezius:{kind:'肌束（同一块肌肉的分部）',items:[['上束',[.065,1.48,-.065]],['中束',[.072,1.415,-.098]],['下束',[.037,1.32,-.09]]]},
+  pectoral:{kind:'分部（同一块肌肉）',items:[['锁骨部',[.08,1.435,.13]],['胸肋部',[.085,1.355,.14]]]},
+  rectus:{kind:'结构说明',items:[],note:'腹直肌是一对连续肌带；表面的分块由腱划形成，不是多块独立的小肌肉。'},
+  serratus:{kind:'结构说明',items:[],note:'锯齿状肌束属于同一块前锯肌，不是多块独立肌肉。'}
+};
+const componentLabels=[];
+function showComponents(id){
+  componentLabels.forEach(el=>el.remove());componentLabels.length=0;
+  const data=components[id];$('#components').hidden=!data;
+  if(!data)return;
+  $('#componentTitle').textContent=data.kind;
+  $('#componentList').replaceChildren();
+  for(const [name,point] of data.items){
+    const item=document.createElement('li');item.textContent=name;$('#componentList').appendChild(item);
+    if(point){const el=document.createElement('div');el.className='component-label';el.textContent=name;el.hidden=true;el.anchor=point;$('#labels').appendChild(el);componentLabels.push(el);}
+  }
+  if(data.note){const item=document.createElement('li');item.textContent=data.note;$('#componentList').appendChild(item);}
+}
+
+const posteriorMuscles=new Set(['trapezius','latissimus','erector','triceps','extensors','hamstrings','gluteus','gastrocnemius']);
+function selectFromNavigation(id){
+  const wasFocused=state.focused;
+  state.focused=false;
+  select(id);
+  const view=posteriorMuscles.has(id)?'back':'front';
+  const direction=camera.position.clone().sub(controls.target).normalize();
+  const facing=direction.z*(view==='back'?-1:1);
+  // Use actual camera direction after manual dragging; replace stale transitions.
+  if(facing<.45||tween||wasFocused){
+    setView(view);
+    if(wasFocused&&tween?.orbit){
+      tween.target=state.selectedPart.center.clone().applyMatrix4(state.selectedPart.group.matrixWorld);
+      state.focused=true;
+    }
+  }
+}
+function select(id,part=null){
+  const wasFocused=state.focused;
+  showComponents(id);
+  state.selected=id;state.selectedPart=id?(part??preferredPart(id)):null;
+  if(!id)state.isolate=false;
+  $('#detail').hidden=!id;$('#overview').hidden=!!id;$('#clearSelection').hidden=!id;
+  $('#isolate').setAttribute('aria-pressed',String(state.isolate));
+  if(id){
+    const d=dataById.get(id);
+    const entry=Object.entries(muscleGroups).find(([,ids])=>ids.includes(id));
+    $('#noteLink').hidden=!entry;
+    if(entry){$('#noteLink').href='./muscle-'+entry[0]+'.md';$('#noteLink').textContent='阅读'+groupNames[entry[0]]+'部肌肉笔记 ↗';}
+    $('#detailIndex').textContent='肌肉'+' / '+regions[d.region];$('#detailName').textContent=d.name;$('#detailLatin').textContent=d.latin;$('#detailDescription').textContent=d.description;$('#detailAction').textContent=d.action;
+  }
+  for(const [key,label]of labels)label.classList.toggle('active',key===id);
+  $$('.part-row').forEach(b=>{b.classList.toggle('active',b.dataset.id===id);b.setAttribute('aria-pressed',String(b.dataset.id===id));});
+  updateMaterials();
+  if(wasFocused){if(id)focusSelected();else setView(state.view);}
+  if(id&&viewport.clientWidth<801)viewport.scrollIntoView({behavior:reduced?'instant':'smooth',block:'start'});
+}
+function transition(position,target){
+  if(reduced){camera.position.copy(position);controls.target.copy(target);tween=null;controls.update();}
+  else tween={from:camera.position.clone(),to:position,fromTarget:controls.target.clone(),target,elapsed:0};
+}
+function scaleFactor(){return viewport.clientWidth<800?1.04:1;}
+function setView(view,immediate=false){
+  state.view=view;state.focused=false;controls.autoRotate=false;
+  const target=immediate?new THREE.Vector3(0,.82,0):controls.target.clone(),dist=3.88*scaleFactor();
+  const positions={front:new THREE.Vector3(.035,.01,dist),back:new THREE.Vector3(-.035,.01,-dist),side:new THREE.Vector3(dist,.01,.02)};
+  const pos=positions[view].add(target);
+  if(immediate){camera.position.copy(pos);controls.target.copy(target);tween=null;controls.update();}
+  else {
+    // Interpolate angles on an orbit, never along a chord through the body.
+    const from=new THREE.Spherical().setFromVector3(camera.position.clone().sub(controls.target));
+    const to=new THREE.Spherical().setFromVector3(pos.clone().sub(target));
+    let delta=THREE.MathUtils.euclideanModulo(to.theta-from.theta+Math.PI,Math.PI*2)-Math.PI;
+    if(Math.abs(Math.abs(delta)-Math.PI)<.02)delta=Math.PI;
+    if(reduced){camera.position.copy(pos);controls.target.copy(target);tween=null;controls.update();}
+    else tween={orbit:true,fromAngle:from.theta,delta,phi:from.phi,toPhi:to.phi,radius:from.radius,toRadius:from.radius,fromTarget:controls.target.clone(),target,elapsed:0};
+  }
+  $$('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
+  $('#viewName').textContent={front:'前面观',back:'后面观',side:'侧面观'}[view];
+}
+function focusSelected(){
+  if(!state.selectedPart)return;
+  stopDemo();controls.autoRotate=false;
+  const box=new THREE.Box3().setFromObject(state.selectedPart.group),center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());
+  const dist=Math.max(.44,Math.max(size.x,size.y,size.z)*3.05)*scaleFactor();
+  const d=dataById.get(state.selected),posterior=posteriorMuscles.has(d.id);
+  const direction=new THREE.Vector3(posterior?-.22:.19,.12,posterior?-1:1).normalize();
+  transition(center.clone().addScaledVector(direction,dist),center);state.focused=true;$('#viewName').textContent=d.name+' · 细节';
+  if(viewport.clientWidth<801)viewport.scrollIntoView({behavior:reduced?'instant':'smooth',block:'start'});
+}
+function stopDemo(){}
+function updateRanges(){
+  $('#opacityValue').innerHTML=Math.round(state.opacity*100)+'<span>%</span>';$('#opacity').style.setProperty('--progress',((state.opacity*100-10)/.9)+'%');
+}
+
+$('#search').oninput=e=>{state.query=e.target.value.trim().toLowerCase();updateList();};
+$('#region').onchange=e=>{state.region=e.target.value;state.isolate=false;select(null);if(muscleGroups[state.region]){setMode('muscle');setView(['back','glutes'].includes(state.region)?'back':'front');}updateList();updateMaterials();};
+$$('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+$('#closeDetail').onclick=$('#clearSelection').onclick=()=>select(null);
+$('#startExplore').onclick=()=>{select('pectoral');focusSelected();};
+$('#focus').onclick=focusSelected;
+$('#isolate').onclick=()=>{if(!state.selected)return;state.isolate=!state.isolate;$('#isolate').setAttribute('aria-pressed',String(state.isolate));updateMaterials();focusSelected();};
+$('#opacity').oninput=e=>{state.opacity=Number(e.target.value)/100;updateRanges();updateMaterials();};
+$('#home').onclick=()=>{stopDemo();state.isolate=false;select(null);state.opacity=1;$('#opacity').value=100;setMode('muscle');state.query='';$('#search').value='';state.region='all';$('#region').value='all';state.system='muscle';$$('[data-system]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.system==='muscle')));updateList();updateRanges();updateMaterials();setView('front',true);};
+controls.addEventListener('start',()=>{tween=null;$('#viewName').textContent='自由视角';$$('[data-view]').forEach(b=>b.setAttribute('aria-pressed','false'));});
+
+function pick(x,y){
+  const r=canvas.getBoundingClientRect();pointer.set((x-r.left)/r.width*2-1,-(y-r.top)/r.height*2+1);raycaster.setFromCamera(pointer,camera);
+  return raycaster.intersectObjects(anatomy.pickables.filter(o=>o.userData.system==='muscle'),false).find(hit=>{if(hit.object.material.opacity<.2)return false;let o=hit.object;while(o){if(!o.visible)return false;o=o.parent;}return true;});
+}
+canvas.addEventListener('pointerdown',e=>{dragStart={x:e.clientX,y:e.clientY,time:performance.now()};});
+canvas.addEventListener('pointermove',e=>{pointerX=e.clientX;pointerY=e.clientY;pointerDirty=true;pointerInside=true;});
+canvas.addEventListener('pointerleave',()=>{pointerInside=false;canvas.style.cursor='grab';});
+canvas.addEventListener('pointerup',e=>{if(dragStart&&Math.hypot(e.clientX-dragStart.x,e.clientY-dragStart.y)<6&&performance.now()-dragStart.time<650){const hit=pick(e.clientX,e.clientY);if(hit){const {id,side}=hit.object.userData;select(id,anatomy.parts.find(p=>p.id===id&&p.side===side));}else select(null);}dragStart=null;});
+canvas.addEventListener('pointercancel',()=>{dragStart=null;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){select(null);}if(e.target===canvas&&e.key.toLowerCase()==='f')focusSelected();});
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();$('#loading').classList.remove('done');$('#loading').removeAttribute('aria-hidden');$('#loadingText').textContent='图形上下文已暂停，请刷新恢复。';});
+
+const projection=new THREE.Vector3();
+function screenPoint(point){projection.copy(point).project(camera);return{x:(projection.x*.5+.5)*viewport.clientWidth,y:(-.5*projection.y+.5)*viewport.clientHeight,z:projection.z};}
+function updateLabels(){
+  const posterior=camera.position.z<controls.target.z;
+  const muscleSet=posterior?['trapezius','latissimus','triceps','gluteus','hamstrings','gastrocnemius']:['pectoral','deltoid','rectus','biceps','quadriceps','tibialis'];
+  let visible=state.selected?[state.selected]:muscleSet;
+  const occupied=[],leaders=[];
+  for(const d of catalog){
+    const label=labels.get(d.id),show=visible.includes(d.id)&&!(state.selected===d.id&&componentLabels.length);label.hidden=!show;if(!show)continue;
+    let part=state.selected===d.id?state.selectedPart:preferredPart(d.id);
+    if(!state.selected){const side=visible.indexOf(d.id)%2===0?-1:1;part=anatomy.parts.find(p=>p.id===d.id&&p.side===side)??part;}
+    labelTargets.set(d.id,part);
+    if(!part.group.visible){label.hidden=true;continue;}
+    let point=part.center.clone().applyMatrix4(part.group.matrixWorld);
+    // Anchor the leader on the camera-facing surface, including selection scaling.
+    const direction=point.clone().sub(camera.position).normalize();
+    raycaster.set(camera.position,direction);
+    const surface=raycaster.intersectObjects(part.group.children,false).find(hit=>hit.object.isMesh);
+    if(surface)point=surface.point;
+    const p=screenPoint(point),left=p.x<viewport.clientWidth*.5;
+    if(p.z>1||p.z<-1){label.hidden=true;continue;}
+    let x=p.x+(left?-65:65),y=p.y-8;
+    const min=viewport.clientWidth<800?100:340,max=viewport.clientWidth-(viewport.clientWidth<800?100:335);
+    x=THREE.MathUtils.clamp(x,min,max);y=THREE.MathUtils.clamp(y,18,viewport.clientHeight-88);
+    for(const old of occupied)if(old.left===left&&Math.abs(y-old.y)<30)y=old.y+31;
+    occupied.push({left,y});label.classList.toggle('left',left);label.style.left=x.toFixed(1)+'px';label.style.top=y.toFixed(1)+'px';
+    const endY=y+label.offsetHeight/2;
+    leaders.push('<path d="M '+p.x.toFixed(1)+' '+p.y.toFixed(1)+' L '+(x+(left?10:-10)).toFixed(1)+' '+endY.toFixed(1)+' L '+x.toFixed(1)+' '+endY.toFixed(1)+'"/><circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="2"/>');
+  }
+  if(state.selectedPart){
+    const part=state.selectedPart;
+    const anchors=[];
+    componentLabels.forEach(label=>{
+      let point=V([label.anchor[0]*part.side,label.anchor[1],label.anchor[2]]).applyMatrix4(part.group.matrixWorld);
+      raycaster.set(camera.position,point.clone().sub(camera.position).normalize());
+      const hit=raycaster.intersectObjects(part.group.children,false).find(h=>h.object.isMesh);
+      label.hidden=!hit||!part.group.visible;
+      if(label.hidden)return;
+      point=hit.point;
+      const p=screenPoint(point);
+      if(p.z<-1||p.z>1){label.hidden=true;return;}
+      anchors.push({label,p,w:label.offsetWidth,h:label.offsetHeight});
+    });
+    // Keep anatomical names attached to their anchors, sorting only their screen layout.
+    // Horizontal exits share a rail outside every anchor; the ordered fan cannot cross.
+    anchors.sort((a,b)=>a.p.y-b.p.y||a.p.x-b.p.x);
+    if(anchors.length){
+      const left=anchors.reduce((sum,a)=>sum+a.p.x,0)/anchors.length<viewport.clientWidth/2;
+      const maxWidth=Math.max(...anchors.map(a=>a.w));
+      const rail=left?Math.min(...anchors.map(a=>a.p.x))-12:Math.max(...anchors.map(a=>a.p.x))+12;
+      const endX=left?Math.max(maxWidth+8,rail-74):Math.min(viewport.clientWidth-maxWidth-8,rail+74);
+      const gap=Math.max(34,...anchors.map(a=>a.h+10));
+      const center=anchors.reduce((sum,a)=>sum+a.p.y,0)/anchors.length;
+      const top=THREE.MathUtils.clamp(center-(anchors.length-1)*gap/2,24,viewport.clientHeight-24-(anchors.length-1)*gap);
+      anchors.forEach(({label,p,w,h},i)=>{
+        const y=top+i*gap;
+        label.style.left=(left?endX-w:endX)+'px';label.style.top=(y-h/2)+'px';
+        leaders.push('<path d="M '+p.x+' '+p.y+' L '+rail+' '+p.y+' L '+endX+' '+y+'"/><circle cx="'+p.x+'" cy="'+p.y+'" r="2.5"/>');
+      });
+    }
+  }
+  $('#leaders').innerHTML=leaders.join('');
+}
+function updateRuler(){
+  const svg=$('#ruler');if(state.focused||state.isolate||viewport.clientWidth<801){svg.style.opacity='0';return;}svg.style.opacity='.72';
+  const rulerOffset=new THREE.Vector3().setFromMatrixColumn(camera.matrixWorld,0).multiplyScalar(-.49);
+  const a=screenPoint(rulerOffset.clone().add(new THREE.Vector3(0,.02,0))),b=screenPoint(rulerOffset.clone().add(new THREE.Vector3(0,1.82,0)));
+  let markup='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" />';
+  for(let i=0;i<=18;i++){const p=screenPoint(rulerOffset.clone().add(new THREE.Vector3(0,.02+i*.1,0))),major=i%3===0;markup+='<line x1="'+(p.x-(major?8:4))+'" y1="'+p.y+'" x2="'+p.x+'" y2="'+p.y+'" />';if(major)markup+='<text x="'+(p.x-13)+'" y="'+(p.y+3)+'" text-anchor="end">'+i*10+'</text>';}
+  markup+='<text x="'+(b.x-13)+'" y="'+(b.y-14)+'" text-anchor="end">CM</text>';svg.innerHTML=markup;
+}
+let initialized=false;
+function resize(){const w=viewport.clientWidth,h=viewport.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();if(initialized&&!state.focused)setView(state.view,true);}
+new ResizeObserver(resize).observe(viewport);resize();setView('front',true);initialized=true;
+let last=performance.now();
+function animate(now){
+  requestAnimationFrame(animate);const raw=(now-last)/1000;last=now;if(document.hidden)return;const dt=Math.min(raw,.05);
+  for(const p of anatomy.parts){
+    if(p.system!=='muscle')continue;
+    const targetScale=p===state.selectedPart?1.13:1;
+    const scale=reduced?targetScale:THREE.MathUtils.damp(p.group.scale.x,targetScale,10,dt);
+    if(Math.abs(scale-p.group.scale.x)>.00001)needsShadow=true;
+    p.group.scale.setScalar(scale);
+    // Scale around each muscle's own centre, preserving its anatomical attachment location.
+    p.group.position.copy(p.center).multiplyScalar(1-scale);
+  }
+  if(tween){
+    tween.elapsed+=dt;const t=Math.min(1,tween.elapsed/(tween.orbit?1.1:.85)),e=t*t*(3-2*t);
+    controls.target.lerpVectors(tween.fromTarget,tween.target,e);
+    if(tween.orbit){
+      camera.position.setFromSpherical(new THREE.Spherical(tween.radius,THREE.MathUtils.lerp(tween.phi,tween.toPhi,e),tween.fromAngle+tween.delta*e)).add(controls.target);
+    }else camera.position.lerpVectors(tween.from,tween.to,e);
+    if(t===1)tween=null;
+  }
+  controls.update();scene.updateMatrixWorld();hoverTick++;
+  if(pointerDirty&&pointerInside&&!dragStart&&hoverTick%6===0){canvas.style.cursor=pick(pointerX,pointerY)?'pointer':'grab';pointerDirty=false;}
+  updateLabels();updateRuler();
+  if(needsShadow){renderer.shadowMap.needsUpdate=true;needsShadow=false;}
+  renderer.render(scene,camera);
+}
+updateList();updateMaterials();updateRanges();renderer.compile(scene,camera);
+requestAnimationFrame(now=>{last=now;animate(now);$('#loading').classList.add('done');$('#loading').setAttribute('aria-hidden','true');});
+
+</script>
+</body>
+</html>
