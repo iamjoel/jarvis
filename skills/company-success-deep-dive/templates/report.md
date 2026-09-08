@@ -2,76 +2,42 @@
 status: draft
 category: company-research
 create_date: YYYY-MM-DD
-company: [Company Name]
-region: [Primary markets]
-period: [Years]
+company: "Company Name"
+region: "Primary markets"
+period: "Years"
 ---
 
 # [Company Name]: Why It Succeeds
 
-## Executive Summary
-- [3-6 bullets with core reasons, each labeled Evidence/Inference/Speculation]
+## High-Density Summary
 
-## Company Snapshot
-- What the company does
-- Primary customers
-- Revenue model
-- Scale indicators (avoid numbers without sources)
+- **Conclusion:** The outcome and strongest explanation.
+- **Mechanism:** How customer demand, company choices and economics connect.
+- **Judgment entry point:** The evidence or metric that best tests this explanation.
+- **Common misconception:** A tempting explanation the evidence does not support.
+- **Related documents:** Relevant existing research.
 
-## Market Context (Porter’s Five Forces)
-- Rivalry:
-- Threat of entrants:
-- Buyer power:
-- Supplier power:
-- Substitutes:
+Adapt the headings and summary language to the report. Select the sections that explain the company and the requested depth; remove template guidance from the delivered report.
 
-## Customer Problem and Demand
-- Job-to-be-done and urgency
-- Switching costs and alternatives
-- Proof points (Evidence/Inference)
+## Company and Outcome
 
-## Differentiation and 7 Powers
-- Scale Economies:
-- Network Economies:
-- Counter-Positioning:
-- Switching Costs:
-- Branding:
-- Cornered Resource:
-- Process Power:
+Describe the business, customers, revenue model, period and sourced indicators of success or underperformance.
 
-## Business Model and Value Chain
-- Value creation steps
-- Where margin is earned
-- Key partners and bottlenecks
+## Mechanisms Behind the Outcome
 
-## Go-to-Market and Distribution
-- Acquisition channels
-- Sales motion (self-serve / mid-market / enterprise)
-- Retention drivers
+Organize around the strongest explanations. Relevant dimensions include market conditions, customer demand, differentiation, distribution, operations, value creation and profit capture. Apply a framework only where it clarifies these mechanisms.
 
-## Operating System and Culture
-- Decision cadence
-- Talent density and incentives
-- Execution mechanisms
+## Economics and Durability
 
-## Economics and Scaling Dynamics
-- Unit economics (CAC/LTV, gross margin, payback)
-- Operating leverage and cost structure
-- Pricing power
+Explain cost structure, scaling, pricing and persistence of advantage using available metrics. Mark defensible estimates and their methods; identify unavailable data.
 
-## Risks and Fragilities
-- Competitive threats
-- Regulatory risks
-- Technology or platform risks
-- Demand reversal scenarios
+## Risks and Counterevidence
 
-## Counterfactuals
-- What would need to be true for the success story to fail?
+Address competing explanations, weak evidence, competitive threats and conditions that could reverse the outcome.
 
-## Sources & Evidence Log
-- [Source] - [What it supports]
+## Sources and Evidence Gaps
 
-## Claims Register
-| Claim | Type (Evidence/Inference/Speculation) | Source or Rationale |
-|-------|----------------------------------------|--------------------|
-|       |                                        |                    |
+| Source | Date or period | What it supports | Material limitation |
+|--------|----------------|------------------|---------------------|
+
+Record unresolved questions that could change the conclusion. Add a claims register only when the number of disputed claims makes it useful.

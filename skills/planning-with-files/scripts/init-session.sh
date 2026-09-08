@@ -1,120 +1,36 @@
 #!/bin/bash
-# Initialize planning files for a new session
-# Usage: ./init-session.sh [project-name]
+# Usage: init-session.sh TASK_DIRECTORY [--with-notes]
+set -eu
 
-set -e
-
-PROJECT_NAME="${1:-project}"
-DATE=$(date +%Y-%m-%d)
-
-echo "Initializing planning files for: $PROJECT_NAME"
-
-# Create task_plan.md if it doesn't exist
-if [ ! -f "task_plan.md" ]; then
-    cat > task_plan.md << 'EOF'
-# Task Plan: [Brief Description]
-
-## Goal
-[One sentence describing the end state]
-
-## Current Phase
-Phase 1
-
-## Phases
-
-### Phase 1: Requirements & Discovery
-- [ ] Understand user intent
-- [ ] Identify constraints
-- [ ] Document in findings.md
-- **Status:** in_progress
-
-### Phase 2: Planning & Structure
-- [ ] Define approach
-- [ ] Create project structure
-- **Status:** pending
-
-### Phase 3: Implementation
-- [ ] Execute the plan
-- [ ] Write to files before executing
-- **Status:** pending
-
-### Phase 4: Testing & Verification
-- [ ] Verify requirements met
-- [ ] Document test results
-- **Status:** pending
-
-### Phase 5: Delivery
-- [ ] Review outputs
-- [ ] Deliver to user
-- **Status:** pending
-
-## Decisions Made
-| Decision | Rationale |
-|----------|-----------|
-
-## Errors Encountered
-| Error | Resolution |
-|-------|------------|
-EOF
-    echo "Created task_plan.md"
-else
-    echo "task_plan.md already exists, skipping"
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 TASK_DIRECTORY [--with-notes]" >&2
+    exit 2
 fi
-
-# Create findings.md if it doesn't exist
-if [ ! -f "findings.md" ]; then
-    cat > findings.md << 'EOF'
-# Findings & Decisions
-
-## Requirements
--
-
-## Research Findings
--
-
-## Technical Decisions
-| Decision | Rationale |
-|----------|-----------|
-
-## Issues Encountered
-| Issue | Resolution |
-|-------|------------|
-
-## Resources
--
-EOF
-    echo "Created findings.md"
-else
-    echo "findings.md already exists, skipping"
+planning_dir="$1"
+case "$planning_dir" in
+    ""|.|./|/) echo "Choose a directory dedicated to this task." >&2; exit 2 ;;
+esac
+if [ "$#" -eq 2 ] && [ "$2" != "--with-notes" ]; then
+    echo "Unknown option: $2" >&2
+    exit 2
 fi
+skill_scripts_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+mkdir -p -- "$planning_dir"
 
-# Create progress.md if it doesn't exist
-if [ ! -f "progress.md" ]; then
-    cat > progress.md << EOF
-# Progress Log
+copy_template() {
+    template_name="$1"
+    target_path="$planning_dir/$template_name"
+    if [ -e "$target_path" ] || [ -L "$target_path" ]; then
+        echo "Preserved $target_path"
+        return
+    fi
+    # noclobber also protects an existing regular file created concurrently.
+    (set -C; cat "$skill_scripts_dir/../templates/$template_name" > "$target_path")
+    echo "Created $target_path"
+}
 
-## Session: $DATE
-
-### Current Status
-- **Phase:** 1 - Requirements & Discovery
-- **Started:** $DATE
-
-### Actions Taken
--
-
-### Test Results
-| Test | Expected | Actual | Status |
-|------|----------|--------|--------|
-
-### Errors
-| Error | Resolution |
-|-------|------------|
-EOF
-    echo "Created progress.md"
-else
-    echo "progress.md already exists, skipping"
+copy_template task_plan.md
+if [ "$#" -eq 2 ]; then
+    copy_template findings.md
+    copy_template progress.md
 fi
-
-echo ""
-echo "Planning files initialized!"
-echo "Files: task_plan.md, findings.md, progress.md"

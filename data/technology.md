@@ -6,7 +6,7 @@
 - **核心机制**：把技术分成产业格局、AI/Agent 协作、Prompt 与 Workflow、软件构建、前后端与可视化几条线。
 - **判断入口**：想解决工具协作问题先看 LLM/Agent；想做软件系统先看前后端与 Workflow；想理解产业格局先看关键技术与产业。
 - **常见误区**：不要只按工具名找技术资料；更稳定的入口是“我想完成什么工作流”或“这项技术改变了什么系统约束”。
-- **相关文档**：[社会问题索引](./society.md)、[书籍索引](./books.md)、[精选文章](./a/awesome-articles.md)。
+- **相关文档**：[社会问题索引](./society.md)、[书籍索引](./books.md)、[精选文章](./a/awesome-articles.md)、[Jarvis 的 Agent 指令审计](./a/agent-instructions-gpt6-audit.md)。
 
 ## 技术、AI 与工具
 
@@ -53,6 +53,7 @@ AI 工具正在改变知识工作流程，理解协作方式比追逐单个工�
 | [深入解读 Google 的 Gemma 4](./g/gemma-4.md) | Gemma 4 家族（E2B/E4B/26B MoE/31B Dense）的架构、性能、Agent 能力、与 Gemma 3 的对比及对开源 AI 生态的影响 |
 | [Google Classroom 详细介绍](./g/google-classroom.md) | Google Workspace for Education 中的课堂管理入口：作业、反馈、评分、AI、SIS 集成、分析、安全与学校级采用判断 |
 | [Codex](./c/codex.md) | OpenAI Codex 与编程 Agent 的能力边界 |
+| [Jarvis Agent 指令审计](./a/agent-instructions-gpt6-audit.md) | 记录 GPT 6 指令审计与整改：重复审批、工具路由、技能触发、模板规模及 Pilot 单次完成流程，并附验证结果 |
 | [Claude Code 源码泄露：值得研究的逻辑与对世界的影响](./c/claude-code-leaked.md) | 2026 年 3 月 Anthropic Claude Code 512K 行源码意外泄露的完整分析：模块化提示引擎、三层自愈记忆、双轨权限模型、KAIROS 后台 Agent、Undercover Mode 等核心设计，及其对 AI 行业竞争、开源社区与安全合规的深远影响 |
 | [Harness](./h/harness.md) | Claude 和 OpenAI 语境下 harness（测试/评估套具）的含义、典型模式与实践建议 |
 | [上下文管理](./c/context-manage.md) | 长对话、长任务中的上下文压缩与管理 |

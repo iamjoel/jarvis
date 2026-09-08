@@ -1,68 +1,42 @@
 ---
 name: extract-chat-summary
-description: Extract structured summaries from the current chat conversation. Use when the user asks to pull out a topic, category (problem solving/creation/decision support/emotional support, etc.), up to 3 keywords, the question with background/context, and the solution, or requests a structured recap of a chat session.
+description: Extract a structured recap of the current conversation, including its topic, category, keywords, background and agreed solution. Archive it when the user asks to save the recap.
 ---
 
 # Extract Chat Summary
 
-## Goal
-Produce a concise, structured summary of the current conversation focused on:
-- Topic
-- Category
-- Keywords (max 3)
-- Background
-- Solution
-- Detail
+## Summary
 
-## Workflow
-1. Read the current chat context carefully.
-2. Identify the user's primary request and its background/context. If multiple topics are present, split into multiple topics.
-   - Topic must be a question.
-   - Topic must be a simple sentence. If that is not possible, split into multiple topics.
-3. Choose the best-fitting category:
-   - Problem Solving
-   - Creative Generation
-   - Decision Support
-   - Emotional Support
-   - Other (specify)
-4. Extract up to 3 keywords (prefer nouns or noun phrases).
-5. Draft the solution in 1–3 sentences, faithful to what was provided or agreed upon.
-6. If the user's question includes a URL, include that URL in the Background section.
-7. Present the extracted summary and ask the user to confirm it is correct.
-8. Determine RelateId by locating a related topic in `./storage/daily-data/YYYY/readme.md` under "All Topics". Use that related topic's Id (from its entry in `./storage/daily-data/YYYY/MM/dd.md`) as RelateId. If no suitable related topic exists, ask a brief clarification question before writing.
-9. If the user confirms, append the summary to `./storage/daily-data/YYYY/MM/dd.md` (create folders/files if missing):
-   - YYYY and MM are folder names. Eq: 2024/06/03.md
-   - Use `## <Topic>` as a heading.
-   - Put the rest of the fields under that heading.
-   - Append at the end of the file.
-10. After writing the topic entry, update `./storage/daily-data/YYYY/readme.md` under "All Topics":
-   - Add a markdown bullet link to the new topic under the same group as the related topic (RelateId).
-   - Link format: `- [<Topic>](./MM/dd.md#<topic-anchor>)` where `<topic-anchor>` is the GitHub-style anchor (lowercase, spaces to hyphens).
-   - Do not duplicate existing links.
-11. If any field is missing or unclear, ask a brief clarification question before writing.
-12. After writing, ask whether to create a git commit; if confirmed, stage the affected `/storage/daily-data/YYYY/MM/dd.md` and `/storage/daily-data/YYYY/readme.md` files and commit with the message `feat: <Topic>`. `storage/daily-data/` is another repo, so ensure to run git commands in that repo. Then push the commit.
+Deliver the summary directly in the user's language. Use the available conversation; acknowledge missing context when it affects accuracy. Separate materially distinct topics and express each topic as a simple question.
 
-## Output format
-Use this exact structure:
+For each topic, choose the closest category: Problem Solving, Creative Generation, Decision Support, Emotional Support, or Other with a brief label. Include up to three keywords and preserve URLs from the user's question in Background. Describe the solution actually discussed or agreed; distinguish unresolved work from completed results.
 
-## <Topic>
-- Id: YYYYMMDD-Index
-- RelateId: <find related topic from ./storage/daily-data/YYYY/readme.md All Topics except current topic. If not found, don't output this line>
-- Category: <one of the categories above>
-- Keywords: <k1>, <k2>, <k3>
+```markdown
+## <Topic question>
+- Category: <category>
+- Keywords: <up to three keywords>
 
 ### Background
-<topic background/context in 1–3 sentences>
+<Context in one to three sentences, including relevant supplied URLs>
 
 ### Solution
-<1–3 sentence summary>
+<Agreed answer or current resolution in one to three sentences>
 
 ### Detail
-<expanded details in paragraph(s) or bullets>
+<Reusable decisions, reasoning, constraints and unresolved items>
 
-### Notes(Output this if notes is not null)
-<optional; extract user's notes if present>
+### Notes
+<User notes, when present>
+```
 
-## Language
-- Match the language of the user's request.
-- If mixed, default to the user's most recent language.
+Omit Notes when absent. For an existing archive entry, preserve its `Id`. Include `RelateId` only when a related entry and its ID are known; an absent relationship needs no clarification.
+
+## Archiving when requested
+
+An explicit request to save or archive the summary authorizes writing it. If the user requested review before saving, deliver the draft for that review first.
+
+- Use a user-specified location when provided. Otherwise save to `data/c/chat-summary-YYYY-MM-DD-<topic-slug>.md` relative to this repository; choose a unique suffix for a different conversation with the same date and topic. Update an existing entry only when it is the intended archive.
+- Use a document title followed by the project's high-density summary, then the topic entries. Add `Id: YYYYMMDD-Index` for archived entries, choosing the next unused index among same-day chat summary entries. Preserve existing IDs on updates.
+- Find related archived entries only when it helps connect the topic. Omit unknown `RelateId` values.
+- Review `data/readme.md` and add a reusable summary to the appropriate secondary index. Follow its question and importance format, avoiding duplicate links.
+- Handle Git commits and pushes according to the user's actual authorization. Saving does not imply a commit; committing does not imply pushing. If requested, operate in the archive's actual repository and include only the intended changes.

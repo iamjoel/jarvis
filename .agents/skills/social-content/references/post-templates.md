@@ -1,5 +1,7 @@
 # Post Format Templates
 
+These are optional structures and example wording. Select only what serves the request. Follow current project writing rules, replace example facts with supplied evidence, and omit unsupported claims, invented experiences, canned endings, or unrequested comparisons.
+
 Ready-to-use templates for different platforms and content types.
 
 ## LinkedIn Post Templates

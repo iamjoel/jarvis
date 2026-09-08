@@ -1,48 +1,45 @@
 # AGENTS
-## Store Research Results
-For any research task requested by the user:
-1. Write the final research output to `data/`.
-2. Review `data/readme.md`.
-3. Update `data/readme.md` if the new or changed output should be indexed, linked, or described there.
 
-## Maintain Document Density
-When creating or editing Markdown documents under `data/`:
-1. Add a high-density summary block near the top of the document, immediately after the main title when practical. Match the block heading and content language to the current document's primary language, such as `## 高密度摘要` for Chinese documents or `## High-Density Summary` for English documents.
-2. Use the block to capture the document's most reusable knowledge: one-sentence conclusion, core mechanism, judgment entry point, common misconceptions, and related documents.
-3. When changing a document's conclusions, structure, scope, or important details, update its high-density summary block in the same edit.
-4. If an existing `data/` document does not yet have a high-density summary block and you make a meaningful content edit, add one instead of leaving the document in the older format.
+## Writing Style
 
-## Explain Why Questions Matter
-When creating or editing question-driven index pages, including `data/readme.md` and the secondary indexes it links to:
-1. After each standalone question heading, add one concise sentence explaining why that question matters.
-2. Do not use verbose boilerplate such as “这个问题重要，因为”; state the reason directly.
-3. If questions are listed in a table, add a `为什么重要` column instead of adding separate paragraphs.
-4. Keep the explanation short and decision-oriented: explain what the question helps the reader understand, judge, avoid, or choose.
+Avoid using slop words or phrases like "Bottom Line:" in conclusions, "delve," "foster," "leverage," "it's worth noting," "importantly," "Question? Answer." or "This isn't about X. It's about Y.", "genuinely" or hyphenated compound descriptions and adjectives. Do not use concluding summary statements such as "In short:..", "The simplest mental model is:...".
 
-## Fetch Information from the Web
-If the user needs information from Twitter/X, Reddit, WeRead (微信读书), or any specific website:
-1. Use `Bash` to inspect available tools with `opencli list`.
-2. Choose the most relevant tool available.
-3. Use that tool to retrieve the information.
-4. Only use fallback methods if no suitable tool is available.
+State the intended action directly. Avoid adding what you won't do, what will remain unchanged, or how you'll separate or categorize results. Do not use contrastive framing such as "X, not Y" or "X—not Y" that introduces an unprompted alternative that the user didn't ask about. Avoid invented compound labels like "exact-head checks" and "editorial-row layouts", vague qualifiers, and canned transitions; use plain verbs and prepositions to state the actual relationship directly.
 
-## Use Output Templates
-If user want to generate output, prefer to use the following templates.
+These style preferences apply to prose you write. Preserve exact code identifiers, established technical terms, quotations, and required artifact fields.
 
-1. When the user asks to generate or refine an introduction for a specific exercise modality such as HIIT, animal flow, CrossFit or swimming, use template defined in `knowledge/t/template-exercise-project-output.md`.
-2. When the user asks to generate or refine a body indicator document such as blood pressure, blood glucose, blood lipids, uric acid, VO₂ max, HRV, creatinine, eGFR, waist circumference or body fat percentage, use template defined in `knowledge/t/template-body-indicator-output.md`.
-3. When the user asks to generate or refine a health risk behavior document such as smoking, excessive alcohol use, sedentary behavior, sleep deprivation, overeating or other harmful habits, use template defined in `knowledge/t/template-health-risk-behavior-output.md`.
-4. When the user asks to generate or refine a disease document such as gout, diabetes, hypertension, flu, COVID-19, herniated disk, allergy or asthma, use template defined in `knowledge/t/template-disease-output.md`.
-5. When the user asks to create or refine a project issue, select the matching type template:
-   - Feature or behavior change: `knowledge/t/template-project-issue-feat.md`.
-   - Bug fix: `knowledge/t/template-project-issue-fix.md`.
-   - Maintenance, migration, cleanup, configuration, or documentation work: `knowledge/t/template-project-issue-chore.md`.
-   These templates guide issue content only. Actual writes under `private/projects` must follow `private/projects/readme.md` and its plan/apply approval workflow; selecting a template does not authorize a direct edit.
+## Task Execution
+
+Use the user's request and prior authorization to complete the work within scope. Resolve routine choices from context; ask when missing information materially changes the result or an action needs authorization. Skill guidance should support that scope and existing authorization.
+
+## Research and Knowledge Documents
+
+- Save requested research reports and reusable findings under `data/`. A brief factual answer or conversational follow-up does not by itself require a new document.
+- Read `data/readme.md` and link reusable output from the relevant secondary index. Update the top-level index when its navigation needs to change.
+- Put a summary near the top of `data/` Markdown documents, using the document's language (`高密度摘要` or `High-Density Summary`). Capture the conclusion, mechanism, decision entry point, misconceptions, and useful related links; short documents may combine these into a few sentences without empty fields or a duplicate introduction.
+- Keep the summary consistent with meaningful changes. Add one when substantially editing an existing document that lacks it.
+- In question-driven indexes, briefly explain what each question helps the reader judge or choose. Use a `为什么重要` column for tables of questions. An adjacent explanation can serve this purpose; update the entries involved in the task.
+
+## Web Information
+
+Choose an available tool suited to the source and required access. Prefer a relevant connector or direct source reader when it can retrieve the needed content. For platform-specific capabilities, inspect `opencli list` when OpenCLI is available and needed. If a tool is unavailable or fails, use another suitable route and state material source limitations.
+
+## Output Templates
+
+Use the matching template for document creation or revision. Scale sections to the request; preserve facts, source requirements, and fields required by the consuming system.
+
+| Document | Template |
+|---|---|
+| Exercise modality | `knowledge/t/template-exercise-project-output.md` |
+| Body indicator | `knowledge/t/template-body-indicator-output.md` |
+| Health risk behavior | `knowledge/t/template-health-risk-behavior-output.md` |
+| Disease | `knowledge/t/template-disease-output.md` |
+| Feature or behavior change issue | `knowledge/t/template-project-issue-feat.md` |
+| Bug fix issue | `knowledge/t/template-project-issue-fix.md` |
+| Maintenance issue | `knowledge/t/template-project-issue-chore.md` |
+
+For project and diary data writes, use the environment-specific entry described in `private/projects/readme.md`. Pilot applies changes through its plan/apply approval tools. A Codex session without those tools prepares the complete handoff for Pilot using that entry. Editing the project's workflow documentation, templates, and implementation follows the user's normal authorization for those files.
 
 ## HTML Design System
-When creating or editing HTML pages and their CSS:
-1. Treat `design-system/miro.md` as the default design system. [Preview](https://getdesign.md/design-md/miro/preview).
-2. Unless the user says otherwise, follow the Miro-inspired direction: light canvas, near-black text, generous whitespace, pastel accents, rounded components, and minimal shadow depth.
-3. Use `design-system/Supabase.md` when the page is better served by a dark, developer-facing, terminal-like, or more technical product aesthetic. [Preview](https://getdesign.md/design-md/supabase/preview).
-4. If both references are relevant, keep one system dominant instead of blending them evenly.
-5. When no explicit design direction is given, start from Miro and switch to Supabase only with a concrete reason.
+
+Use `design-system/miro.md` by default: a light canvas, near-black text, generous whitespace, pastel accents, rounded components, and minimal shadows. Use `design-system/Supabase.md` for a dark developer-facing or terminal-like product. Keep one system dominant and follow any explicit user design direction.

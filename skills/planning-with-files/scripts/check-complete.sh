@@ -1,44 +1,46 @@
 #!/bin/bash
-# Check if all phases in task_plan.md are complete
-# Exit 0 if complete, exit 1 if incomplete
-# Used by Stop hook to verify task completion
+# Reports recorded phase status, not deliverable correctness.
+# Exit 0: all complete; 1: incomplete; 2: missing or malformed plan.
+set -eu
 
-PLAN_FILE="${1:-task_plan.md}"
-
-if [ ! -f "$PLAN_FILE" ]; then
-    echo "ERROR: $PLAN_FILE not found"
-    echo "Cannot verify completion without a task plan."
-    exit 1
+if [ "$#" -ne 1 ] || [ ! -f "$1" ]; then
+    echo "Usage: $0 TASK_DIRECTORY/task_plan.md (existing file required)" >&2
+    exit 2
 fi
 
-echo "=== Task Completion Check ==="
-echo ""
-
-# Count phases by status (using -F for fixed string matching)
-TOTAL=$(grep -c "### Phase" "$PLAN_FILE" || true)
-COMPLETE=$(grep -cF "**Status:** complete" "$PLAN_FILE" || true)
-IN_PROGRESS=$(grep -cF "**Status:** in_progress" "$PLAN_FILE" || true)
-PENDING=$(grep -cF "**Status:** pending" "$PLAN_FILE" || true)
-
-# Default to 0 if empty
-: "${TOTAL:=0}"
-: "${COMPLETE:=0}"
-: "${IN_PROGRESS:=0}"
-: "${PENDING:=0}"
-
-echo "Total phases:   $TOTAL"
-echo "Complete:       $COMPLETE"
-echo "In progress:    $IN_PROGRESS"
-echo "Pending:        $PENDING"
-echo ""
-
-# Check completion
-if [ "$COMPLETE" -eq "$TOTAL" ] && [ "$TOTAL" -gt 0 ]; then
-    echo "ALL PHASES COMPLETE"
-    exit 0
-else
-    echo "TASK NOT COMPLETE"
-    echo ""
-    echo "Do not stop until all phases are complete."
-    exit 1
-fi
+awk '
+function finish_phase() {
+    if (!phase) return
+    total++
+    if (status_count != 1 || !valid_status) malformed = 1
+    if (status_count == 1 && phase_status == "complete") complete++
+    phase = 0
+}
+/^```/ { fenced = !fenced; next }
+fenced { next }
+/^### Phase[[:space:]]/ {
+    finish_phase()
+    phase = 1
+    status_count = 0
+    valid_status = 0
+    phase_status = ""
+    next
+}
+/^#{1,3}[[:space:]]/ { finish_phase() }
+phase && /^[[:space:]]*(-[[:space:]]+)?\*\*Status:\*\*[[:space:]]*/ {
+    status_count++
+    phase_status = $0
+    sub(/^[[:space:]]*(-[[:space:]]+)?\*\*Status:\*\*[[:space:]]*/, "", phase_status)
+    sub(/[[:space:]]+$/, "", phase_status)
+    valid_status = (phase_status ~ /^(pending|in_progress|blocked|complete)$/)
+}
+END {
+    finish_phase()
+    if (fenced || total == 0 || malformed) {
+        print "Malformed plan: each phase needs exactly one valid status."
+        exit 2
+    }
+    printf "Recorded phases: %d; complete: %d; remaining: %d\n", total, complete, total - complete
+    exit (complete == total ? 0 : 1)
+}
+' "$1"

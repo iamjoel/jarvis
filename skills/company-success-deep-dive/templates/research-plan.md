@@ -1,34 +1,30 @@
 # Research Plan: [Company Name]
 
+Use the prompts relevant to the company's outcome. Record this plan separately only when the investigation needs persistent state.
+
 ## Scope
-- Company: [Name]
-- Region: [Primary markets]
-- Time period: [Years]
-- Audience: [Investor / Executive / General]
-- Depth: [Short / Standard / Long]
 
-## Key Questions (MECE)
-1. Market tailwinds: What macro/industry shifts enabled growth?
-2. Customer demand: What problem is solved and why now?
-3. Differentiation: What is uniquely better or cheaper?
-4. Durable advantage: Which of the 7 Powers apply?
-5. Execution: What operating system drives repeatable delivery?
-6. Economics: How does the business make money at scale?
-7. Risks: What could break the success story?
+- Company and primary markets:
+- Period: latest three to five years plus relevant historical decisions, unless requested otherwise
+- Audience and depth: general business reader; adapt to the request
+- Outcome to explain and evidence that it occurred:
 
-## Evidence Sources
-- Public filings (10-K, annual report, investor letters)
-- Leadership interviews / earnings calls
-- Product documentation / changelogs
-- Hiring signals (roles, org design)
-- Customer reviews and case studies
-- Competitor comparisons
-- Regulatory or legal context
+## Questions to Investigate
 
-## Data Gaps
-- [List missing data that would materially strengthen the analysis]
+- What customer demand or market change enabled the outcome?
+- Which product, pricing or distribution choices explain the difference from peers?
+- What makes the advantage durable, and what can competitors copy?
+- Where are profits earned, and how do economics change with scale?
+- Which operating practices sustain delivery?
+- What evidence weakens the success story or suggests it could reverse?
 
-## Hypotheses to Test
-- H1: [Claim]
-- H2: [Claim]
-- H3: [Claim]
+## Evidence and Hypotheses
+
+| Hypothesis | Evidence needed | Sources to examine | What would weaken it |
+|------------|-----------------|--------------------|----------------------|
+
+Possible sources include filings, earnings calls, product documentation, customer evidence and competitor disclosures. Select frameworks after identifying which mechanisms need explanation.
+
+## Material Gaps
+
+- Missing data and its effect on the conclusion:

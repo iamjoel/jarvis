@@ -1,22 +1,12 @@
 ---
 name: twitter-viewer
-description: View or summarize content from X (formerly Twitter) links. Use when the user asks to open, view, or summarize a URL that starts with https://x.com or https://twitter.com, or when you need to access X/Twitter content. Always use https://www.twitter-viewer.com/ to view the content.
+description: Retrieve and summarize posts or threads from X/Twitter URLs, preserving the original source and relevant context.
 ---
 
 # Twitter Viewer
 
-## Workflow
+For each supplied X/Twitter URL, retrieve the post text, author, publication time and relevant thread or quoted-post context. Inspect linked media when needed to understand the claim. Preserve the original URL in the response and distinguish the author's statements from verified facts or your interpretation.
 
-- Detect any URLs that start with https://x.com or https://twitter.com (including mobile or subdomain variants like https://m.twitter.com).
-- Use cli: `agent-browser open https://www.twitter-viewer.com` to open the URL, then input the search form in the page with provided tweet URL.
-- If multiple URLs are present, handle each one.
+Choose an available tool suitable for the task under the project's web-access rules: a platform connector, supported CLI, browser or public web retrieval. When OpenCLI is available and relevant, discover its supported commands. A third-party viewer such as `twitter-viewer.com` can be a fallback if it currently works; its availability is not assumed.
 
-## URL Handling Rules
-
-- Do not replace the domain.
-- Use the original URL in the Twitter Viewer input.
-
-## Response Guidance
-
-- State that you used twitter-viewer.com to access the content.
-- If the user provided a URL, echo the same URL back to confirm what you opened.
+If a route fails or exposes only a partial post, try another suitable available route. State what was actually retrieved and any material gaps. Identify third-party or cached copies when their freshness or completeness matters. Do not reconstruct missing post content from a URL or search snippet alone. Ask for the post text only when access remains insufficient to answer.
