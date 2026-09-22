@@ -39,6 +39,7 @@
 - [韩国近代史（政治、经济、文化与产业格局）](../data/h/history-korea-modern.md)
 
 ### Health
+- [怎样更有效地增肌：先做好训练、吃饭和睡觉](./m/muscle-growth-factors.md)：帮助判断增肌时该优先调整训练、饮食还是恢复。
 - [胆固醇：LDL、HDL、甘油三酯与健康管理](./c/cholesterol.md)
 - [接触野生动物血液和内脏时，病原体会穿透皮肤吗？](./h/health-wild-animal-blood-viscera-infection-risk.md)
 - [为什么食用野生动物肉更容易有寄生虫和病毒感染风险](./h/health-wild-animal-meat-parasite-virus-risk.md)
