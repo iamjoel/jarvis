@@ -67,12 +67,14 @@
 
 肌肉可以分为 7 大肌群：[手臂](muscle-arm.md)，[肩](muscle-shoulder.md)，[胸](muscle-chest.md)，[腹](muscle-abdomen.md)，[背](muscle-back.md)，[臀](muscle-glutes.md)，[腿](muscle-leg.md)。
 
-- [手臂](muscle-arm.md)：肱二头肌，肱三头肌，
+- [手臂](muscle-arm.md)：肱二头肌、肱肌、肱三头肌、前臂肌群
 - [肩](muscle-shoulder.md)：三角肌前束，三角肌中束，三角肌后束
-- [胸](muscle-chest.md)：胸大肌
-- [腹](muscle-abdomen.md)：腹直肌，髂腰肌
-- [背](muscle-back.md)：斜方肌，背阔肌，竖直肌
+- [胸](muscle-chest.md)：胸大肌、前锯肌
+- [腹](muscle-abdomen.md)：腹直肌、腹斜肌、腹横肌
+- [背](muscle-back.md)：斜方肌、背阔肌、大圆肌、竖脊肌
 - [臀](muscle-glutes.md)：臀大肌，臀小肌，臀中肌
 - [腿](muscle-leg.md)：股四头肌，腘绳肌，腓肠肌，比目鱼肌
 
 ## 锻炼
+
+各肌群的动作、做法和起步训练量见上方对应文档。安排全身训练时，可从[腿部](muscle-leg.md)的下蹲与髋铰链、[胸部](muscle-chest.md)的推、[背部](muscle-back.md)的拉开始，再根据目标补充[臀部](muscle-glutes.md)、[肩部](muscle-shoulder.md)、[腹部](muscle-abdomen.md)与[手臂](muscle-arm.md)动作。同一次训练无需把每篇列出的动作全部做完。
