@@ -67,13 +67,13 @@
 
 肌肉可以分为 7 大肌群：[手臂](muscle-arm.md)，[肩](muscle-shoulder.md)，[胸](muscle-chest.md)，[腹](muscle-abdomen.md)，[背](muscle-back.md)，[臀](muscle-glutes.md)，[腿](muscle-leg.md)。
 
-- [手臂](muscle-arm.md)：肱二头肌、肱肌、肱三头肌、前臂肌群
+- [手臂](muscle-arm.md)：肱二头肌、肱三头肌、肱肌、前臂肌群
 - [肩](muscle-shoulder.md)：三角肌、肩袖
 - [胸](muscle-chest.md)：胸大肌、前锯肌
-- [腹](muscle-abdomen.md)：腹直肌、腹斜肌、腹横肌
-- [背](muscle-back.md)：斜方肌、背阔肌、大圆肌、菱形肌、竖脊肌
-- [臀](muscle-glutes.md)：臀大肌，臀小肌，臀中肌
-- [腿](muscle-leg.md)：股四头肌，腘绳肌，腓肠肌，比目鱼肌
+- [腹](muscle-abdomen.md)：腹直肌、腹斜肌
+- [背](muscle-back.md)：背阔肌、大圆肌、斜方肌、菱形肌、竖脊肌
+- [臀](muscle-glutes.md)：臀大肌、臀中肌、臀小肌
+- [腿](muscle-leg.md)：股四头肌、腘绳肌、腓肠肌、比目鱼肌、胫骨前肌
 
 ## 锻炼
 
