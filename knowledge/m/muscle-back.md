@@ -1,5 +1,9 @@
 # 背部肌肉
 
+## 高密度摘要
+
+背部训练包括拉动上臂、控制肩胛骨与稳定脊柱。热身应对应当天的下拉、划船或髋铰链；伸展按肩背紧绷程度选择，避免用强拉腰部代替活动控制。通用安排见[人体肌肉](./muscle-of-human.md#热身与伸展怎么安排)。
+
 ## 主要肌肉
 
 - 斜方肌：覆盖上背部，参与肩胛骨上提、后缩、下压和上回旋。
@@ -42,8 +46,25 @@
 
 **鸟狗式：**四点跪姿，双手在肩下、双膝在髋下；缓慢伸出一侧手臂和对侧腿，再收回换边。保持骨盆和腰背稳定，抬高四肢的幅度以不塌腰、不转髋为准。想练髋铰链也可做轻重量罗马尼亚硬拉：臀部向后推、躯干稳定地前倾再站起；它主要训练臀和大腿后侧，背部更多负责稳定。
 
+## 热身与伸展
+
+先参考[通用安排](./muscle-of-human.md#热身与伸展怎么安排)，再按当天动作选择以下练习。下列次数是起步示例，可按熟悉程度与身体反应调整。
+
+### 热身
+
+- **活动躯干与肩胛：**四点跪姿做小幅猫牛式 6～8 次，再做轻弹力带划船 8～12 次；不把脊柱推到极限。
+- **按主动作准备：**下拉、划船先做 1～3 组递增重量的热身组；当天有硬拉时，先练徒手髋铰链，再用轻重量逐步加重。肩背活动不能替代硬拉的专项准备。
+
+### 伸展
+
+- **背阔肌伸展：**双手放稳固桌面，屈髋向后坐，让胸口轻轻下沉，感受腋下与背部外侧牵拉；保持腰部舒适，避免塌腰。
+- **上背伸展：**双手在胸前交握并向前送，让肩胛骨轻轻分开，头颈保持自然，不用力低头。
+
+每个动作保持 20～30 秒，做 1～2 次。腰背不紧绷时无需额外强拉；出现向腿部放射的疼痛或麻木时停止。
+
 ## 参考资料
 
 - [ACE：鸟狗式](https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/)：脊柱稳定与动作幅度。
 - [ACE：高位下拉](https://www.acefitness.org/resources/everyone/exercise-library/158/seated-lat-pulldown/)、[单臂哑铃划船](https://www.acefitness.org/resources/everyone/exercise-library/126/single-arm-row/)、[坐姿划船](https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/)：拉动路径和躯干控制。
 - [ACE：哑铃耸肩](https://www.acefitness.org/resources/everyone/exercise-library/75/standing-shrug/)、[俯卧 Y 举](https://www.acefitness.org/resources/everyone/exercise-library/249/prone-scapular-shoulder-stabilization-series-i-y-t-w-o-formation/)：斜方肌上束训练与肩胛控制动作。
+- [Mayo Clinic：伸展原则](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)：热身与伸展的区别、温和牵拉及静态保持原则；具体准备动作按本文训练内容选配。

@@ -1,5 +1,9 @@
 # 腹部肌肉
 
+## 高密度摘要
+
+腹肌既参与躯干运动，也帮助抵抗腰部过伸与身体晃动。训练前用呼吸、骨盆控制和简化动作准备；腹部通常不必专门伸展，需要时只做温和活动，避免塌腰强拉。通用安排见[人体肌肉](./muscle-of-human.md#热身与伸展怎么安排)。
+
 ## 主要肌肉
 
 - 腹直肌：位于腹部前侧，主要负责躯干屈曲和维持腹压。
@@ -43,6 +47,19 @@
 
 动作引起腰部或肩部疼痛时，缩短时间、降低难度或停止该动作。腹部训练能提高力量和控制，但不能单独消除腹部脂肪。
 
+## 热身与伸展
+
+先参考[通用安排](./muscle-of-human.md#热身与伸展怎么安排)，再按当天动作选择以下练习。下列次数是起步示例，可按熟悉程度与身体反应调整。
+
+### 热身
+
+- 仰卧屈膝，做 4～6 次自然呼吸，呼气时轻轻收紧腹部；接着做小幅骨盆前后倾 6～8 次，熟悉腰背与骨盆位置。
+- 用简化版主动作练一组：死虫式先只移动手臂或单腿，平板支撑先用高台或跪姿，卷腹先做 6～8 次小幅动作。保持呼吸，不在热身中长时间撑到疲劳。
+
+### 伸展
+
+腹肌训练后**通常无需专门静态伸展**。想缓解紧绷时，可做 6～8 次小幅猫牛式，舒适地交替弓背与回到轻微伸展位；这是躯干活动，不是孤立拉伸腹肌。无需为“拉开腹肌”追求大幅眼镜蛇式或腰部后弯；腰部出现挤压痛时停止。
+
 ## 参考资料
 
 - [ACE：卷腹](https://www.acefitness.org/resources/everyone/exercise-library/52/crunch/)、[反向卷腹](https://www.acefitness.org/resources/everyone/exercise-library/76/reverse-crunch/)、[前平板支撑](https://www.acefitness.org/resources/everyone/exercise-library/32/front-plank/)、[改良侧平板支撑](https://www.acefitness.org/resources/everyone/exercise-library/99/side-plank-modified/)：动作步骤与姿势控制。
@@ -50,3 +67,5 @@
 - [ACE：悬垂举腿](https://www.acefitness.org/resources/everyone/blog/5521/summer-inspired-core-circuit/)：悬垂抬腿时避免躯干摆动和借惯性。
 - [ACE：腹部动作中的髋屈肌参与](https://www.acefitness.org/continuing-education/prosource/december-2014/5149/best-exercises-for-great-abs-and-a-pain-free-back/)：说明抬腿也会动用髋屈肌，动作范围应按腰背控制能力调整。
 - [ACE：腹部训练与减脂](https://www.acefitness.org/resources/everyone/blog/6273/3-fat-loss-myths-to-stop-believing-now/)：腹部训练不能定点减少腹部脂肪。
+
+- [Mayo Clinic：伸展原则](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)：热身与伸展的区别、温和牵拉及静态保持原则；具体准备动作按本文训练内容选配。

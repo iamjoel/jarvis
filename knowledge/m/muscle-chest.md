@@ -1,5 +1,9 @@
 # 胸部肌肉
 
+## 高密度摘要
+
+胸大肌参与推与上臂合拢，前锯肌帮助肩胛骨运动。训练前用轻推和递增热身组准备；胸前紧绷时可温和伸展，避免把压力压到肩前侧。热身与伸展的安排见[人体肌肉](./muscle-of-human.md#热身与伸展怎么安排)。
+
 ## 主要肌肉
 
 - 胸大肌：胸部最主要的肌肉，参与肩关节水平内收、内旋和屈曲。
@@ -34,9 +38,24 @@
 
 初学可先选俯卧撑或卧推，每周约 2 次，每次 1～2 组、每组 8～15 次；动作稳定后再增加训练量。飞鸟和肩胛控制动作按需要补充。若肩前侧出现明显疼痛，缩小动作幅度或停止该动作。
 
+## 热身与伸展
+
+先参考[通用安排](./muscle-of-human.md#热身与伸展怎么安排)，再按当天动作选择以下练习。下列次数是起步示例，可按熟悉程度与身体反应调整。
+
+### 热身
+
+- 缓慢做双臂开合 8～12 次，接着做高台俯卧撑 6～10 次；让肩胛骨随动作自然移动，保持轻松。
+- 卧推先用轻重量做 1～3 组，再逐步加重；正式动作是俯卧撑时，先用更高的支撑面练一组。热身不做到力竭。
+
+### 伸展
+
+**门框胸前伸展：**一侧前臂扶门框，肘部略低于肩，向前迈小步并轻轻转身离开支撑侧，直到胸前有温和牵拉感。每侧保持 20～30 秒，做 1～2 次；不把肩膀向前顶，也不追求手臂越向后越好。肩前侧出现夹痛时停止。
+
 ## 参考资料
 
 - [OpenStax：肩胛带肌肉](https://openstax.org/books/anatomy-and-physiology/pages/11-5-muscles-of-the-pectoral-girdle-and-upper-limbs)：按肩胛带功能归类前锯肌。
 - [ACE：俯卧撑](https://www.acefitness.org/resources/everyone/exercise-library/41/push-up/)：躯干与肩部的动作控制。
 - [ACE：哑铃卧推](https://www.acefitness.org/resources/everyone/exercise-library/19/chest-press/)与[胸部训练动作库](https://www.acefitness.org/resources/everyone/exercise-library/body-part/chest/pectorals%28pecs%29/)：卧推步骤与飞鸟等动作入口。
 - [ACE：肩胛稳定训练](https://www.acefitness.org/certifiednewsarticle/2660/a-commonsense-approach-to-addressing-shoulder-instability/)：俯卧撑顶端前伸肩胛骨对前锯肌和胸小肌的作用。
+
+- [Mayo Clinic：伸展原则](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)：热身与伸展的区别、温和牵拉及静态保持原则；具体准备动作按本文训练内容选配。

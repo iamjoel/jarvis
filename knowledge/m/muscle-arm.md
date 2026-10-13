@@ -1,5 +1,9 @@
 # 手臂肌肉
 
+## 高密度摘要
+
+手臂训练围绕屈肘、伸肘和抓握展开，推拉训练也会提供刺激。训练前轻活动肘腕并练习主动作；肱三头肌和前臂紧绷时可按需伸展。通用安排见[人体肌肉](./muscle-of-human.md#热身与伸展怎么安排)。
+
 ## 主要肌肉
 
 - 肱二头肌：位于上臂前侧，主要负责屈肘和前臂旋后。
@@ -40,8 +44,25 @@
 
 喙肱肌会随抬臂、向前推等肩关节动作参与，一般无需单独安排动作。出现肘、腕或肩部持续疼痛时，降低阻力或停止引发疼痛的动作。
 
+## 热身与伸展
+
+先参考[通用安排](./muscle-of-human.md#热身与伸展怎么安排)，再按当天动作选择以下练习。下列次数是起步示例，可按熟悉程度与身体反应调整。
+
+### 热身
+
+- 空手屈伸肘、前臂旋前旋后、屈伸腕各 8～12 次，动作缓慢，不压向关节极限。
+- 弯举、下压或提重行走先用轻重量做一组；较重训练可再逐步加重。刚完成推拉训练时，手臂通常已得到部分热身，按需要补充即可。
+
+### 伸展
+
+- **肱三头肌：**一臂举起屈肘，手伸向上背部，另一手轻扶上臂使其向后靠；避免拉扯肘尖或挺腰。肩部不适时跳过。
+- **前臂：**一臂向前伸，肘微屈；手心朝上时，另一手轻轻把手指带向下方，伸展前臂掌侧；手心朝下时，轻轻屈腕，伸展前臂背侧。不要猛掰手指。
+
+每侧保持 20～30 秒，做 1～2 次。没有紧绷或活动受限时，不必为每块上臂肌肉单列伸展；肘腕刺痛或手指麻木时停止。
+
 ## 参考资料
 
 - [ACE：坐姿哑铃弯举](https://www.acefitness.org/resources/everyone/exercise-library/44/seated-biceps-curl/)、[锤式弯举](https://www.acefitness.org/resources/everyone/exercise-library/10/hammer-curl/)：屈肘动作与躯干控制。
 - [ACE：提重行走](https://www.acefitness.org/resources/everyone/exercise-library/359/farmer-s-carry/)、[前臂伸肌训练](https://www.acefitness.org/resources/everyone/exercise-library/body-part/arms/extensors/)：抓握与腕伸动作入口。
 - [ACE：弹力带训练图解](https://www.acefitness.org/getfit/rubrbndwkout.pdf)：肱三头肌伸肘动作示例。
+- [Mayo Clinic：伸展原则](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)：热身与伸展的区别、温和牵拉及静态保持原则；具体准备动作按本文训练内容选配。
