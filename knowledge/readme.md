@@ -39,6 +39,7 @@
 - [韩国近代史（政治、经济、文化与产业格局）](../data/h/history-korea-modern.md)
 
 ### Health
+- [ADHD 儿童的任务拆解方法](./a/adhd-task-breakdown.md)：帮助家长和老师把作业与课堂任务拆成可开始的小步骤，配合提示、反馈和漏题检查。
 - [健身前评估：活动度、动作控制与训练起点](./m/pre-training-assessment.md)：判断深蹲、髋铰链、推拉等动作的起始版本、负荷与需进一步评估的问题。
 - [怎样更有效地增肌：先做好训练、吃饭和睡觉](./m/muscle-growth-factors.md)：帮助判断增肌时该优先调整训练、饮食还是恢复。
 - [胆固醇：LDL、HDL、甘油三酯与健康管理](./c/cholesterol.md)
