@@ -39,6 +39,7 @@
 - [韩国近代史（政治、经济、文化与产业格局）](../data/h/history-korea-modern.md)
 
 ### Health
+- [ADHD 简介](./a/adhd.md)：理解主要表现、诊断边界，以及治疗与家庭、学校支持。
 - [作业拖延怎么办](./a/adhd-task-breakdown.md)：针对 ADHD 儿童，用任务拆解、提示和反馈帮助开始与完成作业。
 - [上课分心怎么办](./a/adhd-classroom-attention.md)：针对 ADHD 儿童，与老师配合提供具体任务、私下提示和及时肯定。
 - [健身前评估：活动度、动作控制与训练起点](./m/pre-training-assessment.md)：判断深蹲、髋铰链、推拉等动作的起始版本、负荷与需进一步评估的问题。
