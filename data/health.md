@@ -225,6 +225,7 @@
 | [《控糖革命》](./g/glucose-revolution.md) | 血糖波动如何影响精力、体重、食欲与衰老 |
 | [《疯狂的尿酸》](./u/uric-acid.md) | 尿酸、果糖与代谢综合征之间的隐藏联系 |
 | [《长寿饮食》](./b/book-the-longevity-diet.md) | 饮食模式如何作用于衰老与疾病风险 |
+| [肌酸介绍与使用指南](./c/creatine.md) | 帮助判断肌酸是否适合自己的训练目标，说明每天 3–5 克与冲击方案、实际增肌和水分增重的区别，以及肾功能、肌酐和脱发等风险边界 |
 | [虾青素（Astaxanthin）](./h/astaxanthin.md) | 用荟萃分析视角拆解虾青素的天然来源、真实健康影响，以及它到底是不是“智商税” |
 | [氨糖是不是智商税：基于荟萃分析的证据判断](./a/antang-glucosamine-meta-analysis.md) | 综合 BMJ、BJSM、ACR、NICE、NCCIH、ESCEO 等荟萃分析和指南，区分普通保健、骨关节炎止痛、软骨修复等不同场景下氨糖是否值得买 |
 | [《空腹力革命》](./b/book-empty-stomach-revolution.md) | 石原结实从医学角度阐述空腹状态如何激活自愈力、提升免疫与延缓衰老 |

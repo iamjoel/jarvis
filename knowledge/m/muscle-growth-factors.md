@@ -3,7 +3,7 @@ status: done
 category: health
 tags: muscle, hypertrophy, resistance-training, protein, recovery
 create_date: 2026-09-21
-update_date: 2026-09-22
+update_date: 2026-10-22
 ---
 
 # 怎样更有效地增肌：先做好训练、吃饭和睡觉
@@ -148,6 +148,8 @@ ACSM 给增肌的参考是**每块肌群每周约 10 组**。初练者可以从�
 | “先买补剂，增肌才会快” | 先落实训练、饮食和睡眠，再判断补剂是否有实际帮助 |
 
 肌酸是一种可选补剂，健康成年人常用肌酸一水合物 **每天 3–5 克**，不必先连续几天大剂量服用。初期增重包含水分，不能都算作新长的肌肉；直接测量肌肉大小的研究提示，额外增肌收益可能较小，仍有不确定性。[肌酸用法综述](https://link.springer.com/article/10.1186/s12970-021-00412-w)、[肌肉增长研究汇总](https://pmc.ncbi.nlm.nih.gov/articles/PMC10180745/)
+
+适用人群、补充方案和风险详见 [肌酸介绍与使用指南](../../data/c/creatine.md)。
 
 已知有肾脏疾病或需要限制蛋白质摄入的人，应按自己的医疗建议安排饮食和补剂。
 
