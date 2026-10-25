@@ -49,6 +49,7 @@ AI 工具正在改变知识工作流程，理解协作方式比追逐单个工�
 | 文档 | 简介 |
 |------|------|
 | [LLM 资源](./l/llm-resource.md) | LLM 相关人物、工具与学习资源汇总 |
+| [TTS：效果榜单、试听与 AI 播客制作方案](./t/TTS.md) | 帮助选择中文配音与双人播客方案；对照具体型号排名、官方样音和公开节目技术栈，并区分英语榜单、中文体验与采用证据 |
 | [Jev：面向软件决策的 AI 模型](./j/jev.md) | 帮助判断分类、路由与校验任务是否适合采用 Jev；解释 Choice、Score、Noul、概率校准、价格与性能宣传条件，以及中文和安全边界 |
 | [Lev8 产品调研](./l/lev8.md) | AI-first GTM 平台调研：自然语言 prospecting、waterfall enrichment、live signals、多渠道 outbound、credit 定价、合规风险与 Clay/Apollo/ZoomInfo 对比 |
 | [深入解读 Google 的 Gemma 4](./g/gemma-4.md) | Gemma 4 家族（E2B/E4B/26B MoE/31B Dense）的架构、性能、Agent 能力、与 Gemma 3 的对比及对开源 AI 生态的影响 |
