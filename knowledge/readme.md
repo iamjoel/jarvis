@@ -38,6 +38,9 @@
 - [实验室用不同动物的历史](./h/history-laboratory-animals.md)
 - [韩国近代史（政治、经济、文化与产业格局）](../data/h/history-korea-modern.md)
 
+### Reading
+- [已读科幻小说导航](./n/nav-science-fiction.md)：按作品查找读后感，回顾阅读时的思考。
+
 ### Health
 - [健康 Roadmap：定义 → 度量 → 保持／改进](./n/nav-health.md)：明确健康目标，判断当前状态，选择行动并复评效果。
 - [ADHD 简介](./a/adhd.md)：理解主要表现、诊断边界，以及治疗与家庭、学校支持。
