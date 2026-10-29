@@ -14,6 +14,7 @@
 
 - [《属于万物的宇宙》](../f/fiction-the-universe-of-things-reflection.md)：格温妮丝·琼斯借外星人没有主客之分的价值观，重新审视自我与万物的关系，并追问主体性的消退是否会带来心理自由。
 - [《三体》三部曲](../f/fiction-the-three-body-problem-reflection.md)：刘慈欣把文明间的猜疑、交流方式与基础科学封锁推向宇宙尺度，让人感受信任和理解世界的根基如何被动摇。
+- [《相会于黎明》](../f/fiction-encounter-in-the-dawn-reflection.md)：阿瑟·克拉克以温暖、感人的文明相遇，让人想到外星接触也可能包含善意与关怀，与《三体》的黑暗森林形成呼应。
 
 ## 科学探索
 
